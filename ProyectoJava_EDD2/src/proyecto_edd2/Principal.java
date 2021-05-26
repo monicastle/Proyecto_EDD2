@@ -54,60 +54,61 @@ public class Principal extends javax.swing.JFrame {
         BTN_RegresarAMenuArchivos = new javax.swing.JButton();
         JD_CrearCampos = new javax.swing.JDialog();
         jPanel7 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        JL_5 = new javax.swing.JLabel();
+        JL_8 = new javax.swing.JLabel();
         CB_TipoDeDatoDelCampo = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
+        JL_9 = new javax.swing.JLabel();
         SP_LongitudDelCampo = new javax.swing.JSpinner();
-        jLabel24 = new javax.swing.JLabel();
+        JL_6 = new javax.swing.JLabel();
         TF_NombreDelCampo = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        JL_7 = new javax.swing.JLabel();
         RB_LlavePrimariaDelCampo = new javax.swing.JRadioButton();
-        jLabel25 = new javax.swing.JLabel();
+        JL_10 = new javax.swing.JLabel();
         BTN_CrearCampoDefinitivo = new javax.swing.JButton();
         BTN_CancelarCrearCampo = new javax.swing.JButton();
         JD_ModificarCampos = new javax.swing.JDialog();
         jPanel9 = new javax.swing.JPanel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        JL_12 = new javax.swing.JLabel();
+        JL_11 = new javax.swing.JLabel();
+        JL_13 = new javax.swing.JLabel();
         CB_CampoAModificar = new javax.swing.JComboBox<>();
-        jLabel11 = new javax.swing.JLabel();
+        JL_14 = new javax.swing.JLabel();
         TF_NombreDelCampoModificado = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
+        JL_16 = new javax.swing.JLabel();
         CB_TipoDeDatoDelCampoModificado = new javax.swing.JComboBox<>();
-        jLabel15 = new javax.swing.JLabel();
+        JL_15 = new javax.swing.JLabel();
         SP_LongitudDelCampoModificado = new javax.swing.JSpinner();
         RB_LlavePrimariaDelCampoModificado = new javax.swing.JRadioButton();
-        jLabel31 = new javax.swing.JLabel();
+        JL_17 = new javax.swing.JLabel();
         BTN_ModificarCampoDefinitivo = new javax.swing.JButton();
         BTN_CancelarModificarCampo = new javax.swing.JButton();
         JD_BorrarCampos = new javax.swing.JDialog();
         jPanel8 = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        JL_19 = new javax.swing.JLabel();
+        JL_18 = new javax.swing.JLabel();
         CB_CampoABorrar = new javax.swing.JComboBox<>();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
+        JL_20 = new javax.swing.JLabel();
+        JL_21 = new javax.swing.JLabel();
         BTN_BorrarCampoDefinitivo = new javax.swing.JButton();
         BTN_CancelarBorrarCampo = new javax.swing.JButton();
         JD_ListarCampos = new javax.swing.JDialog();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TA_ListarCampos = new javax.swing.JTextArea();
-        jLabel4 = new javax.swing.JLabel();
+        JL_22 = new javax.swing.JLabel();
         BTN_CancelarListarCampos = new javax.swing.JButton();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
+        JL_23 = new javax.swing.JLabel();
+        JL_24 = new javax.swing.JLabel();
         PanelPrincipal = new javax.swing.JPanel();
-        JL_Bienvenido = new javax.swing.JLabel();
-        PanelSecundario = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        JL_1 = new javax.swing.JLabel();
+        BTN_SalirPrograma = new javax.swing.JButton();
+        JL_2 = new javax.swing.JLabel();
         BTN_AbrirArchivo = new javax.swing.JButton();
         BTN_CrearNuevoArchivo = new javax.swing.JButton();
-        BTN_SalirPrograma = new javax.swing.JButton();
+        JL_3 = new javax.swing.JLabel();
+        JL_4 = new javax.swing.JLabel();
 
-        VentanaMenuCampos.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        VentanaMenuCampos.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         VentanaMenuCampos.setTitle("Menú Campos");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -281,37 +282,37 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setText("Crear Campo");
+        JL_5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JL_5.setText("Crear Campo");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setText("Tipo de dato del campo");
+        JL_8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        JL_8.setText("Tipo de dato del campo");
 
         CB_TipoDeDatoDelCampo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CB_TipoDeDatoDelCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "int", "byte", "short", "double", "float", "long", "char", "string", "boolean" }));
         CB_TipoDeDatoDelCampo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setText("Longitud del Campo");
+        JL_9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        JL_9.setText("Longitud del Campo");
 
         SP_LongitudDelCampo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SP_LongitudDelCampo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
-        jLabel24.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel24.setText("__________________________________________________________________");
+        JL_6.setForeground(new java.awt.Color(204, 204, 204));
+        JL_6.setText("__________________________________________________________________");
 
         TF_NombreDelCampo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TF_NombreDelCampo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setText("Nombre del campo");
+        JL_7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        JL_7.setText("Nombre del campo");
 
         RB_LlavePrimariaDelCampo.setBackground(new java.awt.Color(255, 255, 255));
         RB_LlavePrimariaDelCampo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         RB_LlavePrimariaDelCampo.setText("Llave Primaria");
 
-        jLabel25.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel25.setText("__________________________________________________________________");
+        JL_10.setForeground(new java.awt.Color(204, 204, 204));
+        JL_10.setText("__________________________________________________________________");
 
         BTN_CrearCampoDefinitivo.setBackground(new java.awt.Color(255, 51, 0));
         BTN_CrearCampoDefinitivo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -338,23 +339,23 @@ public class Principal extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JL_6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
+                    .addComponent(JL_5)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel6)
+                        .addComponent(JL_9)
+                        .addComponent(JL_8)
                         .addComponent(TF_NombreDelCampo)
-                        .addComponent(jLabel9)
+                        .addComponent(JL_7)
                         .addComponent(CB_TipoDeDatoDelCampo, 0, 356, Short.MAX_VALUE))
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(SP_LongitudDelCampo, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(RB_LlavePrimariaDelCampo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jLabel25)
+                .addComponent(JL_10)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -367,25 +368,25 @@ public class Principal extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
+                .addComponent(JL_5)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JL_6, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(jLabel9)
+                .addComponent(JL_7)
                 .addGap(11, 11, 11)
                 .addComponent(TF_NombreDelCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jLabel6)
+                .addComponent(JL_8)
                 .addGap(11, 11, 11)
                 .addComponent(CB_TipoDeDatoDelCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jLabel8)
+                .addComponent(JL_9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SP_LongitudDelCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(RB_LlavePrimariaDelCampo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel25)
+                .addComponent(JL_10)
                 .addGap(16, 16, 16)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BTN_CrearCampoDefinitivo, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
@@ -409,33 +410,33 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel30.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel30.setText("_______________________________________________________________________");
+        JL_12.setForeground(new java.awt.Color(204, 204, 204));
+        JL_12.setText("_______________________________________________________________________");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel10.setText("Modificar Campo");
+        JL_11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JL_11.setText("Modificar Campo");
 
-        jLabel14.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel14.setText("Seleccione el campo que le gustaría modificar");
+        JL_13.setForeground(new java.awt.Color(102, 102, 102));
+        JL_13.setText("Seleccione el campo que le gustaría modificar");
 
         CB_CampoAModificar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CB_CampoAModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel11.setText("Nombre del campo");
+        JL_14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        JL_14.setText("Nombre del campo");
 
         TF_NombreDelCampoModificado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TF_NombreDelCampoModificado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel12.setText("Longitud del campo");
+        JL_16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        JL_16.setText("Longitud del campo");
 
         CB_TipoDeDatoDelCampoModificado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CB_TipoDeDatoDelCampoModificado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "int", "byte", "short", "double", "float", "long", "char", "string", "boolean" }));
         CB_TipoDeDatoDelCampoModificado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel15.setText("Tipo de dato del campo");
+        JL_15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        JL_15.setText("Tipo de dato del campo");
 
         SP_LongitudDelCampoModificado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SP_LongitudDelCampoModificado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
@@ -444,8 +445,8 @@ public class Principal extends javax.swing.JFrame {
         RB_LlavePrimariaDelCampoModificado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         RB_LlavePrimariaDelCampoModificado.setText("Llave Primaria");
 
-        jLabel31.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel31.setText("_______________________________________________________________________");
+        JL_17.setForeground(new java.awt.Color(204, 204, 204));
+        JL_17.setText("_______________________________________________________________________");
 
         BTN_ModificarCampoDefinitivo.setBackground(new java.awt.Color(255, 51, 0));
         BTN_ModificarCampoDefinitivo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -476,22 +477,21 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(RB_LlavePrimariaDelCampoModificado)
-                    .addComponent(jLabel15)
+                    .addComponent(JL_15)
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel11)
+                        .addComponent(JL_14)
                         .addComponent(CB_CampoAModificar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                        .addComponent(JL_11)
+                        .addComponent(JL_13, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                         .addComponent(CB_TipoDeDatoDelCampoModificado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(TF_NombreDelCampoModificado)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(SP_LongitudDelCampoModificado, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(SP_LongitudDelCampoModificado)
+                        .addComponent(JL_16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JL_17, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JL_12, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -504,29 +504,29 @@ public class Principal extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addComponent(jLabel10)
+                .addComponent(JL_11)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel30)
+                .addComponent(JL_12)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel14)
+                .addComponent(JL_13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CB_CampoAModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jLabel11)
+                .addComponent(JL_14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TF_NombreDelCampoModificado, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jLabel15)
+                .addComponent(JL_15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CB_TipoDeDatoDelCampoModificado, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jLabel12)
+                .addComponent(JL_16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SP_LongitudDelCampoModificado, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(RB_LlavePrimariaDelCampoModificado)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel31)
+                .addComponent(JL_17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BTN_ModificarCampoDefinitivo, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
@@ -550,20 +550,20 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel28.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel28.setText("_______________________________________________________________________");
+        JL_19.setForeground(new java.awt.Color(204, 204, 204));
+        JL_19.setText("_______________________________________________________________________");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setText("Borrar Campo");
+        JL_18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JL_18.setText("Borrar Campo");
 
         CB_CampoABorrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CB_CampoABorrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
-        jLabel13.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel13.setText("Seleccione el campo que le gustaría borrar");
+        JL_20.setForeground(new java.awt.Color(102, 102, 102));
+        JL_20.setText("Seleccione el campo que le gustaría borrar");
 
-        jLabel29.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel29.setText("_______________________________________________________________________");
+        JL_21.setForeground(new java.awt.Color(204, 204, 204));
+        JL_21.setText("_______________________________________________________________________");
 
         BTN_BorrarCampoDefinitivo.setBackground(new java.awt.Color(255, 51, 0));
         BTN_BorrarCampoDefinitivo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -593,14 +593,14 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                    .addComponent(jLabel7)
+                    .addComponent(JL_20, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                    .addComponent(JL_18)
                     .addComponent(CB_CampoABorrar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JL_21, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JL_19, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -613,15 +613,15 @@ public class Principal extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addComponent(jLabel7)
+                .addComponent(JL_18)
                 .addGap(2, 2, 2)
-                .addComponent(jLabel28)
+                .addComponent(JL_19)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel13)
+                .addComponent(JL_20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CB_CampoABorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel29)
+                .addComponent(JL_21)
                 .addGap(11, 11, 11)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BTN_BorrarCampoDefinitivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -652,9 +652,9 @@ public class Principal extends javax.swing.JFrame {
         TA_ListarCampos.setEnabled(false);
         jScrollPane2.setViewportView(TA_ListarCampos);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("Listado de Campos");
+        JL_22.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JL_22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        JL_22.setText("Listado de Campos");
 
         BTN_CancelarListarCampos.setBackground(new java.awt.Color(204, 204, 204));
         BTN_CancelarListarCampos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -666,11 +666,11 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel26.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel26.setText("_______________________________________________________________________");
+        JL_23.setForeground(new java.awt.Color(204, 204, 204));
+        JL_23.setText("_______________________________________________________________________");
 
-        jLabel27.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel27.setText("_______________________________________________________________________");
+        JL_24.setForeground(new java.awt.Color(204, 204, 204));
+        JL_24.setText("_______________________________________________________________________");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -678,15 +678,15 @@ public class Principal extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JL_23, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JL_24, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JL_22, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(165, 165, 165)
@@ -697,13 +697,13 @@ public class Principal extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
+                .addComponent(JL_22)
                 .addGap(0, 0, 0)
-                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JL_23, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JL_24, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BTN_CancelarListarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                 .addContainerGap())
@@ -727,113 +727,105 @@ public class Principal extends javax.swing.JFrame {
 
         PanelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
 
-        JL_Bienvenido.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        JL_Bienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JL_Bienvenido.setText("¡Bienvenido!");
+        JL_1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        JL_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JL_1.setText("¡Bienvenido!");
 
-        PanelSecundario.setBackground(new java.awt.Color(255, 255, 255));
-        PanelSecundario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("¿Que desea hacer?");
-
-        BTN_AbrirArchivo.setBackground(new java.awt.Color(255, 204, 0));
-        BTN_AbrirArchivo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        BTN_AbrirArchivo.setForeground(new java.awt.Color(255, 255, 255));
-        BTN_AbrirArchivo.setText("Abrir un Archivo");
-        BTN_AbrirArchivo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        BTN_AbrirArchivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTN_AbrirArchivoActionPerformed(evt);
-            }
-        });
-
-        BTN_CrearNuevoArchivo.setBackground(new java.awt.Color(255, 204, 0));
-        BTN_CrearNuevoArchivo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        BTN_CrearNuevoArchivo.setForeground(new java.awt.Color(255, 255, 255));
-        BTN_CrearNuevoArchivo.setText("Crear un Nuevo Archivo");
-        BTN_CrearNuevoArchivo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        BTN_CrearNuevoArchivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTN_CrearNuevoArchivoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout PanelSecundarioLayout = new javax.swing.GroupLayout(PanelSecundario);
-        PanelSecundario.setLayout(PanelSecundarioLayout);
-        PanelSecundarioLayout.setHorizontalGroup(
-            PanelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelSecundarioLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(BTN_AbrirArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                .addGap(48, 48, 48)
-                .addComponent(BTN_CrearNuevoArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109))
-        );
-        PanelSecundarioLayout.setVerticalGroup(
-            PanelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelSecundarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGroup(PanelSecundarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelSecundarioLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(BTN_AbrirArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(PanelSecundarioLayout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(BTN_CrearNuevoArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(73, Short.MAX_VALUE))))
-        );
-
-        BTN_SalirPrograma.setBackground(new java.awt.Color(255, 204, 0));
-        BTN_SalirPrograma.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        BTN_SalirPrograma.setForeground(new java.awt.Color(255, 255, 255));
+        BTN_SalirPrograma.setBackground(new java.awt.Color(204, 204, 204));
+        BTN_SalirPrograma.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         BTN_SalirPrograma.setText("Salir");
-        BTN_SalirPrograma.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        BTN_SalirPrograma.setBorder(null);
         BTN_SalirPrograma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BTN_SalirProgramaActionPerformed(evt);
             }
         });
 
+        JL_2.setForeground(new java.awt.Color(204, 204, 204));
+        JL_2.setText("____________________________________________________________________");
+
+        BTN_AbrirArchivo.setBackground(new java.awt.Color(255, 51, 0));
+        BTN_AbrirArchivo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BTN_AbrirArchivo.setForeground(new java.awt.Color(255, 255, 255));
+        BTN_AbrirArchivo.setText("Abrir un Archivo");
+        BTN_AbrirArchivo.setBorder(null);
+        BTN_AbrirArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_AbrirArchivoActionPerformed(evt);
+            }
+        });
+
+        BTN_CrearNuevoArchivo.setBackground(new java.awt.Color(255, 51, 0));
+        BTN_CrearNuevoArchivo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BTN_CrearNuevoArchivo.setForeground(new java.awt.Color(255, 255, 255));
+        BTN_CrearNuevoArchivo.setText("Crear un Nuevo Archivo");
+        BTN_CrearNuevoArchivo.setBorder(null);
+        BTN_CrearNuevoArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_CrearNuevoArchivoActionPerformed(evt);
+            }
+        });
+
+        JL_3.setForeground(new java.awt.Color(102, 102, 102));
+        JL_3.setText("¿Que le gustaría hacer?");
+
+        JL_4.setForeground(new java.awt.Color(204, 204, 204));
+        JL_4.setText("____________________________________________________________________");
+
         javax.swing.GroupLayout PanelPrincipalLayout = new javax.swing.GroupLayout(PanelPrincipal);
         PanelPrincipal.setLayout(PanelPrincipalLayout);
         PanelPrincipalLayout.setHorizontalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JL_Bienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(PanelPrincipalLayout.createSequentialGroup()
+                .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JL_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JL_4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JL_2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(PanelPrincipalLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BTN_AbrirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BTN_CrearNuevoArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PanelPrincipalLayout.createSequentialGroup()
+                        .addComponent(JL_3, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(118, 118, 118)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPrincipalLayout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
-                .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPrincipalLayout.createSequentialGroup()
-                        .addComponent(PanelSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPrincipalLayout.createSequentialGroup()
-                        .addComponent(BTN_SalirPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(298, 298, 298))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BTN_SalirPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(154, 154, 154))
         );
         PanelPrincipalLayout.setVerticalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPrincipalLayout.createSequentialGroup()
-                .addComponent(JL_Bienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135)
-                .addComponent(PanelSecundario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(JL_1)
+                .addGap(0, 0, 0)
+                .addComponent(JL_2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(JL_3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BTN_SalirPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(BTN_CrearNuevoArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(BTN_AbrirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(JL_4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(BTN_SalirPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -1039,15 +1031,30 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BTN_CancelarModificarCampoActionPerformed
 
     private void BTN_CrearCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_CrearCampoDefinitivoActionPerformed
-        // TODO add your handling code here:
+        // SE CREA UN CAMPO DENTRO DEL ARCHIVO
+        try {
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
     }//GEN-LAST:event_BTN_CrearCampoDefinitivoActionPerformed
 
     private void BTN_ModificarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_ModificarCampoDefinitivoActionPerformed
-        // TODO add your handling code here:
+        // SE MODIFICA UN CAMPO DENTRO DEL ARCHIVO
+        try {
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
     }//GEN-LAST:event_BTN_ModificarCampoDefinitivoActionPerformed
 
     private void BTN_BorrarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BorrarCampoDefinitivoActionPerformed
-        // TODO add your handling code here:
+        // SE BORRA UN CAMPO DENTRO DEL ARCHIVO
+        try {
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
     }//GEN-LAST:event_BTN_BorrarCampoDefinitivoActionPerformed
 
     /**
@@ -1111,9 +1118,31 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog JD_CrearCampos;
     private javax.swing.JDialog JD_ListarCampos;
     private javax.swing.JDialog JD_ModificarCampos;
-    private javax.swing.JLabel JL_Bienvenido;
+    private javax.swing.JLabel JL_1;
+    private javax.swing.JLabel JL_10;
+    private javax.swing.JLabel JL_11;
+    private javax.swing.JLabel JL_12;
+    private javax.swing.JLabel JL_13;
+    private javax.swing.JLabel JL_14;
+    private javax.swing.JLabel JL_15;
+    private javax.swing.JLabel JL_16;
+    private javax.swing.JLabel JL_17;
+    private javax.swing.JLabel JL_18;
+    private javax.swing.JLabel JL_19;
+    private javax.swing.JLabel JL_2;
+    private javax.swing.JLabel JL_20;
+    private javax.swing.JLabel JL_21;
+    private javax.swing.JLabel JL_22;
+    private javax.swing.JLabel JL_23;
+    private javax.swing.JLabel JL_24;
+    private javax.swing.JLabel JL_3;
+    private javax.swing.JLabel JL_4;
+    private javax.swing.JLabel JL_5;
+    private javax.swing.JLabel JL_6;
+    private javax.swing.JLabel JL_7;
+    private javax.swing.JLabel JL_8;
+    private javax.swing.JLabel JL_9;
     private javax.swing.JPanel PanelPrincipal;
-    private javax.swing.JPanel PanelSecundario;
     private javax.swing.JRadioButton RB_LlavePrimariaDelCampo;
     private javax.swing.JRadioButton RB_LlavePrimariaDelCampoModificado;
     private javax.swing.JSpinner SP_LongitudDelCampo;
@@ -1123,29 +1152,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField TF_NombreDelCampo;
     private javax.swing.JTextField TF_NombreDelCampoModificado;
     private javax.swing.JFrame VentanaMenuCampos;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
