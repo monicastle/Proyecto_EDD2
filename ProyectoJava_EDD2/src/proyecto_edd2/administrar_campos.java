@@ -64,13 +64,14 @@ public class administrar_campos {
                         lista_campos.add(campo);
                     }
                 } catch (EOFException e) {
-                    //encontro el final del archivo
+                    System.out.println("stacktrace while");
                 }
                 objeto.close();
                 entrada.close();
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println("stacktrace");
+           // ex.printStackTrace();
         }
     }
 

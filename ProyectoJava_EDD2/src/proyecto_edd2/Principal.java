@@ -14,10 +14,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-//import java.util.ArrayList;
+import java.util.ArrayList;
 
 /**
  *
@@ -32,9 +33,9 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         administrador_campos.cargarArchivo();
-        for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
+        /*for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
             System.out.println(" - " + ((Campo) (administrador_campos.getCampos().get(i))).getNombre());
-        }
+        }*/
     }
 
     /**
@@ -976,6 +977,7 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_AbrirBorrarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirBorrarCampoActionPerformed
         // DESPLIEGA EL JDIALOG DONDE SE BORRA UN CAMPO
         try {
+            formatear_CBbox_borrar();
             VentanaMenuCampos.setVisible(false);
             JD_BorrarCampos.setModal(true);
             JD_BorrarCampos.pack();
@@ -1054,11 +1056,11 @@ public class Principal extends javax.swing.JFrame {
             }
             Campo campo_nuevo = new Campo(nombre, tipo_de_dato, longitud, llave_primaria);
             escribir_archivo_txt(campo_nuevo.campo_para_archivo());
-            
+
             añadir_campo_txt(campo_nuevo);
             administrador_campos.añadirCampo(campo_nuevo);
             administrador_campos.escribirArchivo();
-        
+
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -1148,7 +1150,8 @@ public class Principal extends javax.swing.JFrame {
 
     void listar_campos() {
         try {
-            TA_ListarCampos.append("");
+            //TA_ListarCampos.append("");
+            TA_ListarCampos.setText("");
             for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
                 TA_ListarCampos.append(administrador_campos.getCampos().get(i).toString());
             }
@@ -1156,6 +1159,21 @@ public class Principal extends javax.swing.JFrame {
             System.out.println("error");
             e.printStackTrace();
         } // Fin Try Catch
+    }// Fin Metodo
+
+    void match_campos() {
+        for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
+            Campo campo_temporal = administrador_campos.getCampos().get(i);
+        }
+    }// Fin Metodo
+
+    void formatear_CBbox_borrar() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
+            Campo campo_temporal = administrador_campos.getCampos().get(i);
+            modelo.addElement(campo_temporal.getNombre());
+        }// Fin If
+        CB_CampoABorrar.setModel(modelo);
     }// Fin Metodo
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1231,6 +1249,6 @@ public class Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private File archivo_actual;
     //private Campo campo_actual;
-    //ArrayList<Campo> lista_campos = new ArrayList();
+    ArrayList<Campo> lista_campos = new ArrayList();
     administrar_campos administrador_campos = new administrar_campos("./campos.123");
 }
