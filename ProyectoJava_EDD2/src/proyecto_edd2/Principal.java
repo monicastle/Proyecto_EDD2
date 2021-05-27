@@ -53,14 +53,13 @@ public class Principal extends javax.swing.JFrame {
         TA_ArchivoAbierto = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         BTN_SalvarArchivo = new javax.swing.JButton();
-        BTN_CerrarArchivo = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         BTN_AbrirCrearCampo = new javax.swing.JButton();
         BTN_AbrirModificarCampo = new javax.swing.JButton();
         BTN_AbrirBorrarCampo = new javax.swing.JButton();
         BTN_AbrirListarCampos = new javax.swing.JButton();
-        BTN_RegresarAMenuArchivos = new javax.swing.JButton();
+        BTN_CerrarArchivo = new javax.swing.JButton();
         JD_CrearCampos = new javax.swing.JDialog();
         jP_CrearCampo = new javax.swing.JPanel();
         JL_5 = new javax.swing.JLabel();
@@ -117,13 +116,14 @@ public class Principal extends javax.swing.JFrame {
         JL_3 = new javax.swing.JLabel();
         JL_4 = new javax.swing.JLabel();
 
-        VentanaMenuCampos.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        VentanaMenuCampos.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         VentanaMenuCampos.setTitle("Menú Campos");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         TA_ArchivoAbierto.setColumns(20);
         TA_ArchivoAbierto.setRows(5);
+        TA_ArchivoAbierto.setEnabled(false);
         jScrollPane1.setViewportView(TA_ArchivoAbierto);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -136,24 +136,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        BTN_CerrarArchivo.setText("Cerrar Archivo");
-        BTN_CerrarArchivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTN_CerrarArchivoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BTN_SalvarArchivo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BTN_CerrarArchivo)
-                .addGap(61, 61, 61))
+                .addGap(182, 182, 182))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,9 +158,7 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BTN_SalvarArchivo)
-                    .addComponent(BTN_CerrarArchivo))
+                .addComponent(BTN_SalvarArchivo)
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
@@ -239,10 +228,10 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        BTN_RegresarAMenuArchivos.setText("Regresar");
-        BTN_RegresarAMenuArchivos.addActionListener(new java.awt.event.ActionListener() {
+        BTN_CerrarArchivo.setText("Cerrar Archivo");
+        BTN_CerrarArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTN_RegresarAMenuArchivosActionPerformed(evt);
+                BTN_CerrarArchivoActionPerformed(evt);
             }
         });
 
@@ -257,8 +246,8 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(29, 29, 29))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(417, 417, 417)
-                .addComponent(BTN_RegresarAMenuArchivos)
+                .addGap(433, 433, 433)
+                .addComponent(BTN_CerrarArchivo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -269,7 +258,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(31, 31, 31)
-                .addComponent(BTN_RegresarAMenuArchivos)
+                .addComponent(BTN_CerrarArchivo)
                 .addContainerGap())
         );
 
@@ -895,7 +884,6 @@ public class Principal extends javax.swing.JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 } // Fin Try Catch
-                // Cargado_ComboBox();
                 this.setVisible(false);
                 VentanaMenuCampos.pack();
                 VentanaMenuCampos.setLocationRelativeTo(null);
@@ -905,16 +893,6 @@ public class Principal extends javax.swing.JFrame {
             e.printStackTrace();
         } // Fin Try Catch
     }//GEN-LAST:event_BTN_AbrirArchivoActionPerformed
-
-    private void BTN_RegresarAMenuArchivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_RegresarAMenuArchivosActionPerformed
-        // REGRESAMOS DEL MENU DE CAMPOS AL MENU DE ARCHIVOS
-        try {
-            VentanaMenuCampos.setVisible(false);
-            this.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } // Fin Try Catch
-    }//GEN-LAST:event_BTN_RegresarAMenuArchivosActionPerformed
 
     private void BTN_SalvarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_SalvarArchivoActionPerformed
         // ACTUALIZA EL TEXT AREA QUE MUESTRA EL ARCHIVO
@@ -1195,7 +1173,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BTN_CrearCampoDefinitivo;
     private javax.swing.JButton BTN_CrearNuevoArchivo;
     private javax.swing.JButton BTN_ModificarCampoDefinitivo;
-    private javax.swing.JButton BTN_RegresarAMenuArchivos;
     private javax.swing.JButton BTN_SalirPrograma;
     private javax.swing.JButton BTN_SalvarArchivo;
     private javax.swing.JComboBox<String> CB_CampoABorrar;
