@@ -1075,9 +1075,12 @@ public class Principal extends javax.swing.JFrame {
                 llave_primaria = true;
             }
             Campo campo_nuevo = new Campo(nombre, tipo_de_dato, longitud, llave_primaria);
-            administrador_campos.añadirCampo(campo_nuevo);
             escribir_archivo_txt(campo_nuevo.campo_para_archivo());
+            
             añadir_campo_txt(campo_nuevo);
+            administrador_campos.añadirCampo(campo_nuevo);
+            administrador_campos.escribirArchivo();
+        
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
