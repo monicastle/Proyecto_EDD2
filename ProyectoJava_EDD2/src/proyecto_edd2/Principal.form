@@ -152,15 +152,15 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="BTN_ModificarCampo" alignment="0" min="-2" pref="288" max="-2" attributes="0"/>
-                                      <Component id="BTN_CrearCampo" alignment="0" min="-2" pref="288" max="-2" attributes="0"/>
+                                      <Component id="BTN_AbrirModificarCampo" alignment="0" min="-2" pref="288" max="-2" attributes="0"/>
+                                      <Component id="BTN_AbrirCrearCampo" alignment="0" min="-2" pref="288" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="50" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="BTN_ListarCampos" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="BTN_BorrarCampo" max="32767" attributes="0"/>
+                                      <Component id="BTN_AbrirListarCampos" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="BTN_AbrirBorrarCampo" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
@@ -174,13 +174,13 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                          <Component id="BTN_CrearCampo" min="-2" max="-2" attributes="0"/>
+                          <Component id="BTN_AbrirCrearCampo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="BTN_ModificarCampo" min="-2" max="-2" attributes="0"/>
+                          <Component id="BTN_AbrirModificarCampo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="BTN_BorrarCampo" min="-2" max="-2" attributes="0"/>
+                          <Component id="BTN_AbrirBorrarCampo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="BTN_ListarCampos" min="-2" max="-2" attributes="0"/>
+                          <Component id="BTN_AbrirListarCampos" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -193,36 +193,36 @@
                     <Property name="text" type="java.lang.String" value="&#xbf;Que desea hacer?"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="BTN_CrearCampo">
+                <Component class="javax.swing.JButton" name="BTN_AbrirCrearCampo">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Crear un Campo"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_CrearCampoActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_AbrirCrearCampoActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="BTN_ModificarCampo">
+                <Component class="javax.swing.JButton" name="BTN_AbrirModificarCampo">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Modificar un Campo"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_ModificarCampoActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_AbrirModificarCampoActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="BTN_BorrarCampo">
+                <Component class="javax.swing.JButton" name="BTN_AbrirBorrarCampo">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Borrar un Campo"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_BorrarCampoActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_AbrirBorrarCampoActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="BTN_ListarCampos">
+                <Component class="javax.swing.JButton" name="BTN_AbrirListarCampos">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Listar Campos"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_ListarCamposActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_AbrirListarCamposActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -248,17 +248,17 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
+              <Component id="jP_CrearCampo" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
+              <Component id="jP_CrearCampo" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel7">
+        <Container class="javax.swing.JPanel" name="jP_CrearCampo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
