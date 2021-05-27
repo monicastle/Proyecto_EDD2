@@ -32,7 +32,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setLocationRelativeTo(null);
-        administrador_campos.cargarArchivo();
+        //administrador_campos.cargarArchivo();
         /*for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
             System.out.println(" - " + ((Campo) (administrador_campos.getCampos().get(i))).getNombre());
         }*/
@@ -859,7 +859,7 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_AbrirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirArchivoActionPerformed
         // DESPLIEGA UN DIRECTORIO QUE ABRE UN ARCHIVO A ELECCIÓN DEL USUARIO
         try {
-            archivo_actual = null;
+            File archivo_abrir = null;
             FileReader fr = null;
             BufferedReader br = null;
             TA_ArchivoAbierto.setText("");
@@ -870,8 +870,14 @@ public class Principal extends javax.swing.JFrame {
             filechooser.addChoosableFileFilter(filtro2);
             int seleccion = filechooser.showOpenDialog(null);
             if (seleccion == JFileChooser.APPROVE_OPTION) {
-                archivo_actual = filechooser.getSelectedFile();
-                fr = new FileReader(archivo_actual);
+                archivo_abrir = filechooser.getSelectedFile();
+                // CARGADO DE ARCHIVOS A EL ARCHIVO BINARIO
+                aa.cargarArchivo();
+                archivo_actual = new Archivo();
+                archivo_actual.setArchivo(archivo_abrir);
+                aa.setArchivo(archivo_abrir);
+                aa.escribirArchivo();
+                fr = new FileReader(archivo_abrir);
                 br = new BufferedReader(fr);
                 String linea;
                 TA_ArchivoAbierto.append("");
@@ -900,7 +906,7 @@ public class Principal extends javax.swing.JFrame {
         try {
             FileReader fr = null;
             BufferedReader br = null;
-            fr = new FileReader(archivo_actual);
+            fr = new FileReader(archivo_actual.getArchivo());
             br = new BufferedReader(fr);
             TA_ArchivoAbierto.setText("");
             String linea;
@@ -927,7 +933,7 @@ public class Principal extends javax.swing.JFrame {
             } else {
                 FileWriter fw = null;
                 BufferedWriter bw = null;
-                fw = new FileWriter(archivo_actual);
+                fw = new FileWriter(archivo_actual.getArchivo());
                 bw = new BufferedWriter(fw);
                 VentanaMenuCampos.setVisible(false);
                 bw.write(TA_ArchivoAbierto.getText());
@@ -1046,21 +1052,42 @@ public class Principal extends javax.swing.JFrame {
         // SE CREA UN CAMPO DENTRO DEL ARCHIVO
         try {
             String nombre = TF_NombreDelCampo.getText();
-            int tipo_de_dato = CB_TipoDeDatoDelCampo.getSelectedIndex(),
-                    longitud = Integer.parseInt(SP_LongitudDelCampo.getValue().toString());
-            System.out.println(tipo_de_dato);
-            System.out.println(longitud);
+            int tipo_de_dato = CB_TipoDeDatoDelCampo.getSelectedIndex(), longitud = Integer.parseInt(SP_LongitudDelCampo.getValue().toString());
             boolean llave_primaria = false;
             if (RB_LlavePrimariaDelCampo.isSelected()) {
                 llave_primaria = true;
-            }
+            } // Fin If
             Campo campo_nuevo = new Campo(nombre, tipo_de_dato, longitud, llave_primaria);
+            archivo_actual.SetCampo(campo_nuevo);
+            
+            
+            
+            // AQUI ME FALTA SETEAR UN ID PARA CAMPOS Y COMPARAR ESE ID CON LOS DEL ARCHIVO BINARIO 
+            // PD: LO DE ABAJO ES LA IMPLEMENTACION DE COMO DEBE AGREGAR UN CAMPO A UN ARCHIVO EN EL ARCHIVO BINARIO
+            /*aa.cargarArchivo();          
+            for (int i = 0; i < aa.getLista_archivos().size(); i++) {
+                if (ap.getListaproyectos().get(i).getID() == proyectoactual.getID()) {
+                    ap.getListaproyectos().get(i).SetTarea(ta);
+                } // Fin If
+            } // Fin For
+            ap.escribirArchivo();
+            
+            for (Archivo ar : aa.getLista_archivos()) {
+                if (ar.getID() == archivo_actual.getID()) {
+                    setNombre(nombre);
+                    pr.setColor(color);
+                    pr.setFavorito(favorito);
+                } // Fin If
+            } // Fin Fore
+            aa.escribirArchivo();*/
+            
+            
+            
             escribir_archivo_txt(campo_nuevo.campo_para_archivo());
-
             añadir_campo_txt(campo_nuevo);
-            administrador_campos.añadirCampo(campo_nuevo);
-            administrador_campos.escribirArchivo();
-
+            // ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR / Podria cambiarse
+            //administrador_campos.añadirCampo(campo_nuevo);
+            //administrador_campos.escribirArchivo();
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -1069,7 +1096,7 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_ModificarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_ModificarCampoDefinitivoActionPerformed
         // SE MODIFICA UN CAMPO DENTRO DEL ARCHIVO
         try {
-
+            
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -1078,7 +1105,7 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_BorrarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BorrarCampoDefinitivoActionPerformed
         // SE BORRA UN CAMPO DENTRO DEL ARCHIVO
         try {
-
+            
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -1118,7 +1145,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-
+    
     void escribir_archivo_txt(String linea) {
         // Forma de Escribir:
         FileWriter fw = null;
@@ -1126,7 +1153,7 @@ public class Principal extends javax.swing.JFrame {
         try {
             //archivo = new File("./salida.txt");
             //fw = new FileWriter(archivo_actual); // Sobreescribe 
-            fw = new FileWriter(archivo_actual, true); // Respeta el contenido
+            fw = new FileWriter(archivo_actual.getArchivo(), true); // Respeta el contenido
             bw = new BufferedWriter(fw);
             bw.write(linea);
             //bw.newLine(); ocupamos que escriba derecho para evitar fragmentacion, por eso la comentamos
@@ -1147,14 +1174,17 @@ public class Principal extends javax.swing.JFrame {
         escribir_archivo_txt(linea);
         JOptionPane.showMessageDialog(this, "¡Se ha creado el campo exitosamente!");
     }
-
+    
     void listar_campos() {
         try {
             //TA_ListarCampos.append("");
             TA_ListarCampos.setText("");
-            for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
+            /*for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
                 TA_ListarCampos.append(administrador_campos.getCampos().get(i).toString());
-            }
+            }*/
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                TA_ListarCampos.append(archivo_actual.getCampos().get(i).toString());
+            } // Fin For
         } catch (Exception e) {
             System.out.println("error");
             e.printStackTrace();
@@ -1162,18 +1192,20 @@ public class Principal extends javax.swing.JFrame {
     }// Fin Metodo
 
     void match_campos() {
-        for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
+        // ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR // creo que ya no se necesita
+        /*for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
             Campo campo_temporal = administrador_campos.getCampos().get(i);
-        }
+        }*/
     }// Fin Metodo
 
     void formatear_CBbox_borrar() {
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        // ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR // CAMBIARSE
+        /*DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
             Campo campo_temporal = administrador_campos.getCampos().get(i);
             modelo.addElement(campo_temporal.getNombre());
         }// Fin If
-        CB_CampoABorrar.setModel(modelo);
+        CB_CampoABorrar.setModel(modelo);*/
     }// Fin Metodo
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1247,8 +1279,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
-    private File archivo_actual;
-    //private Campo campo_actual;
-    ArrayList<Campo> lista_campos = new ArrayList();
-    administrar_campos administrador_campos = new administrar_campos("./campos.123");
+    private Archivo archivo_actual;
+    private Campo campo_actual;
+    Administrar_Archivos aa = new Administrar_Archivos("./Archivos.dmo");
 }

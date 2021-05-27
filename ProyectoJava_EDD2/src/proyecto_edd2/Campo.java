@@ -11,9 +11,7 @@ import java.io.Serializable;
  *
  * @author Monica
  */
-public class Campo implements Serializable {
-
-    private static final long SerialVersionUID = 777L;
+public class Campo {
 
     private String nombre;
     private int tipo_de_dato;
@@ -93,7 +91,7 @@ public class Campo implements Serializable {
             case 8:
                 tipo_dato = "boolean";
                 break;
-        }//fin switch
+        } // Fin Switch
         String llave = "Si";
         if (!isLlavePrimaria()) {
             llave = "No";
@@ -109,8 +107,8 @@ public class Campo implements Serializable {
         String llave = "Si";
         if (!llave_primaria) {
             llave = "No";
-        }// Fin If
+        } // Fin If
         return nombre + "¡" + tipo_de_dato + "¡" + longitud + "¡" + llave + "&";
-    }// Fin campo_para_archivo
+    } // Fin Campo Para Archivo
 
 } // Fin Clase Campo
