@@ -32,10 +32,6 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setLocationRelativeTo(null);
-        //administrador_campos.cargarArchivo();
-        /*for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
-            System.out.println(" - " + ((Campo) (administrador_campos.getCampos().get(i))).getNombre());
-        }*/
     }
 
     /**
@@ -850,6 +846,15 @@ public class Principal extends javax.swing.JFrame {
                 BufferedWriter salida = new BufferedWriter(new FileWriter(archivo));
                 salida.close();
                 JOptionPane.showMessageDialog(null, "¡Se ha creado su archivo exitosamente!");
+                // CARGADO DE ARCHIVOS A EL ARCHIVO BINARIO
+                // OJO: Aqui falta una validación la cual no permita que se pueda nombrar un archivo con el mismo nombre que uno ya existente
+                int ID;
+                aa.cargarArchivo();
+                ID = aa.GenerarId();
+                archivo_actual = new Archivo(archivo, ID);
+                aa.AddArchivo(archivo_actual);
+                aa.escribirArchivo();
+                archivo_actual = null;
             } // Fin If
         } catch (Exception e) {
             e.printStackTrace();
@@ -859,6 +864,7 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_AbrirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirArchivoActionPerformed
         // DESPLIEGA UN DIRECTORIO QUE ABRE UN ARCHIVO A ELECCIÓN DEL USUARIO
         try {
+            // VALIDACIÓN: SI INGRESO EL NOMBRE DE UN ARCHIVO QUE NO EXISTE TIRA ERROR 
             File archivo_abrir = null;
             FileReader fr = null;
             BufferedReader br = null;
@@ -871,12 +877,32 @@ public class Principal extends javax.swing.JFrame {
             int seleccion = filechooser.showOpenDialog(null);
             if (seleccion == JFileChooser.APPROVE_OPTION) {
                 archivo_abrir = filechooser.getSelectedFile();
-                // CARGADO DE ARCHIVOS A EL ARCHIVO BINARIO
+                int ID_existente = 0;
+                boolean valid = false;
                 aa.cargarArchivo();
-                archivo_actual = new Archivo();
-                archivo_actual.setArchivo(archivo_abrir);
-                aa.setArchivo(archivo_abrir);
-                aa.escribirArchivo();
+                for (int i = 0; i < aa.getLista_archivos().size(); i++) {
+                    if (aa.getLista_archivos().get(i).getArchivo().equals(archivo_abrir)) {
+                        ID_existente = aa.getLista_archivos().get(i).getID();
+                        valid = true;
+                    } // Fin If
+                } // Fin For
+                if (valid) {
+                    // Esto indica que si encontro un archivo que había sido creado previamente
+                    // SETEO DEL ARCHIVO ACTUAL
+                    archivo_actual = new Archivo(archivo_abrir, ID_existente);
+                    System.out.println("ENTRA DENTRO DE UN ARCHIVO EXISTENTE");
+                } else {
+                    // Esto indica que se abrio un archivo que no fue creado despues de las modificaciones, por lo que hay que registrarlo
+                    // CARGADO DE ARCHIVOS A EL ARCHIVO BINARIO
+                    // OJO: Aqui falta una validación la cual no permita que se pueda nombrar un archivo con el mismo nombre que uno ya existente
+                    int ID;
+                    aa.cargarArchivo();
+                    ID = aa.GenerarId();
+                    archivo_actual = new Archivo(archivo_abrir, ID);
+                    aa.AddArchivo(archivo_actual);
+                    aa.escribirArchivo();
+                    System.out.println("ENTRA DENTRO DE UN ARCHIVO NUEVO");
+                } // Fin If
                 fr = new FileReader(archivo_abrir);
                 br = new BufferedReader(fr);
                 String linea;
@@ -939,6 +965,8 @@ public class Principal extends javax.swing.JFrame {
                 bw.write(TA_ArchivoAbierto.getText());
                 TA_ArchivoAbierto.setText("");
                 bw.flush();
+                aa.cargarArchivo();
+                
                 archivo_actual = null;
                 try {
                     bw.close();
@@ -998,7 +1026,7 @@ public class Principal extends javax.swing.JFrame {
         // DESPLIEGA EL JDIALOG DONDE SE LISTAN TODOS LOS CAMPOS DE MANERA FORMATEADA
         try {
             VentanaMenuCampos.setVisible(false);
-            listar_campos();
+            listar_campos(); // OJO
             JD_ListarCampos.setModal(true);
             JD_ListarCampos.pack();
             JD_ListarCampos.setLocationRelativeTo(this);
@@ -1059,9 +1087,7 @@ public class Principal extends javax.swing.JFrame {
             } // Fin If
             Campo campo_nuevo = new Campo(nombre, tipo_de_dato, longitud, llave_primaria);
             archivo_actual.SetCampo(campo_nuevo);
-            
-            
-            
+
             // AQUI ME FALTA SETEAR UN ID PARA CAMPOS Y COMPARAR ESE ID CON LOS DEL ARCHIVO BINARIO 
             // PD: LO DE ABAJO ES LA IMPLEMENTACION DE COMO DEBE AGREGAR UN CAMPO A UN ARCHIVO EN EL ARCHIVO BINARIO
             /*aa.cargarArchivo();          
@@ -1080,9 +1106,6 @@ public class Principal extends javax.swing.JFrame {
                 } // Fin If
             } // Fin Fore
             aa.escribirArchivo();*/
-            
-            
-            
             escribir_archivo_txt(campo_nuevo.campo_para_archivo());
             añadir_campo_txt(campo_nuevo);
             // ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR / Podria cambiarse
@@ -1096,7 +1119,7 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_ModificarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_ModificarCampoDefinitivoActionPerformed
         // SE MODIFICA UN CAMPO DENTRO DEL ARCHIVO
         try {
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -1105,7 +1128,7 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_BorrarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BorrarCampoDefinitivoActionPerformed
         // SE BORRA UN CAMPO DENTRO DEL ARCHIVO
         try {
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -1145,7 +1168,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-    
+
     void escribir_archivo_txt(String linea) {
         // Forma de Escribir:
         FileWriter fw = null;
@@ -1174,7 +1197,7 @@ public class Principal extends javax.swing.JFrame {
         escribir_archivo_txt(linea);
         JOptionPane.showMessageDialog(this, "¡Se ha creado el campo exitosamente!");
     }
-    
+
     void listar_campos() {
         try {
             //TA_ListarCampos.append("");

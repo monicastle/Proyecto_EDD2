@@ -44,11 +44,11 @@ public class Administrar_Archivos {
         this.archivo = archivo;
     } // Fin Set Archivo
 
-    public void SetProyecto(Archivo ar) {
+    public void AddArchivo(Archivo ar) {
         this.lista_archivos.add(ar);
     } // Fin Set Proyecto
 
-    public void RemoveProyecto(Archivo ar) {
+    public void RemoveArchivo(Archivo ar) {
         this.lista_archivos.remove(ar);
     } // Fin Remove Proyecto
 
@@ -95,6 +95,7 @@ public class Administrar_Archivos {
     } // Fin Escribir Archivo
 
     public int GenerarId() {
+        // CAMBIAR
         cargarArchivo();
         boolean valid;
         while (true) {
