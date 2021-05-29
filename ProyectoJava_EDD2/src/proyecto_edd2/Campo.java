@@ -13,6 +13,8 @@ import java.io.Serializable;
  */
 public class Campo {
 
+    private int ID;
+    private int ID_archivo;
     private String nombre;
     private int tipo_de_dato;
     private int longitud;
@@ -21,12 +23,30 @@ public class Campo {
     public Campo() {
     } // Fin Constructor Campo
 
-    public Campo(String nombre, int tipo_de_dato, int longitud, boolean llave_primaria) {
+    public Campo(int ID, int ID_archivo, String nombre, int tipo_de_dato, int longitud, boolean llave_primaria) {
+        this.ID = ID;
+        this.ID_archivo = ID_archivo;
         this.nombre = nombre;
         this.tipo_de_dato = tipo_de_dato;
         this.longitud = longitud;
         this.llave_primaria = llave_primaria;
     } // Fin Constructor Campo
+
+    public int getID() {
+        return ID;
+    } // Fin Get ID
+
+    public void setID(int ID) {
+        this.ID = ID;
+    } // Fin Set ID
+
+    public int getID_archivo() {
+        return ID_archivo;
+    } // Fin Get ID Archivo
+
+    public void setID_archivo(int ID_archivo) {
+        this.ID_archivo = ID_archivo;
+    } // Fin Set ID Archivo
 
     public String getNombre() {
         return nombre;

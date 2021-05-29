@@ -14,6 +14,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -25,6 +26,8 @@ import java.util.ArrayList;
  * @author Monica
  */
 public class Principal extends javax.swing.JFrame {
+
+    Random random = new Random();
 
     /**
      * Creates new form Principal
@@ -884,6 +887,7 @@ public class Principal extends javax.swing.JFrame {
                     if (aa.getLista_archivos().get(i).getArchivo().equals(archivo_abrir)) {
                         ID_existente = aa.getLista_archivos().get(i).getID();
                         valid = true;
+                        break;
                     } // Fin If
                 } // Fin For
                 if (valid) {
@@ -952,8 +956,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BTN_SalvarArchivoActionPerformed
 
     private void BTN_CerrarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_CerrarArchivoActionPerformed
-        // TODO add your handling code here:
+        // CIERRA EL ARCHIVO Y PREGUNTA SI SE DESEA GUARDAR O NO
         try {
+            // ME FALTA PROBAR SI FUNCIONA CON LOS CRUDS
             if (JOptionPane.showConfirmDialog(null, "¿Desea salvar los cambios en el archivo?", "Confirmación", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(this, "¡Se ha guardado el archivo exitosamente!");
             } else {
@@ -965,15 +970,21 @@ public class Principal extends javax.swing.JFrame {
                 bw.write(TA_ArchivoAbierto.getText());
                 TA_ArchivoAbierto.setText("");
                 bw.flush();
-                aa.cargarArchivo();
-                
-                archivo_actual = null;
                 try {
                     bw.close();
                     fw.close();
                 } catch (Exception e) {
                     e.printStackTrace();
                 } // Fin Try Catch
+                aa.cargarArchivo();
+                for (Archivo archivo : aa.getLista_archivos()) {
+                    if (archivo.getID() == archivo_actual.getID()) {
+                        archivo.setArchivo(archivo_actual.getArchivo());
+                        break;
+                    } // Fin If
+                } // Fin For
+                aa.escribirArchivo();
+                archivo_actual = null;
             } // Fin If
             VentanaMenuCampos.setVisible(false);
             this.setVisible(true);
@@ -1080,33 +1091,28 @@ public class Principal extends javax.swing.JFrame {
         // SE CREA UN CAMPO DENTRO DEL ARCHIVO
         try {
             String nombre = TF_NombreDelCampo.getText();
-            int tipo_de_dato = CB_TipoDeDatoDelCampo.getSelectedIndex(), longitud = Integer.parseInt(SP_LongitudDelCampo.getValue().toString());
+            int tipo_de_dato, longitud;
+            tipo_de_dato = CB_TipoDeDatoDelCampo.getSelectedIndex();
+            longitud = Integer.parseInt(SP_LongitudDelCampo.getValue().toString());
             boolean llave_primaria = false;
             if (RB_LlavePrimariaDelCampo.isSelected()) {
                 llave_primaria = true;
             } // Fin If
-            Campo campo_nuevo = new Campo(nombre, tipo_de_dato, longitud, llave_primaria);
+            int ID_campo, ID_archivo;
+            ID_campo = GenerarIDCampo();
+            ID_archivo = archivo_actual.getID();
+            Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria);
             archivo_actual.SetCampo(campo_nuevo);
-
-            // AQUI ME FALTA SETEAR UN ID PARA CAMPOS Y COMPARAR ESE ID CON LOS DEL ARCHIVO BINARIO 
-            // PD: LO DE ABAJO ES LA IMPLEMENTACION DE COMO DEBE AGREGAR UN CAMPO A UN ARCHIVO EN EL ARCHIVO BINARIO
-            /*aa.cargarArchivo();          
-            for (int i = 0; i < aa.getLista_archivos().size(); i++) {
-                if (ap.getListaproyectos().get(i).getID() == proyectoactual.getID()) {
-                    ap.getListaproyectos().get(i).SetTarea(ta);
+            aa.cargarArchivo();
+            for (Archivo archivo : aa.getLista_archivos()) {
+                if (archivo.getID() == archivo_actual.getID()) {
+                    archivo.SetCampo(campo_nuevo);
+                    break;
                 } // Fin If
             } // Fin For
-            ap.escribirArchivo();
-            
-            for (Archivo ar : aa.getLista_archivos()) {
-                if (ar.getID() == archivo_actual.getID()) {
-                    setNombre(nombre);
-                    pr.setColor(color);
-                    pr.setFavorito(favorito);
-                } // Fin If
-            } // Fin Fore
-            aa.escribirArchivo();*/
-            escribir_archivo_txt(campo_nuevo.campo_para_archivo());
+            aa.escribirArchivo();
+
+            //escribir_archivo_txt(campo_nuevo.campo_para_archivo());
             añadir_campo_txt(campo_nuevo);
             // ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR / Podria cambiarse
             //administrador_campos.añadirCampo(campo_nuevo);
@@ -1133,6 +1139,24 @@ public class Principal extends javax.swing.JFrame {
             e.printStackTrace();
         } // Fin Try Catch
     }//GEN-LAST:event_BTN_BorrarCampoDefinitivoActionPerformed
+    public int GenerarIDCampo() {
+        // CAMBIAR
+        boolean valid;
+        while (true) {
+            valid = true;
+            int ran;
+            ran = 1 + random.nextInt(1000);
+            for (Campo campo : archivo_actual.getCampos()) {
+                if (campo.getID() == ran) {
+                    valid = false;
+                    break;
+                } // Fin If
+            } // Fin For
+            if (valid) {
+                return ran;
+            } // Fin If
+        } // Fin While
+    } // Fin Generar ID
 
     /**
      * @param args the command line arguments
