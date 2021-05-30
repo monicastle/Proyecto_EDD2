@@ -990,6 +990,9 @@ public class Principal extends javax.swing.JFrame {
                 EscribirCamposBinario();
                 JOptionPane.showMessageDialog(this, "¡Se ha guardado el archivo exitosamente!");
             } else {
+                /*for (int i = 0; i < campos_nuevos.size(); i++) {
+                    archivo_actual.addCampo(campos_nuevos.get(i));
+                } // Fin For  */
                 FileWriter fw = null;
                 BufferedWriter bw = null;
                 fw = new FileWriter(archivo_actual.getArchivo());
@@ -1001,6 +1004,10 @@ public class Principal extends javax.swing.JFrame {
                 for (Archivo archivo : aa.getLista_archivos()) {
                     if (archivo.getID() == archivo_actual.getID()) {
                         archivo.setArchivo(archivo_actual.getArchivo());
+                      /*  for (int i = 0; i < campos_nuevos.size(); i++) {
+                            archivo.addCampo(campos_nuevos.get(i));
+                        } // Fin For  */
+                        campos_nuevos.clear();
                         break;
                     } // Fin If
                 } // Fin For
@@ -1264,6 +1271,9 @@ public class Principal extends javax.swing.JFrame {
 
     void EscribirCamposBinario() {
         try {
+            for (int i = 0; i < campos_nuevos.size(); i++) {
+                archivo_actual.addCampo(campos_nuevos.get(i));
+            } // Fin For  
             FileWriter fw = null;
             BufferedWriter bw = null;
             fw = new FileWriter(archivo_actual.getArchivo());
@@ -1275,7 +1285,7 @@ public class Principal extends javax.swing.JFrame {
                 if (archivo.getID() == archivo_actual.getID()) {
                     archivo.setArchivo(archivo_actual.getArchivo());
                     for (int i = 0; i < campos_nuevos.size(); i++) {
-                        archivo.SetCampo(campos_nuevos.get(i));
+                        archivo.addCampo(campos_nuevos.get(i));
                     } // Fin For  
                     campos_nuevos.clear();
                     break;

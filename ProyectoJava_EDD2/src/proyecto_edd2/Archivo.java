@@ -52,7 +52,7 @@ public class Archivo implements Serializable {
         this.campos = campos;
     } // Fin Set Campos
 
-    public void SetCampo(Campo ca) {
+    public void addCampo(Campo ca) {
         this.campos.add(ca);
     } // Fin Set Campo
 
