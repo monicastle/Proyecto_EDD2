@@ -958,30 +958,7 @@ public class Principal extends javax.swing.JFrame {
                 e.printStackTrace();
             } // Fin Try Catch
             // Actualiza el file dentro del archivo binario
-            FileWriter fw = null;
-            BufferedWriter bw = null;
-            fw = new FileWriter(archivo_actual.getArchivo());
-            bw = new BufferedWriter(fw);
-            bw.write(TA_ArchivoAbierto.getText());
-            bw.flush();
-            aa.cargarArchivo();
-            for (Archivo archivo : aa.getLista_archivos()) {
-                if (archivo.getID() == archivo_actual.getID()) {
-                    archivo.setArchivo(archivo_actual.getArchivo());
-                    for (int i = 0; i < campos_nuevos.size(); i++) {
-                        archivo.SetCampo(campos_nuevos.get(i));
-                    } // Fin For  
-                    campos_nuevos.clear();
-                    break;
-                } // Fin If
-            } // Fin For
-            aa.escribirArchivo();
-            try {
-                bw.close();
-                fw.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            } // Fin Try Catch
+            EscribirCamposBinario();
             JOptionPane.showMessageDialog(null, "Archivo Salvado Exitosamente");
         } catch (Exception e) {
             e.printStackTrace();
@@ -1010,38 +987,13 @@ public class Principal extends javax.swing.JFrame {
                     e.printStackTrace();
                 } // Fin Try Catch
                 // Actualiza el file dentro del archivo binario
-                FileWriter fw = null;
-                BufferedWriter bw = null;
-                fw = new FileWriter(archivo_actual.getArchivo());
-                bw = new BufferedWriter(fw);
-                bw.write(TA_ArchivoAbierto.getText());
-                TA_ArchivoAbierto.setText("");
-                bw.flush();
-                aa.cargarArchivo();
-                for (Archivo archivo : aa.getLista_archivos()) {
-                    if (archivo.getID() == archivo_actual.getID()) {
-                        archivo.setArchivo(archivo_actual.getArchivo());
-                        for (int i = 0; i < campos_nuevos.size(); i++) {
-                            archivo.SetCampo(campos_nuevos.get(i));
-                        } // Fin For  
-                        campos_nuevos.clear();
-                        break;
-                    } // Fin If
-                } // Fin For
-                aa.escribirArchivo();
-                try {
-                    bw.close();
-                    fw.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } // Fin Try Catch
+                EscribirCamposBinario();
                 JOptionPane.showMessageDialog(this, "¡Se ha guardado el archivo exitosamente!");
             } else {
                 FileWriter fw = null;
                 BufferedWriter bw = null;
                 fw = new FileWriter(archivo_actual.getArchivo());
                 bw = new BufferedWriter(fw);
-                VentanaMenuCampos.setVisible(false);
                 bw.write(TA_ArchivoAbierto.getText());
                 TA_ArchivoAbierto.setText("");
                 bw.flush();
@@ -1309,6 +1261,37 @@ public class Principal extends javax.swing.JFrame {
         } // Fin For
         return null;
     } // Fin Match Nombre Campo
+
+    void EscribirCamposBinario() {
+        try {
+            FileWriter fw = null;
+            BufferedWriter bw = null;
+            fw = new FileWriter(archivo_actual.getArchivo());
+            bw = new BufferedWriter(fw);
+            bw.write(TA_ArchivoAbierto.getText());
+            bw.flush();
+            aa.cargarArchivo();
+            for (Archivo archivo : aa.getLista_archivos()) {
+                if (archivo.getID() == archivo_actual.getID()) {
+                    archivo.setArchivo(archivo_actual.getArchivo());
+                    for (int i = 0; i < campos_nuevos.size(); i++) {
+                        archivo.SetCampo(campos_nuevos.get(i));
+                    } // Fin For  
+                    campos_nuevos.clear();
+                    break;
+                } // Fin If
+            } // Fin For
+            aa.escribirArchivo();
+            try {
+                bw.close();
+                fw.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } // Fin Try Catch
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * @param args the command line arguments
