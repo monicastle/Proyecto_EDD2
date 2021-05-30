@@ -890,14 +890,16 @@ public class Principal extends javax.swing.JFrame {
             int seleccion = filechooser.showOpenDialog(null);
             if (seleccion == JFileChooser.APPROVE_OPTION) {
                 archivo_abrir = filechooser.getSelectedFile();
-                int ID_existente = 0;
                 boolean valid = false;
                 aa.cargarArchivo();
                 for (int i = 0; i < aa.getLista_archivos().size(); i++) {
                     if (aa.getLista_archivos().get(i).getArchivo().equals(archivo_abrir)) {
-                        ID_existente = aa.getLista_archivos().get(i).getID();
                         valid = true;
                         archivo_actual = aa.getLista_archivos().get(i);
+                        formatear_CBbox_Modificar();
+                        formatear_CBbox_borrar();
+                        listar_campos();
+                        temp = archivo_actual.getCampos();
                         //archivo_anterior = archivo_actual;
                         //System.out.println("abriendo " + archivo_actual.getCampos().size());
                         break;
@@ -959,6 +961,9 @@ public class Principal extends javax.swing.JFrame {
             } // Fin Try Catch
             // Actualiza el file dentro del archivo binario
             EscribirCamposBinario();
+            formatear_CBbox_Modificar();
+            formatear_CBbox_borrar();
+            listar_campos();
             JOptionPane.showMessageDialog(null, "Archivo Salvado Exitosamente");
         } catch (Exception e) {
             e.printStackTrace();
@@ -1044,7 +1049,6 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_AbrirModificarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirModificarCampoActionPerformed
         // DESPLIEGA EL JDIALOG DONDE SE MODIFICA UN CAMPO
         try {
-            formatear_CBbox_Modificar();
             VentanaMenuCampos.setVisible(false);
             JD_ModificarCampos.setModal(true);
             JD_ModificarCampos.pack();
@@ -1058,7 +1062,6 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_AbrirBorrarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirBorrarCampoActionPerformed
         // DESPLIEGA EL JDIALOG DONDE SE BORRA UN CAMPO
         try {
-            formatear_CBbox_borrar();
             VentanaMenuCampos.setVisible(false);
             JD_BorrarCampos.setModal(true);
             JD_BorrarCampos.pack();
@@ -1073,7 +1076,6 @@ public class Principal extends javax.swing.JFrame {
         // DESPLIEGA EL JDIALOG DONDE SE LISTAN TODOS LOS CAMPOS DE MANERA FORMATEADA
         try {
             VentanaMenuCampos.setVisible(false);
-            listar_campos();
             JD_ListarCampos.setModal(true);
             JD_ListarCampos.pack();
             JD_ListarCampos.setLocationRelativeTo(this);
@@ -1140,7 +1142,6 @@ public class Principal extends javax.swing.JFrame {
             Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria);
             campo_actual = campo_nuevo;
             campos_nuevos.add(campo_nuevo);
-            // REVISAR ESTO
             añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
         } catch (Exception e) {
             e.printStackTrace();
@@ -1152,24 +1153,23 @@ public class Principal extends javax.swing.JFrame {
         try {
             String nombre;
             int tipo_de_dato, longitud;
-            boolean llave_primaria;
-            llave_primaria = false;
+            boolean llave_primaria = false;
             nombre = TF_NombreDelCampoModificado.getText();
             tipo_de_dato = CB_TipoDeDatoDelCampoModificado.getSelectedIndex();
             longitud = Integer.parseInt(SP_LongitudDelCampoModificado.getValue().toString());
             if (RB_LlavePrimariaDelCampoModificado.isSelected()) {
                 llave_primaria = true;
             } // Fin If
-            // Escribir en el archivo las modificaciones
+            //ArrayList<Campo> temp = new ArrayList();
+             aa.cargarArchivo();
             for (int i = 0; i < aa.getLista_archivos().size(); i++) {
                 if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
-                    aa.cargarArchivo();
-                    for (int j = 0; j < aa.getLista_archivos().get(i).getCampos().size(); j++) {
-                        aa.getLista_archivos().get(i).getCampos().get(j).setNombre(nombre);
-                        aa.getLista_archivos().get(i).getCampos().get(j).setLlaveprimaria(llave_primaria);
-                        aa.getLista_archivos().get(i).getCampos().get(j).setLongitud(longitud);
-                        aa.getLista_archivos().get(i).getCampos().get(j).setTipo_de_dato(tipo_de_dato);
-                    }// Fin For
+                    temp = aa.getLista_archivos().get(i).getCampos();
+                    int j = CB_CampoAModificar.getSelectedIndex();
+                    aa.getLista_archivos().get(i).getCampos().get(j).setNombre(nombre);
+                    aa.getLista_archivos().get(i).getCampos().get(j).setLlaveprimaria(llave_primaria);
+                    aa.getLista_archivos().get(i).getCampos().get(j).setLongitud(longitud);
+                    aa.getLista_archivos().get(i).getCampos().get(j).setTipo_de_dato(tipo_de_dato);
                 }// Fin If
                 archivo_actual = null;
                 archivo_actual = aa.getLista_archivos().get(i);
@@ -1183,27 +1183,40 @@ public class Principal extends javax.swing.JFrame {
         } // Fin Try Catch
     }//GEN-LAST:event_BTN_ModificarCampoDefinitivoActionPerformed
 
+    ArrayList<Campo> temp = new ArrayList();
+    
+    public void modificar_txt() {
+        // Forma de Escribir:
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        //FileReader fr = null;
+        //BufferedReader br = null;
+        try {
+            //  fr = new FileReader(archivo_actual.getArchivo());
+            // br = new BufferedReader(fr);
+            String linea_modificada = "";
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                linea_modificada += archivo_actual.getCampos().get(i).campo_para_archivo();
+            }//*/
+            fw = new FileWriter(archivo_actual.getArchivo());
+            bw = new BufferedWriter(fw);
+            bw.write(linea_modificada);
+            bw.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+        try {
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }//fin try catch
+    }
+
     private void BTN_BorrarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BorrarCampoDefinitivoActionPerformed
         // SE BORRA UN CAMPO DENTRO DEL ARCHIVO
         try {
-           /* for (int i = 0; i < aa.getLista_archivos().size(); i++) {
-                if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
-                    //aa.getLista_archivos().get(i).getCampos();
-                    aa.cargarArchivo();
-                    for (int j = 0; j < aa.getLista_archivos().get(i).getCampos().size(); j++) {
-                        aa.getLista_archivos().get(i).getCampos().get(j).setNombre(nombre);
-                        aa.getLista_archivos().get(i).getCampos().get(j).setLlaveprimaria(llave_primaria);
-                        aa.getLista_archivos().get(i).getCampos().get(j).setLongitud(longitud);
-                        aa.getLista_archivos().get(i).getCampos().get(j).setTipo_de_dato(tipo_de_dato);
-                    }// Fin For
-                }// Fin If
-                archivo_actual = null;
-                archivo_actual = aa.getLista_archivos().get(i);
-                break;
-            }//fin for
-            aa.escribirArchivo();
-            modificar_txt();//*/
-            // Borrar en el archivo el campo eliminado
+
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -1245,32 +1258,39 @@ public class Principal extends javax.swing.JFrame {
         } // Fin Try Catch
     }//GEN-LAST:event_CB_CampoABorrarItemStateChanged
 
-    public void modificar_txt() {
-        // Forma de Escribir:
-        FileWriter fw = null;
-        BufferedWriter bw = null;
-        //FileReader fr = null;
-        //BufferedReader br = null;
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
         try {
-            //  fr = new FileReader(archivo_actual.getArchivo());
-            // br = new BufferedReader(fr);
-            String linea_modificada = "";
-            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                linea_modificada += archivo_actual.getCampos().get(i).campo_para_archivo();
-            }//*/
-            fw = new FileWriter(archivo_actual.getArchivo());
-            bw = new BufferedWriter(fw);
-            bw.write(linea_modificada);
-            bw.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } // Fin Try Catch
-        try {
-            bw.close();
-            fw.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }//fin try catch
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Windows Classic".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Principal().setVisible(true);
+            }
+        });
     }
 
     public int GenerarIDCampo() {
@@ -1333,41 +1353,6 @@ public class Principal extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows Classic".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Principal().setVisible(true);
-            }
-        });
     }
 
     void escribir_archivo_txt(String linea) {
