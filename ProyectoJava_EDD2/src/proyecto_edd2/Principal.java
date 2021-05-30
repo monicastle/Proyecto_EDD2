@@ -419,6 +419,11 @@ public class Principal extends javax.swing.JFrame {
 
         CB_CampoAModificar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CB_CampoAModificar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        CB_CampoAModificar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CB_CampoAModificarItemStateChanged(evt);
+            }
+        });
 
         JL_14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         JL_14.setText("Nombre del campo");
@@ -1153,6 +1158,20 @@ public class Principal extends javax.swing.JFrame {
             e.printStackTrace();
         } // Fin Try Catch
     }//GEN-LAST:event_BTN_BorrarCampoDefinitivoActionPerformed
+
+    private void CB_CampoAModificarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CB_CampoAModificarItemStateChanged
+        // ACTUALIZA LA INFORMACIÓN EN EL JDIALOG CON CADA CAMBIO
+        Campo campo_modificar;
+        String nombre_campo_modificar;
+        nombre_campo_modificar = (String) CB_CampoAModificar.getSelectedItem();
+        campo_modificar = MatchNombreCampo(nombre_campo_modificar);
+        if (campo_modificar != null) {
+            TF_NombreDelCampoModificado.setText(campo_modificar.getNombre());
+            CB_TipoDeDatoDelCampoModificado.setSelectedIndex(campo_modificar.getTipo_de_dato());
+            SP_LongitudDelCampoModificado.setValue(campo_modificar.getLongitud());
+            RB_LlavePrimariaDelCampoModificado.setSelected(campo_modificar.isLlavePrimaria());
+        } // Fin If
+    }//GEN-LAST:event_CB_CampoAModificarItemStateChanged
     public int GenerarIDCampo() {
         // CAMBIAR
         boolean valid;
@@ -1170,7 +1189,16 @@ public class Principal extends javax.swing.JFrame {
                 return ran;
             } // Fin If
         } // Fin While
-    } // Fin Generar ID
+    } // Fin Generar ID Campo
+
+    public Campo MatchNombreCampo(String name) {
+        for (Campo campos : archivo_actual.getCampos()) {
+            if (campos.getNombre().equals(name)) {
+                return campos;
+            } // Fin If
+        } // Fin For
+        return null;
+    } // Fin Match Nombre Campo
 
     /**
      * @param args the command line arguments
@@ -1256,16 +1284,16 @@ public class Principal extends javax.swing.JFrame {
             Campo campo_temporal = archivo_anterior.getCampos().get(i);
             modelo.addElement(campo_temporal.getNombre());
         }// Fin If
-        CB_CampoABorrar.setModel(modelo);//*/
+        CB_CampoABorrar.setModel(modelo);
     }// Fin Metodo
-    
+
     void formatear_CBbox_Modificar() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (int i = 0; i < archivo_anterior.getCampos().size(); i++) {
             Campo campo_temporal = archivo_anterior.getCampos().get(i);
             modelo.addElement(campo_temporal.getNombre());
         }// Fin If
-        CB_CampoAModificar.setModel(modelo);//*/
+        CB_CampoAModificar.setModel(modelo);
     }// Fin Metodo
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -121,7 +121,7 @@ public class Campo implements Serializable {
         return "Nombre: " + nombre
                 + "\nTipo de Dato: " + tipo_dato
                 + "\nLongitud: " + longitud
-                + "\n¿LLave Primaria?: " + llave
+                + "\n¿Llave Primaria?: " + llave
                 + '\n' + '\n';
     } // Fin ToString
 
