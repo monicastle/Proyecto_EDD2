@@ -1004,7 +1004,7 @@ public class Principal extends javax.swing.JFrame {
                 for (Archivo archivo : aa.getLista_archivos()) {
                     if (archivo.getID() == archivo_actual.getID()) {
                         archivo.setArchivo(archivo_actual.getArchivo());
-                      /*  for (int i = 0; i < campos_nuevos.size(); i++) {
+                        /*  for (int i = 0; i < campos_nuevos.size(); i++) {
                             archivo.addCampo(campos_nuevos.get(i));
                         } // Fin For  */
                         campos_nuevos.clear();
@@ -1160,25 +1160,24 @@ public class Principal extends javax.swing.JFrame {
             if (RB_LlavePrimariaDelCampoModificado.isSelected()) {
                 llave_primaria = true;
             } // Fin If
-            for (Campo campo : archivo_actual.getCampos()) {
-                if (campo == campo_actual) {
-                    campo.setNombre(nombre);
-                    campo.setTipo_de_dato(tipo_de_dato);
-                    campo.setLongitud(longitud);
-                    campo.setLlaveprimaria(llave_primaria);
-                } // Fin If
-            } // Fin Fore
-            for (Campo campo : campos_nuevos) {
-                if (campo == campo_actual) {
-                    campo.setNombre(nombre);
-                    campo.setTipo_de_dato(tipo_de_dato);
-                    campo.setLongitud(longitud);
-                    campo.setLlaveprimaria(llave_primaria);
-                    campo_actual = campo;
-                } // Fin If
-            } // Fin Fore
-
             // Escribir en el archivo las modificaciones
+            for (int i = 0; i < aa.getLista_archivos().size(); i++) {
+                if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
+                    aa.cargarArchivo();
+                    for (int j = 0; j < aa.getLista_archivos().get(i).getCampos().size(); j++) {
+                        aa.getLista_archivos().get(i).getCampos().get(j).setNombre(nombre);
+                        aa.getLista_archivos().get(i).getCampos().get(j).setLlaveprimaria(llave_primaria);
+                        aa.getLista_archivos().get(i).getCampos().get(j).setLongitud(longitud);
+                        aa.getLista_archivos().get(i).getCampos().get(j).setTipo_de_dato(tipo_de_dato);
+                    }// Fin For
+                }// Fin If
+                archivo_actual = null;
+                archivo_actual = aa.getLista_archivos().get(i);
+                break;
+            }//fin for
+            aa.escribirArchivo();
+            modificar_txt();
+            JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -1187,18 +1186,23 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_BorrarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BorrarCampoDefinitivoActionPerformed
         // SE BORRA UN CAMPO DENTRO DEL ARCHIVO
         try {
-            for (Campo campo : archivo_actual.getCampos()) {
-                if (campo == campo_actual) {
-                    archivo_actual.RemoveCampo(campo);
-                } // Fin If
-            } // Fin Fore
-            for (Campo campo : campos_nuevos) {
-                if (campo == campo_actual) {
-                    archivo_actual.RemoveCampo(campo);
-                    campo_actual = campo;
-                } // Fin If
-            } // Fin Fore
-
+           /* for (int i = 0; i < aa.getLista_archivos().size(); i++) {
+                if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
+                    //aa.getLista_archivos().get(i).getCampos();
+                    aa.cargarArchivo();
+                    for (int j = 0; j < aa.getLista_archivos().get(i).getCampos().size(); j++) {
+                        aa.getLista_archivos().get(i).getCampos().get(j).setNombre(nombre);
+                        aa.getLista_archivos().get(i).getCampos().get(j).setLlaveprimaria(llave_primaria);
+                        aa.getLista_archivos().get(i).getCampos().get(j).setLongitud(longitud);
+                        aa.getLista_archivos().get(i).getCampos().get(j).setTipo_de_dato(tipo_de_dato);
+                    }// Fin For
+                }// Fin If
+                archivo_actual = null;
+                archivo_actual = aa.getLista_archivos().get(i);
+                break;
+            }//fin for
+            aa.escribirArchivo();
+            modificar_txt();//*/
             // Borrar en el archivo el campo eliminado
         } catch (Exception e) {
             e.printStackTrace();
@@ -1240,6 +1244,34 @@ public class Principal extends javax.swing.JFrame {
             e.printStackTrace();
         } // Fin Try Catch
     }//GEN-LAST:event_CB_CampoABorrarItemStateChanged
+
+    public void modificar_txt() {
+        // Forma de Escribir:
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        //FileReader fr = null;
+        //BufferedReader br = null;
+        try {
+            //  fr = new FileReader(archivo_actual.getArchivo());
+            // br = new BufferedReader(fr);
+            String linea_modificada = "";
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                linea_modificada += archivo_actual.getCampos().get(i).campo_para_archivo();
+            }//*/
+            fw = new FileWriter(archivo_actual.getArchivo());
+            bw = new BufferedWriter(fw);
+            bw.write(linea_modificada);
+            bw.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+        try {
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }//fin try catch
+    }
 
     public int GenerarIDCampo() {
         // CAMBIAR
@@ -1472,5 +1504,6 @@ public class Principal extends javax.swing.JFrame {
     private Archivo archivo_actual/*, archivo_anterior*/;
     private Campo campo_actual;
     ArrayList<Campo> campos_nuevos = new ArrayList();
+    ArrayList<Campo> campos_guardados = new ArrayList();
     Administrar_Archivos aa = new Administrar_Archivos("./Archivos.dmo");
 }
