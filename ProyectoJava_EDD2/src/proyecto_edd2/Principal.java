@@ -561,6 +561,11 @@ public class Principal extends javax.swing.JFrame {
 
         CB_CampoABorrar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         CB_CampoABorrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        CB_CampoABorrar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CB_CampoABorrarItemStateChanged(evt);
+            }
+        });
 
         JL_20.setForeground(new java.awt.Color(102, 102, 102));
         JL_20.setText("Seleccione el campo que le gustaría borrar");
@@ -899,9 +904,6 @@ public class Principal extends javax.swing.JFrame {
                     } // Fin If
                 } // Fin For
                 if (!valid) {
-                    // Esto indica que si encontro un archivo que había sido creado previamente
-                    // SETEO DEL ARCHIVO ACTUAL
-                    //archivo_actual = new Archivo(archivo_abrir, ID_existente);
                     // Esto indica que se abrio un archivo que no fue creado despues de las modificaciones, por lo que hay que registrarlo
                     // CARGADO DE ARCHIVOS A EL ARCHIVO BINARIO
                     // OJO: Aqui falta una validación la cual no permita que se pueda nombrar un archivo con el mismo nombre que uno ya existente
@@ -911,11 +913,7 @@ public class Principal extends javax.swing.JFrame {
                     archivo_actual = new Archivo(archivo_abrir, ID);
                     aa.AddArchivo(archivo_actual);
                     aa.escribirArchivo();
-                  //  archivo_anterior = archivo_actual;
-                    System.out.println("ENTRA DENTRO DE UN ARCHIVO NUEVO");
-                } else {
-                    System.out.println("ENTRA DENTRO DE UN ARCHIVO EXISTENTE");
-                }// Fin Else
+                } // Fin If
                 fr = new FileReader(archivo_abrir);
                 br = new BufferedReader(fr);
                 String linea;
@@ -943,21 +941,7 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_SalvarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_SalvarArchivoActionPerformed
         // ACTUALIZA EL TEXT AREA QUE MUESTRA EL ARCHIVO
         try {
-            aa.cargarArchivo();
-            /* Se escriben los campos dentro del archivo binario de archivos */
-            for (Archivo archivo : aa.getLista_archivos()) {
-                if (archivo.getID() == archivo_actual.getID()) {
-                    for (int i = 0; i < campos_nuevos.size(); i++) {
-                        //archivo.SetCampo(campos_nuevos.get(i));
-                        archivo.getCampos().add(campos_nuevos.get(i));
-                    }
-                    campos_nuevos.clear();
-                    //System.out.println("campos n " + campos_nuevos.size());
-                    //archivo.SetCampo(campo_nuevo);
-                    break;
-                } // Fin If
-            } // Fin For
-            aa.escribirArchivo();//*/
+            // Actualiza el text area
             FileReader fr = null;
             BufferedReader br = null;
             fr = new FileReader(archivo_actual.getArchivo());
@@ -967,14 +951,38 @@ public class Principal extends javax.swing.JFrame {
             while ((linea = br.readLine()) != null) {
                 TA_ArchivoAbierto.append(linea);
             } // Fin While
-         //   archivo_anterior = archivo_actual;
-            JOptionPane.showMessageDialog(null, "Archivo Salvado Exitosamente");
             try {
                 br.close();
                 fr.close();
             } catch (Exception e) {
                 e.printStackTrace();
             } // Fin Try Catch
+            // Actualiza el file dentro del archivo binario
+            FileWriter fw = null;
+            BufferedWriter bw = null;
+            fw = new FileWriter(archivo_actual.getArchivo());
+            bw = new BufferedWriter(fw);
+            bw.write(TA_ArchivoAbierto.getText());
+            bw.flush();
+            aa.cargarArchivo();
+            for (Archivo archivo : aa.getLista_archivos()) {
+                if (archivo.getID() == archivo_actual.getID()) {
+                    archivo.setArchivo(archivo_actual.getArchivo());
+                    for (int i = 0; i < campos_nuevos.size(); i++) {
+                        archivo.SetCampo(campos_nuevos.get(i));
+                    } // Fin For  
+                    campos_nuevos.clear();
+                    break;
+                } // Fin If
+            } // Fin For
+            aa.escribirArchivo();
+            try {
+                bw.close();
+                fw.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } // Fin Try Catch
+            JOptionPane.showMessageDialog(null, "Archivo Salvado Exitosamente");
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -985,10 +993,50 @@ public class Principal extends javax.swing.JFrame {
         try {
             // ME FALTA PROBAR SI FUNCIONA CON LOS CRUDS
             if (JOptionPane.showConfirmDialog(null, "¿Desea salvar los cambios en el archivo?", "Confirmación", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                BTN_SalvarArchivoActionPerformed(evt);
+                // Actualiza el text area
+                FileReader fr = null;
+                BufferedReader br = null;
+                fr = new FileReader(archivo_actual.getArchivo());
+                br = new BufferedReader(fr);
+                TA_ArchivoAbierto.setText("");
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    TA_ArchivoAbierto.append(linea);
+                } // Fin While
+                try {
+                    br.close();
+                    fr.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } // Fin Try Catch
+                // Actualiza el file dentro del archivo binario
+                FileWriter fw = null;
+                BufferedWriter bw = null;
+                fw = new FileWriter(archivo_actual.getArchivo());
+                bw = new BufferedWriter(fw);
+                bw.write(TA_ArchivoAbierto.getText());
+                TA_ArchivoAbierto.setText("");
+                bw.flush();
+                aa.cargarArchivo();
+                for (Archivo archivo : aa.getLista_archivos()) {
+                    if (archivo.getID() == archivo_actual.getID()) {
+                        archivo.setArchivo(archivo_actual.getArchivo());
+                        for (int i = 0; i < campos_nuevos.size(); i++) {
+                            archivo.SetCampo(campos_nuevos.get(i));
+                        } // Fin For  
+                        campos_nuevos.clear();
+                        break;
+                    } // Fin If
+                } // Fin For
+                aa.escribirArchivo();
+                try {
+                    bw.close();
+                    fw.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } // Fin Try Catch
                 JOptionPane.showMessageDialog(this, "¡Se ha guardado el archivo exitosamente!");
             } else {
-          //      archivo_actual = archivo_anterior;
                 FileWriter fw = null;
                 BufferedWriter bw = null;
                 fw = new FileWriter(archivo_actual.getArchivo());
@@ -1006,7 +1054,7 @@ public class Principal extends javax.swing.JFrame {
                 } // Fin For
                 aa.escribirArchivo();
                 archivo_actual = null;
-              //  archivo_anterior = null;
+                campos_nuevos.clear();
                 try {
                     bw.close();
                     fw.close();
@@ -1066,7 +1114,7 @@ public class Principal extends javax.swing.JFrame {
         // DESPLIEGA EL JDIALOG DONDE SE LISTAN TODOS LOS CAMPOS DE MANERA FORMATEADA
         try {
             VentanaMenuCampos.setVisible(false);
-            listar_campos(); // OJO
+            listar_campos();
             JD_ListarCampos.setModal(true);
             JD_ListarCampos.pack();
             JD_ListarCampos.setLocationRelativeTo(this);
@@ -1132,11 +1180,9 @@ public class Principal extends javax.swing.JFrame {
             ID_archivo = archivo_actual.getID();
             Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria);
             campo_actual = campo_nuevo;
-            /* Meto el campo nuevo en el arraylist de campos del archivo <3*/
             campos_nuevos.add(campo_nuevo);
-            //archivo_actual.SetCampo(campo_nuevo);
-            //System.out.println("size crear: " + archivo_actual.getCampos().size());
-            añadir_campo_txt(campo_nuevo);//PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
+            // REVISAR ESTO
+            añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -1145,7 +1191,35 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_ModificarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_ModificarCampoDefinitivoActionPerformed
         // SE MODIFICA UN CAMPO DENTRO DEL ARCHIVO
         try {
+            String nombre;
+            int tipo_de_dato, longitud;
+            boolean llave_primaria;
+            llave_primaria = false;
+            nombre = TF_NombreDelCampoModificado.getText();
+            tipo_de_dato = CB_TipoDeDatoDelCampoModificado.getSelectedIndex();
+            longitud = Integer.parseInt(SP_LongitudDelCampoModificado.getValue().toString());
+            if (RB_LlavePrimariaDelCampoModificado.isSelected()) {
+                llave_primaria = true;
+            } // Fin If
+            for (Campo campo : archivo_actual.getCampos()) {
+                if (campo == campo_actual) {
+                    campo.setNombre(nombre);
+                    campo.setTipo_de_dato(tipo_de_dato);
+                    campo.setLongitud(longitud);
+                    campo.setLlaveprimaria(llave_primaria);
+                } // Fin If
+            } // Fin Fore
+            for (Campo campo : campos_nuevos) {
+                if (campo == campo_actual) {
+                    campo.setNombre(nombre);
+                    campo.setTipo_de_dato(tipo_de_dato);
+                    campo.setLongitud(longitud);
+                    campo.setLlaveprimaria(llave_primaria);
+                    campo_actual = campo;
+                } // Fin If
+            } // Fin Fore
 
+            // Escribir en el archivo las modificaciones
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -1154,7 +1228,19 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_BorrarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BorrarCampoDefinitivoActionPerformed
         // SE BORRA UN CAMPO DENTRO DEL ARCHIVO
         try {
+            for (Campo campo : archivo_actual.getCampos()) {
+                if (campo == campo_actual) {
+                    archivo_actual.RemoveCampo(campo);
+                } // Fin If
+            } // Fin Fore
+            for (Campo campo : campos_nuevos) {
+                if (campo == campo_actual) {
+                    archivo_actual.RemoveCampo(campo);
+                    campo_actual = campo;
+                } // Fin If
+            } // Fin Fore
 
+            // Borrar en el archivo el campo eliminado
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -1162,17 +1248,40 @@ public class Principal extends javax.swing.JFrame {
 
     private void CB_CampoAModificarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CB_CampoAModificarItemStateChanged
         // ACTUALIZA LA INFORMACIÓN EN EL JDIALOG CON CADA CAMBIO
-        Campo campo_modificar;
-        String nombre_campo_modificar;
-        nombre_campo_modificar = (String) CB_CampoAModificar.getSelectedItem();
-        campo_modificar = MatchNombreCampo(nombre_campo_modificar);
-        if (campo_modificar != null) {
-            TF_NombreDelCampoModificado.setText(campo_modificar.getNombre());
-            CB_TipoDeDatoDelCampoModificado.setSelectedIndex(campo_modificar.getTipo_de_dato());
-            SP_LongitudDelCampoModificado.setValue(campo_modificar.getLongitud());
-            RB_LlavePrimariaDelCampoModificado.setSelected(campo_modificar.isLlavePrimaria());
-        } // Fin If
+        try {
+            // Tener Ojo con el primer elemento
+            Campo campo_modificar;
+            String nombre_campo_modificar;
+            nombre_campo_modificar = (String) CB_CampoAModificar.getSelectedItem();
+            campo_modificar = MatchNombreCampo(nombre_campo_modificar);
+            if (campo_modificar != null) {
+                TF_NombreDelCampoModificado.setText(campo_modificar.getNombre());
+                CB_TipoDeDatoDelCampoModificado.setSelectedIndex(campo_modificar.getTipo_de_dato());
+                SP_LongitudDelCampoModificado.setValue(campo_modificar.getLongitud());
+                RB_LlavePrimariaDelCampoModificado.setSelected(campo_modificar.isLlavePrimaria());
+                campo_actual = campo_modificar;
+            } // Fin If 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
     }//GEN-LAST:event_CB_CampoAModificarItemStateChanged
+
+    private void CB_CampoABorrarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CB_CampoABorrarItemStateChanged
+        // TODO add your handling code here:
+        try {
+            // Tener Ojo con el primer elemento
+            Campo campo_borrar;
+            String nombre_campo_borrar;
+            nombre_campo_borrar = (String) CB_CampoABorrar.getSelectedItem();
+            campo_borrar = MatchNombreCampo(nombre_campo_borrar);
+            if (campo_borrar != null) {
+                campo_actual = campo_borrar;
+            } // Fin If
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+    }//GEN-LAST:event_CB_CampoABorrarItemStateChanged
+
     public int GenerarIDCampo() {
         // CAMBIAR
         boolean valid;
@@ -1268,7 +1377,6 @@ public class Principal extends javax.swing.JFrame {
     void listar_campos() {
         try {
             TA_ListarCampos.setText("");
-           // System.out.println("size: " + archivo_anterior.getCampos().size());
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
                 TA_ListarCampos.append(archivo_actual.getCampos().get(i).toString());
                 System.out.println(archivo_actual.getCampos().get(i).toString());

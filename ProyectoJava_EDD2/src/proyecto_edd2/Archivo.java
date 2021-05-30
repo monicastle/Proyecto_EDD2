@@ -56,7 +56,7 @@ public class Archivo implements Serializable {
         this.campos.add(ca);
     } // Fin Set Campo
 
-    public void RemoveSeccionArch(Campo ca) {
+    public void RemoveCampo(Campo ca) {
         this.campos.remove(ca);
     } // Fin Remove Campo
 
