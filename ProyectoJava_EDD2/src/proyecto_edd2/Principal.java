@@ -889,6 +889,7 @@ public class Principal extends javax.swing.JFrame {
                         valid = true;
                         archivo_actual = aa.getLista_archivos().get(i);
                         archivo_anterior = archivo_actual;
+                        System.out.println("abriendo " + archivo_actual.getCampos().size());
                         break;
                     } // Fin If
                 } // Fin For
@@ -1030,6 +1031,7 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_AbrirModificarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirModificarCampoActionPerformed
         // DESPLIEGA EL JDIALOG DONDE SE MODIFICA UN CAMPO
         try {
+            formatear_CBbox_Modificar();
             VentanaMenuCampos.setVisible(false);
             JD_ModificarCampos.setModal(true);
             JD_ModificarCampos.pack();
@@ -1128,33 +1130,11 @@ public class Principal extends javax.swing.JFrame {
             campos_nuevos.add(campo_nuevo);
             archivo_actual.SetCampo(campo_nuevo);
             System.out.println("size crear: " + archivo_actual.getCampos().size());
-
-            // aa.cargarArchivo();
-            /* Se escriben los campos dentro del archivo binario de archivos */
- /*for (Archivo archivo : aa.getLista_archivos()) {
-                if (archivo.getID() == archivo_actual.getID()) {
-                    archivo.SetCampo(campo_nuevo);
-                    break;
-                } // Fin If
-            } // Fin For
-            aa.escribirArchivo();//*/
-            añadir_campo_txt(campo_nuevo);
+            añadir_campo_txt(campo_nuevo);//PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
     }//GEN-LAST:event_BTN_CrearCampoDefinitivoActionPerformed
-
-    /* void x() {
-        aa.cargarArchivo();
-        /* Se escriben los campos dentro del archivo binario de archivos */
- /* for (Archivo archivo : aa.getLista_archivos()) {
-            if (archivo.getID() == archivo_actual.getID()) {
-                archivo.SetCampo(campo_nuevo);
-                break;
-            } // Fin If
-        } // Fin For
-     //   aa.escribirArchivo();
-    }//*/
 
     private void BTN_ModificarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_ModificarCampoDefinitivoActionPerformed
         // SE MODIFICA UN CAMPO DENTRO DEL ARCHIVO
@@ -1259,10 +1239,10 @@ public class Principal extends javax.swing.JFrame {
     void listar_campos() {
         try {
             TA_ListarCampos.setText("");
-            System.out.println("size: " + archivo_actual.getCampos().size());
+            System.out.println("size: " + archivo_anterior.getCampos().size());
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                TA_ListarCampos.append(archivo_actual.getCampos().get(i).toString());
-                System.out.println(archivo_actual.getCampos().get(i).toString());
+                TA_ListarCampos.append(archivo_anterior.getCampos().get(i).toString());
+                System.out.println(archivo_anterior.getCampos().get(i).toString());
             } // Fin For
         } catch (Exception e) {
             System.out.println("error");
@@ -1270,21 +1250,22 @@ public class Principal extends javax.swing.JFrame {
         } // Fin Try Catch
     }// Fin Metodo
 
-    void match_campos() {
-        // ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR // creo que ya no se necesita
-        /*for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
-            Campo campo_temporal = administrador_campos.getCampos().get(i);
-        }*/
-    }// Fin Metodo
-
     void formatear_CBbox_borrar() {
-        // ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR // CAMBIARSE
-        /*DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
-            Campo campo_temporal = administrador_campos.getCampos().get(i);
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (int i = 0; i < archivo_anterior.getCampos().size(); i++) {
+            Campo campo_temporal = archivo_anterior.getCampos().get(i);
             modelo.addElement(campo_temporal.getNombre());
         }// Fin If
-        CB_CampoABorrar.setModel(modelo);*/
+        CB_CampoABorrar.setModel(modelo);//*/
+    }// Fin Metodo
+    
+    void formatear_CBbox_Modificar() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (int i = 0; i < archivo_anterior.getCampos().size(); i++) {
+            Campo campo_temporal = archivo_anterior.getCampos().get(i);
+            modelo.addElement(campo_temporal.getNombre());
+        }// Fin If
+        CB_CampoAModificar.setModel(modelo);//*/
     }// Fin Metodo
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
