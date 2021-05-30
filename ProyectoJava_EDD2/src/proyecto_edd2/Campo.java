@@ -11,7 +11,9 @@ import java.io.Serializable;
  *
  * @author Monica
  */
-public class Campo {
+public class Campo implements Serializable {
+
+    private static final long SerialVersionUID = 777L;
 
     private int ID;
     private int ID_archivo;

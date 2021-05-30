@@ -887,15 +887,15 @@ public class Principal extends javax.swing.JFrame {
                     if (aa.getLista_archivos().get(i).getArchivo().equals(archivo_abrir)) {
                         ID_existente = aa.getLista_archivos().get(i).getID();
                         valid = true;
+                        archivo_actual = aa.getLista_archivos().get(i);
+                        archivo_anterior = archivo_actual;
                         break;
                     } // Fin If
                 } // Fin For
-                if (valid) {
+                if (!valid) {
                     // Esto indica que si encontro un archivo que había sido creado previamente
                     // SETEO DEL ARCHIVO ACTUAL
-                    archivo_actual = new Archivo(archivo_abrir, ID_existente);
-                    System.out.println("ENTRA DENTRO DE UN ARCHIVO EXISTENTE");
-                } else {
+                    //archivo_actual = new Archivo(archivo_abrir, ID_existente);
                     // Esto indica que se abrio un archivo que no fue creado despues de las modificaciones, por lo que hay que registrarlo
                     // CARGADO DE ARCHIVOS A EL ARCHIVO BINARIO
                     // OJO: Aqui falta una validación la cual no permita que se pueda nombrar un archivo con el mismo nombre que uno ya existente
@@ -905,8 +905,11 @@ public class Principal extends javax.swing.JFrame {
                     archivo_actual = new Archivo(archivo_abrir, ID);
                     aa.AddArchivo(archivo_actual);
                     aa.escribirArchivo();
+                    archivo_anterior = archivo_actual;
                     System.out.println("ENTRA DENTRO DE UN ARCHIVO NUEVO");
-                } // Fin If
+                } else {
+                    System.out.println("ENTRA DENTRO DE UN ARCHIVO EXISTENTE");
+                }// Fin Else
                 fr = new FileReader(archivo_abrir);
                 br = new BufferedReader(fr);
                 String linea;
@@ -934,6 +937,20 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_SalvarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_SalvarArchivoActionPerformed
         // ACTUALIZA EL TEXT AREA QUE MUESTRA EL ARCHIVO
         try {
+            aa.cargarArchivo();
+            /* Se escriben los campos dentro del archivo binario de archivos */
+            for (Archivo archivo : aa.getLista_archivos()) {
+                if (archivo.getID() == archivo_actual.getID()) {
+                    for (int i = 0; i < campos_nuevos.size(); i++) {
+                        archivo.SetCampo(campos_nuevos.get(i));
+                    }
+                    campos_nuevos.clear();
+                    System.out.println("campos n " + campos_nuevos.size());
+                    //archivo.SetCampo(campo_nuevo);
+                    break;
+                } // Fin If
+            } // Fin For
+            aa.escribirArchivo();//*/
             FileReader fr = null;
             BufferedReader br = null;
             fr = new FileReader(archivo_actual.getArchivo());
@@ -943,6 +960,7 @@ public class Principal extends javax.swing.JFrame {
             while ((linea = br.readLine()) != null) {
                 TA_ArchivoAbierto.append(linea);
             } // Fin While
+            archivo_anterior = archivo_actual;
             JOptionPane.showMessageDialog(null, "Archivo Salvado Exitosamente");
             try {
                 br.close();
@@ -960,8 +978,10 @@ public class Principal extends javax.swing.JFrame {
         try {
             // ME FALTA PROBAR SI FUNCIONA CON LOS CRUDS
             if (JOptionPane.showConfirmDialog(null, "¿Desea salvar los cambios en el archivo?", "Confirmación", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                BTN_SalvarArchivoActionPerformed(evt);
                 JOptionPane.showMessageDialog(this, "¡Se ha guardado el archivo exitosamente!");
             } else {
+                archivo_actual = archivo_anterior;
                 FileWriter fw = null;
                 BufferedWriter bw = null;
                 fw = new FileWriter(archivo_actual.getArchivo());
@@ -970,12 +990,6 @@ public class Principal extends javax.swing.JFrame {
                 bw.write(TA_ArchivoAbierto.getText());
                 TA_ArchivoAbierto.setText("");
                 bw.flush();
-                try {
-                    bw.close();
-                    fw.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } // Fin Try Catch
                 aa.cargarArchivo();
                 for (Archivo archivo : aa.getLista_archivos()) {
                     if (archivo.getID() == archivo_actual.getID()) {
@@ -985,6 +999,13 @@ public class Principal extends javax.swing.JFrame {
                 } // Fin For
                 aa.escribirArchivo();
                 archivo_actual = null;
+                archivo_anterior = null;
+                try {
+                    bw.close();
+                    fw.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } // Fin Try Catch
             } // Fin If
             VentanaMenuCampos.setVisible(false);
             this.setVisible(true);
@@ -1102,25 +1123,38 @@ public class Principal extends javax.swing.JFrame {
             ID_campo = GenerarIDCampo();
             ID_archivo = archivo_actual.getID();
             Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria);
+            campo_actual = campo_nuevo;
+            /* Meto el campo nuevo en el arraylist de campos del archivo <3*/
+            campos_nuevos.add(campo_nuevo);
             archivo_actual.SetCampo(campo_nuevo);
-            aa.cargarArchivo();
-            for (Archivo archivo : aa.getLista_archivos()) {
+            System.out.println("size crear: " + archivo_actual.getCampos().size());
+
+            // aa.cargarArchivo();
+            /* Se escriben los campos dentro del archivo binario de archivos */
+ /*for (Archivo archivo : aa.getLista_archivos()) {
                 if (archivo.getID() == archivo_actual.getID()) {
                     archivo.SetCampo(campo_nuevo);
                     break;
                 } // Fin If
             } // Fin For
-            aa.escribirArchivo();
-
-            //escribir_archivo_txt(campo_nuevo.campo_para_archivo());
+            aa.escribirArchivo();//*/
             añadir_campo_txt(campo_nuevo);
-            // ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR / Podria cambiarse
-            //administrador_campos.añadirCampo(campo_nuevo);
-            //administrador_campos.escribirArchivo();
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
     }//GEN-LAST:event_BTN_CrearCampoDefinitivoActionPerformed
+
+    /* void x() {
+        aa.cargarArchivo();
+        /* Se escriben los campos dentro del archivo binario de archivos */
+ /* for (Archivo archivo : aa.getLista_archivos()) {
+            if (archivo.getID() == archivo_actual.getID()) {
+                archivo.SetCampo(campo_nuevo);
+                break;
+            } // Fin If
+        } // Fin For
+     //   aa.escribirArchivo();
+    }//*/
 
     private void BTN_ModificarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_ModificarCampoDefinitivoActionPerformed
         // SE MODIFICA UN CAMPO DENTRO DEL ARCHIVO
@@ -1224,13 +1258,11 @@ public class Principal extends javax.swing.JFrame {
 
     void listar_campos() {
         try {
-            //TA_ListarCampos.append("");
             TA_ListarCampos.setText("");
-            /*for (int i = 0; i < administrador_campos.getCampos().size(); i++) {
-                TA_ListarCampos.append(administrador_campos.getCampos().get(i).toString());
-            }*/
+            System.out.println("size: " + archivo_actual.getCampos().size());
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
                 TA_ListarCampos.append(archivo_actual.getCampos().get(i).toString());
+                System.out.println(archivo_actual.getCampos().get(i).toString());
             } // Fin For
         } catch (Exception e) {
             System.out.println("error");
@@ -1326,7 +1358,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
-    private Archivo archivo_actual;
+    private Archivo archivo_actual, archivo_anterior;
     private Campo campo_actual;
+    ArrayList<Campo> campos_nuevos = new ArrayList();
     Administrar_Archivos aa = new Administrar_Archivos("./Archivos.dmo");
 }
