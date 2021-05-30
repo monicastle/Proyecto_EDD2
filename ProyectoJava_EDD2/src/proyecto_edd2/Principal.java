@@ -893,8 +893,8 @@ public class Principal extends javax.swing.JFrame {
                         ID_existente = aa.getLista_archivos().get(i).getID();
                         valid = true;
                         archivo_actual = aa.getLista_archivos().get(i);
-                        archivo_anterior = archivo_actual;
-                        System.out.println("abriendo " + archivo_actual.getCampos().size());
+                        //archivo_anterior = archivo_actual;
+                        //System.out.println("abriendo " + archivo_actual.getCampos().size());
                         break;
                     } // Fin If
                 } // Fin For
@@ -911,7 +911,7 @@ public class Principal extends javax.swing.JFrame {
                     archivo_actual = new Archivo(archivo_abrir, ID);
                     aa.AddArchivo(archivo_actual);
                     aa.escribirArchivo();
-                    archivo_anterior = archivo_actual;
+                  //  archivo_anterior = archivo_actual;
                     System.out.println("ENTRA DENTRO DE UN ARCHIVO NUEVO");
                 } else {
                     System.out.println("ENTRA DENTRO DE UN ARCHIVO EXISTENTE");
@@ -948,10 +948,11 @@ public class Principal extends javax.swing.JFrame {
             for (Archivo archivo : aa.getLista_archivos()) {
                 if (archivo.getID() == archivo_actual.getID()) {
                     for (int i = 0; i < campos_nuevos.size(); i++) {
-                        archivo.SetCampo(campos_nuevos.get(i));
+                        //archivo.SetCampo(campos_nuevos.get(i));
+                        archivo.getCampos().add(campos_nuevos.get(i));
                     }
                     campos_nuevos.clear();
-                    System.out.println("campos n " + campos_nuevos.size());
+                    //System.out.println("campos n " + campos_nuevos.size());
                     //archivo.SetCampo(campo_nuevo);
                     break;
                 } // Fin If
@@ -966,7 +967,7 @@ public class Principal extends javax.swing.JFrame {
             while ((linea = br.readLine()) != null) {
                 TA_ArchivoAbierto.append(linea);
             } // Fin While
-            archivo_anterior = archivo_actual;
+         //   archivo_anterior = archivo_actual;
             JOptionPane.showMessageDialog(null, "Archivo Salvado Exitosamente");
             try {
                 br.close();
@@ -987,7 +988,7 @@ public class Principal extends javax.swing.JFrame {
                 BTN_SalvarArchivoActionPerformed(evt);
                 JOptionPane.showMessageDialog(this, "¡Se ha guardado el archivo exitosamente!");
             } else {
-                archivo_actual = archivo_anterior;
+          //      archivo_actual = archivo_anterior;
                 FileWriter fw = null;
                 BufferedWriter bw = null;
                 fw = new FileWriter(archivo_actual.getArchivo());
@@ -1005,7 +1006,7 @@ public class Principal extends javax.swing.JFrame {
                 } // Fin For
                 aa.escribirArchivo();
                 archivo_actual = null;
-                archivo_anterior = null;
+              //  archivo_anterior = null;
                 try {
                     bw.close();
                     fw.close();
@@ -1133,8 +1134,8 @@ public class Principal extends javax.swing.JFrame {
             campo_actual = campo_nuevo;
             /* Meto el campo nuevo en el arraylist de campos del archivo <3*/
             campos_nuevos.add(campo_nuevo);
-            archivo_actual.SetCampo(campo_nuevo);
-            System.out.println("size crear: " + archivo_actual.getCampos().size());
+            //archivo_actual.SetCampo(campo_nuevo);
+            //System.out.println("size crear: " + archivo_actual.getCampos().size());
             añadir_campo_txt(campo_nuevo);//PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
         } catch (Exception e) {
             e.printStackTrace();
@@ -1267,10 +1268,10 @@ public class Principal extends javax.swing.JFrame {
     void listar_campos() {
         try {
             TA_ListarCampos.setText("");
-            System.out.println("size: " + archivo_anterior.getCampos().size());
+           // System.out.println("size: " + archivo_anterior.getCampos().size());
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                TA_ListarCampos.append(archivo_anterior.getCampos().get(i).toString());
-                System.out.println(archivo_anterior.getCampos().get(i).toString());
+                TA_ListarCampos.append(archivo_actual.getCampos().get(i).toString());
+                System.out.println(archivo_actual.getCampos().get(i).toString());
             } // Fin For
         } catch (Exception e) {
             System.out.println("error");
@@ -1280,8 +1281,8 @@ public class Principal extends javax.swing.JFrame {
 
     void formatear_CBbox_borrar() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for (int i = 0; i < archivo_anterior.getCampos().size(); i++) {
-            Campo campo_temporal = archivo_anterior.getCampos().get(i);
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            Campo campo_temporal = archivo_actual.getCampos().get(i);
             modelo.addElement(campo_temporal.getNombre());
         }// Fin If
         CB_CampoABorrar.setModel(modelo);
@@ -1289,8 +1290,8 @@ public class Principal extends javax.swing.JFrame {
 
     void formatear_CBbox_Modificar() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for (int i = 0; i < archivo_anterior.getCampos().size(); i++) {
-            Campo campo_temporal = archivo_anterior.getCampos().get(i);
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            Campo campo_temporal = archivo_actual.getCampos().get(i);
             modelo.addElement(campo_temporal.getNombre());
         }// Fin If
         CB_CampoAModificar.setModel(modelo);
@@ -1367,7 +1368,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
-    private Archivo archivo_actual, archivo_anterior;
+    private Archivo archivo_actual/*, archivo_anterior*/;
     private Campo campo_actual;
     ArrayList<Campo> campos_nuevos = new ArrayList();
     Administrar_Archivos aa = new Administrar_Archivos("./Archivos.dmo");
