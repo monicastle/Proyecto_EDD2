@@ -1229,8 +1229,10 @@ public class Principal extends javax.swing.JFrame {
             boolean llave_primaria = false;
             nombre = TF_NombreDelCampoModificado.getText();
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                if (archivo_actual.getCampos().get(i).getNombre().equals(nombre)) {
-                    existe = true;
+                if (i!=CB_CampoAModificar.getSelectedIndex()) {
+                    if(archivo_actual.getCampos().get(i).getNombre().equals(nombre)){
+                    existe=true;
+                    }
                 }
             }//fin for validacion del cmapo para ver si su nomre ya existe
             tipo_de_dato = CB_TipoDeDatoDelCampoModificado.getSelectedIndex();
