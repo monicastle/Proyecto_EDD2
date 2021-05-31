@@ -1209,7 +1209,7 @@ public class Principal extends javax.swing.JFrame {
             ID_archivo = archivo_actual.getID();
             Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria);
             if (existe == false) {
-                if (llave_primaria == false && llaveprimaria==false) {
+                if (llave_primaria == false && llaveprimaria == false) {
                     // EMPIEZA ONASIS
                     campo_actual = campo_nuevo;
                     campos_nuevos.add(campo_nuevo);
@@ -1219,17 +1219,16 @@ public class Principal extends javax.swing.JFrame {
                     SP_LongitudDelCampo.setValue(0);
                     RB_LlavePrimariaDelCampo.setSelected(false);
                     // TERMINA ONASIS
-                } else if(llave_primaria==true && llaveprimaria==false) {
+                } else if (llave_primaria == true && llaveprimaria == false) {
                     campo_actual = campo_nuevo;
                     campos_nuevos.add(campo_nuevo);
                     añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
                     TF_NombreDelCampo.setText("");
                     CB_TipoDeDatoDelCampo.setSelectedIndex(0);
                     SP_LongitudDelCampo.setValue(0);
-                    RB_LlavePrimariaDelCampo.setSelected(false);              
-                }
-                else if(llave_primaria==true && llaveprimaria==true){
-                      JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
+                    RB_LlavePrimariaDelCampo.setSelected(false);
+                } else if (llave_primaria == true && llaveprimaria == true) {
+                    JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
                 }// Fin If
             } else if (existe == true) {
                 JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
@@ -1272,7 +1271,7 @@ public class Principal extends javax.swing.JFrame {
             //ArrayList<Campo> temp = new ArrayList();
             //aa.cargarArchivo();
             if (existe == false) {
-                if (llave_primaria == false&& llaveprimaria==false) {
+                if (llave_primaria == false && llaveprimaria == false) {
                     // ONASIS EMPIEZA
                     /*for (int i = 0; i < aa.getLista_archivos().size(); i++) {
                         if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
@@ -1300,15 +1299,15 @@ public class Principal extends javax.swing.JFrame {
                         } // Fin If
                     } // Fin For
                     // Tener en cuenta el archivo actual
-                    modificar_txt();
+                    cambios_txt();
                     TF_NombreDelCampoModificado.setText("");
                     CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
                     SP_LongitudDelCampoModificado.setValue(0);
                     RB_LlavePrimariaDelCampoModificado.setSelected(false);
                     JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
                     // ONASIS TERMINA
-                } else if(llave_primaria==true && llaveprimaria==false) {
-                     for (Campo campo : campos_nuevos) {
+                } else if (llave_primaria == true && llaveprimaria == false) {
+                    for (Campo campo : campos_nuevos) {
                         if (campo.getID() == campo_actual.getID()) {
                             campo.setNombre(nombre);
                             campo.setTipo_de_dato(tipo_de_dato);
@@ -1323,8 +1322,8 @@ public class Principal extends javax.swing.JFrame {
                     SP_LongitudDelCampoModificado.setValue(0);
                     RB_LlavePrimariaDelCampoModificado.setSelected(false);
                     JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
-                }else if(llave_primaria==true && llaveprimaria==true){
-                  JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
+                } else if (llave_primaria == true && llaveprimaria == true) {
+                    JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
                 }
             } else if (existe == true) {
                 JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
@@ -1368,48 +1367,28 @@ public class Principal extends javax.swing.JFrame {
 
     private void BTN_BorrarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BorrarCampoDefinitivoActionPerformed
         // SE BORRA UN CAMPO DENTRO DEL ARCHIVO
-        try {
-            salvado = true;
-            for (int i = 0; i < campos_nuevos.size(); i++) {
-                if (campos_nuevos.get(i).getID() == campo_actual.getID()) {
-                    campos_nuevos.remove(i);
-                } // Fin If              
-            } // Fin For
-            // AGREGAR METODO QUE ESCRIBA EN EL ARCHIVO TXT
-            eliminar_txt();
-            JOptionPane.showMessageDialog(this, "¡Se ha eliminado el campo exitosamnte!");
-        } catch (Exception e) {
-            e.printStackTrace();
-        } // Fin Try Catch
+        // SE BORRA UN CAMPO DENTRO DEL ARCHIVO
+        System.out.println("selected index " + CB_CampoABorrar.getSelectedIndex());
+        if (CB_CampoABorrar.getSelectedIndex() > 0) {
+            try {
+                salvado = true;
+                for (int i = 0; i < campos_nuevos.size(); i++) {
+                    System.out.println("i " + i);
+                    System.out.println("campo \n" + campos_nuevos.get(i).toString());
+                    if (campos_nuevos.get(i).getID() == campo_actual.getID()) {
+                        campos_nuevos.remove(i);
+                    } // Fin If              
+                } // Fin For
+                // AGREGAR METODO QUE ESCRIBA EN EL ARCHIVO TXT
+                cambios_txt();
+                JOptionPane.showMessageDialog(this, "¡Se ha eliminado el campo exitosamnte!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } // Fin Try Catch
+        }
     }//GEN-LAST:event_BTN_BorrarCampoDefinitivoActionPerformed
-public void eliminar_txt() {
-        // Forma de Escribir:
-        FileWriter fw = null;
-        BufferedWriter bw = null;
-        //FileReader fr = null;
-        //BufferedReader br = null;
-        try {
-            archivo_actual.setCampos(campos_nuevos);
-            //  fr = new FileReader(archivo_actual.getArchivo());
-            // br = new BufferedReader(fr);
-            String linea_modificada = "";
-            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                linea_modificada += archivo_actual.getCampos().get(i).campo_para_archivo();
-            }//*/
-            fw = new FileWriter(archivo_actual.getArchivo());
-            bw = new BufferedWriter(fw);
-            bw.write(linea_modificada);
-            bw.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } // Fin Try Catch
-        try {
-            bw.close();
-            fw.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }//fin try catch
-    }
+
+
     private void CB_CampoAModificarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CB_CampoAModificarItemStateChanged
         // ACTUALIZA LA INFORMACIÓN EN EL JDIALOG CON CADA CAMBIO
         try {
@@ -1488,6 +1467,61 @@ public void eliminar_txt() {
             }
         });
     }
+public void borrar_txt() {
+        // Forma de Escribir:
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        //FileReader fr = null;
+        //BufferedReader br = null;
+        try {
+            //  fr = new FileReader(archivo_actual.getArchivo());
+            // br = new BufferedReader(fr);
+            String linea = "";
+            for (int i = 0; i < campos_nuevos.size(); i++) {
+                linea += campos_nuevos.get(i).campo_para_archivo();
+            }//*/
+            fw = new FileWriter(archivo_actual.getArchivo());
+            bw = new BufferedWriter(fw);
+            bw.write(linea);
+            bw.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+        try {
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }//fin try catch
+    }// Fin Metodo
+
+    public void cambios_txt() {
+        // Forma de Escribir:
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        //FileReader fr = null;
+        //BufferedReader br = null;
+        try {
+            //  fr = new FileReader(archivo_actual.getArchivo());
+            // br = new BufferedReader(fr);
+            String linea = "";
+            for (int i = 0; i < campos_nuevos.size(); i++) {
+                linea += campos_nuevos.get(i).campo_para_archivo();
+            }//*/
+            fw = new FileWriter(archivo_actual.getArchivo());
+            bw = new BufferedWriter(fw);
+            bw.write(linea);
+            bw.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+        try {
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }//fin try catch
+    }// Fin Metodo
 
     public int GenerarIDCampo() {
         // CAMBIAR
@@ -1597,6 +1631,7 @@ public void eliminar_txt() {
 
     void formatear_CBbox_borrar() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        modelo.addElement("Seleccione");
         for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
             Campo campo_temporal = archivo_actual.getCampos().get(i);
             modelo.addElement(campo_temporal.getNombre());
@@ -1606,6 +1641,7 @@ public void eliminar_txt() {
 
     void formatear_CBbox_Modificar() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        //modelo.addElement("Seleccione");
         for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
             Campo campo_temporal = archivo_actual.getCampos().get(i);
             modelo.addElement(campo_temporal.getNombre());
