@@ -1243,97 +1243,82 @@ public class Principal extends javax.swing.JFrame {
 
     private void BTN_ModificarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_ModificarCampoDefinitivoActionPerformed
         // SE MODIFICA UN CAMPO DENTRO DEL ARCHIVO
-        try {
-            salvado = true;
-            boolean existe = false;
-            boolean llaveprimaria = false;
-            String nombre;
-            int tipo_de_dato, longitud;
-            boolean llave_primaria = false;
-            nombre = TF_NombreDelCampoModificado.getText();
-            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                if (i != CB_CampoAModificar.getSelectedIndex()) {
-                    if (archivo_actual.getCampos().get(i).getNombre().equals(nombre)) {
-                        existe = true;
+        if (CB_CampoAModificar.getSelectedIndex() >= 1) {
+            try {
+                salvado = true;
+                boolean existe = false;
+                boolean llaveprimaria = false;
+                String nombre;
+                int tipo_de_dato, longitud;
+                boolean llave_primaria = false;
+                nombre = TF_NombreDelCampoModificado.getText();
+                for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                    if (i != CB_CampoAModificar.getSelectedIndex()) {
+                        if (archivo_actual.getCampos().get(i).getNombre().equals(nombre)) {
+                            existe = true;
+                        }
                     }
-                }
-            }//fin for validacion del cmapo para ver si su nomre ya existe
-            tipo_de_dato = CB_TipoDeDatoDelCampoModificado.getSelectedIndex();
-            longitud = Integer.parseInt(SP_LongitudDelCampoModificado.getValue().toString());
-            if (RB_LlavePrimariaDelCampoModificado.isSelected()) {
-                llave_primaria = true;
-            } // Fin If
-            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                if (archivo_actual.getCampos().get(i).isLlavePrimaria() == true) {
-                    llaveprimaria = true;
-                }
-            }//fin for para validar llave primaria
-            //ArrayList<Campo> temp = new ArrayList();
-            //aa.cargarArchivo();
-            if (existe == false) {
-                if (llave_primaria == false && llaveprimaria == false) {
-                    // ONASIS EMPIEZA
-                    /*for (int i = 0; i < aa.getLista_archivos().size(); i++) {
-                        if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
-                            temp = aa.getLista_archivos().get(i).getCampos();
-                            int j = CB_CampoAModificar.getSelectedIndex();
-                            aa.getLista_archivos().get(i).getCampos().get(j).setNombre(nombre);
-                            aa.getLista_archivos().get(i).getCampos().get(j).setLlaveprimaria(llave_primaria);
-                            aa.getLista_archivos().get(i).getCampos().get(j).setLongitud(longitud);
-                            aa.getLista_archivos().get(i).getCampos().get(j).setTipo_de_dato(tipo_de_dato);
-                            archivo_actual = null;
-                            archivo_actual = aa.getLista_archivos().get(i);
-                            break;
-                        }// Fin If
-                        archivo_actual = null;
-                        archivo_actual = aa.getLista_archivos().get(i);
-                        break;
-                    }//fin for
-                    aa.escribirArchivo();*/
-                    for (Campo campo : campos_nuevos) {
-                        if (campo.getID() == campo_actual.getID()) {
-                            campo.setNombre(nombre);
-                            campo.setTipo_de_dato(tipo_de_dato);
-                            campo.setLongitud(longitud);
-                            campo.setLlaveprimaria(llave_primaria);
-                        } // Fin If
-                    } // Fin For
-                    // Tener en cuenta el archivo actual
-                    cambios_txt();
-                    TF_NombreDelCampoModificado.setText("");
-                    CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
-                    SP_LongitudDelCampoModificado.setValue(0);
-                    RB_LlavePrimariaDelCampoModificado.setSelected(false);
-                    JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
-                    // ONASIS TERMINA
-                } else if (llave_primaria == true && llaveprimaria == false) {
-                    for (Campo campo : campos_nuevos) {
-                        if (campo.getID() == campo_actual.getID()) {
-                            campo.setNombre(nombre);
-                            campo.setTipo_de_dato(tipo_de_dato);
-                            campo.setLongitud(longitud);
-                            campo.setLlaveprimaria(llave_primaria);
-                        } // Fin If
-                    } // Fin For
-                    // Tener en cuenta el archivo actual
-                    modificar_txt();
-                    TF_NombreDelCampoModificado.setText("");
-                    CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
-                    SP_LongitudDelCampoModificado.setValue(0);
-                    RB_LlavePrimariaDelCampoModificado.setSelected(false);
-                    JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
-                } else if (llave_primaria == true && llaveprimaria == true) {
+                }//fin for validacion del cmapo para ver si su nomre ya existe
+                tipo_de_dato = CB_TipoDeDatoDelCampoModificado.getSelectedIndex();
+                longitud = Integer.parseInt(SP_LongitudDelCampoModificado.getValue().toString());
+                if (RB_LlavePrimariaDelCampoModificado.isSelected()) {
+                    llave_primaria = true;
+                } // Fin If
+                for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                    if (archivo_actual.getCampos().get(i).isLlavePrimaria() == true) {
+                        llaveprimaria = true;
+                    }
+                }//fin for para validar llave primaria
+                if (existe == false) {
+                    if (llave_primaria == false && llaveprimaria == false) {
+                        for (Campo campo : campos_nuevos) {
+                            if (campo.getID() == campo_actual.getID()) {
+                                campo.setNombre(nombre);
+                                campo.setTipo_de_dato(tipo_de_dato);
+                                campo.setLongitud(longitud);
+                                campo.setLlaveprimaria(llave_primaria);
+                            } // Fin If
+                        } // Fin For
+                        // Tener en cuenta el archivo actual
+                        cambios_txt();
+                        TF_NombreDelCampoModificado.setText("");
+                        CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
+                        SP_LongitudDelCampoModificado.setValue(0);
+                        RB_LlavePrimariaDelCampoModificado.setSelected(false);
+                        JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
+                        // ONASIS TERMINA
+                    } else if (llave_primaria == true && llaveprimaria == false) {
+                        for (Campo campo : campos_nuevos) {
+                            if (campo.getID() == campo_actual.getID()) {
+                                campo.setNombre(nombre);
+                                campo.setTipo_de_dato(tipo_de_dato);
+                                campo.setLongitud(longitud);
+                                campo.setLlaveprimaria(llave_primaria);
+                            } // Fin If
+                        } // Fin For
+                        // Tener en cuenta el archivo actual
+                        //modificar_txt();
+                        cambios_txt();
+                        TF_NombreDelCampoModificado.setText("");
+                        CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
+                        SP_LongitudDelCampoModificado.setValue(0);
+                        RB_LlavePrimariaDelCampoModificado.setSelected(false);
+                        JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
+                    } else if (llave_primaria == true && llaveprimaria == true) {
+                        JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
+                    }
+                } else if (existe == true) {
+                    JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
+                } else if (llaveprimaria == true) {
                     JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
+                    llaveprimaria = false;
                 }
-            } else if (existe == true) {
-                JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
-            } else if (llaveprimaria == true) {
-                JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
-                llaveprimaria = false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } // Fin Try Catch
+            } catch (Exception e) {
+                e.printStackTrace();
+            } // Fin Try Catch
+        }else{
+            JOptionPane.showMessageDialog(this, "Debes seleccionar un campo.");
+        }
     }//GEN-LAST:event_BTN_ModificarCampoDefinitivoActionPerformed
 
     // ArrayList<Campo> temp = new ArrayList();
@@ -1368,13 +1353,10 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_BorrarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BorrarCampoDefinitivoActionPerformed
         // SE BORRA UN CAMPO DENTRO DEL ARCHIVO
         // SE BORRA UN CAMPO DENTRO DEL ARCHIVO
-        System.out.println("selected index " + CB_CampoABorrar.getSelectedIndex());
         if (CB_CampoABorrar.getSelectedIndex() > 0) {
             try {
                 salvado = true;
                 for (int i = 0; i < campos_nuevos.size(); i++) {
-                    System.out.println("i " + i);
-                    System.out.println("campo \n" + campos_nuevos.get(i).toString());
                     if (campos_nuevos.get(i).getID() == campo_actual.getID()) {
                         campos_nuevos.remove(i);
                     } // Fin If              
@@ -1385,6 +1367,8 @@ public class Principal extends javax.swing.JFrame {
             } catch (Exception e) {
                 e.printStackTrace();
             } // Fin Try Catch
+        }else{
+            JOptionPane.showMessageDialog(this, "No has seleccionado ningún campo.");
         }
     }//GEN-LAST:event_BTN_BorrarCampoDefinitivoActionPerformed
 
@@ -1467,7 +1451,8 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-public void borrar_txt() {
+
+    public void borrar_txt() {
         // Forma de Escribir:
         FileWriter fw = null;
         BufferedWriter bw = null;
@@ -1641,7 +1626,7 @@ public void borrar_txt() {
 
     void formatear_CBbox_Modificar() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        //modelo.addElement("Seleccione");
+        modelo.addElement("Seleccione");
         for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
             Campo campo_temporal = archivo_actual.getCampos().get(i);
             modelo.addElement(campo_temporal.getNombre());
