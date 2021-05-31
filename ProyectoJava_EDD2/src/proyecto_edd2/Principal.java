@@ -1209,7 +1209,7 @@ public class Principal extends javax.swing.JFrame {
             ID_archivo = archivo_actual.getID();
             Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria);
             if (existe == false) {
-                if (llave_primaria == false) {
+                if (llave_primaria == false&& llaveprimaria==false) {
                     // EMPIEZA ONASIS
                     campo_actual = campo_nuevo;
                     campos_nuevos.add(campo_nuevo);
@@ -1219,10 +1219,19 @@ public class Principal extends javax.swing.JFrame {
                     SP_LongitudDelCampo.setValue(0);
                     RB_LlavePrimariaDelCampo.setSelected(false);
                     // TERMINA ONASIS
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
+                } else if(llave_primaria==false && llaveprimaria==true) {
+                    campo_actual = campo_nuevo;
+                    campos_nuevos.add(campo_nuevo);
+                    añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
+                    TF_NombreDelCampo.setText("");
+                    CB_TipoDeDatoDelCampo.setSelectedIndex(0);
+                    SP_LongitudDelCampo.setValue(0);
+                    RB_LlavePrimariaDelCampo.setSelected(false);
+                }
+                else if(llave_primaria==true && llaveprimaria==true){
+                      JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
                     llaveprimaria = false;
-                } // Fin If
+                }// Fin If
             } else if (existe == true) {
                 JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
             } else if (llaveprimaria == true) {
@@ -1264,7 +1273,7 @@ public class Principal extends javax.swing.JFrame {
             //ArrayList<Campo> temp = new ArrayList();
             //aa.cargarArchivo();
             if (existe == false) {
-                if (llave_primaria == false) {
+                if (llave_primaria == false&& llaveprimaria==false) {
                     // ONASIS EMPIEZA
                     /*for (int i = 0; i < aa.getLista_archivos().size(); i++) {
                         if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
@@ -1299,8 +1308,24 @@ public class Principal extends javax.swing.JFrame {
                     RB_LlavePrimariaDelCampoModificado.setSelected(false);
                     JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
                     // ONASIS TERMINA
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
+                } else if(llave_primaria==false && llaveprimaria==true) {
+                     for (Campo campo : campos_nuevos) {
+                        if (campo.getID() == campo_actual.getID()) {
+                            campo.setNombre(nombre);
+                            campo.setTipo_de_dato(tipo_de_dato);
+                            campo.setLongitud(longitud);
+                            campo.setLlaveprimaria(llave_primaria);
+                        } // Fin If
+                    } // Fin For
+                    // Tener en cuenta el archivo actual
+                    modificar_txt();
+                    TF_NombreDelCampoModificado.setText("");
+                    CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
+                    SP_LongitudDelCampoModificado.setValue(0);
+                    RB_LlavePrimariaDelCampoModificado.setSelected(false);
+                    JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
+                }else if(llave_primaria==true && llaveprimaria==true){
+                  JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
                 }
             } else if (existe == true) {
                 JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
