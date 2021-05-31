@@ -909,7 +909,10 @@ public class Principal extends javax.swing.JFrame {
                         formatear_CBbox_Modificar();
                         formatear_CBbox_borrar();
                         listar_campos();
-                        temp = archivo_actual.getCampos();
+                        for (int j = 0; j < archivo_actual.getCampos().size(); j++) {
+                            campos_nuevos.add(archivo_actual.getCampos().get(j));
+                        } // Fin For
+                        // temp = archivo_actual.getCampos();
                         //archivo_anterior = archivo_actual;
                         //System.out.println("abriendo " + archivo_actual.getCampos().size());
                         break;
@@ -923,8 +926,12 @@ public class Principal extends javax.swing.JFrame {
                     aa.cargarArchivo();
                     ID = aa.GenerarId();
                     archivo_actual = new Archivo(archivo_abrir, ID);
+                    // AQUI FALTA SETEARLE LOS CAMPOS
                     aa.AddArchivo(archivo_actual);
                     aa.escribirArchivo();
+                    formatear_CBbox_Modificar();
+                    formatear_CBbox_borrar();
+                    listar_campos();
                 } // Fin If
                 fr = new FileReader(archivo_abrir);
                 br = new BufferedReader(fr);
@@ -1022,13 +1029,11 @@ public class Principal extends javax.swing.JFrame {
                             /*  for (int i = 0; i < campos_nuevos.size(); i++) {
                             archivo.addCampo(campos_nuevos.get(i));
                         } // Fin For  */
-                            campos_nuevos.clear();
+                            //campos_nuevos.clear();
                             break;
                         } // Fin If
                     } // Fin For
                     aa.escribirArchivo();
-                    archivo_actual = null;
-                    campos_nuevos.clear();
                     try {
                         bw.close();
                         fw.close();
@@ -1036,10 +1041,7 @@ public class Principal extends javax.swing.JFrame {
                         e.printStackTrace();
                     } // Fin Try Catch
                 } // Fin If
-                VentanaMenuCampos.setVisible(false);
-                this.setVisible(true);
-            } // Fin Try Catch
-            else {
+            } else {
                 /*for (int i = 0; i < campos_nuevos.size(); i++) {
                     archivo_actual.addCampo(campos_nuevos.get(i));
                 } // Fin For  */
@@ -1057,13 +1059,11 @@ public class Principal extends javax.swing.JFrame {
                         /*  for (int i = 0; i < campos_nuevos.size(); i++) {
                             archivo.addCampo(campos_nuevos.get(i));
                         } // Fin For  */
-                        campos_nuevos.clear();
+                        // campos_nuevos.clear();
                         break;
                     } // Fin If
                 } // Fin For
                 aa.escribirArchivo();
-                archivo_actual = null;
-                campos_nuevos.clear();
                 try {
                     bw.close();
                     fw.close();
@@ -1071,6 +1071,8 @@ public class Principal extends javax.swing.JFrame {
                     e.printStackTrace();
                 } // Fin Try Catch
             } // Fin If
+            archivo_actual = null;
+            campos_nuevos.clear();
             VentanaMenuCampos.setVisible(false);
             this.setVisible(true);
         } catch (Exception e) {
@@ -1200,12 +1202,14 @@ public class Principal extends javax.swing.JFrame {
             Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria);
             if (existe == false) {
                 if (llave_primaria == false) {
+                    // EMPIEZA ONASIS
                     campo_actual = campo_nuevo;
                     campos_nuevos.add(campo_nuevo);
                     añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
-                }else{
-                 JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
-                llaveprimaria = false;
+                    // TERMINA ONASIS
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
+                    llaveprimaria = false;
                 }
             } else if (existe == true) {
                 JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
@@ -1229,9 +1233,9 @@ public class Principal extends javax.swing.JFrame {
             boolean llave_primaria = false;
             nombre = TF_NombreDelCampoModificado.getText();
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                if (i!=CB_CampoAModificar.getSelectedIndex()) {
-                    if(archivo_actual.getCampos().get(i).getNombre().equals(nombre)){
-                    existe=true;
+                if (i != CB_CampoAModificar.getSelectedIndex()) {
+                    if (archivo_actual.getCampos().get(i).getNombre().equals(nombre)) {
+                        existe = true;
                     }
                 }
             }//fin for validacion del cmapo para ver si su nomre ya existe
@@ -1239,34 +1243,48 @@ public class Principal extends javax.swing.JFrame {
             longitud = Integer.parseInt(SP_LongitudDelCampoModificado.getValue().toString());
             if (RB_LlavePrimariaDelCampoModificado.isSelected()) {
                 llave_primaria = true;
-            } // Fin If}
+            } // Fin If
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
                 if (archivo_actual.getCampos().get(i).isLlavePrimaria() == true) {
                     llaveprimaria = true;
                 }
             }//fin for para validar llave primaria
             //ArrayList<Campo> temp = new ArrayList();
-            aa.cargarArchivo();
-            if (existe == false ) {
-                if(llave_primaria == false){
-                      for (int i = 0; i < aa.getLista_archivos().size(); i++) {
-                    if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
-                        temp = aa.getLista_archivos().get(i).getCampos();
-                        int j = CB_CampoAModificar.getSelectedIndex();
-                        aa.getLista_archivos().get(i).getCampos().get(j).setNombre(nombre);
-                        aa.getLista_archivos().get(i).getCampos().get(j).setLlaveprimaria(llave_primaria);
-                        aa.getLista_archivos().get(i).getCampos().get(j).setLongitud(longitud);
-                        aa.getLista_archivos().get(i).getCampos().get(j).setTipo_de_dato(tipo_de_dato);
-                    }// Fin If
-                    archivo_actual = null;
-                    archivo_actual = aa.getLista_archivos().get(i);
-                    break;
-                }//fin for
-                aa.escribirArchivo();
-                modificar_txt();
-                JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
-                }else{
-                 JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
+            //aa.cargarArchivo();
+            if (existe == false) {
+                if (llave_primaria == false) {
+                    // ONASIS EMPIEZA
+                    /*for (int i = 0; i < aa.getLista_archivos().size(); i++) {
+                        if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
+                            temp = aa.getLista_archivos().get(i).getCampos();
+                            int j = CB_CampoAModificar.getSelectedIndex();
+                            aa.getLista_archivos().get(i).getCampos().get(j).setNombre(nombre);
+                            aa.getLista_archivos().get(i).getCampos().get(j).setLlaveprimaria(llave_primaria);
+                            aa.getLista_archivos().get(i).getCampos().get(j).setLongitud(longitud);
+                            aa.getLista_archivos().get(i).getCampos().get(j).setTipo_de_dato(tipo_de_dato);
+                            archivo_actual = null;
+                            archivo_actual = aa.getLista_archivos().get(i);
+                            break;
+                        }// Fin If
+                        archivo_actual = null;
+                        archivo_actual = aa.getLista_archivos().get(i);
+                        break;
+                    }//fin for
+                    aa.escribirArchivo();*/
+                    for (Campo campo : campos_nuevos) {
+                        if (campo.getID() == campo_actual.getID()) {
+                            campo.setNombre(nombre);
+                            campo.setTipo_de_dato(tipo_de_dato);
+                            campo.setLongitud(longitud);
+                            campo.setLlaveprimaria(llave_primaria);
+                        } // Fin If
+                    } // Fin For
+                    // Tener en cuenta el archivo actual
+                    modificar_txt();
+                    JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
+                    // ONASIS TERMINA
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
                 }
             } else if (existe == true) {
                 JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
@@ -1279,8 +1297,7 @@ public class Principal extends javax.swing.JFrame {
         } // Fin Try Catch
     }//GEN-LAST:event_BTN_ModificarCampoDefinitivoActionPerformed
 
-    ArrayList<Campo> temp = new ArrayList();
-
+    // ArrayList<Campo> temp = new ArrayList();
     public void modificar_txt() {
         // Forma de Escribir:
         FileWriter fw = null;
@@ -1427,9 +1444,10 @@ public class Principal extends javax.swing.JFrame {
 
     void EscribirCamposBinario() {
         try {
-            for (int i = 0; i < campos_nuevos.size(); i++) {
+            /*for (int i = 0; i < campos_nuevos.size(); i++) {
                 archivo_actual.addCampo(campos_nuevos.get(i));
-            } // Fin For  
+            } // Fin For*/
+            archivo_actual.setCampos(campos_nuevos);
             FileWriter fw = null;
             BufferedWriter bw = null;
             fw = new FileWriter(archivo_actual.getArchivo());
@@ -1440,10 +1458,11 @@ public class Principal extends javax.swing.JFrame {
             for (Archivo archivo : aa.getLista_archivos()) {
                 if (archivo.getID() == archivo_actual.getID()) {
                     archivo.setArchivo(archivo_actual.getArchivo());
-                    for (int i = 0; i < campos_nuevos.size(); i++) {
-                        archivo.addCampo(campos_nuevos.get(i));
-                    } // Fin For  
-                    campos_nuevos.clear();
+                    archivo.setCampos(campos_nuevos);
+                    /*for (int i = 0; i < campos_nuevos.size(); i++) {
+                        //archivo.addCampo(campos_nuevos.get(i));
+                    } // Fin For  */
+                    //campos_nuevos.clear();
                     break;
                 } // Fin If
             } // Fin For
