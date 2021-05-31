@@ -1083,6 +1083,10 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_AbrirCrearCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirCrearCampoActionPerformed
         // DESPLIEGA EL JDIALOG DONDE SE CREA UN CAMPO
         try {
+            TF_NombreDelCampo.setText("");
+            CB_TipoDeDatoDelCampo.setSelectedIndex(0);
+            SP_LongitudDelCampo.setValue(0);
+            RB_LlavePrimariaDelCampo.setSelected(false);
             VentanaMenuCampos.setVisible(false);
             JD_CrearCampos.setModal(true);
             JD_CrearCampos.pack();
@@ -1096,6 +1100,10 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_AbrirModificarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirModificarCampoActionPerformed
         // DESPLIEGA EL JDIALOG DONDE SE MODIFICA UN CAMPO
         try {
+            TF_NombreDelCampoModificado.setText("");
+            CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
+            SP_LongitudDelCampoModificado.setValue(0);
+            RB_LlavePrimariaDelCampoModificado.setSelected(false);
             VentanaMenuCampos.setVisible(false);
             JD_ModificarCampos.setModal(true);
             JD_ModificarCampos.pack();
@@ -1206,11 +1214,15 @@ public class Principal extends javax.swing.JFrame {
                     campo_actual = campo_nuevo;
                     campos_nuevos.add(campo_nuevo);
                     añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
+                    TF_NombreDelCampo.setText("");
+                    CB_TipoDeDatoDelCampo.setSelectedIndex(0);
+                    SP_LongitudDelCampo.setValue(0);
+                    RB_LlavePrimariaDelCampo.setSelected(false);
                     // TERMINA ONASIS
                 } else {
                     JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
                     llaveprimaria = false;
-                }
+                } // Fin If
             } else if (existe == true) {
                 JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
             } else if (llaveprimaria == true) {
@@ -1281,6 +1293,10 @@ public class Principal extends javax.swing.JFrame {
                     } // Fin For
                     // Tener en cuenta el archivo actual
                     modificar_txt();
+                    TF_NombreDelCampoModificado.setText("");
+                    CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
+                    SP_LongitudDelCampoModificado.setValue(0);
+                    RB_LlavePrimariaDelCampoModificado.setSelected(false);
                     JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
                     // ONASIS TERMINA
                 } else {
@@ -1330,6 +1346,13 @@ public class Principal extends javax.swing.JFrame {
         // SE BORRA UN CAMPO DENTRO DEL ARCHIVO
         try {
             salvado = true;
+            for (int i = 0; i < campos_nuevos.size(); i++) {
+                if (campos_nuevos.get(i).getID() == campo_actual.getID()) {
+                    campos_nuevos.remove(i);
+                } // Fin If              
+            } // Fin For
+            // AGREGAR METODO QUE ESCRIBA EN EL ARCHIVO TXT
+            JOptionPane.showMessageDialog(this, "¡Se ha eliminado el campo exitosamnte!");
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
