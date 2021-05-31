@@ -1209,7 +1209,7 @@ public class Principal extends javax.swing.JFrame {
             ID_archivo = archivo_actual.getID();
             Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria);
             if (existe == false) {
-                if (llave_primaria == false&& llaveprimaria==false) {
+                if (llave_primaria == false && llaveprimaria==false) {
                     // EMPIEZA ONASIS
                     campo_actual = campo_nuevo;
                     campos_nuevos.add(campo_nuevo);
@@ -1219,18 +1219,17 @@ public class Principal extends javax.swing.JFrame {
                     SP_LongitudDelCampo.setValue(0);
                     RB_LlavePrimariaDelCampo.setSelected(false);
                     // TERMINA ONASIS
-                } else if(llave_primaria==false && llaveprimaria==true) {
+                } else if(llave_primaria==true && llaveprimaria==false) {
                     campo_actual = campo_nuevo;
                     campos_nuevos.add(campo_nuevo);
                     añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
                     TF_NombreDelCampo.setText("");
                     CB_TipoDeDatoDelCampo.setSelectedIndex(0);
                     SP_LongitudDelCampo.setValue(0);
-                    RB_LlavePrimariaDelCampo.setSelected(false);
+                    RB_LlavePrimariaDelCampo.setSelected(false);              
                 }
                 else if(llave_primaria==true && llaveprimaria==true){
                       JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
-                    llaveprimaria = false;
                 }// Fin If
             } else if (existe == true) {
                 JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
@@ -1308,7 +1307,7 @@ public class Principal extends javax.swing.JFrame {
                     RB_LlavePrimariaDelCampoModificado.setSelected(false);
                     JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
                     // ONASIS TERMINA
-                } else if(llave_primaria==false && llaveprimaria==true) {
+                } else if(llave_primaria==true && llaveprimaria==false) {
                      for (Campo campo : campos_nuevos) {
                         if (campo.getID() == campo_actual.getID()) {
                             campo.setNombre(nombre);
@@ -1377,12 +1376,40 @@ public class Principal extends javax.swing.JFrame {
                 } // Fin If              
             } // Fin For
             // AGREGAR METODO QUE ESCRIBA EN EL ARCHIVO TXT
+            eliminar_txt();
             JOptionPane.showMessageDialog(this, "¡Se ha eliminado el campo exitosamnte!");
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
     }//GEN-LAST:event_BTN_BorrarCampoDefinitivoActionPerformed
-
+public void eliminar_txt() {
+        // Forma de Escribir:
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        //FileReader fr = null;
+        //BufferedReader br = null;
+        try {
+            archivo_actual.setCampos(campos_nuevos);
+            //  fr = new FileReader(archivo_actual.getArchivo());
+            // br = new BufferedReader(fr);
+            String linea_modificada = "";
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                linea_modificada += archivo_actual.getCampos().get(i).campo_para_archivo();
+            }//*/
+            fw = new FileWriter(archivo_actual.getArchivo());
+            bw = new BufferedWriter(fw);
+            bw.write(linea_modificada);
+            bw.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+        try {
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }//fin try catch
+    }
     private void CB_CampoAModificarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CB_CampoAModificarItemStateChanged
         // ACTUALIZA LA INFORMACIÓN EN EL JDIALOG CON CADA CAMBIO
         try {
