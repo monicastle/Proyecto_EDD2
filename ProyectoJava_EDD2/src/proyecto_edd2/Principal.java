@@ -851,6 +851,7 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_CrearNuevoArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_CrearNuevoArchivoActionPerformed
         // CREA UN NUEVO ARCHIVO DE TEXTO
         try {
+            Boolean existe = false;
             JFileChooser directorio = new JFileChooser();
             directorio.setApproveButtonText("Guardar");
             int seleccion = directorio.showOpenDialog(null);
@@ -858,16 +859,25 @@ public class Principal extends javax.swing.JFrame {
                 File archivo = new File(directorio.getSelectedFile() + ".txt");
                 BufferedWriter salida = new BufferedWriter(new FileWriter(archivo));
                 salida.close();
-                JOptionPane.showMessageDialog(null, "¡Se ha creado su archivo exitosamente!");
                 // CARGADO DE ARCHIVOS A EL ARCHIVO BINARIO
                 // OJO: Aqui falta una validación la cual no permita que se pueda nombrar un archivo con el mismo nombre que uno ya existente
                 int ID;
                 aa.cargarArchivo();
-                ID = aa.GenerarId();
-                archivo_actual = new Archivo(archivo, ID);
-                aa.AddArchivo(archivo_actual);
-                aa.escribirArchivo();
-                archivo_actual = null;
+                for (int i = 0; i < aa.getLista_archivos().size(); i++) {
+                    if (aa.getLista_archivos().get(i).getArchivo().getName().equals(archivo.getName())) {
+                        existe = true;
+                    }
+                }
+                if (existe == false) {
+                    ID = aa.GenerarId();
+                    archivo_actual = new Archivo(archivo, ID);
+                    aa.AddArchivo(archivo_actual);
+                    aa.escribirArchivo();
+                    archivo_actual = null;
+                    JOptionPane.showMessageDialog(null, "¡Se ha creado su archivo exitosamente!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se puede crear el archivo porque ya existe");
+                }
             } // Fin If
         } catch (Exception e) {
             e.printStackTrace();
@@ -930,13 +940,14 @@ public class Principal extends javax.swing.JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 } // Fin Try Catch
+                salvado = false;
                 this.setVisible(false);
                 VentanaMenuCampos.pack();
                 VentanaMenuCampos.setLocationRelativeTo(null);
                 VentanaMenuCampos.setVisible(true);
             } // Fin If
         } catch (Exception e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "No se puede abrir el archivo porque no existe");
         } // Fin Try Catch
     }//GEN-LAST:event_BTN_AbrirArchivoActionPerformed
 
@@ -965,6 +976,7 @@ public class Principal extends javax.swing.JFrame {
             formatear_CBbox_borrar();
             listar_campos();
             JOptionPane.showMessageDialog(null, "Archivo Salvado Exitosamente");
+            salvado = false;
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -974,27 +986,60 @@ public class Principal extends javax.swing.JFrame {
         // CIERRA EL ARCHIVO Y PREGUNTA SI SE DESEA GUARDAR O NO
         try {
             // ME FALTA PROBAR SI FUNCIONA CON LOS CRUDS
-            if (JOptionPane.showConfirmDialog(null, "¿Desea salvar los cambios en el archivo?", "Confirmación", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                // Actualiza el text area
-                FileReader fr = null;
-                BufferedReader br = null;
-                fr = new FileReader(archivo_actual.getArchivo());
-                br = new BufferedReader(fr);
-                TA_ArchivoAbierto.setText("");
-                String linea;
-                while ((linea = br.readLine()) != null) {
-                    TA_ArchivoAbierto.append(linea);
-                } // Fin While
-                try {
-                    br.close();
-                    fr.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } // Fin Try Catch
-                // Actualiza el file dentro del archivo binario
-                EscribirCamposBinario();
-                JOptionPane.showMessageDialog(this, "¡Se ha guardado el archivo exitosamente!");
-            } else {
+            if (salvado == true) {
+                if (JOptionPane.showConfirmDialog(null, "¿Desea salvar los cambios en el archivo?", "Confirmación", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    // Actualiza el text area
+                    FileReader fr = null;
+                    BufferedReader br = null;
+                    fr = new FileReader(archivo_actual.getArchivo());
+                    br = new BufferedReader(fr);
+                    TA_ArchivoAbierto.setText("");
+                    String linea;
+                    while ((linea = br.readLine()) != null) {
+                        TA_ArchivoAbierto.append(linea);
+                    } // Fin While
+                    try {
+                        br.close();
+                        fr.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } // Fin Try Catch
+                    // Actualiza el file dentro del archivo binario
+                    EscribirCamposBinario();
+                    JOptionPane.showMessageDialog(this, "¡Se ha guardado el archivo exitosamente!");
+                } else {
+                    FileWriter fw = null;
+                    BufferedWriter bw = null;
+                    fw = new FileWriter(archivo_actual.getArchivo());
+                    bw = new BufferedWriter(fw);
+                    bw.write(TA_ArchivoAbierto.getText());
+                    TA_ArchivoAbierto.setText("");
+                    bw.flush();
+                    aa.cargarArchivo();
+                    for (Archivo archivo : aa.getLista_archivos()) {
+                        if (archivo.getID() == archivo_actual.getID()) {
+                            archivo.setArchivo(archivo_actual.getArchivo());
+                            /*  for (int i = 0; i < campos_nuevos.size(); i++) {
+                            archivo.addCampo(campos_nuevos.get(i));
+                        } // Fin For  */
+                            campos_nuevos.clear();
+                            break;
+                        } // Fin If
+                    } // Fin For
+                    aa.escribirArchivo();
+                    archivo_actual = null;
+                    campos_nuevos.clear();
+                    try {
+                        bw.close();
+                        fw.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } // Fin Try Catch
+                } // Fin If
+                VentanaMenuCampos.setVisible(false);
+                this.setVisible(true);
+            } // Fin Try Catch
+            else {
                 /*for (int i = 0; i < campos_nuevos.size(); i++) {
                     archivo_actual.addCampo(campos_nuevos.get(i));
                 } // Fin For  */
@@ -1128,7 +1173,15 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_CrearCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_CrearCampoDefinitivoActionPerformed
         // SE CREA UN CAMPO DENTRO DEL ARCHIVO
         try {
+            salvado = true;
+            boolean existe = false;
+            boolean llaveprimaria = false;
             String nombre = TF_NombreDelCampo.getText();
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                if (archivo_actual.getCampos().get(i).getNombre().equals(nombre)) {
+                    existe = true;
+                }
+            }//fin for validacion del cmapo para ver si su nomre ya existe
             int tipo_de_dato, longitud;
             tipo_de_dato = CB_TipoDeDatoDelCampo.getSelectedIndex();
             longitud = Integer.parseInt(SP_LongitudDelCampo.getValue().toString());
@@ -1136,13 +1189,30 @@ public class Principal extends javax.swing.JFrame {
             if (RB_LlavePrimariaDelCampo.isSelected()) {
                 llave_primaria = true;
             } // Fin If
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                if (archivo_actual.getCampos().get(i).isLlavePrimaria() == true) {
+                    llaveprimaria = true;
+                }
+            }//fin for para validar llave primaria
             int ID_campo, ID_archivo;
             ID_campo = GenerarIDCampo();
             ID_archivo = archivo_actual.getID();
             Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria);
-            campo_actual = campo_nuevo;
-            campos_nuevos.add(campo_nuevo);
-            añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
+            if (existe == false) {
+                if (llave_primaria == false) {
+                    campo_actual = campo_nuevo;
+                    campos_nuevos.add(campo_nuevo);
+                    añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
+                }else{
+                 JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
+                llaveprimaria = false;
+                }
+            } else if (existe == true) {
+                JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
+            } else if (llaveprimaria == true) {
+                JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
+                llaveprimaria = false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -1151,40 +1221,64 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_ModificarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_ModificarCampoDefinitivoActionPerformed
         // SE MODIFICA UN CAMPO DENTRO DEL ARCHIVO
         try {
+            salvado = true;
+            boolean existe = false;
+            boolean llaveprimaria = false;
             String nombre;
             int tipo_de_dato, longitud;
             boolean llave_primaria = false;
             nombre = TF_NombreDelCampoModificado.getText();
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                if (archivo_actual.getCampos().get(i).getNombre().equals(nombre)) {
+                    existe = true;
+                }
+            }//fin for validacion del cmapo para ver si su nomre ya existe
             tipo_de_dato = CB_TipoDeDatoDelCampoModificado.getSelectedIndex();
             longitud = Integer.parseInt(SP_LongitudDelCampoModificado.getValue().toString());
             if (RB_LlavePrimariaDelCampoModificado.isSelected()) {
                 llave_primaria = true;
-            } // Fin If
+            } // Fin If}
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                if (archivo_actual.getCampos().get(i).isLlavePrimaria() == true) {
+                    llaveprimaria = true;
+                }
+            }//fin for para validar llave primaria
             //ArrayList<Campo> temp = new ArrayList();
-             aa.cargarArchivo();
-            for (int i = 0; i < aa.getLista_archivos().size(); i++) {
-                if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
-                    temp = aa.getLista_archivos().get(i).getCampos();
-                    int j = CB_CampoAModificar.getSelectedIndex();
-                    aa.getLista_archivos().get(i).getCampos().get(j).setNombre(nombre);
-                    aa.getLista_archivos().get(i).getCampos().get(j).setLlaveprimaria(llave_primaria);
-                    aa.getLista_archivos().get(i).getCampos().get(j).setLongitud(longitud);
-                    aa.getLista_archivos().get(i).getCampos().get(j).setTipo_de_dato(tipo_de_dato);
-                }// Fin If
-                archivo_actual = null;
-                archivo_actual = aa.getLista_archivos().get(i);
-                break;
-            }//fin for
-            aa.escribirArchivo();
-            modificar_txt();
-            JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
+            aa.cargarArchivo();
+            if (existe == false ) {
+                if(llave_primaria == false){
+                      for (int i = 0; i < aa.getLista_archivos().size(); i++) {
+                    if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
+                        temp = aa.getLista_archivos().get(i).getCampos();
+                        int j = CB_CampoAModificar.getSelectedIndex();
+                        aa.getLista_archivos().get(i).getCampos().get(j).setNombre(nombre);
+                        aa.getLista_archivos().get(i).getCampos().get(j).setLlaveprimaria(llave_primaria);
+                        aa.getLista_archivos().get(i).getCampos().get(j).setLongitud(longitud);
+                        aa.getLista_archivos().get(i).getCampos().get(j).setTipo_de_dato(tipo_de_dato);
+                    }// Fin If
+                    archivo_actual = null;
+                    archivo_actual = aa.getLista_archivos().get(i);
+                    break;
+                }//fin for
+                aa.escribirArchivo();
+                modificar_txt();
+                JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
+                }else{
+                 JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
+                }
+            } else if (existe == true) {
+                JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
+            } else if (llaveprimaria == true) {
+                JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
+                llaveprimaria = false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
     }//GEN-LAST:event_BTN_ModificarCampoDefinitivoActionPerformed
 
     ArrayList<Campo> temp = new ArrayList();
-    
+
     public void modificar_txt() {
         // Forma de Escribir:
         FileWriter fw = null;
@@ -1216,7 +1310,7 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_BorrarCampoDefinitivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BorrarCampoDefinitivoActionPerformed
         // SE BORRA UN CAMPO DENTRO DEL ARCHIVO
         try {
-
+            salvado = true;
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -1272,16 +1366,24 @@ public class Principal extends javax.swing.JFrame {
                 if ("Windows Classic".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -1491,4 +1593,5 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<Campo> campos_nuevos = new ArrayList();
     ArrayList<Campo> campos_guardados = new ArrayList();
     Administrar_Archivos aa = new Administrar_Archivos("./Archivos.dmo");
+    private boolean salvado = false;
 }
