@@ -982,7 +982,13 @@ public class Principal extends javax.swing.JFrame {
             formatear_CBbox_Modificar();
             formatear_CBbox_borrar();
             listar_campos();
+            System.out.println("secreo:"+secreo+"seborro: "+seborro+"semodifico: "+semodifico);
+            if(secreo==true||semodifico==true||seborro==true){
             JOptionPane.showMessageDialog(null, "Archivo Salvado Exitosamente");
+            }
+            secreo=false;
+            semodifico=false;
+            seborro=false;
             salvado = false;
         } catch (Exception e) {
             e.printStackTrace();
@@ -1213,7 +1219,7 @@ public class Principal extends javax.swing.JFrame {
             ID_campo = GenerarIDCampo();
             ID_archivo = archivo_actual.getID();
             Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria);
-                        System.out.println(llave_primaria);
+            System.out.println(llave_primaria);
             System.out.println(llaveprimaria);
             if (existe == false) {
                 if (llave_primaria == false && llaveprimaria == false) {
@@ -1225,6 +1231,7 @@ public class Principal extends javax.swing.JFrame {
                     CB_TipoDeDatoDelCampo.setSelectedIndex(0);
                     SP_LongitudDelCampo.setValue(0);
                     RB_LlavePrimariaDelCampo.setSelected(false);
+                    secreo = true;
                     // TERMINA ONASIS
                 } else if (llave_primaria == true && llaveprimaria == false) {
                     campo_actual = campo_nuevo;
@@ -1234,6 +1241,7 @@ public class Principal extends javax.swing.JFrame {
                     CB_TipoDeDatoDelCampo.setSelectedIndex(0);
                     SP_LongitudDelCampo.setValue(0);
                     RB_LlavePrimariaDelCampo.setSelected(false);
+                    secreo = true;
                 } else if (llave_primaria == false && llaveprimaria == true) {
                     campo_actual = campo_nuevo;
                     campos_nuevos.add(campo_nuevo);
@@ -1242,6 +1250,7 @@ public class Principal extends javax.swing.JFrame {
                     CB_TipoDeDatoDelCampo.setSelectedIndex(0);
                     SP_LongitudDelCampo.setValue(0);
                     RB_LlavePrimariaDelCampo.setSelected(false);
+                    secreo = true;
                 } else if (llave_primaria == true && llaveprimaria == true) {
                     JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
                 }// Fin If
@@ -1260,6 +1269,8 @@ public class Principal extends javax.swing.JFrame {
         // SE MODIFICA UN CAMPO DENTRO DEL ARCHIVO
         if (CB_CampoAModificar.getSelectedIndex() >= 1) {
             try {
+                boolean vacio_nombre = false;
+                boolean mostrar_mensaje = true;
                 salvado = true;
                 boolean existe = false;
                 boolean llaveprimaria = false;
@@ -1268,7 +1279,7 @@ public class Principal extends javax.swing.JFrame {
                 boolean llave_primaria = false;
                 nombre = TF_NombreDelCampoModificado.getText();
                 for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                    if (i != CB_CampoAModificar.getSelectedIndex()-1) {
+                    if (i != CB_CampoAModificar.getSelectedIndex() - 1) {
                         if (archivo_actual.getCampos().get(i).getNombre().equals(nombre)) {
                             existe = true;
                         }
@@ -1286,11 +1297,21 @@ public class Principal extends javax.swing.JFrame {
                 }//fin for para validar llave primaria
                 System.out.println(llave_primaria);
                 System.out.println(llaveprimaria);
-                System.out.println("se repite: "+existe);
+                if (nombre.equals("")) {
+                    vacio_nombre = true;
+                } else {
+                    vacio_nombre = false;
+                }
+                System.out.println("Esta vacio: " + vacio_nombre);
                 if (existe == false) {
-                    if (llave_primaria == false && llaveprimaria == false) {
+                    if ((llave_primaria == false && llaveprimaria == false) && vacio_nombre == false) {
                         for (Campo campo : campos_nuevos) {
                             if (campo.getID() == campo_actual.getID()) {
+                                if ((campo.getNombre().equals(nombre) && (campo.getTipo_de_dato() == tipo_de_dato)) && ((campo.getLongitud() == longitud) && campo.isLlavePrimaria() == llave_primaria)) {
+                                    mostrar_mensaje = false;
+                                } else {
+                                    mostrar_mensaje = true;
+                                }
                                 campo.setNombre(nombre);
                                 campo.setTipo_de_dato(tipo_de_dato);
                                 campo.setLongitud(longitud);
@@ -1303,11 +1324,21 @@ public class Principal extends javax.swing.JFrame {
                         CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
                         SP_LongitudDelCampoModificado.setValue(0);
                         RB_LlavePrimariaDelCampoModificado.setSelected(false);
-                        JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
+                        if (mostrar_mensaje) {
+                            JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
+                            semodifico = true;
+                        } else {
+                            mostrar_mensaje = true;
+                        }
                         // ONASIS TERMINA
-                    }else if (llave_primaria == true && llaveprimaria == false) {
+                    } else if ((llave_primaria == true && llaveprimaria == false) && vacio_nombre == false) {
                         for (Campo campo : campos_nuevos) {
                             if (campo.getID() == campo_actual.getID()) {
+                                if ((campo.getNombre().equals(nombre) && (campo.getTipo_de_dato() == tipo_de_dato)) && ((campo.getLongitud() == longitud) && campo.isLlavePrimaria() == llave_primaria)) {
+                                    mostrar_mensaje = false;
+                                } else {
+                                    mostrar_mensaje = true;
+                                }
                                 campo.setNombre(nombre);
                                 campo.setTipo_de_dato(tipo_de_dato);
                                 campo.setLongitud(longitud);
@@ -1321,11 +1352,21 @@ public class Principal extends javax.swing.JFrame {
                         CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
                         SP_LongitudDelCampoModificado.setValue(0);
                         RB_LlavePrimariaDelCampoModificado.setSelected(false);
-                        JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
-                    } 
-                    else if (llave_primaria == false && llaveprimaria == true) {
+                        if (mostrar_mensaje) {
+                            JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
+                            semodifico = true;
+                        } else {
+                            mostrar_mensaje = true;
+                        }
+
+                    } else if ((llave_primaria == false && llaveprimaria == true) && vacio_nombre == false) {
                         for (Campo campo : campos_nuevos) {
                             if (campo.getID() == campo_actual.getID()) {
+                                if ((campo.getNombre().equals(nombre) && (campo.getTipo_de_dato() == tipo_de_dato)) && ((campo.getLongitud() == longitud) && campo.isLlavePrimaria() == llave_primaria)) {
+                                    mostrar_mensaje = false;
+                                } else {
+                                    mostrar_mensaje = true;
+                                }
                                 campo.setNombre(nombre);
                                 campo.setTipo_de_dato(tipo_de_dato);
                                 campo.setLongitud(longitud);
@@ -1339,9 +1380,18 @@ public class Principal extends javax.swing.JFrame {
                         CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
                         SP_LongitudDelCampoModificado.setValue(0);
                         RB_LlavePrimariaDelCampoModificado.setSelected(false);
-                        JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
+                        if (mostrar_mensaje) {
+                            JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
+                            semodifico = true;
+                        } else {
+                            mostrar_mensaje = true;
+                        }
                     } else if (llave_primaria == true && llaveprimaria == true) {
                         JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
+                    } else if ((llave_primaria == false && llaveprimaria == true) && vacio_nombre == true) {
+                        JOptionPane.showMessageDialog(null, "No se puede crear el campo porque no existe un nombre para el campo");
+                    } else if ((llave_primaria == true && llaveprimaria == false) && vacio_nombre == true) {
+                        JOptionPane.showMessageDialog(null, "No se puede crear el campo porque no existe un nombre para el campo");
                     }
                 } else if (existe == true) {
                     JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
@@ -1399,6 +1449,7 @@ public class Principal extends javax.swing.JFrame {
                 } // Fin For
                 // AGREGAR METODO QUE ESCRIBA EN EL ARCHIVO TXT
                 cambios_txt();
+                seborro=true;
                 JOptionPane.showMessageDialog(this, "¡Se ha eliminado el campo exitosamnte!");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -1747,4 +1798,7 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<Campo> campos_guardados = new ArrayList();
     Administrar_Archivos aa = new Administrar_Archivos("./Archivos.dmo");
     private boolean salvado = false;
+    private boolean semodifico = false;
+    private boolean secreo = false;
+    private boolean seborro = false;
 }
