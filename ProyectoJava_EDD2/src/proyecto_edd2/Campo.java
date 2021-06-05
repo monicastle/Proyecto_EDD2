@@ -19,6 +19,7 @@ public class Campo implements Serializable {
     private int ID_archivo;
     private String nombre;
     private int tipo_de_dato;
+    private String tipo;
     private int longitud;
     private boolean llave_primaria;
 
@@ -81,6 +82,14 @@ public class Campo implements Serializable {
     public void setLlaveprimaria(boolean llave_primaria) {
         this.llave_primaria = llave_primaria;
     } // Fin Set Llave Primaria
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
     @Override
     public String toString() {

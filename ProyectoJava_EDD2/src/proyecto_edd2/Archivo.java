@@ -8,6 +8,7 @@ package proyecto_edd2;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
@@ -19,7 +20,8 @@ public class Archivo implements Serializable {
     private int ID;
     private ArrayList<Campo> campos = new ArrayList();
     private static final long SerialVersionUID = 777L;
-
+      private LinkedList AvailList = new LinkedList();
+  private String nombre;
     public Archivo() {
     } // Fin Constructor Archivo
 
@@ -59,5 +61,28 @@ public class Archivo implements Serializable {
     public void RemoveCampo(Campo ca) {
         this.campos.remove(ca);
     } // Fin Remove Campo
+ public LinkedList getAvailList() {
+        return AvailList;
+    }
+    
+    public int getSizeMetadata() {
+        String metadata = nombre;
 
+        for (Campo campo : this.getCampos()) {
+            metadata += "|"
+                    + campo.getNombre()
+                    + ":"
+                    + campo.getTipo_de_dato()
+                    + ":"
+                    + campo.getLongitud()
+                    + ":";
+
+            if (campo.isLlavePrimaria()) {
+                metadata += "t";
+            } else {
+                metadata += "f";
+            }
+        }
+        return metadata.length() + 1 + 6;//mas uno por \n(confirmado por fuentes confiables)          
+    }
 } // Fin Clase Archivo
