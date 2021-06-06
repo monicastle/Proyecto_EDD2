@@ -120,11 +120,12 @@ public class Principal extends javax.swing.JFrame {
         Crear_registros = new javax.swing.JDialog();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabla_registros = new javax.swing.JTable();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jb_insertarcolumna = new javax.swing.JButton();
+        jb_defcrearregistro = new javax.swing.JButton();
+        jb_salirdecrearregistros = new javax.swing.JButton();
+        jl_titulodelatabla = new javax.swing.JLabel();
         Registros = new javax.swing.JDialog();
-        jButton1 = new javax.swing.JButton();
+        jb_crear_registro = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -767,10 +768,7 @@ public class Principal extends javax.swing.JFrame {
 
         tabla_registros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
 
@@ -778,63 +776,73 @@ public class Principal extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tabla_registros);
 
-        jButton5.setText("Insertar registro en la tabla");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        jb_insertarcolumna.setText("Insertar registro en la tabla");
+        jb_insertarcolumna.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
+                jb_insertarcolumnaMouseClicked(evt);
             }
         });
 
-        jButton6.setText("Crear registro");
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+        jb_defcrearregistro.setText("Crear registro");
+        jb_defcrearregistro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton6MouseClicked(evt);
+                jb_defcrearregistroMouseClicked(evt);
             }
         });
 
-        jButton8.setText("jButton8");
-        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+        jb_salirdecrearregistros.setText("Salir de crear registros");
+        jb_salirdecrearregistros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton8MouseClicked(evt);
+                jb_salirdecrearregistrosMouseClicked(evt);
             }
         });
+
+        jl_titulodelatabla.setFont(new java.awt.Font("Segoe UI Emoji", 1, 13)); // NOI18N
+        jl_titulodelatabla.setText("Registros");
 
         javax.swing.GroupLayout Crear_registrosLayout = new javax.swing.GroupLayout(Crear_registros.getContentPane());
         Crear_registros.getContentPane().setLayout(Crear_registrosLayout);
         Crear_registrosLayout.setHorizontalGroup(
             Crear_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Crear_registrosLayout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addGroup(Crear_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(Crear_registrosLayout.createSequentialGroup()
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(161, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Crear_registrosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton8)
-                .addGap(275, 275, 275))
+                .addComponent(jb_salirdecrearregistros)
+                .addGap(248, 248, 248))
+            .addGroup(Crear_registrosLayout.createSequentialGroup()
+                .addGroup(Crear_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Crear_registrosLayout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addGroup(Crear_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(Crear_registrosLayout.createSequentialGroup()
+                                .addComponent(jb_insertarcolumna)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jb_defcrearregistro))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(Crear_registrosLayout.createSequentialGroup()
+                        .addGap(272, 272, 272)
+                        .addComponent(jl_titulodelatabla)))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         Crear_registrosLayout.setVerticalGroup(
             Crear_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Crear_registrosLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jl_titulodelatabla)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addGroup(Crear_registrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(jb_insertarcolumna)
+                    .addComponent(jb_defcrearregistro))
                 .addGap(18, 18, 18)
-                .addComponent(jButton8)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addComponent(jb_salirdecrearregistros)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Crear registros");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jb_crear_registro.setText("Crear registros");
+        jb_crear_registro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jb_crear_registroMouseClicked(evt);
             }
         });
 
@@ -854,14 +862,14 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jButton4)
                     .addComponent(jButton3)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jb_crear_registro))
                 .addContainerGap(121, Short.MAX_VALUE))
         );
         RegistrosLayout.setVerticalGroup(
             RegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RegistrosLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jButton1)
+                .addComponent(jb_crear_registro)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
@@ -1009,7 +1017,7 @@ public class Principal extends javax.swing.JFrame {
                 if (existe == false) {
                     ID = aa.GenerarId();
                     archivo_actual = new Archivo(archivo, ID);
-                    GnombreArchivo = archivo.getName();
+                    GuardarArchivo = archivo.getName();
                     aa.AddArchivo(archivo_actual);
                     aa.escribirArchivo();
                     archivo_actual = null;
@@ -1066,7 +1074,7 @@ public class Principal extends javax.swing.JFrame {
                     ID = aa.GenerarId();
                     archivo_actual = new Archivo(archivo_abrir, ID);
                     System.out.println(archivo_abrir.getName());
-                    GnombreArchivo = archivo_abrir.getName();
+                    GuardarArchivo = archivo_actual.getArchivo().getName();
                     archivo_temporal = archivo_actual;
                     // AQUI FALTA SETEARLE LOS CAMPOS
                     aa.AddArchivo(archivo_actual);
@@ -1162,6 +1170,23 @@ public class Principal extends javax.swing.JFrame {
                     // Actualiza el file dentro del archivo binario
                     EscribirCamposBinario();
                     JOptionPane.showMessageDialog(this, "¡Se ha guardado el archivo exitosamente!");
+                    if (GuardarArchivo != null) {
+                        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                                try {
+                                    escribirArbol(GuardarArchivo + archivo_actual.getCampos().get(i).getNombre(), arboles.get(i));
+                                } catch (Exception ex) {
+                                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                        }
+                        try {
+                            writeAvailList();
+                        } catch (IOException ex) {
+                            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        getArbol().imprimir_arbol(0, 0);
+                    }
                 } else {
                     FileWriter fw = null;
                     BufferedWriter bw = null;
@@ -1189,6 +1214,23 @@ public class Principal extends javax.swing.JFrame {
                         e.printStackTrace();
                     } // Fin Try Catch
                 } // Fin If
+                if (GuardarArchivo != null) {
+                    for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                        if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                            try {
+                                escribirArbol(GuardarArchivo + archivo_actual.getCampos().get(i).getNombre(), arboles.get(i));
+                            } catch (Exception ex) {
+                                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }
+                    try {
+                        writeAvailList();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    getArbol().imprimir_arbol(0, 0);
+                }
             } else {
                 /*for (int i = 0; i < campos_nuevos.size(); i++) {
                     archivo_actual.addCampo(campos_nuevos.get(i));
@@ -1218,24 +1260,27 @@ public class Principal extends javax.swing.JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 } // Fin Try Catch
-            } // Fin If
-            if (GnombreArchivo != null) {
-                for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                    if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                        try {
-                            escribirArbol(GnombreArchivo + archivo_actual.getCampos().get(i).getNombre(), arbolitos.get(i));
-                        } catch (Exception ex) {
-                            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                if (GuardarArchivo != null) {
+                    for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                        if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                            try {
+                                escribirArbol(GuardarArchivo + archivo_actual.getCampos().get(i).getNombre(), arboles.get(i));
+                            } catch (Exception ex) {
+                                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                         }
                     }
+                    try {
+                        writeAvailList();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    getArbol().imprimir_arbol(0, 0);
                 }
-                try {
-                    writeAvailList();
-                } catch (IOException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                getArbolPrimario().imprimir_arbol(0, 0);
-            }// Fin Try Catch
+            } // Fin If
+            //Esto guarda lo que es el avalist del archivo una vez se cierra el archivo para manetner su arbol
+            // Fin Try Catch
+            GuardarArchivo = null;
             archivo_actual = null;
             campos_nuevos.clear();
             VentanaMenuCampos.setVisible(false);
@@ -1243,7 +1288,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    
+
     }//GEN-LAST:event_BTN_CerrarArchivoActionPerformed
 
     private void BTN_AbrirCrearCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirCrearCampoActionPerformed
@@ -1659,7 +1704,7 @@ public class Principal extends javax.swing.JFrame {
         } // Fin Try Catch
     }//GEN-LAST:event_CB_CampoABorrarItemStateChanged
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jb_crear_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crear_registroMouseClicked
         // TODO add your handling code here:
         tabla_registros.setModel(new DefaultTableModel());
         DefaultTableModel model = (DefaultTableModel) tabla_registros.getModel();
@@ -1673,33 +1718,33 @@ public class Principal extends javax.swing.JFrame {
         Crear_registros.setModal(true);
         Crear_registros.setLocationRelativeTo(null);
         Crear_registros.setVisible(true);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jb_crear_registroMouseClicked
 
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+    private void jb_insertarcolumnaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_insertarcolumnaMouseClicked
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) tabla_registros.getModel();
-        if (validarIngresoTable(tabla_registros, false)) {
+        if (ValidaciondeingresoTabla(tabla_registros, false)) {
             Object k = new Object[archivo_actual.getCampos().size()];
             model.addRow((Object[]) k);
         }
-    }//GEN-LAST:event_jButton5MouseClicked
+    }//GEN-LAST:event_jb_insertarcolumnaMouseClicked
 
-    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+    private void jb_defcrearregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_defcrearregistroMouseClicked
         // TODO add your handling code here:
         ArrayList<String> registross = new ArrayList();
         DefaultTableModel model = (DefaultTableModel) tabla_registros.getModel();
-        if (!validarIngresoTable(tabla_registros, true)) {
+        if (!ValidaciondeingresoTabla(tabla_registros, true)) {
             return;
         }
         String guardar = "";
         // int length=0;
         boolean omitidos = false;
-        if (arbolitos == null) {
-            arbolitos = new ArrayList<ArbolB>();
+        if (arboles == null) {
+            arboles = new ArrayList<ArbolB>();
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                arbolitos.add(null);
+                arboles.add(null);
             }
-            arbolitos.set(getPosKey(), new ArbolB(6));
+            arboles.set(getPosKey(), new ArbolB(6));
         }
         for (int i = 0; i < model.getRowCount(); i++) {
             guardar = "";
@@ -1707,23 +1752,39 @@ public class Principal extends javax.swing.JFrame {
                 guardar += model.getValueAt(i, j).toString() + "|";
                 //length+=guardar.length();
             }
-            guardar += fill(guardar.length()) + "\n";
+            guardar += llenar(guardar.length()) + "\n";
             int pk = getPosKey();
             String llave = model.getValueAt(i, pk).toString();
-            if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
+           /* if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
                 int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
                 llave = espacios.substring(0, num) + llave;
-            }
-            if (getArbolPrimario().B_Tree_Search(getArbolPrimario().getRaiz(), llave) != null) {
+            }*/
+            if (getArbol().B_Tree_Search(getArbol().getRaiz(), llave) != null) {
                 omitidos = true;
             } else {
                 registross.add(guardar);
                 int rrn = guardarRegistro(guardar);
 
-                getArbolPrimario().insert(llave, rrn);
-
+                getArbol().insert(llave, rrn);
             }
+            
         }
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                        if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                            try {
+                                escribirArbol(GuardarArchivo + archivo_actual.getCampos().get(i).getNombre(), arboles.get(i));
+                            } catch (Exception ex) {
+                                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    }
+                    try {
+                        writeAvailList();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    getArbol().imprimir_arbol(0, 0);
+                    System.out.println("esta vacio? "+archivo_actual.getArchivo().getName());
         String message;
         if (omitidos) {
             message = "Algunos registros fueron omitidos porque ya habia un registro con la misma llave primaria almacenado en el archvo.";
@@ -1737,7 +1798,7 @@ public class Principal extends javax.swing.JFrame {
             modelo.addColumn(archivo_actual.getCampos().get(i).getNombre());
         }
         modelo.setNumRows(1);
-    }//GEN-LAST:event_jButton6MouseClicked
+    }//GEN-LAST:event_jb_defcrearregistroMouseClicked
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
@@ -1746,10 +1807,10 @@ public class Principal extends javax.swing.JFrame {
         Registros.setVisible(true);
     }//GEN-LAST:event_jButton7MouseClicked
 
-    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+    private void jb_salirdecrearregistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_salirdecrearregistrosMouseClicked
         // TODO add your handling code here:
         Crear_registros.setVisible(false);
-    }//GEN-LAST:event_jButton8MouseClicked
+    }//GEN-LAST:event_jb_salirdecrearregistrosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1976,7 +2037,7 @@ public class Principal extends javax.swing.JFrame {
         CB_CampoAModificar.setModel(modelo);
     }// Fin Metodo
 
-    public String fill(int n) {
+    public String llenar(int n) {
         int lengthT = 0;
         for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
             lengthT += archivo_actual.getCampos().get(i).getLongitud();
@@ -1989,25 +2050,13 @@ public class Principal extends javax.swing.JFrame {
         return spaces;
     }
 
-    private String readRecord(int RRN) throws FileNotFoundException, IOException {
-        File archivo = new File(GnombreArchivo);
-        FileReader fr = new FileReader(archivo);
-        String x = "";
-        RandomAccessFile af = new RandomAccessFile(archivo, "r");
-        af.seek(((RRN - 1) * recordSize()) + archivo_actual.getSizeMetadata());
-        x = af.readLine();
-        af.close();
-        fr.close();
-        return x;
-    }
-
-    public void escribirArbol(String nombre, ArbolB arbolito) {
+    public void escribirArbol(String nombre, ArbolB arbol) {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
         try {
             fw = new FileOutputStream(nombre + "keyTree");
             bw = new ObjectOutputStream(fw);
-            bw.writeObject(arbolito);
+            bw.writeObject(arbol);
             bw.flush();
         } catch (Exception ex) {
         } finally {
@@ -2020,20 +2069,20 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private void writeAvailList() throws FileNotFoundException, IOException {
-        File file = new File(GnombreArchivo);
+        File file = new File(archivo_actual.getArchivo().getName());
         RandomAccessFile ra = new RandomAccessFile(file, "rw");
         ra.seek(archivo_actual.getSizeMetadata() - 6);
         String x;
         if (archivo_actual.getAvailList().isEmpty()) {
-            x = rrnAsString(-1);
+            x = rrnString(-1);
         } else {
-            x = rrnAsString((int) archivo_actual.getAvailList().peekFirst());
+            x = rrnString((int) archivo_actual.getAvailList().peekFirst());
         }
         ra.write(x.getBytes());
         ra.close();
     }
 
-    private String rrnAsString(int rrn) {
+    private String rrnString(int rrn) {
         String rrnString = "";
         rrnString += rrn;
         for (int i = rrnString.length(); i < 5; i++) {
@@ -2042,7 +2091,7 @@ public class Principal extends javax.swing.JFrame {
         return rrnString;
     }
 
-    private boolean validarIngresoTable(JTable tabla, boolean guardar) {
+    private boolean ValidaciondeingresoTabla(JTable tabla, boolean guardar) {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         //super funcion secreta que me actualize el dqu
         if (tabla.isEditing()) {
@@ -2089,7 +2138,7 @@ public class Principal extends javax.swing.JFrame {
         return -1;
     }
 
-    private int recordSize() {
+    private int tam_registro() {
         int length = 0;
         for (Campo campo : archivo_actual.getCampos()) {
             length += campo.getLongitud();
@@ -2097,19 +2146,20 @@ public class Principal extends javax.swing.JFrame {
         return length + archivo_actual.getCampos().size() + 1;
     }
 
-    private int getRrn() {
+    private int getRRN() {
+        System.out.println("esta vacio? "+archivo_actual.getAvailList().isEmpty());
         if (archivo_actual.getAvailList().isEmpty()) {
-            return (int) ((new File(GnombreArchivo).length() - archivo_actual.getSizeMetadata()) / recordSize());
+            return (int) ((new File(archivo_actual.getArchivo().getName()).length() - archivo_actual.getSizeMetadata()) / tam_registro());
         }
         return (int) archivo_actual.getAvailList().peekFirst();
     }
 
     private int guardarRegistro(String registro) {
-        int rrn = getRrn();
+        int rrn = getRRN();
         if (archivo_actual.getAvailList().isEmpty()) {
             try {
                 // create a writer
-                FileOutputStream fos = new FileOutputStream(new File(GnombreArchivo), true);
+                FileOutputStream fos = new FileOutputStream(new File(GuardarArchivo), true);
                 BufferedOutputStream writer = new BufferedOutputStream(fos);
                 try {
                     fos.write(registro.getBytes());
@@ -2122,8 +2172,8 @@ public class Principal extends javax.swing.JFrame {
         } else {
             try {
                 rrn = (int) archivo_actual.getAvailList().peekFirst();
-                RandomAccessFile raf = new RandomAccessFile(new File(GnombreArchivo), "rw");
-                raf.seek(((int) archivo_actual.getAvailList().removeFirst() - 1) * recordSize() + archivo_actual.getSizeMetadata());
+                RandomAccessFile raf = new RandomAccessFile(new File(GuardarArchivo), "rw");
+                raf.seek(((int) archivo_actual.getAvailList().removeFirst() - 1) * tam_registro() + archivo_actual.getSizeMetadata());
                 System.out.println("\n");
                 for (int i = 0; i < archivo_actual.getAvailList().size(); i++) {
                     System.out.println((int) archivo_actual.getAvailList().get(i));
@@ -2139,32 +2189,9 @@ public class Principal extends javax.swing.JFrame {
         return rrn;
     }
 
-    public ArbolB getArbolPrimario() {
-        return arbolitos.get(getPosKey());
+    public ArbolB getArbol() {
+        return arboles.get(getPosKey());
     }
-
-    /*private void llenarTablaListar() {
-
-        DefaultTableModel model = (DefaultTableModel) tabla_listarRegistros.getModel();
-
-        for (int i = lower; i < upper && i < sortedRRN.size(); i++) {
-            long RRN = sortedRRN.get(i);
-            try {
-                String data = readRecord(Math.toIntExact(RRN));
-                System.out.println(data);
-
-                String arr[] = data.split("\\|");
-                Object arr2[] = new Object[model.getColumnCount()];
-                for (int j = 0; j < model.getColumnCount(); j++) {
-                    arr2[j] = arr[j];
-                }
-                model.addRow(arr2);
-
-            } catch (IOException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTN_AbrirArchivo;
@@ -2227,14 +2254,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField TF_NombreDelCampo;
     private javax.swing.JTextField TF_NombreDelCampoModificado;
     private javax.swing.JFrame VentanaMenuCampos;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jP_CrearCampo;
@@ -2247,6 +2270,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton jb_crear_registro;
+    private javax.swing.JButton jb_defcrearregistro;
+    private javax.swing.JButton jb_insertarcolumna;
+    private javax.swing.JButton jb_salirdecrearregistros;
+    private javax.swing.JLabel jl_titulodelatabla;
     private javax.swing.JTable tabla_registros;
     // End of variables declaration//GEN-END:variables
     private Archivo archivo_actual/*, archivo_anterior*/;
@@ -2258,8 +2286,7 @@ public class Principal extends javax.swing.JFrame {
     private boolean semodifico = false;
     private boolean secreo = false;
     private boolean seborro = false;
-    private String GnombreArchivo;
-    private String GnombreArchivo2;
+    private String GuardarArchivo;
     ArrayList<Long> rrnsEli;
     private int rrnModi = 0;
     private int rrnEli = 0;
@@ -2267,6 +2294,7 @@ public class Principal extends javax.swing.JFrame {
     private ArrayList<Long> sortedRRN = new ArrayList<Long>();
     private int lower = 0;
     private int upper = 10;
-    private ArrayList<ArbolB> arbolitos = null;
+    private ArrayList<ArbolB> arboles = null;
     private Archivo archivo_temporal = null;
+    private int acum = 200;
 }
