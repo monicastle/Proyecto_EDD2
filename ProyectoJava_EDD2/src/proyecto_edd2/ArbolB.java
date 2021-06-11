@@ -18,8 +18,8 @@ import java.util.ArrayList;
  *
  * @author daba5
  */
-public class ArbolB implements  Serializable {
-    
+public class ArbolB implements Serializable {
+
     int m;// orden del arbol
     int raiz;
     ArrayList<Nodo> nodos;
@@ -31,7 +31,7 @@ public class ArbolB implements  Serializable {
         nodos.add(new Nodo(m));
         raiz = 0;
         //this.t = (int) Math.ceil((orden + 1) / 2);// responsabilizar a Jose.
-        
+
     }
 
     /*public ArbolB(int orden, String llave, long pos) {
@@ -40,7 +40,6 @@ public class ArbolB implements  Serializable {
         raiz = new Nodo(m, llave, pos);
 
     }*/
-
     public int getM() {
         return m;
     }
@@ -63,7 +62,7 @@ public class ArbolB implements  Serializable {
 
     public int lowerBKeys() {
 
-        return Math.max((m/2)-1, 1);
+        return Math.max((m / 2) - 1, 1);
 
     }
 
@@ -86,7 +85,31 @@ public class ArbolB implements  Serializable {
         if (x.isLeaf()) {
             return null;
         } else {
-            return B_Tree_Search(x.getHijos().get(i),k);
+            return B_Tree_Search(x.getHijos().get(i), k);
+        }
+    }
+
+    public void searchByAffinity(int ix, String k, ArrayList<Long> rrns) {
+
+        int i = 0;
+        Nodo x = nodos.get((int) ix);
+
+        while (i < x.getN() && k.compareTo(x.getLlaves().get(i).getLlave()) > 0) {
+            i++;
+        }
+
+        boolean flag = false;
+
+        while (i < x.getN() && k.compareTo(x.getLlaves().get(i).getLlave()) == 0) {
+            flag = true;
+            rrns.add(x.getLlaves().get(i).getPos());
+            if (!x.isLeaf()) {
+                searchByAffinity(x.getHijos().get(i), k, rrns);
+            }
+            i++;
+        }
+        if (!x.isLeaf()) {
+            searchByAffinity(x.getHijos().get(i), k, rrns);
         }
     }
 
@@ -104,9 +127,9 @@ public class ArbolB implements  Serializable {
             s.setN(0);
             s.getHijos().set(0, ir);
             B_Tree_Split_Child(is, 0, ir);
-            B_Tree_Insert_NonFull(is,k,p);
+            B_Tree_Insert_NonFull(is, k, p);
         } else {
-            B_Tree_Insert_NonFull(ir,k,p);
+            B_Tree_Insert_NonFull(ir, k, p);
         }
     }
 
@@ -159,11 +182,10 @@ public class ArbolB implements  Serializable {
                     i++;
                 }
             }
-            B_Tree_Insert_NonFull(x.getHijos().get(i),k,p);
+            B_Tree_Insert_NonFull(x.getHijos().get(i), k, p);
         }
 
     }
-
 
     public void imprimir_arbol(int ina, int num) {
         Nodo nodo_actual = nodos.get(ina);
@@ -183,8 +205,8 @@ public class ArbolB implements  Serializable {
             imprimir_arbol(nodo_actual.getHijos().get(nodo_actual.getN()), num + 1);
         }
     }
-    
-    public void traverseKeysInOrder (int inode, ArrayList<Long> lista) {
+
+    public void traverseKeysInOrder(int inode, ArrayList<Long> lista) {
         if (inode >= 0) {
             Nodo node = nodos.get(inode);
 
@@ -195,9 +217,7 @@ public class ArbolB implements  Serializable {
             traverseKeysInOrder(node.getHijos().get(node.getN()), lista);
         }
     }
-    
-   
-    
+
     public ArbolB cargarArbol(String nombre) {
         File archivo = new File(nombre + "keyTree");
         try {
@@ -212,11 +232,11 @@ public class ArbolB implements  Serializable {
                 }
                 objeto.close();
                 entrada.close();
-            }            
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         return null;
     }
-      
+
 }
