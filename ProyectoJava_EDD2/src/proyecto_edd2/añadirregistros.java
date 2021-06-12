@@ -21,6 +21,8 @@ import java.util.Random;
  * @author diego
  */
 public class añadirregistros {
+//esta clase funciona como admin de los registros osea administra todos los registros creados 
+    //esta clase es como un admin archivos
 
     private ArrayList<Registro> lista_registros = new ArrayList();
     private File archivo = null;

@@ -15,11 +15,11 @@ import java.util.LinkedList;
  * @author Monica
  */
 public class Archivoconarbolb implements Serializable {
-
+//esta clase se hizo con el proposito de poder crear el archivo donde el arbolb se mantiene y no se elimina
+//esta clase se basa en Archivo ya que tienen varios componentes similares    
     private File archivo;
     private int ID;
     private ArbolB arbol;
-  private String nombre;
     public Archivoconarbolb() {
     } // Fin Constructor Archivo
 

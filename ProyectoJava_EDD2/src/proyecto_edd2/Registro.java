@@ -13,9 +13,10 @@ import java.io.Serializable;
  * @author diego
  */
 public class Registro implements Serializable {
-
+//esta clase se crea con el proposito de poder guardar los archivo con registros creados
+    //esta clase lo que hace es crear el archivo donde los registros de un determinado archivo se crean 
     private File archivo;
-    private int numeroderegistros;
+    private int numeroderegistros;//esta variable adquiere el numero de registros que tiene el archivo
     private int ID;
 
     public Registro(File archivo, int ID) {
@@ -33,7 +34,7 @@ public class Registro implements Serializable {
     }
 
     public void addregistro() {
-        numeroderegistros++;
+        numeroderegistros++;//Aqui en este metodo solo se le suma uno ya que es la cantidad de registros que ingresa
     }
 
     public int getID() {

@@ -19,6 +19,8 @@ import java.util.Random;
  * @author diego
  */
 public class Adminarboles {
+    //esta clase me sirve de admin para los arboles creados y que no se borren
+    //esta clase se basa en administrar archivos
       private ArrayList<Archivoconarbolb> listaarboles  = new ArrayList();
     private File archivo = null;
     Random random = new Random();
