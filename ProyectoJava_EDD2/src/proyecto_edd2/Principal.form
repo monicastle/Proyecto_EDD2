@@ -1198,6 +1198,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jb_defcrearregistroMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_defcrearregistroActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jb_salirdecrearregistros">
@@ -1293,7 +1294,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="tf_buscarregistro" min="-2" pref="131" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jb_botondefbuscar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane4" min="-2" pref="568" max="-2" attributes="0"/>
                   </Group>
@@ -1308,7 +1309,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="cb_buscar_registro" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tf_buscarregistro" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jb_botondefbuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="98" max="32767" attributes="0"/>
                   <Component id="jScrollPane4" min="-2" pref="216" max="-2" attributes="0"/>
@@ -1351,12 +1352,12 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tf_buscarregistro">
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="jb_botondefbuscar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jb_botondefbuscarMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>

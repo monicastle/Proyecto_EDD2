@@ -78,11 +78,11 @@ public class Archivo implements Serializable {
                     + ":";
 
             if (campo.isLlavePrimaria()) {
-                metadata += "t";
+                metadata += "Si";
             } else {
-                metadata += "f";
+                metadata += "No";
             }
         }
-        return metadata.length() + 1 + 6;//mas uno por \n(confirmado por fuentes confiables)          
+        return metadata.length() + 1+2;//mas uno por \n(confirmado por fuentes confiables)          
     }
 } // Fin Clase Archivo

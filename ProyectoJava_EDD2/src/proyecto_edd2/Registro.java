@@ -5,6 +5,7 @@
  */
 package proyecto_edd2;
 
+import java.io.File;
 import java.io.Serializable;
 
 /**
@@ -13,46 +14,42 @@ import java.io.Serializable;
  */
 public class Registro implements Serializable {
 
-    private String llave;
-    private String resto;
-    private boolean activo;
+    private File archivo;
+    private int numeroderegistros;
+    private int ID;
 
-    public Registro() {
-        llave = "nn";
-        resto = "";
-        activo=true;
+    public Registro(File archivo, int ID) {
+        this.archivo = archivo;
+        this.ID = ID;
+        numeroderegistros = 0;
+    } // Fin Constructor Archivo
+
+    public int getNumeroderegistros() {
+        return numeroderegistros;
     }
 
-    public Registro(String llave, String resto) {
-        this.llave = llave;
-        this.resto = resto;
+    public void setNumeroderegistros(int numeroderegistros) {
+        this.numeroderegistros = numeroderegistros;
     }
 
-    public String getLlave() {
-        return llave;
+    public void addregistro() {
+        numeroderegistros++;
     }
 
-    public void setLlave(String llave) {
-        this.llave = llave;
+    public int getID() {
+        return ID;
     }
 
-    public String getResto() {
-        return resto;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
-    public void setResto(String resto) {
-        this.resto = resto;
+    public File getArchivo() {
+        return archivo;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public void setArchivo(File archivo) {
+        this.archivo = archivo;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
-
-    public int getTamaño() {
-        return getLlave().length() * 2 + 2 + 4 + 1;
-    }
 }

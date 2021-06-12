@@ -134,7 +134,7 @@ public class Principal extends javax.swing.JFrame {
         Tabla_buscarregistro = new javax.swing.JTable();
         cb_buscar_registro = new javax.swing.JComboBox<>();
         tf_buscarregistro = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jb_botondefbuscar = new javax.swing.JButton();
         PanelPrincipal = new javax.swing.JPanel();
         JL_1 = new javax.swing.JLabel();
         BTN_SalirPrograma = new javax.swing.JButton();
@@ -795,6 +795,11 @@ public class Principal extends javax.swing.JFrame {
                 jb_defcrearregistroMouseClicked(evt);
             }
         });
+        jb_defcrearregistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_defcrearregistroActionPerformed(evt);
+            }
+        });
 
         jb_salirdecrearregistros.setText("Salir de crear registros");
         jb_salirdecrearregistros.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -903,10 +908,10 @@ public class Principal extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(Tabla_buscarregistro);
 
-        jButton1.setText("Buscar");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jb_botondefbuscar.setText("Buscar");
+        jb_botondefbuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jb_botondefbuscarMouseClicked(evt);
             }
         });
 
@@ -922,7 +927,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tf_buscarregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(121, 121, 121)
-                        .addComponent(jButton1))
+                        .addComponent(jb_botondefbuscar))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
@@ -933,7 +938,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(Buscar_registrsoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cb_buscar_registro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_buscarregistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jb_botondefbuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68))
@@ -1800,20 +1805,24 @@ public class Principal extends javax.swing.JFrame {
         if (!ValidaciondeingresoTabla(tabla_registros, true)) {
             return;
         }
-        String guardar = "";
+        String guardar = "";//Aqui es donde se guarda el registro a ingresar
         // int length=0;
-        boolean omitidos = false;
-        boolean arbolcreado = false;
-        int getposarbol = 0;
+        boolean omitidos = false;//esto es para los que ya estan creados en el arbol
+        boolean arbolcreado = false;//verifica si el arbol esta creado
+        int getposarbol = 0;//agarra la posicion del arbol
+        //esto verifica que el arbol no exista
         for (int i = 0; i < arboles.getListaarboles().size(); i++) {
             if (arboles.getListaarboles().get(i).getArchivo().equals(archivo_actual.getArchivo())) {
                 arbolcreado = true;
-                getposarbol = i;
+                getposarbol = i;//se agarra la posicion del arbol creado
                 arbol_actual = arboles.getListaarboles().get(i).getArbol();
                 break;
             }
         }
+        //
+        //Aqui se empieza a trabajar en la creacion
         if (arbolcreado == false) {
+            //Aqui es sie el arbol no esta creado pues se crea dentro de la lista de arboles y se hace el registro
             System.out.println("no habia rchivo creado");
             arboles.cargarArchivo();
             String llave_primaria = "";
@@ -1823,13 +1832,8 @@ public class Principal extends javax.swing.JFrame {
             for (int i = 0; i < model.getRowCount(); i++) {
                 guardar = "";
                 for (int j = 0; j < model.getColumnCount(); j++) {
-                    /*if (i == 0 && j == 0) {
-                        llave_primaria = model.getValueAt(0, 0).toString();
-                    } else {
-                       
-                    }*/
                     guardar += model.getValueAt(i, j).toString() + "|";
-                    //length+=guardar.length();
+
                 }
                 guardar += llenar(guardar.length()) + "\n";
                 int pk = getPosKey();
@@ -1842,25 +1846,17 @@ public class Principal extends javax.swing.JFrame {
                     omitidos = true;
                 } else {
                     /*       registross.add(guardar);*/
-                    int rrn = guardarRegistro(guardar);
+                    int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
                     System.out.println("El rrn es:" + rrn);
-                    /* try{
-                    añadirregistros.crearfile(new File("./prueba1.txt"));
-                    añadirregistros.addregistro(new Registro(llave, guardar));
-                    añadirregistros.cerrar();
-                    }catch(IOException ex){
-                    }*/
                     Archivodelarbol.getArbol().insert(llave, rrn);
                 }
 
             }
-            /*for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                arboles.add(null);
-            }*/
             Archivodelarbol.getArbol().imprimir_arbol(0, 0);
             arboles.getListaarboles().add(Archivodelarbol);
             arboles.escribirArchivo();
         } else {
+            //Aqui se hace cuando el arbol ya esta creado
             System.out.println("entro al archivo creado");
             arboles.cargarArchivo();
             System.out.println("entro aca");
@@ -1880,38 +1876,22 @@ public class Principal extends javax.swing.JFrame {
                 if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null) {
                     omitidos = true;
                 } else {
-                    /*       registross.add(guardar);*/
-                    int rrn = guardarRegistro(guardar);
+                    int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
                     System.out.println("El rrn es:" + rrn);
                     arboles.getListaarboles().get(getposarbol).getArbol().insert(llave, rrn);
                 }//fin else
             }//Fin for
+            arbol_actual=arboles.getListaarboles().get(getposarbol).getArbol();
             arboles.getListaarboles().get(getposarbol).getArbol().imprimir_arbol(0, 0);
             arboles.escribirArchivo();
         }//fin else
-        /*for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                try {
-                    escribirArbol(GuardarArchivo + archivo_actual.getCampos().get(i).getNombre(), arboles.get(i));
-                } catch (Exception ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        try {
-            writeAvailList();
-        } catch (IOException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        getArbol().imprimir_arbol(0, 0);
-        System.out.println("esta vacio? " + archivo_actual.getAvailList().isEmpty());*/
         String message;
+        //esto lo que hace es enviar un mensaje a ver si el registro ya existe en el arbol
         if (omitidos) {
             message = "Algunos registros fueron omitidos porque ya habia un registro con la misma llave primaria almacenado en el archvo.";
         } else {
             message = "Guardado Exitoso";
         }
-
         arboles.escribirArchivo();
         JOptionPane.showMessageDialog(null, message);
         tabla_registros.setModel(new DefaultTableModel());
@@ -1951,13 +1931,6 @@ public class Principal extends javax.swing.JFrame {
                 break;
             }
         }
-        /* for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            if (archivo_actual.getCampos().get(i).isLPotprimaria()) {
-
-                cb_buscar_registro.addItem(new ComboItem(archivo_actual.getListaCampo(i).getNombre(), i));
-                break;
-            }
-        }*/
 
         tf_buscarregistro.setText("");
         Buscar_registrso.pack();
@@ -1966,64 +1939,69 @@ public class Principal extends javax.swing.JFrame {
         Buscar_registrso.setVisible(true);
     }//GEN-LAST:event_jb_buscarregistrosMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jb_botondefbuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_botondefbuscarMouseClicked
         // TODO add your handling code here:
         if (tf_buscarregistro.getText().equals("") || cb_buscar_registro.getSelectedItem() == null) {
             return;
         }
-        int getposarbol = 0;
+        boolean arbolcreado = false;//verifica si el arbol esta creado
+        int getposarbol = 0;//esto es para agrrar la posicion dle arbolcreado
         for (int i = 0; i < arboles.getListaarboles().size(); i++) {
             if (arboles.getListaarboles().get(i).getArchivo().equals(archivo_actual.getArchivo())) {
-                //arbolcreado = true;
+                arbolcreado = true;
                 getposarbol = i;
                 arbol_actual = arboles.getListaarboles().get(i).getArbol();
                 break;
             }
         }
-        Object Item = cb_buscar_registro.getSelectedItem();
+        if (arbolcreado == true) {
+            Object Item = cb_buscar_registro.getSelectedItem();
 //        int pos = ((itemcombo)Item).getPos();
-        DefaultTableModel model = (DefaultTableModel) Tabla_buscarregistro.getModel();
-        model.getDataVector().removeAllElements();
-        if (true || cb_buscar_registro.getSelectedIndex() == 0) {
-            int pk = 0;
-            String llave = tf_buscarregistro.getText();
-            if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
-                int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
-                llave = espacios.substring(0, num) + llave;
-            }
-            rrnsEli = new ArrayList<Long>();
-            arbol_actual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsEli);
+            DefaultTableModel model = (DefaultTableModel) Tabla_buscarregistro.getModel();
+            model.getDataVector().removeAllElements();
+            if (true || cb_buscar_registro.getSelectedIndex() == 0) {
+                int pk = 0;
+                String llave = tf_buscarregistro.getText();
+                if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
+                    int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                    llave = espacios.substring(0, num) + llave;
+                }
+                rrnsbuscar = new ArrayList<Long>();
+                arbol_actual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
 
-            //NodoIndice nodoInd = getArbolPrimario().B_Tree_Search(getArbolPrimario().getRaiz(), llave);
-            if (rrnsEli.size() == 0) {
-                JOptionPane.showMessageDialog(null, "No se encontro ningun registro con ese valor");
-                tf_buscarregistro.setText("");
-                return;
-            }
-            //rrnEli = Math.toIntExact(nodoInd.getNodo().getLlaves().get(nodoInd.getIndice()).getPos());
-            for (long l : rrnsEli) {
-                rrnEliminar = Math.toIntExact(l);
-                try {
-                    String data = leerregistro(Math.toIntExact(rrnEliminar));
-                    System.out.println(data);
-                    String arr[] = data.split("\\|");
-                    Object arr2[] = new Object[model.getColumnCount()];
-                    for (int i = 0; i < 3; i++) {
-                        System.out.println(arr[i]);
+                if (rrnsbuscar.size() == 0) {
+                    JOptionPane.showMessageDialog(null, "No se encontro ningun registro con ese valor");
+                    tf_buscarregistro.setText("");
+                    return;
+                }
+                for (long l : rrnsbuscar) {
+                    rrnabuscar = Math.toIntExact(l);//al rrn se le asigan el valor que el rrn le ha enviado
+                    try {
+                        String data = leerregistro(Math.toIntExact(rrnabuscar));
+                        System.out.println(data);
+                        String arr[] = data.split("\\|");
+                        Object arr2[] = new Object[model.getColumnCount()];
+                        for (int i = 0; i < model.getColumnCount(); i++) {
+                            arr2[i] = arr[i];
+                        }
+                        model.addRow(arr2);
+                        //tf_buscarregistro.setEditable(false);
+                        // cb_buscar_registro.setEnabled(false);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    for (int i = 0; i < model.getColumnCount(); i++) {
-                        arr2[i] = arr[i];
-                    }
-                    model.addRow(arr2);
-                    //tf_buscarregistro.setEditable(false);
-                    // cb_buscar_registro.setEnabled(false);
-                } catch (IOException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se puede buscar porque no existen registros creados");
         }
 
-    }//GEN-LAST:event_jButton1MouseClicked
+
+    }//GEN-LAST:event_jb_botondefbuscarMouseClicked
+
+    private void jb_defcrearregistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_defcrearregistroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_defcrearregistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2353,13 +2331,16 @@ public class Principal extends javax.swing.JFrame {
 
     private String leerregistro(int RRN) throws FileNotFoundException, IOException {
         System.out.println("aqui esta el RRN: " + RRN);
-        File archivo = new File("./pruebas2.txt");
+        //preferiblemente no tocar esta parte del cdigo a menos que les de fallos contactar al administrador
+        File archivo = new File("./" + registro_actual.getArchivo().getName());//esto lo que hace es asegurarse de leer el archivo correcto
+        //lo de arrriba
         FileReader fr = new FileReader(archivo);
         String x = "";
         RandomAccessFile af = new RandomAccessFile(archivo, "r");
-        af.seek(RRN+30);
-        System.out.println("y este es el rrrn donde lee " + RRN+25);
-        x = af.readLine();
+        af.seek(RRN);//aqui es donde se se mueve de bytes para buscar la llave
+        int rrn = RRN + archivo_actual.getSizeMetadata();
+        System.out.println("y este es el rrrn donde lee " + rrn);
+        x = af.readLine();//esto lee la linea donde se quedo el puntero
         af.close();
         fr.close();
         return x;
@@ -2373,44 +2354,64 @@ public class Principal extends javax.swing.JFrame {
         return length + archivo_actual.getCampos().size() + 1;
     }
 
-    private int getRRN() {
-        System.out.println("esta  el availist? " + archivo_actual.getAvailList().isEmpty());
-        int numeroRegistros = (int) Math.ceil(
-                (double) archivo_actual.getArchivo().length() / (double) 50);
-        if (archivo_actual.getAvailList().isEmpty()) {
-            System.out.println((archivo_actual.getArchivo().getName().length() - archivo_actual.getSizeMetadata()) / tam_registro());
-            int rrn = acumregistros * 75;
-            acumregistros++;
-            return rrn;
-        }
-        int rrn = acumregistros * 75;
-        acumregistros++;
-        return rrn;
-    }
 
     private int guardarRegistro(String registro) {
-        int rrn = getRRN();
+        int rrn = 0;
         if (archivo_actual.getAvailList().isEmpty()) {
             try {
-                // create a writer
-                int numeroRegistros = (int) Math.ceil(
-                        (double) archivo_actual.getArchivo().length() / (double) 50);
-                FileOutputStream fos = new FileOutputStream(new File(GuardarArchivo), true);
-                BufferedOutputStream writer = new BufferedOutputStream(fos);
+                //valida que en la lista de registros no este creado el registro
+                boolean registrocreado = false;
+                registros.cargarArchivo();
+                int getposregistro = 0;
+                for (int i = 0; i < registros.getLista_archivos().size(); i++) {
+                    if (registros.getLista_archivos().get(i).getArchivo().equals(archivo_actual.getArchivo())) {
+                        registrocreado = true;
+                        getposregistro = i;
+                        registro_actual = registros.getLista_archivos().get(i);//se trabaja con un registro actual para facilitar el manejo de este
+                        break;
+                    }
+                }
                 try {
-                    File arch = new File("./pruebas2.txt");
-                    RandomAccessFile flujo = new RandomAccessFile(arch, "rw");
-                    flujo.seek(acumregistros * 75);
-                    
-                    numeroRegistros = (int) Math.ceil(
-                            (double) flujo.length() / (double) 75);
-                    System.out.println("numero de registros: "+numeroRegistros);
-                    flujo.write(registro.getBytes());
-                    flujo.close();
-                    fos.write(registro.getBytes());
-                    System.out.println("esto fue lo que escribio en bytes: " + registro.getBytes().length);
+                    //en este if es si el registro no esta creado
+                    if (registrocreado == false) {
+                        registros.cargarArchivo();
+                        int id = registros.GenerarId();
+                        Registro registro_actual1 = new Registro(archivo_actual.getArchivo(), id);
+                        File arch = new File(registro_actual1.getArchivo().getName());
+                        RandomAccessFile flujo = new RandomAccessFile(arch, "rw");//aqui es donde se crea el raf al archivo
+                        System.out.println("numero de registros: " + registro_actual1.getNumeroderegistros());
+                        registro_actual1.addregistro();
+                        flujo.seek(registro_actual1.getNumeroderegistros() * 75);//esto lo que hace es que va multiplicando la cantdad de registros por 75 ya que ese el tam de bytes que dejo
+                        flujo.write(registro.getBytes());//aqui escribe los bytes
+                        flujo.close();
+                        System.out.println("esto fue lo que escribio en bytes: " + registro.getBytes().length);
+                        registro_actual = registro_actual1;
+                        System.out.println("este es donde esta registro_actual:" + registro_actual.getArchivo().getAbsolutePath());
+                        System.out.println("numero de registros: " + registro_actual1.getNumeroderegistros());
+                        registros.AddArchivo(registro_actual1);
+                        registros.escribirArchivo();
+                        return rrn = registro_actual1.getNumeroderegistros() * 75;//estas lineas devuelven el rrn que es la cantidad de registros *75
+
+                    } else {
+                        //en este es si el registro ya esta creado
+                        registros.cargarArchivo();
+                        File arch = new File(registros.getLista_archivos().get(getposregistro).getArchivo().getName());
+                        RandomAccessFile flujo = new RandomAccessFile(arch, "rw");
+                        System.out.println("numero de registros: " + registros.getLista_archivos().get(getposregistro).getNumeroderegistros());
+                        registros.getLista_archivos().get(getposregistro).addregistro();
+                        flujo.seek(registros.getLista_archivos().get(getposregistro).getNumeroderegistros() * 75);
+                        System.out.println("este es el registro que manda :" + registro);
+                        flujo.write(registro.getBytes());
+                        flujo.close();
+                        registro_actual = registros.getLista_archivos().get(getposregistro);
+                        System.out.println("este es donde esta registro_actual:" + registro_actual.getArchivo().getAbsolutePath());
+                        System.out.println("numero de registros: " + registro_actual.getNumeroderegistros());
+                        registros.escribirArchivo();
+                        return rrn = registros.getLista_archivos().get(getposregistro).getNumeroderegistros() * 75;//estas lineas devuelven el rrn que es la cantidad de registros *75
+
+                    }
                 } finally {
-                    fos.close();
+                    
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -2503,7 +2504,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable Tabla_buscarregistro;
     private javax.swing.JFrame VentanaMenuCampos;
     private javax.swing.JComboBox<String> cb_buscar_registro;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
@@ -2520,6 +2520,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JButton jb_botondefbuscar;
     private javax.swing.JButton jb_buscarregistros;
     private javax.swing.JButton jb_crear_registro;
     private javax.swing.JButton jb_defcrearregistro;
@@ -2540,15 +2541,16 @@ public class Principal extends javax.swing.JFrame {
     private boolean secreo = false;
     private boolean seborro = false;
     private String GuardarArchivo;
-    ArrayList<Long> rrnsEli;
+    ArrayList<Long> rrnsbuscar;
     private int rrnModificar = 0;
-    private int rrnEliminar = 0;
+    private int rrnabuscar = 0;
     private String espacios = new String(new char[1024]).replace('\0', ' ');
     private ArrayList<Long> RRNarreglado = new ArrayList<Long>();
     private int lower = 0;
     private int upper = 10;
-    Adminarboles arboles = new Adminarboles("./Arboles.txt");
+    Adminarboles arboles = new Adminarboles("./Arboles.txt");//el archivo que guarda todos los arboles
+    añadirregistros registros = new añadirregistros("./Registros.txt");//el archivo que guarda todos los registros
     private Archivo archivo_temporal = null;
     private int acum = 200;
-    private int acumregistros = 0;
+    private Registro registro_actual;//el registro que se maneja en ejecucion
 }

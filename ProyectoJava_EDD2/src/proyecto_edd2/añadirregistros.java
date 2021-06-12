@@ -5,9 +5,16 @@
  */
 package proyecto_edd2;
 
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -15,70 +22,98 @@ import java.io.RandomAccessFile;
  */
 public class añadirregistros {
 
-    private static RandomAccessFile flujo;
-    private static int numeroregistros;
-    private static int tamregistro = 50;
+    private ArrayList<Registro> lista_registros = new ArrayList();
+    private File archivo = null;
+    Random random = new Random();
 
-    public static void crearfile(File archivo) throws IOException {
-        if (archivo.exists() && !archivo.isFile()) {
-            throw new IOException(archivo.getName() + "No es un archivo");
-        }
-        flujo = new RandomAccessFile(archivo, "rw");
-        numeroregistros = (int) Math.ceil((double) flujo.length() / (double) tamregistro);
-    }
+    public añadirregistros(String path) {
+        archivo = new File(path);
+    } // Fin Constructor Administrar Archivos
 
-    public static void cerrar() throws IOException {
-        flujo.close();
-    }
+    public ArrayList<Registro> getLista_archivos() {
+        return lista_registros;
+    } // Fin Get Lista Archivos
 
-    public static boolean setregistro(int i, Registro registro) throws IOException {
-        if (i >= 0 && i <= getnumeroregistros()) {
-            if (registro.getTamaño() > tamregistro) {
-                System.out.println("El tamaño del registro se escedio");
-            } else {
-                flujo.seek(i * tamregistro);
-                flujo.writeUTF(registro.getLlave());
-                flujo.writeUTF(registro.getResto());
-                return true;
-            }
-        } else {
-            System.out.println("numero del registro esta fuera de limites");
-        }
-        return false;
-    }
+    public void setLista_archivos(ArrayList<Registro> lista_registros) {
+        this.lista_registros = lista_registros;
+    } // Fin Set Lista Archivos
 
-    public static void addregistro(Registro registro) throws IOException {
-        if (setregistro(numeroregistros, registro)) {
-            numeroregistros++;
-        }
-    }
+    public File getArchivo() {
+        return archivo;
+    } // Fin Get Archivo
 
-    public static int getnumeroregistros() {
-        return numeroregistros;
-    }
+    public void setArchivo(File archivo) {
+        this.archivo = archivo;
+    } // Fin Set Archivo
 
-    public static Registro getregistro(int i) throws IOException {
-        if (i >= 0 && i <= getnumeroregistros()) {
-            flujo.seek(i * tamregistro);
-            return new Registro(flujo.readUTF(),flujo.readUTF());
-        } else {
-            System.out.println("numero de registro fuera del limite");
-            return null;
-        }
-    }
+    public void AddArchivo(Registro ar) {
+        this.lista_registros.add(ar);
+    } // Fin Set Proyecto
 
-    public static int buscarregistro(String buscado) throws IOException {
-        String nombre;
-        if (buscado == null) {
-            return -1;
-        }
-        for (int i = 0; i < getnumeroregistros(); i++) {
-            flujo.seek(i * tamregistro);
-            nombre = getregistro(i).getLlave();
-            if(nombre.equals(buscado)){
-                return i;
-            }
-        }
-        return -1;
-    }
+    public void RemoveArchivo(Registro ar) {
+        this.lista_registros.remove(ar);
+    } // Fin Remove Proyecto
+
+    public void cargarArchivo() {
+        try {
+            lista_registros = new ArrayList();
+            Registro arch;
+            if (archivo.exists()) {
+                FileInputStream entrada = new FileInputStream(archivo);
+                ObjectInputStream objeto = new ObjectInputStream(entrada);
+                try {
+                    while ((arch = (Registro) objeto.readObject()) != null) {
+                        lista_registros.add(arch);
+                    } // Fin While
+                } catch (EOFException ex) {
+                } // Fin Try Catch
+                objeto.close();
+                entrada.close();
+            } // Fin If
+        } catch (Exception ex) {
+        } // Fin Try Catch
+    } // Fin Cargar Archivo
+
+    public void escribirArchivo() {
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        try {
+            fw = new FileOutputStream(archivo);
+            bw = new ObjectOutputStream(fw);
+            for (Registro a : lista_registros) {
+                bw.writeObject(a);
+            } // Fin For
+            bw.flush();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                bw.close();
+                fw.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            } // Fin Try Catch
+        } // Fin Try Catch
+    } // Fin Escribir Archivo
+
+    public int GenerarId() {
+        // CAMBIAR
+        cargarArchivo();
+        boolean valid;
+        while (true) {
+            valid = true;
+            int ran;
+            ran = 1 + random.nextInt(1000);
+            for (Registro listaarchivo : lista_registros) {
+                if (listaarchivo.getID() == ran) {
+                    valid = false;
+                    break;
+                } // Fin If
+            } // Fin For
+            if (valid) {
+                return ran;
+            } // Fin If
+        } // Fin While
+    } // Fin Generar ID
+
 }
