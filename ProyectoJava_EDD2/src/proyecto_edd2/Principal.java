@@ -1823,10 +1823,17 @@ public class Principal extends javax.swing.JFrame {
             }
         }
         //
+        int llaveprimaria = 0;
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                llaveprimaria = i;
+            }
+        }
         //Aqui se empieza a trabajar en la creacion
         if (arbolcreado == false) {
             //Aqui es sie el arbol no esta creado pues se crea dentro de la lista de arboles y se hace el registro
             System.out.println("no habia rchivo creado");
+
             arboles.cargarArchivo();
             String llave_primaria = "";
             int id = arboles.GenerarId();
@@ -1840,23 +1847,42 @@ public class Principal extends javax.swing.JFrame {
                 }
                 guardar += llenar(guardar.length()) + "\n";
                 int pk = getPosKey();
-                String llave = model.getValueAt(i, pk).toString();
-                if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
-                    int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
-                    llave = espacios.substring(0, num) + llave;
-                } else if (archivo_actual.getCampos().get(pk).getTipo().equals("String")) {
-                    int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
-                    llave = espacios.substring(0, num) + llave;
-                }
-                if (Archivodelarbol.getArbol().B_Tree_Search(Archivodelarbol.getArbol().getRaiz(), llave) != null) {
-                    omitidos = true;
-                } else {
-                    /*       registross.add(guardar);*/
-                    int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
-                    System.out.println("El rrn es:" + rrn);
-                    Archivodelarbol.getArbol().insert(llave, rrn);
-                }
 
+                if (llaveprimaria != 0) {
+                    String llave = model.getValueAt(i, llaveprimaria).toString();
+                    if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("String")) {
+                        int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
+                        llave = espacios.substring(0, num) + llave;
+                    } else if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("int")) {
+                        int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
+                        llave = espacios.substring(0, num) + llave;
+                    }
+                    if (Archivodelarbol.getArbol().B_Tree_Search(Archivodelarbol.getArbol().getRaiz(), llave) != null) {
+                        omitidos = true;
+                    } else {
+                        /*       registross.add(guardar);*/
+                        int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
+                        System.out.println("El rrn es:" + rrn);
+                        Archivodelarbol.getArbol().insert(llave, rrn);
+                    }
+                } else {
+                    String llave = model.getValueAt(i, pk).toString();
+                    if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
+                        int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                        llave = espacios.substring(0, num) + llave;
+                    } else if (archivo_actual.getCampos().get(pk).getTipo().equals("String")) {
+                        int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                        llave = espacios.substring(0, num) + llave;
+                    }
+                    if (Archivodelarbol.getArbol().B_Tree_Search(Archivodelarbol.getArbol().getRaiz(), llave) != null) {
+                        omitidos = true;
+                    } else {
+                        /*       registross.add(guardar);*/
+                        int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
+                        System.out.println("El rrn es:" + rrn);
+                        Archivodelarbol.getArbol().insert(llave, rrn);
+                    }
+                }
             }
             Archivodelarbol.getArbol().imprimir_arbol(0, 0);
             arboles.getListaarboles().add(Archivodelarbol);
@@ -1875,12 +1901,24 @@ public class Principal extends javax.swing.JFrame {
                 guardar += llenar(guardar.length()) + "\n";
                 int pk = getPosKey();
                 String llave = model.getValueAt(i, pk).toString();
-                if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
-                    int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
-                    llave = espacios.substring(0, num) + llave;
-                }else if (archivo_actual.getCampos().get(pk).getTipo().equals("String")) {
-                    int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
-                    llave = espacios.substring(0, num) + llave;
+                if (llaveprimaria != 0) {
+                    if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("String")) {
+                        int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
+                        System.out.println("este es el num :" + num);
+                        llave = espacios.substring(0, num) + llave;
+                    } else if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("int")) {
+                        int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
+                        System.out.println("este es el num :" + num);
+                        llave = espacios.substring(0, num) + llave;
+                    }
+                } else {
+                    if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
+                        int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                        llave = espacios.substring(0, num) + llave;
+                    } else if (archivo_actual.getCampos().get(pk).getTipo().equals("String")) {
+                        int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                        llave = espacios.substring(0, num) + llave;
+                    }
                 }
                 if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null) {
                     omitidos = true;
@@ -1971,14 +2009,47 @@ public class Principal extends javax.swing.JFrame {
             if (true || cb_buscar_registro.getSelectedIndex() == 0) {
                 int pk = 0;
                 String llave = tf_buscarregistro.getText();
+                int llaveprimaria = 0;
+                for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                    if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                        llaveprimaria = i;
+                    }
+                }
+
                 if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
                     int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
                     llave = espacios.substring(0, num) + llave;
-                }else if (archivo_actual.getCampos().get(pk).getTipo().equals("String")) {
+                } else if (archivo_actual.getCampos().get(pk).getTipo().equals("String")) {
                     int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
                     llave = espacios.substring(0, num) + llave;
                 }
-                System.out.println("esta es la llave que se envia"+llave);
+                if (llaveprimaria != 0) {
+                    if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("String")) {
+                        int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
+                        System.out.println("estos son los espacios que elimina" + num);
+                        int cont = 0;
+                        if (num < 0) {
+                            while (num < 0) {
+                                num++;
+                                cont++;
+                            }
+                        }
+                        llave = llave.substring(cont, llave.length());
+                    } else if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("int")) {
+                        int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
+                        System.out.println("estos son los espacios que eliminaa" + num);
+                        int cont = 0;
+                        if (num < 0) {
+                            while (num < 0) {
+                                num++;
+                                cont++;
+                            }
+                        }
+                        llave = llave.substring(cont, llave.length());
+                        System.out.println("la nueva llave es: " + llave);
+                    }
+                }
+                System.out.println("esta es la llave que se envia" + llave);
                 rrnsbuscar = new ArrayList<Long>();
                 arbol_actual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
 
@@ -2386,41 +2457,126 @@ public class Principal extends javax.swing.JFrame {
                 try {
                     //en este if es si el registro no esta creado
                     if (registrocreado == false) {
-                        registros.cargarArchivo();
-                        int id = registros.GenerarId();
-                        Registro registro_actual1 = new Registro(archivo_actual.getArchivo(), id);
-                        File arch = new File(registro_actual1.getArchivo().getName());
-                        RandomAccessFile flujo = new RandomAccessFile(arch, "rw");//aqui es donde se crea el raf al archivo
-                        System.out.println("numero de registros: " + registro_actual1.getNumeroderegistros());
-                        registro_actual1.addregistro();
-                        flujo.seek(registro_actual1.getNumeroderegistros() * 75);//esto lo que hace es que va multiplicando la cantdad de registros por 75 ya que ese el tam de bytes que dejo
-                        flujo.write(registro.getBytes());//aqui escribe los bytes
-                        flujo.close();
-                        System.out.println("esto fue lo que escribio en bytes: " + registro.getBytes().length);
-                        registro_actual = registro_actual1;
-                        System.out.println("este es donde esta registro_actual:" + registro_actual.getArchivo().getAbsolutePath());
-                        System.out.println("numero de registros: " + registro_actual1.getNumeroderegistros());
-                        registros.AddArchivo(registro_actual1);
-                        registros.escribirArchivo();
-                        return rrn = registro_actual1.getNumeroderegistros() * 75;//estas lineas devuelven el rrn que es la cantidad de registros *75
+                        int llaveprimaria = 0;
+                        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                                llaveprimaria = i;
+                            }
+                        }
+                        if (llaveprimaria != 0) {
+                            System.out.println("este es el registro: " + registro);
+                            String registro2 = registro;
+                            String arr[] = registro2.split("\\|");
+                            String guardarllave = "";
+                            for (int i = 0; i < arr.length; i++) {
+                                System.out.println("esta es la llave: " + arr[i]);
+                                if (llaveprimaria == i) {
+                                    guardarllave = arr[0];
+                                    arr[0] = arr[i];
+                                    arr[i] = guardarllave;
+                                }
+                            }
+                            String guardarcorreccion = "";
+                            for (int i = 0; i < arr.length; i++) {
+                                guardarcorreccion += arr[i] + "|";
+                            }
+                            System.out.println("esta es la correccion:" + guardarcorreccion);
+
+                            registros.cargarArchivo();
+                            int id = registros.GenerarId();
+                            Registro registro_actual1 = new Registro(archivo_actual.getArchivo(), id);
+                            File arch = new File(registro_actual1.getArchivo().getName());
+                            RandomAccessFile flujo = new RandomAccessFile(arch, "rw");//aqui es donde se crea el raf al archivo
+                            System.out.println("numero de registros: " + registro_actual1.getNumeroderegistros());
+                            registro_actual1.addregistro();
+                            flujo.seek(registro_actual1.getNumeroderegistros() * 75);//esto lo que hace es que va multiplicando la cantdad de registros por 75 ya que ese el tam de bytes que dejo
+                            flujo.write(guardarcorreccion.getBytes());//aqui escribe los bytes
+                            flujo.close();
+                            System.out.println("esto fue lo que escribio en bytes: " + registro.getBytes().length);
+                            registro_actual = registro_actual1;
+                            System.out.println("este es donde esta registro_actual:" + registro_actual.getArchivo().getAbsolutePath());
+                            System.out.println("numero de registros: " + registro_actual1.getNumeroderegistros());
+                            registros.AddArchivo(registro_actual1);
+                            registros.escribirArchivo();
+                            return rrn = registro_actual1.getNumeroderegistros() * 75;//estas lineas devuelven el rrn que es la cantidad de registros *75
+                        } else {
+                            registros.cargarArchivo();
+                            int id = registros.GenerarId();
+                            Registro registro_actual1 = new Registro(archivo_actual.getArchivo(), id);
+                            File arch = new File(registro_actual1.getArchivo().getName());
+                            RandomAccessFile flujo = new RandomAccessFile(arch, "rw");//aqui es donde se crea el raf al archivo
+                            System.out.println("numero de registros: " + registro_actual1.getNumeroderegistros());
+                            registro_actual1.addregistro();
+                            flujo.seek(registro_actual1.getNumeroderegistros() * 75);//esto lo que hace es que va multiplicando la cantdad de registros por 75 ya que ese el tam de bytes que dejo
+                            flujo.write(registro.getBytes());//aqui escribe los bytes
+                            flujo.close();
+                            System.out.println("esto fue lo que escribio en bytes: " + registro.getBytes().length);
+                            registro_actual = registro_actual1;
+                            System.out.println("este es donde esta registro_actual:" + registro_actual.getArchivo().getAbsolutePath());
+                            System.out.println("numero de registros: " + registro_actual1.getNumeroderegistros());
+                            registros.AddArchivo(registro_actual1);
+                            registros.escribirArchivo();
+                            return rrn = registro_actual1.getNumeroderegistros() * 75;//estas lineas devuelven el rrn que es la cantidad de registros *75
+                        }
 
                     } else {
-                        //en este es si el registro ya esta creado
-                        registros.cargarArchivo();
-                        File arch = new File(registros.getLista_archivos().get(getposregistro).getArchivo().getName());
-                        RandomAccessFile flujo = new RandomAccessFile(arch, "rw");
-                        System.out.println("numero de registros: " + registros.getLista_archivos().get(getposregistro).getNumeroderegistros());
-                        registros.getLista_archivos().get(getposregistro).addregistro();
-                        flujo.seek(registros.getLista_archivos().get(getposregistro).getNumeroderegistros() * 75);
-                        System.out.println("este es el registro que manda :" + registro);
-                        flujo.write(registro.getBytes());
-                        flujo.close();
-                        registro_actual = registros.getLista_archivos().get(getposregistro);
-                        System.out.println("este es donde esta registro_actual:" + registro_actual.getArchivo().getAbsolutePath());
-                        System.out.println("numero de registros: " + registro_actual.getNumeroderegistros());
-                        registros.escribirArchivo();
-                        return rrn = registros.getLista_archivos().get(getposregistro).getNumeroderegistros() * 75;//estas lineas devuelven el rrn que es la cantidad de registros *75
+                        int llaveprimaria = 0;
+                        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                                llaveprimaria = i;
+                            }
+                        }
+                        if (llaveprimaria != 0) {
+                            System.out.println("este es el registro: " + registro);
+                            String registro2 = registro;
+                            String arr[] = registro2.split("\\|");
+                            String guardarllave = "";
+                            for (int i = 0; i < arr.length; i++) {
+                                System.out.println("esta es la llave: " + arr[i]);
+                                if (llaveprimaria == i) {
+                                    guardarllave = arr[0];
+                                    arr[0] = arr[i];
+                                    arr[i] = guardarllave;
+                                }
+                            }
+                            String guardarcorreccion = "";
+                            for (int i = 0; i < arr.length; i++) {
+                                guardarcorreccion += arr[i] + "|";
+                            }
+                            System.out.println("esta es la correccion:" + guardarcorreccion);
 
+                            registros.cargarArchivo();
+                            File arch = new File(registros.getLista_archivos().get(getposregistro).getArchivo().getName());
+                            RandomAccessFile flujo = new RandomAccessFile(arch, "rw");
+                            System.out.println("numero de registros: " + registros.getLista_archivos().get(getposregistro).getNumeroderegistros());
+                            registros.getLista_archivos().get(getposregistro).addregistro();
+                            flujo.seek(registros.getLista_archivos().get(getposregistro).getNumeroderegistros() * 75);
+                            System.out.println("este es el registro que manda :" + registro);
+                            flujo.write(registro.getBytes());
+                            flujo.close();
+                            registro_actual = registros.getLista_archivos().get(getposregistro);
+                            System.out.println("este es donde esta registro_actual:" + registro_actual.getArchivo().getAbsolutePath());
+                            System.out.println("numero de registros: " + registro_actual.getNumeroderegistros());
+                            registros.escribirArchivo();
+                            return rrn = registros.getLista_archivos().get(getposregistro).getNumeroderegistros() * 75;//estas lineas devuelven el rrn que es la cantidad de registros *75
+
+                        } else {
+                            registros.cargarArchivo();
+                            File arch = new File(registros.getLista_archivos().get(getposregistro).getArchivo().getName());
+                            RandomAccessFile flujo = new RandomAccessFile(arch, "rw");
+                            System.out.println("numero de registros: " + registros.getLista_archivos().get(getposregistro).getNumeroderegistros());
+                            registros.getLista_archivos().get(getposregistro).addregistro();
+                            flujo.seek(registros.getLista_archivos().get(getposregistro).getNumeroderegistros() * 75);
+                            System.out.println("este es el registro que manda :" + registro);
+                            flujo.write(registro.getBytes());
+                            flujo.close();
+                            registro_actual = registros.getLista_archivos().get(getposregistro);
+                            System.out.println("este es donde esta registro_actual:" + registro_actual.getArchivo().getAbsolutePath());
+                            System.out.println("numero de registros: " + registro_actual.getNumeroderegistros());
+                            registros.escribirArchivo();
+                            return rrn = registros.getLista_archivos().get(getposregistro).getNumeroderegistros() * 75;//estas lineas devuelven el rrn que es la cantidad de registros *75
+                        }
+                        //en este es si el registro ya esta creado
                     }
                 } finally {
 
