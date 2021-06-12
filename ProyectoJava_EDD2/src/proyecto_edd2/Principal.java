@@ -1493,7 +1493,10 @@ public class Principal extends javax.swing.JFrame {
             Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria);
             if (tipo_de_dato == 0) {
                 campo_nuevo.setTipo("int");
+            } else if (tipo_de_dato == 7) {
+                campo_nuevo.setTipo("String");
             }
+
             System.out.println(llave_primaria);
             System.out.println(llaveprimaria);
             if (existe == false) {
@@ -1841,6 +1844,9 @@ public class Principal extends javax.swing.JFrame {
                 if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
                     int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
                     llave = espacios.substring(0, num) + llave;
+                } else if (archivo_actual.getCampos().get(pk).getTipo().equals("String")) {
+                    int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                    llave = espacios.substring(0, num) + llave;
                 }
                 if (Archivodelarbol.getArbol().B_Tree_Search(Archivodelarbol.getArbol().getRaiz(), llave) != null) {
                     omitidos = true;
@@ -1872,6 +1878,9 @@ public class Principal extends javax.swing.JFrame {
                 if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
                     int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
                     llave = espacios.substring(0, num) + llave;
+                }else if (archivo_actual.getCampos().get(pk).getTipo().equals("String")) {
+                    int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                    llave = espacios.substring(0, num) + llave;
                 }
                 if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null) {
                     omitidos = true;
@@ -1881,7 +1890,7 @@ public class Principal extends javax.swing.JFrame {
                     arboles.getListaarboles().get(getposarbol).getArbol().insert(llave, rrn);
                 }//fin else
             }//Fin for
-            arbol_actual=arboles.getListaarboles().get(getposarbol).getArbol();
+            arbol_actual = arboles.getListaarboles().get(getposarbol).getArbol();
             arboles.getListaarboles().get(getposarbol).getArbol().imprimir_arbol(0, 0);
             arboles.escribirArchivo();
         }//fin else
@@ -1965,7 +1974,11 @@ public class Principal extends javax.swing.JFrame {
                 if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
                     int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
                     llave = espacios.substring(0, num) + llave;
+                }else if (archivo_actual.getCampos().get(pk).getTipo().equals("String")) {
+                    int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                    llave = espacios.substring(0, num) + llave;
                 }
+                System.out.println("esta es la llave que se envia"+llave);
                 rrnsbuscar = new ArrayList<Long>();
                 arbol_actual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
 
@@ -2354,7 +2367,6 @@ public class Principal extends javax.swing.JFrame {
         return length + archivo_actual.getCampos().size() + 1;
     }
 
-
     private int guardarRegistro(String registro) {
         int rrn = 0;
         if (archivo_actual.getAvailList().isEmpty()) {
@@ -2411,7 +2423,7 @@ public class Principal extends javax.swing.JFrame {
 
                     }
                 } finally {
-                    
+
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();
