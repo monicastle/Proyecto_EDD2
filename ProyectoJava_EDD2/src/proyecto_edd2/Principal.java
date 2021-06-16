@@ -1784,19 +1784,6 @@ public class Principal extends javax.swing.JFrame {
         }
         System.out.println("esta vacio? " + archivo_actual.getAvailList().isEmpty());
         model.setNumRows(1);
-        RandomAccessFile flujo;
-        try {
-            flujo = new RandomAccessFile(archivo_actual.getArchivo(), "rw");
-            flujo.seek(archivo_actual.getSizeMetadata()+1);
-            String prueba = "Diegoestupapi";
-            flujo.write(prueba.getBytes());
-            flujo.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         Registros.setVisible(false);
         Crear_registros.pack();
         Crear_registros.setModal(true);
