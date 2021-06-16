@@ -2661,7 +2661,7 @@ public class Principal extends javax.swing.JFrame {
         
         RandomAccessFile flujo = new RandomAccessFile(archivo_actual.getArchivo(), "rw");
         flujo.seek(rrn);
-        flujo.write(data.getBytes());
+        flujo.write((data + llenar(data.length())).getBytes());
         flujo.close();
     }
     private String leerregistro(int RRN) throws FileNotFoundException, IOException {
