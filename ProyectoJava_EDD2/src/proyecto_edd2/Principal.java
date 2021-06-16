@@ -124,17 +124,31 @@ public class Principal extends javax.swing.JFrame {
         jb_defcrearregistro = new javax.swing.JButton();
         jb_salirdecrearregistros = new javax.swing.JButton();
         jl_titulodelatabla = new javax.swing.JLabel();
-        Registros = new javax.swing.JDialog();
-        jb_crear_registro = new javax.swing.JButton();
-        jb_buscarregistros = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         Buscar_registrso = new javax.swing.JDialog();
         jScrollPane4 = new javax.swing.JScrollPane();
         Tabla_buscarregistro = new javax.swing.JTable();
         cb_buscar_registro = new javax.swing.JComboBox<>();
         tf_buscarregistro = new javax.swing.JTextField();
         jb_botondefbuscar = new javax.swing.JButton();
+        jD_Registros = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        btn_crearRegistros = new javax.swing.JButton();
+        btn_buscarRegistros = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        JL_32 = new javax.swing.JLabel();
+        JL_33 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        Modificar_Registros = new javax.swing.JDialog();
+        modificar_textfield = new javax.swing.JTextField();
+        label_llaveaingresar = new javax.swing.JLabel();
+        jb_buscarllave_mod = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        Tabla_modregistros = new javax.swing.JTable();
+        jb_defmodificar = new javax.swing.JButton();
+        jb_salir_modificar = new javax.swing.JButton();
         PanelPrincipal = new javax.swing.JPanel();
         JL_1 = new javax.swing.JLabel();
         BTN_SalirPrograma = new javax.swing.JButton();
@@ -850,51 +864,6 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(68, Short.MAX_VALUE))
         );
 
-        jb_crear_registro.setText("Crear registros");
-        jb_crear_registro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jb_crear_registroMouseClicked(evt);
-            }
-        });
-
-        jb_buscarregistros.setText("Buscar registros");
-        jb_buscarregistros.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jb_buscarregistrosMouseClicked(evt);
-            }
-        });
-
-        jButton3.setText("jButton3");
-
-        jButton4.setText("jButton4");
-
-        javax.swing.GroupLayout RegistrosLayout = new javax.swing.GroupLayout(Registros.getContentPane());
-        Registros.getContentPane().setLayout(RegistrosLayout);
-        RegistrosLayout.setHorizontalGroup(
-            RegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RegistrosLayout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addGroup(RegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jb_buscarregistros)
-                    .addComponent(jb_crear_registro))
-                .addContainerGap(115, Short.MAX_VALUE))
-        );
-        RegistrosLayout.setVerticalGroup(
-            RegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(RegistrosLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jb_crear_registro)
-                .addGap(18, 18, 18)
-                .addComponent(jb_buscarregistros)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addContainerGap(121, Short.MAX_VALUE))
-        );
-
         Tabla_buscarregistro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -942,6 +911,201 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68))
+        );
+
+        jD_Registros.setTitle("Menú Registros");
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        btn_crearRegistros.setBackground(new java.awt.Color(255, 51, 0));
+        btn_crearRegistros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_crearRegistros.setForeground(new java.awt.Color(255, 255, 255));
+        btn_crearRegistros.setText("Crear Registro");
+        btn_crearRegistros.setBorder(null);
+        btn_crearRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_crearRegistrosMouseClicked(evt);
+            }
+        });
+
+        btn_buscarRegistros.setBackground(new java.awt.Color(255, 51, 0));
+        btn_buscarRegistros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_buscarRegistros.setForeground(new java.awt.Color(255, 255, 255));
+        btn_buscarRegistros.setText("Buscar Registro");
+        btn_buscarRegistros.setBorder(null);
+        btn_buscarRegistros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarRegistrosActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Menú Registros");
+
+        JL_32.setForeground(new java.awt.Color(204, 204, 204));
+        JL_32.setText("____________________________________________________________________");
+
+        JL_33.setForeground(new java.awt.Color(204, 204, 204));
+        JL_33.setText("____________________________________________________________________");
+
+        jButton2.setBackground(new java.awt.Color(255, 51, 0));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Modificar Registro");
+        jButton2.setBorder(null);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        jButton5.setBackground(new java.awt.Color(255, 51, 0));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Borrar Registro");
+
+        jButton6.setBackground(new java.awt.Color(255, 51, 0));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Listar Registros");
+
+        jButton8.setBackground(new java.awt.Color(255, 51, 0));
+        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setText("Cruzar Archivos");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JL_32)
+                    .addComponent(JL_33))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_crearRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                    .addComponent(btn_buscarRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(jLabel1)
+                .addGap(0, 0, 0)
+                .addComponent(JL_32)
+                .addGap(20, 20, 20)
+                .addComponent(btn_crearRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btn_buscarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(JL_33)
+                .addContainerGap(73, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jD_RegistrosLayout = new javax.swing.GroupLayout(jD_Registros.getContentPane());
+        jD_Registros.getContentPane().setLayout(jD_RegistrosLayout);
+        jD_RegistrosLayout.setHorizontalGroup(
+            jD_RegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jD_RegistrosLayout.setVerticalGroup(
+            jD_RegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        modificar_textfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificar_textfieldActionPerformed(evt);
+            }
+        });
+
+        label_llaveaingresar.setText("Ingrese la llave que desea modificar");
+
+        jb_buscarllave_mod.setText("Buscar llave a modificar");
+        jb_buscarllave_mod.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_buscarllave_modMouseClicked(evt);
+            }
+        });
+
+        Tabla_modregistros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane5.setViewportView(Tabla_modregistros);
+
+        jb_defmodificar.setText("Modificar Registro");
+        jb_defmodificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_defmodificarMouseClicked(evt);
+            }
+        });
+
+        jb_salir_modificar.setText("Salir");
+
+        javax.swing.GroupLayout Modificar_RegistrosLayout = new javax.swing.GroupLayout(Modificar_Registros.getContentPane());
+        Modificar_Registros.getContentPane().setLayout(Modificar_RegistrosLayout);
+        Modificar_RegistrosLayout.setHorizontalGroup(
+            Modificar_RegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Modificar_RegistrosLayout.createSequentialGroup()
+                .addGroup(Modificar_RegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Modificar_RegistrosLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(label_llaveaingresar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(modificar_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jb_buscarllave_mod))
+                    .addGroup(Modificar_RegistrosLayout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Modificar_RegistrosLayout.createSequentialGroup()
+                        .addGap(198, 198, 198)
+                        .addComponent(jb_defmodificar)
+                        .addGap(166, 166, 166)
+                        .addComponent(jb_salir_modificar)))
+                .addContainerGap(110, Short.MAX_VALUE))
+        );
+        Modificar_RegistrosLayout.setVerticalGroup(
+            Modificar_RegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Modificar_RegistrosLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(Modificar_RegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modificar_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_llaveaingresar)
+                    .addComponent(jb_buscarllave_mod))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(Modificar_RegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb_defmodificar)
+                    .addComponent(jb_salir_modificar))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -1142,7 +1306,6 @@ public class Principal extends javax.swing.JFrame {
                     ID = aa.GenerarId();
                     archivo_actual = new Archivo(archivo_abrir, ID);
                     GuardarArchivo = null;
-                    archivo_temporal = archivo_actual;
                     // AQUI FALTA SETEARLE LOS CAMPOS
                     aa.AddArchivo(archivo_actual);
                     aa.escribirArchivo();
@@ -1774,23 +1937,6 @@ public class Principal extends javax.swing.JFrame {
         } // Fin Try Catch
     }//GEN-LAST:event_CB_CampoABorrarItemStateChanged
 
-    private void jb_crear_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crear_registroMouseClicked
-        // TODO add your handling code here:
-        tabla_registros.setModel(new DefaultTableModel());
-        DefaultTableModel model = (DefaultTableModel) tabla_registros.getModel();
-        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
-
-        }
-        System.out.println("esta vacio? " + archivo_actual.getAvailList().isEmpty());
-        model.setNumRows(1);
-        Registros.setVisible(false);
-        Crear_registros.pack();
-        Crear_registros.setModal(true);
-        Crear_registros.setLocationRelativeTo(null);
-        Crear_registros.setVisible(true);
-    }//GEN-LAST:event_jb_crear_registroMouseClicked
-
     private void jb_insertarcolumnaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_insertarcolumnaMouseClicked
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) tabla_registros.getModel();
@@ -1802,7 +1948,6 @@ public class Principal extends javax.swing.JFrame {
 
     private void jb_defcrearregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_defcrearregistroMouseClicked
         // TODO add your handling code here:
-        ArrayList<String> registross = new ArrayList();
         arboles.cargarArchivo();
         DefaultTableModel model = (DefaultTableModel) tabla_registros.getModel();
         if (!ValidaciondeingresoTabla(tabla_registros, true)) {
@@ -1847,8 +1992,6 @@ public class Principal extends javax.swing.JFrame {
                 }
                 guardar += llenar(guardar.length()) + "\n";
                 int pk = getPosKey();
-
-                if (llaveprimaria != 0) {
                     String llave = model.getValueAt(i, llaveprimaria).toString();
                     if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("String")) {
                         int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
@@ -1865,24 +2008,6 @@ public class Principal extends javax.swing.JFrame {
                         System.out.println("El rrn es:" + rrn);
                         Archivodelarbol.getArbol().insert(llave, rrn);
                     }
-                } else {
-                    String llave = model.getValueAt(i, pk).toString();
-                    if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
-                        int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
-                        llave = espacios.substring(0, num) + llave;
-                    } else if (archivo_actual.getCampos().get(pk).getTipo().equals("String")) {
-                        int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
-                        llave = espacios.substring(0, num) + llave;
-                    }
-                    if (Archivodelarbol.getArbol().B_Tree_Search(Archivodelarbol.getArbol().getRaiz(), llave) != null) {
-                        omitidos = true;
-                    } else {
-                        /*       registross.add(guardar);*/
-                        int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
-                        System.out.println("El rrn es:" + rrn);
-                        Archivodelarbol.getArbol().insert(llave, rrn);
-                    }
-                }
             }
             Archivodelarbol.getArbol().imprimir_arbol(0, 0);
             arboles.getListaarboles().add(Archivodelarbol);
@@ -1901,7 +2026,6 @@ public class Principal extends javax.swing.JFrame {
                 guardar += llenar(guardar.length()) + "\n";
                 int pk = getPosKey();
                 String llave = model.getValueAt(i, pk).toString();
-                if (llaveprimaria != 0) {
                     if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("String")) {
                         int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
                         System.out.println("este es el num :" + num);
@@ -1911,15 +2035,6 @@ public class Principal extends javax.swing.JFrame {
                         System.out.println("este es el num :" + num);
                         llave = espacios.substring(0, num) + llave;
                     }
-                } else {
-                    if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
-                        int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
-                        llave = espacios.substring(0, num) + llave;
-                    } else if (archivo_actual.getCampos().get(pk).getTipo().equals("String")) {
-                        int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
-                        llave = espacios.substring(0, num) + llave;
-                    }
-                }
                 if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null) {
                     omitidos = true;
                 } else {
@@ -1951,40 +2066,15 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
-        Registros.pack();
-        Registros.setLocationRelativeTo(null);
-        Registros.setVisible(true);
+        jD_Registros.pack();
+        jD_Registros.setLocationRelativeTo(null);
+        jD_Registros.setVisible(true);
     }//GEN-LAST:event_jButton7MouseClicked
 
     private void jb_salirdecrearregistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_salirdecrearregistrosMouseClicked
         // TODO add your handling code here:
         Crear_registros.setVisible(false);
     }//GEN-LAST:event_jb_salirdecrearregistrosMouseClicked
-
-    private void jb_buscarregistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_buscarregistrosMouseClicked
-        // TODO add your handling code here:
-        DefaultTableModel modelo = new DefaultTableModel();
-        Tabla_buscarregistro.setModel(new DefaultTableModel());
-        DefaultTableModel model = (DefaultTableModel) Tabla_buscarregistro.getModel();
-        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
-        }
-        tabla_registros.setModel(modelo);
-        cb_buscar_registro.setModel(new DefaultComboBoxModel<>());
-        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
-                cb_buscar_registro.addItem(ic.toString());
-                break;
-            }
-        }
-
-        tf_buscarregistro.setText("");
-        Buscar_registrso.pack();
-        Buscar_registrso.setModal(true);
-        Buscar_registrso.setLocationRelativeTo(null);
-        Buscar_registrso.setVisible(true);
-    }//GEN-LAST:event_jb_buscarregistrosMouseClicked
 
     private void jb_botondefbuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_botondefbuscarMouseClicked
         // TODO add your handling code here:
@@ -2086,6 +2176,161 @@ public class Principal extends javax.swing.JFrame {
     private void jb_defcrearregistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_defcrearregistroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jb_defcrearregistroActionPerformed
+
+    private void btn_crearRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crearRegistrosMouseClicked
+        // TODO add your handling code here:
+        tabla_registros.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) tabla_registros.getModel();
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+        }
+        // System.out.println("esta vacio? " + archivo_actual.getAvailList().isEmpty());//HERRAMIENTA SECRETA
+        model.setNumRows(1);
+        Crear_registros.pack();
+        Crear_registros.setModal(true);
+        Crear_registros.setLocationRelativeTo(null);
+        jD_Registros.setVisible(false);
+        Crear_registros.setVisible(true);
+    }//GEN-LAST:event_btn_crearRegistrosMouseClicked
+
+    private void btn_buscarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarRegistrosActionPerformed
+        // TODO add your handling code here:
+
+        /*DefaultTableModel modelo = new DefaultTableModel();
+        jTbl_buscarRegistros.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) jTbl_buscarRegistros.getModel();
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+        }
+        /*for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
+                cb_buscar_registro.addItem(ic.toString());
+                break;
+            }
+        }//*/
+        // jCb_llavesBuscarregistros.removeAllItems();
+        /* jTbl_buscarRegistros.setModel(modelo);
+        jCb_llavesBuscarregistros.setModel(new DefaultComboBoxModel<>());
+        DefaultComboBoxModel cBox_model = (DefaultComboBoxModel) jCb_llavesBuscarregistros.getModel();
+        cBox_model.addElement("Seleccione: ");
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            if (archivo_actual.getCampo(i).isLlavePrimaria()) {
+                cBox_model.addElement(archivo_actual.getCampo(i).getNombre());
+            }
+        }
+        jCb_llavesBuscarregistros.setModel(cBox_model);*/
+        DefaultTableModel modelo = new DefaultTableModel();
+        Tabla_buscarregistro.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) Tabla_buscarregistro.getModel();
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+        }
+        tabla_registros.setModel(modelo);
+        cb_buscar_registro.setModel(new DefaultComboBoxModel<>());
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
+                cb_buscar_registro.addItem(ic.toString());
+                break;
+            }
+        }
+
+        tf_buscarregistro.setText("");
+        Buscar_registrso.pack();
+        Buscar_registrso.setModal(true);
+        Buscar_registrso.setLocationRelativeTo(null);
+        Buscar_registrso.setVisible(true);
+    }//GEN-LAST:event_btn_buscarRegistrosActionPerformed
+
+    private void modificar_textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificar_textfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificar_textfieldActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        jD_Registros.setVisible(false);
+        label_llaveaingresar.setText(archivo_actual.getCampos().get(0).getNombre());
+        Tabla_modregistros.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) Tabla_modregistros.getModel();
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+        }
+        Modificar_Registros.pack();
+        Modificar_Registros.setModal(true);
+        Modificar_Registros.setLocationRelativeTo(null);
+        Modificar_Registros.setVisible(true);
+        Tabla_modregistros.setModel(new DefaultTableModel());
+    
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jb_defmodificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_defmodificarMouseClicked
+        // TODO add your handling code here:
+        if (jb_defmodificar.isEnabled()) {
+            if (ValidaciondeingresoTabla(Tabla_modregistros, false)) {
+                DefaultTableModel model = (DefaultTableModel) Tabla_modregistros.getModel();
+
+                String guardar = "";
+                // int length=0;
+                guardar = "";
+                for (int j = 0; j < model.getColumnCount(); j++) {
+                    guardar += model.getValueAt(0, j).toString() + "|";
+                    //length+=guardar.length();
+                }
+                model.removeRow(0);
+                try {
+                    Modificar(guardar, rrnModificar);
+                    JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
+                    modificar_textfield.setText("");
+                    modificar_textfield.setEditable(true);
+                    jb_defmodificar.setEnabled(false);
+                } catch (IOException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_jb_defmodificarMouseClicked
+
+    private void jb_buscarllave_modMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_buscarllave_modMouseClicked
+        // TODO add your handling code here:
+          DefaultTableModel model = (DefaultTableModel) Tabla_modregistros.getModel();
+        if ("".equals(modificar_textfield.getText())) {
+            JOptionPane.showMessageDialog(null, "Favor ingrese el valor que desea buscar");
+        } else if (model.getRowCount() != 1) {
+            int pk = 0;
+            String llave = modificar_textfield.getText();
+            if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
+                int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                llave = espacios.substring(0, num) + llave;
+            }
+            NodoIndice nodo = arbol_actual.B_Tree_Search(arbol_actual.getRaiz(), llave);
+            if (nodo == null) {
+                JOptionPane.showMessageDialog(null, "No se encontro ningun registro con ese valor");
+                modificar_textfield.setText("");
+                return;
+            }
+            rrnModificar = Math.toIntExact(nodo.getNodo().getLlaves().get(nodo.getIndice()).getPos());
+            System.out.println(rrnModificar);
+            try {
+                String data = leerregistro(Math.toIntExact(rrnModificar));
+                System.out.println(data);
+                System.out.println(rrnModificar);
+                String arr[] = data.split("\\|");
+                System.out.println(arr[0]);
+                System.out.println(nodo.getNodo().getLlaves().get(nodo.getIndice()).getPos());
+                //System.out.println(archivo_actual.getAvailList().peekFirst());
+                Object arr2[] = new Object[model.getColumnCount()];
+                for (int i = 0; i < model.getColumnCount(); i++) {
+                    arr2[i] = arr[i];
+                }
+                model.addRow(arr2);
+                modificar_textfield.setEditable(false);
+                jb_defmodificar.setEnabled(true);
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jb_buscarllave_modMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2412,7 +2657,13 @@ public class Principal extends javax.swing.JFrame {
         }
         return -1;
     }
-
+ private void Modificar(String data, int rrn) throws FileNotFoundException, IOException {
+        
+        RandomAccessFile flujo = new RandomAccessFile(archivo_actual.getArchivo(), "rw");
+        flujo.seek(rrn);
+        flujo.write(data.getBytes());
+        flujo.close();
+    }
     private String leerregistro(int RRN) throws FileNotFoundException, IOException {
         System.out.println("aqui esta el RRN: " + RRN);
         //preferiblemente no tocar esta parte del cdigo a menos que les de fallos contactar al administrador
@@ -2684,16 +2935,18 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel JL_23;
     private javax.swing.JLabel JL_24;
     private javax.swing.JLabel JL_3;
+    private javax.swing.JLabel JL_32;
+    private javax.swing.JLabel JL_33;
     private javax.swing.JLabel JL_4;
     private javax.swing.JLabel JL_5;
     private javax.swing.JLabel JL_6;
     private javax.swing.JLabel JL_7;
     private javax.swing.JLabel JL_8;
     private javax.swing.JLabel JL_9;
+    private javax.swing.JDialog Modificar_Registros;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JRadioButton RB_LlavePrimariaDelCampo;
     private javax.swing.JRadioButton RB_LlavePrimariaDelCampoModificado;
-    private javax.swing.JDialog Registros;
     private javax.swing.JSpinner SP_LongitudDelCampo;
     private javax.swing.JSpinner SP_LongitudDelCampoModificado;
     private javax.swing.JTextArea TA_ArchivoAbierto;
@@ -2701,15 +2954,23 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField TF_NombreDelCampo;
     private javax.swing.JTextField TF_NombreDelCampoModificado;
     private javax.swing.JTable Tabla_buscarregistro;
+    private javax.swing.JTable Tabla_modregistros;
     private javax.swing.JFrame VentanaMenuCampos;
+    private javax.swing.JButton btn_buscarRegistros;
+    private javax.swing.JButton btn_crearRegistros;
     private javax.swing.JComboBox<String> cb_buscar_registro;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JDialog jD_Registros;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jP_CrearCampo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -2719,13 +2980,17 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JButton jb_botondefbuscar;
-    private javax.swing.JButton jb_buscarregistros;
-    private javax.swing.JButton jb_crear_registro;
+    private javax.swing.JButton jb_buscarllave_mod;
     private javax.swing.JButton jb_defcrearregistro;
+    private javax.swing.JButton jb_defmodificar;
     private javax.swing.JButton jb_insertarcolumna;
+    private javax.swing.JButton jb_salir_modificar;
     private javax.swing.JButton jb_salirdecrearregistros;
     private javax.swing.JLabel jl_titulodelatabla;
+    private javax.swing.JLabel label_llaveaingresar;
+    private javax.swing.JTextField modificar_textfield;
     private javax.swing.JTable tabla_registros;
     private javax.swing.JTextField tf_buscarregistro;
     // End of variables declaration//GEN-END:variables
@@ -2744,13 +3009,7 @@ public class Principal extends javax.swing.JFrame {
     private int rrnModificar = 0;
     private int rrnabuscar = 0;
     private String espacios = new String(new char[1024]).replace('\0', ' ');
-    private ArrayList<Long> RRNarreglado = new ArrayList<Long>();
-    private int lower = 0;
-    private int upper = 10;
     Adminarboles arboles = new Adminarboles("./Arboles.txt");//el archivo que guarda todos los arboles
     añadirregistros registros = new añadirregistros("./Registros.txt");//el archivo que guarda todos los registros
-    private Archivo archivo_temporal = null;
-    private int acum = 0;
-    private int resta = 0;
     private Registro registro_actual;//el registro que se maneja en ejecucion
 }
