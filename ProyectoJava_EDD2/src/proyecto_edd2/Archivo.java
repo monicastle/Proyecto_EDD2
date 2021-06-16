@@ -18,16 +18,19 @@ public class Archivo implements Serializable {
 
     private File archivo;
     private int ID;
+    private int cant_regisros;
     private ArrayList<Campo> campos = new ArrayList();
     private static final long SerialVersionUID = 777L;
-      private LinkedList AvailList = new LinkedList();
-  private String nombre;
+    private LinkedList AvailList = new LinkedList();
+    private String nombre;
+
     public Archivo() {
     } // Fin Constructor Archivo
 
     public Archivo(File archivo, int ID) {
         this.archivo = archivo;
         this.ID = ID;
+        cant_regisros=0;
     } // Fin Constructor Archivo
 
     public int getID() {
@@ -61,10 +64,19 @@ public class Archivo implements Serializable {
     public void RemoveCampo(Campo ca) {
         this.campos.remove(ca);
     } // Fin Remove Campo
- public LinkedList getAvailList() {
+
+    public LinkedList getAvailList() {
         return AvailList;
     }
-    
+
+    public int getCant_regisros() {
+        return cant_regisros;
+    }
+
+    public void setCant_regisros() {
+        this.cant_regisros++ ;
+    }
+
     public int getSizeMetadata() {
         String metadata = nombre;
 
@@ -83,6 +95,6 @@ public class Archivo implements Serializable {
                 metadata += "No";
             }
         }
-        return metadata.length() + 1+2;//mas uno por \n(confirmado por fuentes confiables)          
+        return metadata.length()+1;//mas uno por \n(confirmado por fuentes confiables)          
     }
 } // Fin Clase Archivo

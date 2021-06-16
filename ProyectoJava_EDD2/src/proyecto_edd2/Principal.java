@@ -1784,6 +1784,19 @@ public class Principal extends javax.swing.JFrame {
         }
         System.out.println("esta vacio? " + archivo_actual.getAvailList().isEmpty());
         model.setNumRows(1);
+        RandomAccessFile flujo;
+        try {
+            flujo = new RandomAccessFile(archivo_actual.getArchivo(), "rw");
+            flujo.seek(archivo_actual.getSizeMetadata()+1);
+            String prueba = "Diegoestupapi";
+            flujo.write(prueba.getBytes());
+            flujo.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         Registros.setVisible(false);
         Crear_registros.pack();
         Crear_registros.setModal(true);
@@ -2416,13 +2429,13 @@ public class Principal extends javax.swing.JFrame {
     private String leerregistro(int RRN) throws FileNotFoundException, IOException {
         System.out.println("aqui esta el RRN: " + RRN);
         //preferiblemente no tocar esta parte del cdigo a menos que les de fallos contactar al administrador
-        File archivo = new File("./" + registro_actual.getArchivo().getName());//esto lo que hace es asegurarse de leer el archivo correcto
+        File archivo = new File(archivo_actual.getArchivo().getAbsolutePath());//esto lo que hace es asegurarse de leer el archivo correcto
         //lo de arrriba
         FileReader fr = new FileReader(archivo);
         String x = "";
         RandomAccessFile af = new RandomAccessFile(archivo, "r");
         af.seek(RRN);//aqui es donde se se mueve de bytes para buscar la llave
-        int rrn = RRN + archivo_actual.getSizeMetadata();
+        int rrn = RRN;
         System.out.println("y este es el rrrn donde lee " + rrn);
         x = af.readLine();//esto lee la linea donde se quedo el puntero
         af.close();
@@ -2435,15 +2448,47 @@ public class Principal extends javax.swing.JFrame {
         for (Campo campo : archivo_actual.getCampos()) {
             length += campo.getLongitud();
         }
-        return length + archivo_actual.getCampos().size() + 1;
+        return length + archivo_actual.getCampos().size();
+    }
+
+    private int getRrn(String registro) {
+        aa.cargarArchivo();
+        if (archivo_actual.getAvailList().isEmpty()) {
+            int pos_archivo = 0;
+            for (int i = 0; i < aa.getLista_archivos().size(); i++) {
+                if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
+                    pos_archivo = i;
+                    break;
+                }
+            }
+            if (aa.getLista_archivos().get(pos_archivo).getCant_regisros() == 0) {
+                aa.cargarArchivo();
+                int rrn = (250 - archivo_actual.getSizeMetadata());
+                aa.getLista_archivos().get(pos_archivo).setCant_regisros();
+                aa.escribirArchivo();
+                return rrn;
+            } else {
+                aa.cargarArchivo();
+                int rrn = (250 - archivo_actual.getSizeMetadata()) + (tam_registro() * aa.getLista_archivos().get(pos_archivo).getCant_regisros());
+                aa.getLista_archivos().get(pos_archivo).setCant_regisros();
+                aa.escribirArchivo();
+                return rrn;
+            }
+        }
+        return (int) archivo_actual.getAvailList().peekFirst();
     }
 
     private int guardarRegistro(String registro) {
-        int rrn = 0;
+        int rrn = getRrn(registro);
         if (archivo_actual.getAvailList().isEmpty()) {
             try {
+                RandomAccessFile flujo = new RandomAccessFile(archivo_actual.getArchivo(), "rw");
+                flujo.seek(rrn);
+                flujo.write(registro.getBytes());
+                flujo.close();
+                return rrn;
                 //valida que en la lista de registros no este creado el registro
-                boolean registrocreado = false;
+                /*boolean registrocreado = false;
                 registros.cargarArchivo();
                 int getposregistro = 0;
                 for (int i = 0; i < registros.getLista_archivos().size(); i++) {
@@ -2453,8 +2498,8 @@ public class Principal extends javax.swing.JFrame {
                         registro_actual = registros.getLista_archivos().get(i);//se trabaja con un registro actual para facilitar el manejo de este
                         break;
                     }
-                }
-                try {
+                }*/
+ /*try {
                     //en este if es si el registro no esta creado
                     if (registrocreado == false) {
                         int llaveprimaria = 0;
@@ -2481,7 +2526,6 @@ public class Principal extends javax.swing.JFrame {
                                 guardarcorreccion += arr[i] + "|";
                             }
                             System.out.println("esta es la correccion:" + guardarcorreccion);
-
                             registros.cargarArchivo();
                             int id = registros.GenerarId();
                             Registro registro_actual1 = new Registro(archivo_actual.getArchivo(), id);
@@ -2580,7 +2624,7 @@ public class Principal extends javax.swing.JFrame {
                     }
                 } finally {
 
-                }
+                }*/
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -2719,6 +2763,7 @@ public class Principal extends javax.swing.JFrame {
     Adminarboles arboles = new Adminarboles("./Arboles.txt");//el archivo que guarda todos los arboles
     añadirregistros registros = new añadirregistros("./Registros.txt");//el archivo que guarda todos los registros
     private Archivo archivo_temporal = null;
-    private int acum = 200;
+    private int acum = 0;
+    private int resta = 0;
     private Registro registro_actual;//el registro que se maneja en ejecucion
 }
