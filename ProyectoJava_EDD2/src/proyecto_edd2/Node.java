@@ -17,7 +17,7 @@ public class Node implements Serializable{
      //boolean esHoja;
     ArrayList<LlavePos> llaves;
     ArrayList<Integer> hijos;
-    int n;//llaves
+    int n;//cantidad llaves
     boolean leaf;
 
     public Node(int m) {

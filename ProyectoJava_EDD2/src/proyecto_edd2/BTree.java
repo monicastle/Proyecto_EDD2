@@ -39,7 +39,6 @@ public class BTree implements Serializable {
         this.orden = orden;
         raiz = new Node(orden, llave, pos);
     }*/
-   
     public int getM() {
         return orden;
     }
@@ -63,20 +62,17 @@ public class BTree implements Serializable {
     public int lowerBKeys_order() {
         return Math.max((orden / 2) - 1, 1);
     }
-    
+
     public int UpperBChild() {
         return orden;
     }
-    
-    public NodoIndice B_Tree_Search(int ix, String k) {
 
+    public NodoIndice B_Tree_Search(int ix, String k) {
         int i = 0;
         Node x = nodos.get((int) ix);
-
         while (i < x.getN() && k.compareTo(x.getLlaves().get(i).getLlave()) > 0) {
             i++;
         }
-
         if (i < x.getN() && k.compareTo(x.getLlaves().get(i).getLlave()) == 0) {
             return new NodoIndice(x, i);
         }
@@ -85,21 +81,15 @@ public class BTree implements Serializable {
         } else {
             return B_Tree_Search(x.getHijos().get(i), k);
         }
-    }
+    }//fin método
 
     public void searchByAffinity(int ix, String k, ArrayList<Long> rrns) {
-
         int i = 0;
         Node x = nodos.get((int) ix);
-
         while (i < x.getN() && k.compareTo(x.getLlaves().get(i).getLlave()) > 0) {
             i++;
         }
-
-        boolean flag = false;
-
         while (i < x.getN() && k.compareTo(x.getLlaves().get(i).getLlave()) == 0) {
-            flag = true;
             rrns.add(x.getLlaves().get(i).getPos());
             if (!x.isLeaf()) {
                 searchByAffinity(x.getHijos().get(i), k, rrns);
@@ -204,18 +194,6 @@ public class BTree implements Serializable {
         }
     }
 
-    public void traverseKeysInOrder(int inode, ArrayList<Long> lista) {
-        if (inode >= 0) {
-            Node node = nodos.get(inode);
-
-            for (int i = 0; i < node.getN(); i++) {
-                traverseKeysInOrder(node.getHijos().get(i), lista);
-                lista.add(node.getLlaves().get(i).getPos());
-            }
-            traverseKeysInOrder(node.getHijos().get(node.getN()), lista);
-        }
-    }
-
     public BTree cargarArbol(String nombre) {
         File archivo = new File(nombre + "keyTree");
         try {
@@ -235,35 +213,35 @@ public class BTree implements Serializable {
             ex.printStackTrace();
         }
         return null;
-    } 
-    
+    }
+
     public void B_Tree_Delete(int ix, String key) {
         Node x = nodos.get(ix);
         int pos = x.Find(key);
         if (pos != -1) {
             if (x.isLeaf()) {
                 int i = 0;
-                for (i = 0; i < x.getN()&& x.getLlaves().get(i).getLlave().compareTo(key) != 0; i++) {
+                for (i = 0; i < x.getN() && x.getLlaves().get(i).getLlave().compareTo(key) != 0; i++) {
                 }
                 for (; i < x.getN(); i++) {
                     if (i != orden - 2) {
-                        x.getLlaves().set(i, x.getLlaves().get(i+1));
+                        x.getLlaves().set(i, x.getLlaves().get(i + 1));
                     }
                 }
-                x.setN(x.getN()-1);
+                x.setN(x.getN() - 1);
                 return;
             }
             if (!x.isLeaf()) {
-                
+
                 int ipred = x.getHijos().get(pos);
                 Node prednode = nodos.get(ipred);
                 String pred_llave = "";
                 long pos_pred = -1;
-                if (prednode.getN()>= lowerBKeys_order()+1) {
+                if (prednode.getN() >= lowerBKeys_order() + 1) {
                     for (;;) {
                         if (prednode.isLeaf()) {
-                            pred_llave = prednode.getLlaves().get(prednode.getN()-1).getLlave();
-                            pos_pred = prednode.getLlaves().get(prednode.getN()-1).getPos();
+                            pred_llave = prednode.getLlaves().get(prednode.getN() - 1).getLlave();
+                            pos_pred = prednode.getLlaves().get(prednode.getN() - 1).getPos();
                             break;
                         } else {
                             ipred = prednode.getHijos().get(prednode.getN());
@@ -271,14 +249,13 @@ public class BTree implements Serializable {
                         }
                     }
                     B_Tree_Delete(ix, key);
-                    x.getLlaves().set(pos, new LlavePos(pred_llave,pos_pred));
+                    x.getLlaves().set(pos, new LlavePos(pred_llave, pos_pred));
                     return;
                 }//fin if
 
-                
-                int inext = x.getHijos().get(pos+1);
+                int inext = x.getHijos().get(pos + 1);
                 Node nextNode = nodos.get(inext);
-                if (nextNode.n >= lowerBKeys_order()+1) {
+                if (nextNode.n >= lowerBKeys_order() + 1) {
                     String next_llave = nextNode.getLlaves().get(0).getLlave();
                     long next_pos = -1;
                     if (!nextNode.isLeaf()) {
@@ -286,8 +263,8 @@ public class BTree implements Serializable {
                         nextNode = nodos.get(inext);
                         for (;;) {
                             if (nextNode.isLeaf()) {
-                                next_llave = nextNode.getLlaves().get(nextNode.getN()-1).getLlave();
-                                next_pos = nextNode.getLlaves().get(nextNode.getN()-1).getPos();
+                                next_llave = nextNode.getLlaves().get(nextNode.getN() - 1).getLlave();
+                                next_pos = nextNode.getLlaves().get(nextNode.getN() - 1).getPos();
                                 break;
                             } else {
                                 inext = nextNode.getHijos().get(nextNode.getN());
@@ -300,8 +277,8 @@ public class BTree implements Serializable {
                     return;
                 }
 
-                int temp = prednode.getN()+ 1;
-                prednode.getLlaves().set(prednode.n++,x.getLlaves().get(pos));
+                int temp = prednode.getN() + 1;
+                prednode.getLlaves().set(prednode.n++, x.getLlaves().get(pos));
                 for (int i = 0, j = prednode.getN(); i < nextNode.getN(); i++) {
                     prednode.getLlaves().set(j++, nextNode.getLlaves().get(i));
                     prednode.n++;
@@ -313,12 +290,12 @@ public class BTree implements Serializable {
                 x.getHijos().set(pos, ipred);
                 for (int i = pos; i < x.n; i++) {
                     if (i != orden - 2) {
-                        x.getLlaves().set(i, x.getLlaves().get(i+1));
+                        x.getLlaves().set(i, x.getLlaves().get(i + 1));
                     }
                 }
                 for (int i = pos + 1; i < x.n + 1; i++) {
                     if (i != orden - 1) {
-                        x.getHijos().set(i, x.getHijos().get(i+1));
+                        x.getHijos().set(i, x.getHijos().get(i + 1));
                     }
                 }
                 x.n--;
@@ -329,7 +306,7 @@ public class BTree implements Serializable {
                     ix = x.getHijos().get(0);
                     x = nodos.get(ix);
                 }
-                 B_Tree_Delete(ipred, key);
+                B_Tree_Delete(ipred, key);
                 return;
             }
         } else {
@@ -340,7 +317,7 @@ public class BTree implements Serializable {
             }//fin for
             int i_temp = x.getHijos().get(pos);
             Node temporal = nodos.get(i_temp);
-            if (temporal.n >= lowerBKeys_order()+1) {
+            if (temporal.n >= lowerBKeys_order() + 1) {
                 B_Tree_Delete(i_temp, key);
                 return;
             }//fn if
@@ -350,44 +327,44 @@ public class BTree implements Serializable {
                 String divide = "";
                 long dividePos = -1;
 
-                if (pos != x.n && nodos.get(x.getHijos().get(pos+1)).n >= lowerBKeys_order()+1) {
+                if (pos != x.n && nodos.get(x.getHijos().get(pos + 1)).n >= lowerBKeys_order() + 1) {
                     divide = x.getLlaves().get(pos).getLlave();
                     dividePos = x.getLlaves().get(pos).getPos();
-                    inb = x.getHijos().get(pos+1);
+                    inb = x.getHijos().get(pos + 1);
                     nb = nodos.get(inb);
                     x.getLlaves().set(pos, nb.getLlaves().get(0));
                     temporal.getLlaves().set(temporal.n++, new LlavePos(divide, dividePos));
                     temporal.getHijos().set(temporal.n, nb.getHijos().get(0));
                     for (int i = 1; i < nb.n; i++) {
-                        nb.getLlaves().set(i-1, nb.getLlaves().get(i));
+                        nb.getLlaves().set(i - 1, nb.getLlaves().get(i));
                     }
                     for (int i = 1; i <= nb.n; i++) {
-                        nb.getHijos().set(i-1, nb.getHijos().get(i));
+                        nb.getHijos().set(i - 1, nb.getHijos().get(i));
                     }
                     nb.n--;
-                     B_Tree_Delete(i_temp, key);
+                    B_Tree_Delete(i_temp, key);
                     return;
-                } else if (pos != 0 && nodos.get(x.getHijos().get(pos-1)).n >= lowerBKeys_order()+1) {
+                } else if (pos != 0 && nodos.get(x.getHijos().get(pos - 1)).n >= lowerBKeys_order() + 1) {
 
-                    divide = x.getLlaves().get(pos-1).getLlave();
-                    dividePos = x.getLlaves().get(pos-1).getPos();
-                    inb = x.getHijos().get(pos-1);
+                    divide = x.getLlaves().get(pos - 1).getLlave();
+                    dividePos = x.getLlaves().get(pos - 1).getPos();
+                    inb = x.getHijos().get(pos - 1);
                     nb = nodos.get(inb);
-                    x.getLlaves().set(pos-1, nb.getLlaves().get(nb.n-1));
+                    x.getLlaves().set(pos - 1, nb.getLlaves().get(nb.n - 1));
                     int ichild = nb.getHijos().get(nb.n);
                     //Nodo child = nodos.get(ichild);
                     nb.n--;
 
                     for (int i = temporal.n; i > 0; i--) {
-                        temporal.getLlaves().set(i, temporal.getLlaves().get(i-1));
+                        temporal.getLlaves().set(i, temporal.getLlaves().get(i - 1));
                     }
                     temporal.getLlaves().set(0, new LlavePos(divide, dividePos));
                     for (int i = temporal.n + 1; i > 0; i--) {
-                        temporal.getHijos().set(i, temporal.getHijos().get(i-1));
+                        temporal.getHijos().set(i, temporal.getHijos().get(i - 1));
                     }
                     temporal.getHijos().set(0, ichild);
                     temporal.n++;
-                     B_Tree_Delete(i_temp, key);
+                    B_Tree_Delete(i_temp, key);
                     return;
                 } else {
                     int ilt = -1;
@@ -400,23 +377,23 @@ public class BTree implements Serializable {
                         dividePos = x.getLlaves().get(pos).getPos();
                         ilt = x.getHijos().get(pos);
                         lt = nodos.get(ilt);
-                        irt = x.getHijos().get(pos+1);
+                        irt = x.getHijos().get(pos + 1);
                         rt = nodos.get(irt);
                     } else {
-                        divide = x.getLlaves().get(pos-1).getLlave();
-                        dividePos = x.getLlaves().get(pos-1).getPos();
+                        divide = x.getLlaves().get(pos - 1).getLlave();
+                        dividePos = x.getLlaves().get(pos - 1).getPos();
                         irt = x.getHijos().get(pos);
                         rt = nodos.get(irt);
-                        ilt = x.getHijos().get(pos-1);
+                        ilt = x.getHijos().get(pos - 1);
                         lt = nodos.get(ilt);
                         last = true;
                         pos--;
                     }//fin else
                     for (int i = pos; i < x.n - 1; i++) {
-                        x.getLlaves().set(i, x.getLlaves().get(i+1));
+                        x.getLlaves().set(i, x.getLlaves().get(i + 1));
                     }//fin for
                     for (int i = pos + 1; i < x.n; i++) {
-                        x.getHijos().set(i, x.getHijos().get(i+1));
+                        x.getHijos().set(i, x.getHijos().get(i + 1));
                     }//fin for
                     x.n--;
                     lt.getLlaves().set(lt.n++, new LlavePos(divide, dividePos));
@@ -435,11 +412,23 @@ public class BTree implements Serializable {
                         ix = x.getHijos().get(0);
                         x = nodos.get(ix);
                     }//fin if
-                     B_Tree_Delete(ilt, key);
+                    B_Tree_Delete(ilt, key);
                     return;
                 }
             }
         }
     }//termina el metodo eliminar
-    
+
+    public void BTree_KeysInOrder(int IndiceNodoActual, ArrayList<Long> lista) {
+        if (IndiceNodoActual >= 0) {
+            Node node = nodos.get(IndiceNodoActual);
+            for (int i = 0; i < node.getN(); i++) {
+                BTree_KeysInOrder(node.getHijos().get(i), lista);
+                lista.add(node.getLlaves().get(i).getPos());
+            }
+            System.out.println("holaaa");
+            BTree_KeysInOrder(node.getHijos().get(node.getN()), lista);//almenos con 3 registros este llamado es innesesario
+        }//fin if
+    }//fin método
+
 }

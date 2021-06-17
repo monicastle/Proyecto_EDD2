@@ -118,7 +118,7 @@ public class Principal extends javax.swing.JFrame {
         BTN_CancelarListarCampos = new javax.swing.JButton();
         JL_23 = new javax.swing.JLabel();
         JL_24 = new javax.swing.JLabel();
-        jD_Registros = new javax.swing.JDialog();
+        jD_MenuRegistros = new javax.swing.JDialog();
         jPanel2 = new javax.swing.JPanel();
         btn_crearRegistros = new javax.swing.JButton();
         btn_buscarRegistros = new javax.swing.JButton();
@@ -175,6 +175,16 @@ public class Principal extends javax.swing.JFrame {
         jLbl_instruccionModificar1 = new javax.swing.JLabel();
         btn_ConfirmarBorrar = new javax.swing.JButton();
         jCb_llavesEliminarRegistros = new javax.swing.JComboBox<>();
+        jD_ListarRegistros = new javax.swing.JDialog();
+        jPanel12 = new javax.swing.JPanel();
+        btn_AvanzarListarRegistro = new javax.swing.JButton();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTbl_ListarRegistros = new javax.swing.JTable();
+        btn_regresarRegistrosPrincipal3 = new javax.swing.JButton();
+        JL_40 = new javax.swing.JLabel();
+        JL_41 = new javax.swing.JLabel();
+        JL_42 = new javax.swing.JLabel();
+        btn_RetrocederListarRegistro = new javax.swing.JButton();
         PanelPrincipal = new javax.swing.JPanel();
         JL_1 = new javax.swing.JLabel();
         BTN_SalirPrograma = new javax.swing.JButton();
@@ -809,7 +819,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jD_Registros.setTitle("Menú Registros");
+        jD_MenuRegistros.setTitle("Menú Registros");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -870,6 +880,11 @@ public class Principal extends javax.swing.JFrame {
         btn_PuenteListarRegistros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_PuenteListarRegistros.setForeground(new java.awt.Color(255, 255, 255));
         btn_PuenteListarRegistros.setText("Listar Registros");
+        btn_PuenteListarRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_PuenteListarRegistrosMouseClicked(evt);
+            }
+        });
 
         btn_PuenteCruzarArchivos.setBackground(new java.awt.Color(255, 51, 0));
         btn_PuenteCruzarArchivos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -921,14 +936,14 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jD_RegistrosLayout = new javax.swing.GroupLayout(jD_Registros.getContentPane());
-        jD_Registros.getContentPane().setLayout(jD_RegistrosLayout);
-        jD_RegistrosLayout.setHorizontalGroup(
-            jD_RegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jD_MenuRegistrosLayout = new javax.swing.GroupLayout(jD_MenuRegistros.getContentPane());
+        jD_MenuRegistros.getContentPane().setLayout(jD_MenuRegistrosLayout);
+        jD_MenuRegistrosLayout.setHorizontalGroup(
+            jD_MenuRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jD_RegistrosLayout.setVerticalGroup(
-            jD_RegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jD_MenuRegistrosLayout.setVerticalGroup(
+            jD_MenuRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -1409,6 +1424,117 @@ public class Principal extends javax.swing.JFrame {
         jD_EliminarRegistrosLayout.setVerticalGroup(
             jD_EliminarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jD_ListarRegistros.setTitle("Buscar Registro");
+        jD_ListarRegistros.setSize(new java.awt.Dimension(0, 0));
+
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+
+        btn_AvanzarListarRegistro.setBackground(new java.awt.Color(255, 51, 0));
+        btn_AvanzarListarRegistro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_AvanzarListarRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        btn_AvanzarListarRegistro.setText("Avanzar");
+        btn_AvanzarListarRegistro.setBorder(null);
+        btn_AvanzarListarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AvanzarListarRegistroRegistroActionPerformed(evt);
+            }
+        });
+
+        jTbl_ListarRegistros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane10.setViewportView(jTbl_ListarRegistros);
+
+        btn_regresarRegistrosPrincipal3.setBackground(new java.awt.Color(204, 204, 204));
+        btn_regresarRegistrosPrincipal3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_regresarRegistrosPrincipal3.setText("Cancelar");
+        btn_regresarRegistrosPrincipal3.setBorder(null);
+        btn_regresarRegistrosPrincipal3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_regresarRegistrosPrincipal3MouseClicked(evt);
+            }
+        });
+
+        JL_40.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JL_40.setText("Listar Registros");
+
+        JL_41.setForeground(new java.awt.Color(204, 204, 204));
+        JL_41.setText("_____________________________________________________________________________________________________________________________");
+
+        JL_42.setForeground(new java.awt.Color(204, 204, 204));
+        JL_42.setText("_____________________________________________________________________________________________________________________________");
+
+        btn_RetrocederListarRegistro.setBackground(new java.awt.Color(255, 51, 0));
+        btn_RetrocederListarRegistro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_RetrocederListarRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        btn_RetrocederListarRegistro.setText("Retroceder");
+        btn_RetrocederListarRegistro.setBorder(null);
+        btn_RetrocederListarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RetrocederListarRegistroRegistroActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JL_42)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(JL_40))
+                    .addComponent(JL_41))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_regresarRegistrosPrincipal3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_RetrocederListarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_AvanzarListarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(JL_40)
+                .addGap(0, 0, 0)
+                .addComponent(JL_41)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(JL_42)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_AvanzarListarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_regresarRegistrosPrincipal3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_RetrocederListarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52))
+        );
+
+        javax.swing.GroupLayout jD_ListarRegistrosLayout = new javax.swing.GroupLayout(jD_ListarRegistros.getContentPane());
+        jD_ListarRegistros.getContentPane().setLayout(jD_ListarRegistrosLayout);
+        jD_ListarRegistrosLayout.setHorizontalGroup(
+            jD_ListarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jD_ListarRegistrosLayout.setVerticalGroup(
+            jD_ListarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -2255,9 +2381,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
         // TODO add your handling code here:
-        jD_Registros.pack();
-        jD_Registros.setLocationRelativeTo(null);
-        jD_Registros.setVisible(true);
+        jD_MenuRegistros.pack();
+        jD_MenuRegistros.setLocationRelativeTo(null);
+        jD_MenuRegistros.setVisible(true);
     }//GEN-LAST:event_jButton7MouseClicked
 
     private void btn_crearRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crearRegistrosMouseClicked
@@ -2272,7 +2398,7 @@ public class Principal extends javax.swing.JFrame {
         jD_crearRegistros.pack();
         jD_crearRegistros.setModal(true);
         jD_crearRegistros.setLocationRelativeTo(null);
-        jD_Registros.setVisible(false);
+        jD_MenuRegistros.setVisible(false);
         jD_crearRegistros.setVisible(true);
     }//GEN-LAST:event_btn_crearRegistrosMouseClicked
 
@@ -2305,7 +2431,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_PuenteModificarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteModificarRegistrosMouseClicked
         // TODO add your handling code here:
-        jD_Registros.setVisible(false);
+        jD_MenuRegistros.setVisible(false);
         //jLbl_instruccionModificar.setText(archivo_actual.getCampos().get(0).getNombre());
         jTbl_ModificarRegistros.setModel(new DefaultTableModel());
         DefaultTableModel model = (DefaultTableModel) jTbl_ModificarRegistros.getModel();
@@ -2440,11 +2566,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_salirCrearRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirCrearRegistrosActionPerformed
         // TODO add your handling code here:
-        jD_Registros.setModal(true);
-        jD_Registros.pack();
-        jD_Registros.setLocationRelativeTo(this);
+        jD_MenuRegistros.setModal(true);
+        jD_MenuRegistros.pack();
+        jD_MenuRegistros.setLocationRelativeTo(this);
         jD_crearRegistros.setVisible(false);
-        jD_Registros.setVisible(true);
+        jD_MenuRegistros.setVisible(true);
     }//GEN-LAST:event_btn_salirCrearRegistrosActionPerformed
 
     private void btn_buscarRegistroRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarRegistroRegistroActionPerformed
@@ -2544,11 +2670,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_regresarRegistrosPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresarRegistrosPrincipalMouseClicked
         // TODO add your handling code here:
-        jD_Registros.pack();
-        jD_Registros.setModal(true);
-        jD_Registros.setLocationRelativeTo(null);
+        jD_MenuRegistros.pack();
+        jD_MenuRegistros.setModal(true);
+        jD_MenuRegistros.setLocationRelativeTo(null);
         jD_buscarRegistros.setVisible(false);
-        jD_Registros.setVisible(true);
+        jD_MenuRegistros.setVisible(true);
     }//GEN-LAST:event_btn_regresarRegistrosPrincipalMouseClicked
 
     private void btn_buscarModificarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarModificarRegistroActionPerformed
@@ -2594,11 +2720,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_regresarRegistrosPrincipal1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresarRegistrosPrincipal1MouseClicked
         // TODO add your handling code here:
-        jD_Registros.pack();
-        jD_Registros.setModal(true);
-        jD_Registros.setLocationRelativeTo(null);
+        jD_MenuRegistros.pack();
+        jD_MenuRegistros.setModal(true);
+        jD_MenuRegistros.setLocationRelativeTo(null);
         jD_ModificarRegistros.setVisible(false);
-        jD_Registros.setVisible(true);
+        jD_MenuRegistros.setVisible(true);
     }//GEN-LAST:event_btn_regresarRegistrosPrincipal1MouseClicked
 
     private void btn_ConfirmarModificacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfirmarModificacionMouseClicked
@@ -2723,11 +2849,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_regresarRegistrosPrincipal2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresarRegistrosPrincipal2MouseClicked
         // TODO add your handling code here:
-        jD_Registros.pack();
-        jD_Registros.setModal(true);
-        jD_Registros.setLocationRelativeTo(null);
+        jD_MenuRegistros.pack();
+        jD_MenuRegistros.setModal(true);
+        jD_MenuRegistros.setLocationRelativeTo(null);
         jD_EliminarRegistros.setVisible(false);
-        jD_Registros.setVisible(true);
+        jD_MenuRegistros.setVisible(true);
     }//GEN-LAST:event_btn_regresarRegistrosPrincipal2MouseClicked
 
     private void btn_ConfirmarBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfirmarBorrarMouseClicked
@@ -2819,6 +2945,86 @@ public class Principal extends javax.swing.JFrame {
         jD_EliminarRegistros.setLocationRelativeTo(null);
         jD_EliminarRegistros.setVisible(true);
     }//GEN-LAST:event_btn_PuenteBorrarRegistroActionPerformed
+
+    private void btn_AvanzarListarRegistroRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AvanzarListarRegistroRegistroActionPerformed
+        // TODO add your handling code here:
+        if (avanzar < rrn_llaves_en_orden.size()) {
+            int y = (avanzar % rrn_llaves_en_orden.size()
+            );
+            if (y % 5 == 0) {
+                y = 5;
+            }
+            retroceder += y;
+            avanzar += y;
+            DefaultTableModel model = (DefaultTableModel) jTbl_ListarRegistros.getModel();
+            model.getDataVector().removeAllElements();
+            listar_registros();
+        }
+    }//GEN-LAST:event_btn_AvanzarListarRegistroRegistroActionPerformed
+
+    private void btn_regresarRegistrosPrincipal3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresarRegistrosPrincipal3MouseClicked
+        // TODO add your handling code here:
+        jD_MenuRegistros.pack();
+        jD_MenuRegistros.setModal(true);
+        jD_MenuRegistros.setLocationRelativeTo(null);
+        jD_ListarRegistros.setVisible(false);
+        jD_MenuRegistros.setVisible(true);
+    }//GEN-LAST:event_btn_regresarRegistrosPrincipal3MouseClicked
+
+    private void btn_RetrocederListarRegistroRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RetrocederListarRegistroRegistroActionPerformed
+        // TODO add your handling code here:
+        if (retroceder - 5 >= 0) {
+            retroceder -= 5;
+            avanzar -= 5;
+            DefaultTableModel model = (DefaultTableModel) jTbl_ListarRegistros.getModel();
+            model.getDataVector().removeAllElements();
+            listar_registros();
+        }
+    }//GEN-LAST:event_btn_RetrocederListarRegistroRegistroActionPerformed
+
+    private void btn_PuenteListarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteListarRegistrosMouseClicked
+        // TODO add your handling code here:
+        avanzar = 5;
+        retroceder = 0;
+        rrn_llaves_en_orden = new ArrayList();
+        arbol_actual.BTree_KeysInOrder(arbol_actual.getRaiz(), rrn_llaves_en_orden);
+        listar_registros();
+        jD_ListarRegistros.pack();
+        jD_ListarRegistros.setModal(true);
+        jD_ListarRegistros.setLocationRelativeTo(null);
+        jD_MenuRegistros.setVisible(false);
+        jD_ListarRegistros.setVisible(true);
+    }//GEN-LAST:event_btn_PuenteListarRegistrosMouseClicked
+
+    ArrayList<Long> rrn_llaves_en_orden = new ArrayList();
+
+    public void listar_registros() {
+        jTbl_ListarRegistros.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) jTbl_ListarRegistros.getModel();
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+        }
+        jTbl_ListarRegistros.setModel(model);
+        for (int i = retroceder; i < avanzar && i < rrn_llaves_en_orden.size(); i++){
+            long RRN = rrn_llaves_en_orden
+            .get(i);
+            try {
+                String data = leerregistro(Math.toIntExact(RRN));
+                System.out.println(data);
+                String arr[] = data.split("\\|");
+                Object arr2[] = new Object[model.getColumnCount()];
+                for (int j = 0; j < model.getColumnCount(); j++) {
+                    arr2[j] = arr[j];
+                }//fin for
+                model.addRow(arr2);
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }//*/
+    }
+
+    private int avanzar = 0;
+    private int retroceder = 0;
 
     /**
      * @param args the command line arguments
@@ -3215,144 +3421,6 @@ public class Principal extends javax.swing.JFrame {
                 flujo.write(registro.getBytes());
                 flujo.close();
                 return rrn;
-                //valida que en la lista de registros no este creado el registro
-                /*boolean registrocreado = false;
-                registros.cargarArchivo();
-                int getposregistro = 0;
-                for (int i = 0; i < registros.getLista_archivos().size(); i++) {
-                    if (registros.getLista_archivos().get(i).getArchivo().equals(archivo_actual.getArchivo())) {
-                        registrocreado = true;
-                        getposregistro = i;
-                        registro_actual = registros.getLista_archivos().get(i);//se trabaja con un registro actual para facilitar el manejo de este
-                        break;
-                    }
-                }*/
- /*try {
-                    //en este if es si el registro no esta creado
-                    if (registrocreado == false) {
-                        int llaveprimaria = 0;
-                        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                                llaveprimaria = i;
-                            }
-                        }
-                        if (llaveprimaria != 0) {
-                            System.out.println("este es el registro: " + registro);
-                            String registro2 = registro;
-                            String arr[] = registro2.split("\\|");
-                            String guardarllave = "";
-                            for (int i = 0; i < arr.length; i++) {
-                                System.out.println("esta es la llave: " + arr[i]);
-                                if (llaveprimaria == i) {
-                                    guardarllave = arr[0];
-                                    arr[0] = arr[i];
-                                    arr[i] = guardarllave;
-                                }
-                            }
-                            String guardarcorreccion = "";
-                            for (int i = 0; i < arr.length; i++) {
-                                guardarcorreccion += arr[i] + "|";
-                            }
-                            System.out.println("esta es la correccion:" + guardarcorreccion);
-                            registros.cargarArchivo();
-                            int id = registros.GenerarId();
-                            Registro registro_actual1 = new Registro(archivo_actual.getArchivo(), id);
-                            File arch = new File(registro_actual1.getArchivo().getName());
-                            RandomAccessFile flujo = new RandomAccessFile(arch, "rw");//aqui es donde se crea el raf al archivo
-                            System.out.println("numero de registros: " + registro_actual1.getNumeroderegistros());
-                            registro_actual1.addregistro();
-                            flujo.seek(registro_actual1.getNumeroderegistros() * 75);//esto lo que hace es que va multiplicando la cantdad de registros por 75 ya que ese el tam de bytes que dejo
-                            flujo.write(guardarcorreccion.getBytes());//aqui escribe los bytes
-                            flujo.close();
-                            System.out.println("esto fue lo que escribio en bytes: " + registro.getBytes().length);
-                            registro_actual = registro_actual1;
-                            System.out.println("este es donde esta registro_actual:" + registro_actual.getArchivo().getAbsolutePath());
-                            System.out.println("numero de registros: " + registro_actual1.getNumeroderegistros());
-                            registros.AddArchivo(registro_actual1);
-                            registros.escribirArchivo();
-                            return rrn = registro_actual1.getNumeroderegistros() * 75;//estas lineas devuelven el rrn que es la cantidad de registros *75
-                        } else {
-                            registros.cargarArchivo();
-                            int id = registros.GenerarId();
-                            Registro registro_actual1 = new Registro(archivo_actual.getArchivo(), id);
-                            File arch = new File(registro_actual1.getArchivo().getName());
-                            RandomAccessFile flujo = new RandomAccessFile(arch, "rw");//aqui es donde se crea el raf al archivo
-                            System.out.println("numero de registros: " + registro_actual1.getNumeroderegistros());
-                            registro_actual1.addregistro();
-                            flujo.seek(registro_actual1.getNumeroderegistros() * 75);//esto lo que hace es que va multiplicando la cantdad de registros por 75 ya que ese el tam de bytes que dejo
-                            flujo.write(registro.getBytes());//aqui escribe los bytes
-                            flujo.close();
-                            System.out.println("esto fue lo que escribio en bytes: " + registro.getBytes().length);
-                            registro_actual = registro_actual1;
-                            System.out.println("este es donde esta registro_actual:" + registro_actual.getArchivo().getAbsolutePath());
-                            System.out.println("numero de registros: " + registro_actual1.getNumeroderegistros());
-                            registros.AddArchivo(registro_actual1);
-                            registros.escribirArchivo();
-                            return rrn = registro_actual1.getNumeroderegistros() * 75;//estas lineas devuelven el rrn que es la cantidad de registros *75
-                        }
-
-                    } else {
-                        int llaveprimaria = 0;
-                        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                                llaveprimaria = i;
-                            }
-                        }
-                        if (llaveprimaria != 0) {
-                            System.out.println("este es el registro: " + registro);
-                            String registro2 = registro;
-                            String arr[] = registro2.split("\\|");
-                            String guardarllave = "";
-                            for (int i = 0; i < arr.length; i++) {
-                                System.out.println("esta es la llave: " + arr[i]);
-                                if (llaveprimaria == i) {
-                                    guardarllave = arr[0];
-                                    arr[0] = arr[i];
-                                    arr[i] = guardarllave;
-                                }
-                            }
-                            String guardarcorreccion = "";
-                            for (int i = 0; i < arr.length; i++) {
-                                guardarcorreccion += arr[i] + "|";
-                            }
-                            System.out.println("esta es la correccion:" + guardarcorreccion);
-
-                            registros.cargarArchivo();
-                            File arch = new File(registros.getLista_archivos().get(getposregistro).getArchivo().getName());
-                            RandomAccessFile flujo = new RandomAccessFile(arch, "rw");
-                            System.out.println("numero de registros: " + registros.getLista_archivos().get(getposregistro).getNumeroderegistros());
-                            registros.getLista_archivos().get(getposregistro).addregistro();
-                            flujo.seek(registros.getLista_archivos().get(getposregistro).getNumeroderegistros() * 75);
-                            System.out.println("este es el registro que manda :" + registro);
-                            flujo.write(registro.getBytes());
-                            flujo.close();
-                            registro_actual = registros.getLista_archivos().get(getposregistro);
-                            System.out.println("este es donde esta registro_actual:" + registro_actual.getArchivo().getAbsolutePath());
-                            System.out.println("numero de registros: " + registro_actual.getNumeroderegistros());
-                            registros.escribirArchivo();
-                            return rrn = registros.getLista_archivos().get(getposregistro).getNumeroderegistros() * 75;//estas lineas devuelven el rrn que es la cantidad de registros *75
-
-                        } else {
-                            registros.cargarArchivo();
-                            File arch = new File(registros.getLista_archivos().get(getposregistro).getArchivo().getName());
-                            RandomAccessFile flujo = new RandomAccessFile(arch, "rw");
-                            System.out.println("numero de registros: " + registros.getLista_archivos().get(getposregistro).getNumeroderegistros());
-                            registros.getLista_archivos().get(getposregistro).addregistro();
-                            flujo.seek(registros.getLista_archivos().get(getposregistro).getNumeroderegistros() * 75);
-                            System.out.println("este es el registro que manda :" + registro);
-                            flujo.write(registro.getBytes());
-                            flujo.close();
-                            registro_actual = registros.getLista_archivos().get(getposregistro);
-                            System.out.println("este es donde esta registro_actual:" + registro_actual.getArchivo().getAbsolutePath());
-                            System.out.println("numero de registros: " + registro_actual.getNumeroderegistros());
-                            registros.escribirArchivo();
-                            return rrn = registros.getLista_archivos().get(getposregistro).getNumeroderegistros() * 75;//estas lineas devuelven el rrn que es la cantidad de registros *75
-                        }
-                        //en este es si el registro ya esta creado
-                    }
-                } finally {
-
-                }*/
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -3439,6 +3507,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel JL_38;
     private javax.swing.JLabel JL_39;
     private javax.swing.JLabel JL_4;
+    private javax.swing.JLabel JL_40;
+    private javax.swing.JLabel JL_41;
+    private javax.swing.JLabel JL_42;
     private javax.swing.JLabel JL_5;
     private javax.swing.JLabel JL_6;
     private javax.swing.JLabel JL_7;
@@ -3454,12 +3525,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField TF_NombreDelCampo;
     private javax.swing.JTextField TF_NombreDelCampoModificado;
     private javax.swing.JFrame VentanaMenuCampos;
+    private javax.swing.JButton btn_AvanzarListarRegistro;
     private javax.swing.JButton btn_ConfirmarBorrar;
     private javax.swing.JButton btn_ConfirmarModificacion;
     private javax.swing.JButton btn_PuenteBorrarRegistro;
     private javax.swing.JButton btn_PuenteCruzarArchivos;
     private javax.swing.JButton btn_PuenteListarRegistros;
     private javax.swing.JButton btn_PuenteModificarRegistros;
+    private javax.swing.JButton btn_RetrocederListarRegistro;
     private javax.swing.JButton btn_buscarEliminarRegistros;
     private javax.swing.JButton btn_buscarModificarRegistro;
     private javax.swing.JButton btn_buscarRegistro;
@@ -3469,13 +3542,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_regresarRegistrosPrincipal;
     private javax.swing.JButton btn_regresarRegistrosPrincipal1;
     private javax.swing.JButton btn_regresarRegistrosPrincipal2;
+    private javax.swing.JButton btn_regresarRegistrosPrincipal3;
     private javax.swing.JButton btn_salirCrearRegistros;
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jCb_llavesBuscarregistros;
     private javax.swing.JComboBox<String> jCb_llavesEliminarRegistros;
     private javax.swing.JDialog jD_EliminarRegistros;
+    private javax.swing.JDialog jD_ListarRegistros;
+    private javax.swing.JDialog jD_MenuRegistros;
     private javax.swing.JDialog jD_ModificarRegistros;
-    private javax.swing.JDialog jD_Registros;
     private javax.swing.JDialog jD_buscarRegistros;
     private javax.swing.JDialog jD_crearRegistros;
     private javax.swing.JLabel jLabel1;
@@ -3487,6 +3562,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -3496,11 +3572,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTable jTbl_ListarRegistros;
     private javax.swing.JTable jTbl_ModificarRegistros;
     private javax.swing.JTable jTbl_buscarRegistros;
     private javax.swing.JTable jTbl_eliminarRegistros;
