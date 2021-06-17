@@ -174,6 +174,7 @@ public class Principal extends javax.swing.JFrame {
         JL_39 = new javax.swing.JLabel();
         jLbl_instruccionModificar1 = new javax.swing.JLabel();
         btn_ConfirmarBorrar = new javax.swing.JButton();
+        jCb_llavesEliminarRegistros = new javax.swing.JComboBox<>();
         PanelPrincipal = new javax.swing.JPanel();
         JL_1 = new javax.swing.JLabel();
         BTN_SalirPrograma = new javax.swing.JButton();
@@ -859,6 +860,11 @@ public class Principal extends javax.swing.JFrame {
         btn_PuenteBorrarRegistro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_PuenteBorrarRegistro.setForeground(new java.awt.Color(255, 255, 255));
         btn_PuenteBorrarRegistro.setText("Borrar Registro");
+        btn_PuenteBorrarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_PuenteBorrarRegistroActionPerformed(evt);
+            }
+        });
 
         btn_PuenteListarRegistros.setBackground(new java.awt.Color(255, 51, 0));
         btn_PuenteListarRegistros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1295,6 +1301,7 @@ public class Principal extends javax.swing.JFrame {
 
             }
         ));
+        jTbl_eliminarRegistros.setEnabled(false);
         jScrollPane9.setViewportView(jTbl_eliminarRegistros);
 
         btn_regresarRegistrosPrincipal2.setBackground(new java.awt.Color(204, 204, 204));
@@ -1318,7 +1325,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLbl_instruccionModificar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLbl_instruccionModificar1.setForeground(new java.awt.Color(102, 102, 102));
-        jLbl_instruccionModificar1.setText("Ingrese la llave del registro a eliminar");
+        jLbl_instruccionModificar1.setText("Seleccione la llave del registro a eliminar");
 
         btn_ConfirmarBorrar.setBackground(new java.awt.Color(204, 204, 204));
         btn_ConfirmarBorrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1329,6 +1336,9 @@ public class Principal extends javax.swing.JFrame {
                 btn_ConfirmarBorrarMouseClicked(evt);
             }
         });
+
+        jCb_llavesEliminarRegistros.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jCb_llavesEliminarRegistros.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -1344,6 +1354,8 @@ public class Principal extends javax.swing.JFrame {
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel11Layout.createSequentialGroup()
+                                        .addComponent(jCb_llavesEliminarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
                                         .addComponent(jTf_LLaveEliminarRegistros)
                                         .addGap(18, 18, 18)
                                         .addComponent(btn_buscarEliminarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1375,7 +1387,8 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTf_LLaveEliminarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_buscarEliminarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_buscarEliminarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCb_llavesEliminarRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -2270,7 +2283,9 @@ public class Principal extends javax.swing.JFrame {
         for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
             model.addColumn(archivo_actual.getCampos().get(i).getNombre());
         }
-        jTbl_tablaRegistros.setModel(modelo);
+        
+        jTbl_tablaRegistros.setModel(modelo);//??
+        
         jCb_llavesBuscarregistros.setModel(new DefaultComboBoxModel<>());
         for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
             if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
@@ -2614,6 +2629,95 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_buscarEliminarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarEliminarRegistrosActionPerformed
         // TODO add your handling code here:
+        if (jTf_LLaveEliminarRegistros.getText().equals("")
+                || jCb_llavesEliminarRegistros.getSelectedItem() == null) {
+            return;
+        }
+        boolean arbolcreado = false;//verifica si el arbol esta creado
+        int getposarbol = 0;//esto es para agrrar la posicion dle arbolcreado
+        for (int i = 0; i < arboles.getListaarboles().size(); i++) {
+            if (arboles.getListaarboles().get(i).getArchivo().equals(archivo_actual.getArchivo())) {
+                arbolcreado = true;
+                getposarbol = i;
+                arbol_actual = arboles.getListaarboles().get(i).getArbol();
+                break;
+            }
+        }
+        if (arbol_actual != null) {
+            //Object Item = jCb_llavesBuscarregistros.getSelectedItem();
+//        int pos = ((itemcombo)Item).getPos();
+            if (true || jCb_llavesEliminarRegistros.getSelectedIndex() == 0) {
+                int pk = 0;
+                String llave = jTf_LLaveEliminarRegistros.getText();
+                int llaveprimaria = 0;
+                for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                    if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                        llaveprimaria = i;
+                    }
+                }//fin for i
+                if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
+                    int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                    llave = espacios.substring(0, num) + llave;
+                } else if (archivo_actual.getCampos().get(pk).getTipo().equals("String")) {
+                    int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                    llave = espacios.substring(0, num) + llave;
+                }
+                if (llaveprimaria != 0) {
+                    if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("String")) {
+                        int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
+                        System.out.println("estos son los espacios que elimina" + num);
+                        int cont = 0;
+                        if (num < 0) {
+                            while (num < 0) {
+                                num++;
+                                cont++;
+                            }
+                        }
+                        llave = llave.substring(cont, llave.length());
+                    } else if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("int")) {
+                        int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
+                        System.out.println("estos son los espacios que eliminaa" + num);
+                        int cont = 0;
+                        if (num < 0) {
+                            while (num < 0) {
+                                num++;
+                                cont++;
+                            }
+                        }
+                        llave = llave.substring(cont, llave.length());
+                        System.out.println("la nueva llave es: " + llave);
+                    }
+                }
+                System.out.println("esta es la llave que se envia" + llave);
+                rrnsbuscar = new ArrayList<Long>();
+                arbol_actual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
+
+                if (rrnsbuscar.size() == 0) {
+                    JOptionPane.showMessageDialog(null, "No se encontro ningun registro con ese valor");
+                    jTf_LLaveEliminarRegistros.setText("");
+                    return;
+                }
+                for (long l : rrnsbuscar) {
+                    rrnabuscar = Math.toIntExact(l);//al rrn se le asigan el valor que el rrn le ha enviado
+                    try {
+                        String data = leerregistro(Math.toIntExact(rrnabuscar));
+                        System.out.println(data);
+                        String arr[] = data.split("\\|");
+                        DefaultTableModel model = (DefaultTableModel) jTbl_eliminarRegistros.getModel();
+                        model.getDataVector().removeAllElements();
+                        Object arr2[] = new Object[model.getColumnCount()];
+                        for (int i = 0; i < model.getColumnCount(); i++) {
+                            arr2[i] = arr[i];
+                        }
+                        model.addRow(arr2);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se puede buscar porque no existen registros creados");
+        }
     }//GEN-LAST:event_btn_buscarEliminarRegistrosActionPerformed
 
     private void btn_regresarRegistrosPrincipal2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresarRegistrosPrincipal2MouseClicked
@@ -2627,7 +2731,34 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_ConfirmarBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfirmarBorrarMouseClicked
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btn_ConfirmarBorrarMouseClicked
+
+    private void btn_PuenteBorrarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PuenteBorrarRegistroActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel modelo = new DefaultTableModel();
+        jTbl_eliminarRegistros.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) jTbl_eliminarRegistros.getModel();
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+        }//fin for i
+        
+        jTbl_tablaRegistros.setModel(modelo);//??
+        
+        jCb_llavesEliminarRegistros.setModel(new DefaultComboBoxModel<>());
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
+                jCb_llavesEliminarRegistros.addItem(ic.toString());
+                break;
+            }
+        }//fin for i
+        jTf_LLaveEliminarRegistros.setText("");
+        jD_EliminarRegistros.pack();
+        jD_EliminarRegistros.setModal(true);
+        jD_EliminarRegistros.setLocationRelativeTo(null);
+        jD_EliminarRegistros.setVisible(true);
+    }//GEN-LAST:event_btn_PuenteBorrarRegistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3281,6 +3412,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_salirCrearRegistros;
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jCb_llavesBuscarregistros;
+    private javax.swing.JComboBox<String> jCb_llavesEliminarRegistros;
     private javax.swing.JDialog jD_EliminarRegistros;
     private javax.swing.JDialog jD_ModificarRegistros;
     private javax.swing.JDialog jD_Registros;
