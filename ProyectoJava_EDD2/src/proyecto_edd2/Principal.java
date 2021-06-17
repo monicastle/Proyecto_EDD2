@@ -1422,6 +1422,7 @@ public class Principal extends javax.swing.JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 } // Fin Try Catch
+                 arboles.cargarArchivo();
                 boolean omitidos = false;//esto es para los que ya estan creados en el arbol
                 boolean arbolcreado = false;//verifica si el arbol esta creado
                 int getposarbol = 0;//agarra la posicion del arbol
@@ -2320,7 +2321,7 @@ public class Principal extends javax.swing.JFrame {
                 break;
             }
         }
-        if (arbolcreado == true) {
+        if (arbol_actual != null) {
             Object Item = jCb_llavesBuscarregistros.getSelectedItem();
 //        int pos = ((itemcombo)Item).getPos();
             DefaultTableModel model = (DefaultTableModel) jTbl_buscarRegistros.getModel();
