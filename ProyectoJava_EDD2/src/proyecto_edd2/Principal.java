@@ -1354,9 +1354,9 @@ public class Principal extends javax.swing.JFrame {
                                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel11Layout.createSequentialGroup()
-                                        .addComponent(jCb_llavesEliminarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jCb_llavesEliminarRegistros, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTf_LLaveEliminarRegistros)
+                                        .addComponent(jTf_LLaveEliminarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(btn_buscarEliminarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel11Layout.createSequentialGroup()
@@ -1635,12 +1635,11 @@ public class Principal extends javax.swing.JFrame {
                 arboles.cargarArchivo();
                 boolean omitidos = false;//esto es para los que ya estan creados en el arbol
                 boolean arbolcreado = false;//verifica si el arbol esta creado
-                int getposarbol = 0;//agarra la posicion del arbol
                 //esto verifica que el arbol no exista
                 for (int i = 0; i < arboles.getListaarboles().size(); i++) {
                     if (arboles.getListaarboles().get(i).getArchivo().equals(archivo_actual.getArchivo())) {
                         arbolcreado = true;
-                        getposarbol = i;//se agarra la posicion del arbol creado
+                        get_posarbol = i;//se agarra la posicion del arbol creado
                         arbol_actual = arboles.getListaarboles().get(i).getArbol();
                         break;
                     }
@@ -1655,6 +1654,8 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se puede abrir el archivo porque no existe");
         } // Fin Try Catch
     }//GEN-LAST:event_BTN_AbrirArchivoActionPerformed
+
+    private int get_posarbol = 0;//agarra la posicion del arbol
 
     private void BTN_SalvarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_SalvarArchivoActionPerformed
         // ACTUALIZA EL TEXT AREA QUE MUESTRA EL ARCHIVO
@@ -2283,9 +2284,9 @@ public class Principal extends javax.swing.JFrame {
         for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
             model.addColumn(archivo_actual.getCampos().get(i).getNombre());
         }
-        
+
         jTbl_tablaRegistros.setModel(modelo);//??
-        
+
         jCb_llavesBuscarregistros.setModel(new DefaultComboBoxModel<>());
         for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
             if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
@@ -2731,8 +2732,67 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_ConfirmarBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfirmarBorrarMouseClicked
         // TODO add your handling code here:
-        
+        if (btn_ConfirmarBorrar.isEnabled()) {
+            int c = 0;
+            for (long rrn : rrnsbuscar) {
+                if (true || Campo.class.cast(jCb_llavesEliminarRegistros.getSelectedItem()).isLlavePrimaria()) {
+                    String data = "";
+                    try {
+                        data = leerregistro(Math.toIntExact(rrn));
+                        System.out.println("");
+                        System.out.println("data " + data);
+                        System.out.println("");
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    char[] data2 = data.toCharArray();
+                    data2[0] = '*';
+                    //data2[|] = '|';
+                    String rrnString = "";
+                    if (archivo_actual.getAvailList().isEmpty()) {
+                        rrnString = rrnAsString(-1);
+                    } else {
+                        rrnString = rrnAsString((int) archivo_actual.getAvailList().peekFirst());
+                    }
+                    //el for abajo no genera bien el caracter basura en los registros, parece que funciona para el avialist
+                    /*for (int i = 0; i < rrnString.length(); i++) {
+                        data2[2 + i] = rrnString.charAt(i);
+                    }*/
+                    try {
+                        int pk = getPosKey();
+                        String llave = jTbl_eliminarRegistros.getValueAt(c++, pk).toString();
+                        if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
+                            int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                            llave = espacios.substring(0, num) + llave;
+                        }
+                        //ESTO ELIMINA EL REGISTRO DE LA LISTA DE REGISTROS
+                        arboles.cargarArchivo();
+                        arbol_actual.B_Tree_Delete(arbol_actual.getRaiz(), llave);
+                        arboles.getListaarboles().get(get_posarbol).setArbol(arbol_actual);
+                        arboles.escribirArchivo();
+                        //
+                        Modificar(new String(data2), Math.toIntExact(rrn));
+                        archivo_actual.getAvailList().add(0, Math.toIntExact(rrn));
+                    } catch (Exception ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }//fin try cacth
+                }//fin if
+            }//fin for long rrn
+            jTf_LLaveEliminarRegistros.setEditable(true);
+            jCb_llavesEliminarRegistros.setEnabled(true);
+            btn_buscarEliminarRegistros.setEnabled(true);
+            btn_ConfirmarBorrar.setEnabled(false);
+        }//fin if
     }//GEN-LAST:event_btn_ConfirmarBorrarMouseClicked
+
+    private String rrnAsString(int rrn) {
+        String rrnString = "";
+        rrnString += rrn;
+        for (int i = rrnString.length(); i < 5; i++) {
+            rrnString += '.';
+        }
+        return rrnString;
+    }//fin método
 
     private void btn_PuenteBorrarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PuenteBorrarRegistroActionPerformed
         // TODO add your handling code here:
@@ -2742,9 +2802,9 @@ public class Principal extends javax.swing.JFrame {
         for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
             model.addColumn(archivo_actual.getCampos().get(i).getNombre());
         }//fin for i
-        
+
         jTbl_tablaRegistros.setModel(modelo);//??
-        
+
         jCb_llavesEliminarRegistros.setModel(new DefaultComboBoxModel<>());
         for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
             if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
@@ -2998,7 +3058,7 @@ public class Principal extends javax.swing.JFrame {
         return spaces;
     }
 
-    public void escribirArbol(String nombre, ArbolB arbol) {
+    public void escribirArbol(String nombre, BTree arbol) {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
         try {
@@ -3316,7 +3376,7 @@ public class Principal extends javax.swing.JFrame {
         return rrn;
     }
 
-    /*public ArbolB getArbol() {
+    /*public BTree getArbol() {
        // return arboles.get(getPosKey());
     }*/
 
@@ -3454,7 +3514,7 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<Campo> campos_nuevos = new ArrayList();
     ArrayList<Campo> campos_guardados = new ArrayList();
     Administrar_Archivos aa = new Administrar_Archivos("./Archivos.dmo");
-    ArbolB arbol_actual;
+    BTree arbol_actual;
     private boolean salvado = false;
     private boolean semodifico = false;
     private boolean secreo = false;

@@ -24,12 +24,12 @@ public class Adminarboles {
     private ArrayList<Archivoconarbolb> listaarboles  = new ArrayList();
     private File archivo = null;
     Random random = new Random();
-    private ArbolB arbol;
+    private BTree arbol;
 
     public Adminarboles(String path) {
           archivo = new File(path);
     }
-
+    
     public ArrayList<Archivoconarbolb> getListaarboles() {
         return listaarboles;
     }
@@ -37,10 +37,10 @@ public class Adminarboles {
    
 
     public void setArbol(int orden) {
-        this.arbol = new ArbolB(orden);
+        this.arbol = new BTree(orden);
     }
 
-    public ArbolB getArbol() {
+    public BTree getArbol() {
         return arbol;
     }
 
@@ -125,6 +125,7 @@ public class Adminarboles {
             } // Fin If
         } // Fin While
     } // Fin Generar ID
-
+    
+    
     
 }

@@ -12,15 +12,15 @@ import java.util.ArrayList;
  *
  * @author daba5
  */
-public class Nodo implements Serializable{
+public class Node implements Serializable{
     
      //boolean esHoja;
     ArrayList<LlavePos> llaves;
     ArrayList<Integer> hijos;
-    int n;
+    int n;//llaves
     boolean leaf;
 
-    public Nodo(int m) {
+    public Node(int m) {
         llaves = new ArrayList<>();
         hijos = new ArrayList<>();
         for (int i = 0; i < m-1; i++) {
@@ -32,7 +32,7 @@ public class Nodo implements Serializable{
         leaf = true;
     }
 
-    public Nodo(int m, String llave, long pos) {
+    public Node(int m, String llave, long pos) {
         llaves = new ArrayList<>(m-1);
         hijos = new ArrayList<>(m);
         llaves.set(0, new LlavePos(llave, pos));

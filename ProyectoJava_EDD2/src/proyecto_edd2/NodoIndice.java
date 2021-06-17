@@ -11,19 +11,19 @@ package proyecto_edd2;
  */
 public class NodoIndice {
     
-      private Nodo nodo;
+      private Node nodo;
     private int indice;
 
-    public NodoIndice(Nodo nodo, int indice) {
+    public NodoIndice(Node nodo, int indice) {
         this.nodo = nodo;
         this.indice = indice;
     }
 
-    public Nodo getNodo() {
+    public Node getNodo() {
         return nodo;
     }
 
-    public void setNodo(Nodo nodo) {
+    public void setNodo(Node nodo) {
         this.nodo = nodo;
     }
 

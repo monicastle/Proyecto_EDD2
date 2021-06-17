@@ -17,9 +17,11 @@ import java.util.LinkedList;
 public class Archivoconarbolb implements Serializable {
 //esta clase se hizo con el proposito de poder crear el archivo donde el arbolb se mantiene y no se elimina
 //esta clase se basa en Archivo ya que tienen varios componentes similares    
+
     private File archivo;
     private int ID;
-    private ArbolB arbol;
+    private BTree arbol;
+
     public Archivoconarbolb() {
     } // Fin Constructor Archivo
 
@@ -28,12 +30,16 @@ public class Archivoconarbolb implements Serializable {
         this.ID = ID;
     } // Fin Constructor Archivo
 
-    public ArbolB getArbol() {
+    public BTree getArbol() {
         return arbol;
     }
 
     public void setArbol(int orden) {
-        this.arbol = new ArbolB(orden);
+        this.arbol = new BTree(orden);
+    }
+    
+    public void setArbol(BTree arbol) {
+        this.arbol = arbol;
     }
 
     public int getID() {
@@ -51,6 +57,5 @@ public class Archivoconarbolb implements Serializable {
     public void setArchivo(File archivo) {
         this.archivo = archivo;
     } // Fin Set Archivo
-
 
 } // Fin Clase Archivo
