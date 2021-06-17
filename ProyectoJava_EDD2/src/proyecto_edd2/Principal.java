@@ -2988,7 +2988,7 @@ public class Principal extends javax.swing.JFrame {
         retroceder = 0;
         rrn_llaves_en_orden = new ArrayList();
         arbol_actual.BTree_KeysInOrder(arbol_actual.getRaiz(), rrn_llaves_en_orden);
-        listar_registros();
+        listar_registros();//*/
         jD_ListarRegistros.pack();
         jD_ListarRegistros.setModal(true);
         jD_ListarRegistros.setLocationRelativeTo(null);
@@ -3006,8 +3006,7 @@ public class Principal extends javax.swing.JFrame {
         }
         jTbl_ListarRegistros.setModel(model);
         for (int i = retroceder; i < avanzar && i < rrn_llaves_en_orden.size(); i++){
-            long RRN = rrn_llaves_en_orden
-            .get(i);
+            long RRN = rrn_llaves_en_orden.get(i);
             try {
                 String data = leerregistro(Math.toIntExact(RRN));
                 System.out.println(data);
@@ -3353,7 +3352,6 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private void Modificar(String data, int rrn) throws FileNotFoundException, IOException {
-
         RandomAccessFile flujo = new RandomAccessFile(archivo_actual.getArchivo(), "rw");
         flujo.seek(rrn);
         flujo.write((data + llenar(data.length())).getBytes());
@@ -3375,7 +3373,7 @@ public class Principal extends javax.swing.JFrame {
         af.close();
         fr.close();
         return x;
-    }
+    }// 
 
     private int tam_registro() {
         int length = 0;
@@ -3429,10 +3427,10 @@ public class Principal extends javax.swing.JFrame {
                 rrn = (int) archivo_actual.getAvailList().peekFirst();
                 RandomAccessFile raf = new RandomAccessFile(new File(GuardarArchivo), "rw");
                 raf.seek(((int) archivo_actual.getAvailList().removeFirst() - 1) * tam_registro() + archivo_actual.getSizeMetadata());
-                System.out.println("En este RRN lo guarda:" + (((int) archivo_actual.getAvailList().removeFirst() - 1) * tam_registro()) + archivo_actual.getSizeMetadata());
+                /*System.out.println("En este RRN lo guarda:" + (((int) archivo_actual.getAvailList().removeFirst() - 1) * tam_registro()) + archivo_actual.getSizeMetadata());
                 for (int i = 0; i < archivo_actual.getAvailList().size(); i++) {
                     System.out.println((int) archivo_actual.getAvailList().get(i));
-                }
+                }*/
                 raf.write(registro.getBytes());
                 raf.close();
             } catch (FileNotFoundException ex) {

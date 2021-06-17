@@ -420,14 +420,17 @@ public class BTree implements Serializable {
     }//termina el metodo eliminar
 
     public void BTree_KeysInOrder(int IndiceNodoActual, ArrayList<Long> lista) {
-        if (IndiceNodoActual >= 0) {
+        if (IndiceNodoActual >= 0 /*&& lista.size()< 5*/) {//descomentar en caso que solo se deban listar 5 registros y nada mas
             Node node = nodos.get(IndiceNodoActual);
             for (int i = 0; i < node.getN(); i++) {
-                BTree_KeysInOrder(node.getHijos().get(i), lista);
-                lista.add(node.getLlaves().get(i).getPos());
+                if (lista.size()<5) {//usar este if en caso que solo se deban listar 5 registros y nada mas
+                    BTree_KeysInOrder(node.getHijos().get(i), lista);
+                    lista.add(node.getLlaves().get(i).getPos());
+                } else{
+                 i = node.getN();
+                }
             }
-            System.out.println("holaaa");
-            BTree_KeysInOrder(node.getHijos().get(node.getN()), lista);//almenos con 3 registros este llamado es innesesario
+            BTree_KeysInOrder(node.getHijos().get(node.getN()), lista);
         }//fin if
     }//fin método
 
