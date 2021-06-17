@@ -1422,6 +1422,18 @@ public class Principal extends javax.swing.JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 } // Fin Try Catch
+                boolean omitidos = false;//esto es para los que ya estan creados en el arbol
+                boolean arbolcreado = false;//verifica si el arbol esta creado
+                int getposarbol = 0;//agarra la posicion del arbol
+                //esto verifica que el arbol no exista
+                for (int i = 0; i < arboles.getListaarboles().size(); i++) {
+                    if (arboles.getListaarboles().get(i).getArchivo().equals(archivo_actual.getArchivo())) {
+                        arbolcreado = true;
+                        getposarbol = i;//se agarra la posicion del arbol creado
+                        arbol_actual = arboles.getListaarboles().get(i).getArbol();
+                        break;
+                    }
+                }
                 salvado = false;
                 this.setVisible(false);
                 VentanaMenuCampos.pack();
@@ -1636,7 +1648,7 @@ public class Principal extends javax.swing.JFrame {
         try {
             TF_NombreDelCampoModificado.setText("");
             CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
-             SP_LongitudDelCampoModificado.setValue(0);
+            SP_LongitudDelCampoModificado.setValue(0);
             RB_LlavePrimariaDelCampoModificado.setSelected(false);
             VentanaMenuCampos.setVisible(false);
             JD_ModificarCampos.setModal(true);
@@ -1883,7 +1895,7 @@ public class Principal extends javax.swing.JFrame {
                         cambios_txt();
                         TF_NombreDelCampoModificado.setText("");
                         CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
-                         SP_LongitudDelCampoModificado.setValue(0);
+                        SP_LongitudDelCampoModificado.setValue(0);
                         RB_LlavePrimariaDelCampoModificado.setSelected(false);
                         if (mostrar_mensaje) {
                             JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
@@ -1911,7 +1923,7 @@ public class Principal extends javax.swing.JFrame {
                         cambios_txt();
                         TF_NombreDelCampoModificado.setText("");
                         CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
-                         SP_LongitudDelCampoModificado.setValue(0);
+                        SP_LongitudDelCampoModificado.setValue(0);
                         RB_LlavePrimariaDelCampoModificado.setSelected(false);
                         if (mostrar_mensaje) {
                             JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
