@@ -34,6 +34,22 @@ public class BTree implements Serializable {
 
     }
 
+    public int getOrden() {
+        return orden;
+    }
+
+    public void setOrden(int orden) {
+        this.orden = orden;
+    }
+
+    public ArrayList<Node> getNodos() {
+        return nodos;
+    }
+
+    public void setNodos(ArrayList<Node> nodos) {
+        this.nodos = nodos;
+    }
+
     /*public BTree(int orden, String llave, long pos) {
         //this.t = (int) Math.floor((orden + 1) / 2);// responsabilizar a Jose.
         this.orden = orden;
@@ -423,11 +439,11 @@ public class BTree implements Serializable {
         if (IndiceNodoActual >= 0 /*&& lista.size()< 5*/) {//descomentar en caso que solo se deban listar 5 registros y nada mas
             Node node = nodos.get(IndiceNodoActual);
             for (int i = 0; i < node.getN(); i++) {
-                if (lista.size()<5) {//usar este if en caso que solo se deban listar 5 registros y nada mas
+                if (lista.size() < 5) {//usar este if en caso que solo se deban listar 5 registros y nada mas
                     BTree_KeysInOrder(node.getHijos().get(i), lista);
                     lista.add(node.getLlaves().get(i).getPos());
-                } else{
-                 i = node.getN();
+                } else {
+                    i = node.getN();
                 }
             }
             BTree_KeysInOrder(node.getHijos().get(node.getN()), lista);

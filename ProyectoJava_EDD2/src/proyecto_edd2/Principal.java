@@ -63,6 +63,7 @@ public class Principal extends javax.swing.JFrame {
         TA_ArchivoAbierto = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         BTN_SalvarArchivo = new javax.swing.JButton();
+        btn_utilidades = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         BTN_AbrirCrearCampo = new javax.swing.JButton();
@@ -185,6 +186,12 @@ public class Principal extends javax.swing.JFrame {
         JL_41 = new javax.swing.JLabel();
         JL_42 = new javax.swing.JLabel();
         btn_RetrocederListarRegistro = new javax.swing.JButton();
+        jD_Utilidades = new javax.swing.JDialog();
+        jPanel13 = new javax.swing.JPanel();
+        btn_ExportarExcel = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        JL_43 = new javax.swing.JLabel();
+        JL_44 = new javax.swing.JLabel();
         PanelPrincipal = new javax.swing.JPanel();
         JL_1 = new javax.swing.JLabel();
         BTN_SalirPrograma = new javax.swing.JButton();
@@ -214,13 +221,22 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btn_utilidades.setText("Utilidades");
+        btn_utilidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_utilidadesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(75, 75, 75)
+                .addComponent(btn_utilidades)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BTN_SalvarArchivo)
                 .addGap(182, 182, 182))
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -235,9 +251,14 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BTN_SalvarArchivo)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(BTN_SalvarArchivo))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(btn_utilidades)))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1535,6 +1556,71 @@ public class Principal extends javax.swing.JFrame {
         jD_ListarRegistrosLayout.setVerticalGroup(
             jD_ListarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jD_Utilidades.setTitle("Menú Registros");
+
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+
+        btn_ExportarExcel.setBackground(new java.awt.Color(255, 51, 0));
+        btn_ExportarExcel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_ExportarExcel.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ExportarExcel.setText("Exportar a Excel");
+        btn_ExportarExcel.setBorder(null);
+        btn_ExportarExcel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ExportarExcelMouseClicked(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Menú Utilidades");
+
+        JL_43.setForeground(new java.awt.Color(204, 204, 204));
+        JL_43.setText("____________________________________________________________________");
+
+        JL_44.setForeground(new java.awt.Color(204, 204, 204));
+        JL_44.setText("____________________________________________________________________");
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JL_43)
+                    .addComponent(JL_44))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(btn_ExportarExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(jLabel4)
+                .addGap(0, 0, 0)
+                .addComponent(JL_43)
+                .addGap(20, 20, 20)
+                .addComponent(btn_ExportarExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(195, 195, 195)
+                .addComponent(JL_44)
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jD_UtilidadesLayout = new javax.swing.GroupLayout(jD_Utilidades.getContentPane());
+        jD_Utilidades.getContentPane().setLayout(jD_UtilidadesLayout);
+        jD_UtilidadesLayout.setHorizontalGroup(
+            jD_UtilidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jD_UtilidadesLayout.setVerticalGroup(
+            jD_UtilidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -2949,8 +3035,7 @@ public class Principal extends javax.swing.JFrame {
     private void btn_AvanzarListarRegistroRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AvanzarListarRegistroRegistroActionPerformed
         // TODO add your handling code here:
         if (avanzar < rrn_llaves_en_orden.size()) {
-            int y = (avanzar % rrn_llaves_en_orden.size()
-            );
+            int y = (avanzar % rrn_llaves_en_orden.size());
             if (y % 5 == 0) {
                 y = 5;
             }
@@ -2996,6 +3081,41 @@ public class Principal extends javax.swing.JFrame {
         jD_ListarRegistros.setVisible(true);
     }//GEN-LAST:event_btn_PuenteListarRegistrosMouseClicked
 
+    private void btn_ExportarExcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ExportarExcelMouseClicked
+        // TODO add your handling code here:
+        rrn_llaves_en_orden = new ArrayList();
+        ExcelModelo modelo_excel = new ExcelModelo();
+        JFileChooser directorio = new JFileChooser();
+        directorio.setApproveButtonText("Exportar");
+        int seleccion = directorio.showOpenDialog(this);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            File archivo_excel = new File(directorio.getSelectedFile() + ".xlsx");
+            BufferedWriter salida;
+            try {
+                salida = new BufferedWriter(new FileWriter(archivo_excel));
+                salida.close();
+                System.out.println("hi");
+            } catch (IOException ex) {
+                System.out.println("excpetion -> salida->utilidades -> excel exportar");
+            }
+            System.out.println("excel exportado");
+            //DESCOMENTAR CUANDO HAYA ARREGLADO EL PROBLEMA QUE EXCEL SE CREA PERO CORRUPTO
+/*            JOptionPane.showMessageDialog(null, modelo_excel.Exportar(archivo_excel,
+                    rrn_llaves_en_orden,
+                    arbol_actual,
+                    archivo_actual));*/
+        }//fin if Jfile chooser
+    }//GEN-LAST:event_btn_ExportarExcelMouseClicked
+
+    private void btn_utilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_utilidadesActionPerformed
+        // TODO add your handling code here:
+        VentanaMenuCampos.setVisible(false);
+        jD_Utilidades.setModal(true);
+        jD_Utilidades.pack();
+        jD_Utilidades.setLocationRelativeTo(this);
+        jD_Utilidades.setVisible(true);
+    }//GEN-LAST:event_btn_utilidadesActionPerformed
+
     ArrayList<Long> rrn_llaves_en_orden = new ArrayList();
 
     public void listar_registros() {
@@ -3005,7 +3125,7 @@ public class Principal extends javax.swing.JFrame {
             model.addColumn(archivo_actual.getCampos().get(i).getNombre());
         }
         jTbl_ListarRegistros.setModel(model);
-        for (int i = retroceder; i < avanzar && i < rrn_llaves_en_orden.size(); i++){
+        for (int i = retroceder; i < avanzar && i < rrn_llaves_en_orden.size(); i++) {
             long RRN = rrn_llaves_en_orden.get(i);
             try {
                 String data = leerregistro(Math.toIntExact(RRN));
@@ -3508,6 +3628,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel JL_40;
     private javax.swing.JLabel JL_41;
     private javax.swing.JLabel JL_42;
+    private javax.swing.JLabel JL_43;
+    private javax.swing.JLabel JL_44;
     private javax.swing.JLabel JL_5;
     private javax.swing.JLabel JL_6;
     private javax.swing.JLabel JL_7;
@@ -3526,6 +3648,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_AvanzarListarRegistro;
     private javax.swing.JButton btn_ConfirmarBorrar;
     private javax.swing.JButton btn_ConfirmarModificacion;
+    private javax.swing.JButton btn_ExportarExcel;
     private javax.swing.JButton btn_PuenteBorrarRegistro;
     private javax.swing.JButton btn_PuenteCruzarArchivos;
     private javax.swing.JButton btn_PuenteListarRegistros;
@@ -3542,6 +3665,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_regresarRegistrosPrincipal2;
     private javax.swing.JButton btn_regresarRegistrosPrincipal3;
     private javax.swing.JButton btn_salirCrearRegistros;
+    private javax.swing.JButton btn_utilidades;
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jCb_llavesBuscarregistros;
     private javax.swing.JComboBox<String> jCb_llavesEliminarRegistros;
@@ -3549,11 +3673,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog jD_ListarRegistros;
     private javax.swing.JDialog jD_MenuRegistros;
     private javax.swing.JDialog jD_ModificarRegistros;
+    private javax.swing.JDialog jD_Utilidades;
     private javax.swing.JDialog jD_buscarRegistros;
     private javax.swing.JDialog jD_crearRegistros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLbl_instruccionModificar;
     private javax.swing.JLabel jLbl_instruccionModificar1;
     private javax.swing.JPanel jP_CrearCampo;
@@ -3561,6 +3687,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

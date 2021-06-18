@@ -79,7 +79,6 @@ public class Archivo implements Serializable {
 
     public int getSizeMetadata() {
         String metadata = nombre;
-
         for (Campo campo : this.getCampos()) {
             metadata += "|"
                     + campo.getNombre()
@@ -97,4 +96,5 @@ public class Archivo implements Serializable {
         }
         return metadata.length()+1;//mas uno por \n(confirmado por fuentes confiables)          
     }
+    
 } // Fin Clase Archivo
