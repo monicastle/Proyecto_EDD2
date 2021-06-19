@@ -2641,7 +2641,6 @@ public class Principal extends javax.swing.JFrame {
         if (arbolcreado == false) {
             //Aqui es sie el arbol no esta creado pues se crea dentro de la lista de arboles y se hace el registro
             System.out.println("no habia rchivo creado");
-
             arboles.cargarArchivo();
             String llave_primaria = "";
             int id = arboles.GenerarId();
@@ -2713,8 +2712,10 @@ public class Principal extends javax.swing.JFrame {
         String message;
         //esto lo que hace es enviar un mensaje a ver si el registro ya existe en el arbol
         if (omitidos) {
-            message = "Algunos registros fueron omitidos porque ya habia un registro con la misma llave primaria almacenado en el archvo.";
+            message = "No es posible guardar el registro, la llave ingresada ya está siendo utilizada.";
         } else {
+            boolean incrementa = true;
+            archivo_actual.setCant_regisros(incrementa);//incrementa la cantidad de registros
             message = "Guardado Exitoso";
         }
         arboles.escribirArchivo();
@@ -2872,9 +2873,7 @@ public class Principal extends javax.swing.JFrame {
                 for (int i = 0; i < model.getColumnCount(); i++) {
                     arr2[i] = arr[i];
                 }
-                model.addRow(arr2);
-                jTf_LLaveModificarRegistro.setEditable(false);
-                btn_ConfirmarModificacion.setEnabled(true);
+                model.addRow(arr2);    
             } catch (IOException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -2892,27 +2891,22 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_ConfirmarModificacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfirmarModificacionMouseClicked
         // TODO add your handling code here:
-        if (btn_ConfirmarModificacion.isEnabled()) {
-            if (ValidaciondeingresoTabla(jTbl_ModificarRegistros, false)) {
-                DefaultTableModel model = (DefaultTableModel) jTbl_ModificarRegistros.getModel();
-
-                String guardar = "";
-                // int length=0;
-                guardar = "";
-                for (int j = 0; j < model.getColumnCount(); j++) {
-                    guardar += model.getValueAt(0, j).toString() + "|";
-                    //length+=guardar.length();
-                }
-                model.removeRow(0);
-                try {
-                    Modificar(guardar, rrnModificar);
-                    JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
-                    jTf_LLaveModificarRegistro.setText("");
-                    jTf_LLaveModificarRegistro.setEditable(true);
-                    btn_ConfirmarModificacion.setEnabled(false);
-                } catch (IOException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        if (ValidaciondeingresoTabla(jTbl_ModificarRegistros, false)) {
+            DefaultTableModel model = (DefaultTableModel) jTbl_ModificarRegistros.getModel();
+            String guardar = "";
+            for (int j = 0; j < model.getColumnCount(); j++) {
+                guardar += model.getValueAt(0, j).toString() + "|";
+                //length+=guardar.length();
+            }
+            model.removeRow(0);
+            try {
+                Modificar(guardar, rrnModificar);
+                JOptionPane.showMessageDialog(null, "Registro modificado exitosamente");
+                jTf_LLaveModificarRegistro.setText("");
+                //jTf_LLaveModificarRegistro.setEditable(true);
+                //btn_ConfirmarModificacion.setEnabled(false);
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btn_ConfirmarModificacionMouseClicked
@@ -3021,16 +3015,15 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_ConfirmarBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfirmarBorrarMouseClicked
         // TODO add your handling code here:
-        if (btn_ConfirmarBorrar.isEnabled()) {
+        rrn_llaves_en_orden = new ArrayList<Long>();
+        arbol_actual.BTree_KeysInOrder(arbol_actual.getRaiz(), rrn_llaves_en_orden);
+        if (!rrn_llaves_en_orden.isEmpty()) {
             int c = 0;
             for (long rrn : rrnsbuscar) {
                 if (true || Campo.class.cast(jCb_llavesEliminarRegistros.getSelectedItem()).isLlavePrimaria()) {
                     String data = "";
                     try {
                         data = leerregistro(Math.toIntExact(rrn));
-                        System.out.println("");
-                        System.out.println("data " + data);
-                        System.out.println("");
                     } catch (IOException ex) {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -3067,11 +3060,14 @@ public class Principal extends javax.swing.JFrame {
                     }//fin try cacth
                 }//fin if
             }//fin for long rrn
-            jTf_LLaveEliminarRegistros.setEditable(true);
+            JOptionPane.showMessageDialog(this, "El registro a sido eliminado exitosamente");
+            /*jTf_LLaveEliminarRegistros.setEditable(true);
             jCb_llavesEliminarRegistros.setEnabled(true);
             btn_buscarEliminarRegistros.setEnabled(true);
-            btn_ConfirmarBorrar.setEnabled(false);
-        }//fin if
+            btn_ConfirmarBorrar.setEnabled(false);*/
+        } else {
+            JOptionPane.showMessageDialog(this, "No existen registros guardados.");
+        }
     }//GEN-LAST:event_btn_ConfirmarBorrarMouseClicked
 
     private String rrnAsString(int rrn) {
@@ -3120,6 +3116,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_utilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_utilidadesActionPerformed
         // TODO add your handling code here:
+        //ESTE BOTON ES DE MENU CAMPOS (SE BORRARÁ EVENTUALMENTE)
+        this.setVisible(false);
         VentanaMenuPrincipal.setVisible(false);
         VentanaMenuUtilidades.pack();
         VentanaMenuUtilidades.setLocationRelativeTo(this);
@@ -3128,30 +3126,52 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_PuenteMenuCamposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteMenuCamposMouseClicked
         // TODO add your handling code here:
-        this.setVisible(false);
-        VentanaMenuCampos.pack();
-        VentanaMenuCampos.setLocationRelativeTo(this);
-        VentanaMenuCampos.setVisible(true);
+        if (!archivo_actual.getAvailList().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No es posible modificar los campos de este archivo.");
+        /*} else if (arbol_actual == null) {//PUEDE QUE ESTO LO OCUPE AL ELIMINAR TODOS LOS REGISTROS.. PUEDE
+            JOptionPane.showMessageDialog(this, "Ya tienes registros creados.");*/
+        } else {
+            this.setVisible(false);
+            VentanaMenuPrincipal.setVisible(false);
+            VentanaMenuCampos.pack();
+            VentanaMenuCampos.setLocationRelativeTo(this);
+            VentanaMenuCampos.setVisible(true);
+        }
     }//GEN-LAST:event_btn_PuenteMenuCamposMouseClicked
 
     private void btn_PuenteMenuRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PuenteMenuRegistrosActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        VentanaMenuRegistros.pack();
-        VentanaMenuRegistros.setLocationRelativeTo(null);
-        VentanaMenuRegistros.setVisible(true);
+        if (!archivo_actual.getCampos().isEmpty()) {
+            this.setVisible(false);
+            VentanaMenuPrincipal.setVisible(false);
+            VentanaMenuRegistros.pack();
+            VentanaMenuRegistros.setLocationRelativeTo(null);
+            VentanaMenuRegistros.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Todavía no has especificado los nombres de los campos.");
+        }
     }//GEN-LAST:event_btn_PuenteMenuRegistrosActionPerformed
 
     private void btn_PuenteMenuIndicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteMenuIndicesMouseClicked
         // TODO add your handling code here:
+        if (!archivo_actual.getCampos().isEmpty()) {
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Todavía no has especificado los nombres de los campos.");
+        }
     }//GEN-LAST:event_btn_PuenteMenuIndicesMouseClicked
 
     private void btn_PuenteMenuUtilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PuenteMenuUtilidadesActionPerformed
         // TODO add your handling code here:
-        VentanaMenuPrincipal.setVisible(false);
-        VentanaMenuUtilidades.pack();
-        VentanaMenuUtilidades.setLocationRelativeTo(this);
-        VentanaMenuUtilidades.setVisible(true);
+        if (!archivo_actual.getCampos().isEmpty()) {
+            //se debe validar que existan registros?
+            VentanaMenuPrincipal.setVisible(false);
+            VentanaMenuUtilidades.pack();
+            VentanaMenuUtilidades.setLocationRelativeTo(this);
+            VentanaMenuUtilidades.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Todavía no has especificado los nombres de los campos.");
+        }
     }//GEN-LAST:event_btn_PuenteMenuUtilidadesActionPerformed
 
     private void btn_crearRegistros1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crearRegistros1MouseClicked
@@ -3172,82 +3192,103 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_buscarRegistros1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarRegistros1ActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel modelo = new DefaultTableModel();
-        jTbl_buscarRegistros.setModel(new DefaultTableModel());
-        DefaultTableModel model = (DefaultTableModel) jTbl_buscarRegistros.getModel();
-        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
-        }
-        jTbl_tablaRegistros.setModel(modelo);//??
-        jCb_llavesBuscarregistros.setModel(new DefaultComboBoxModel<>());
-        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
-                jCb_llavesBuscarregistros.addItem(ic.toString());
-                break;
+        //if (!(arbol_actual == null)) {
+        //if (archivo_actual.getCant_regisros() > 0) {
+            DefaultTableModel modelo = new DefaultTableModel();
+            jTbl_buscarRegistros.setModel(new DefaultTableModel());
+            DefaultTableModel model = (DefaultTableModel) jTbl_buscarRegistros.getModel();
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                model.addColumn(archivo_actual.getCampos().get(i).getNombre());
             }
-        }
-        jTf_buscarRegistros.setText("");
-        jD_buscarRegistros.pack();
-        jD_buscarRegistros.setModal(true);
-        jD_buscarRegistros.setLocationRelativeTo(null);
-        jD_buscarRegistros.setVisible(true);
+            jTbl_tablaRegistros.setModel(modelo);//??
+            jCb_llavesBuscarregistros.setModel(new DefaultComboBoxModel<>());
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                    itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
+                    jCb_llavesBuscarregistros.addItem(ic.toString());
+                    break;
+                }
+            }
+            jTf_buscarRegistros.setText("");
+            jD_buscarRegistros.pack();
+            jD_buscarRegistros.setModal(true);
+            jD_buscarRegistros.setLocationRelativeTo(this);
+            jD_buscarRegistros.setVisible(true);
+        /*} else {
+            JOptionPane.showMessageDialog(this, "No tienes registros guardados en estos momentos.");
+        }*/
     }//GEN-LAST:event_btn_buscarRegistros1ActionPerformed
 
     private void btn_PuenteModificarRegistros1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteModificarRegistros1MouseClicked
         // TODO add your handling code here:
-        VentanaMenuRegistros.setVisible(false);
-        //jLbl_instruccionModificar.setText(archivo_actual.getCampos().get(0).getNombre());
-        jTbl_ModificarRegistros.setModel(new DefaultTableModel());
-        DefaultTableModel model = (DefaultTableModel) jTbl_ModificarRegistros.getModel();
-        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
-        }
-        jD_ModificarRegistros.pack();
-        jD_ModificarRegistros.setModal(true);
-        jD_ModificarRegistros.setLocationRelativeTo(null);
-        jD_ModificarRegistros.setVisible(true);
-        jTbl_ModificarRegistros.setModel(new DefaultTableModel());
+        //if (!(arbol_actual == null)) {
+        //if (archivo_actual.getCant_regisros() > 0) {
+            VentanaMenuRegistros.setVisible(false);
+            //jLbl_instruccionModificar.setText(archivo_actual.getCampos().get(0).getNombre());
+            jTbl_ModificarRegistros.setModel(new DefaultTableModel());
+            DefaultTableModel model = (DefaultTableModel) jTbl_ModificarRegistros.getModel();
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+            }
+            jD_ModificarRegistros.pack();
+            jD_ModificarRegistros.setModal(true);
+            jD_ModificarRegistros.setLocationRelativeTo(null);
+            jD_ModificarRegistros.setVisible(true);
+            jTbl_ModificarRegistros.setModel(new DefaultTableModel());
+        /*} else {
+            JOptionPane.showMessageDialog(this, "No tienes registros guardados en estos momentos.");
+        }*/
     }//GEN-LAST:event_btn_PuenteModificarRegistros1MouseClicked
 
     private void btn_PuenteBorrarRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PuenteBorrarRegistro1ActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel modelo = new DefaultTableModel();
-        jTbl_eliminarRegistros.setModel(new DefaultTableModel());
-        DefaultTableModel model = (DefaultTableModel) jTbl_eliminarRegistros.getModel();
-        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
-        }//fin for i
-
-        jTbl_tablaRegistros.setModel(modelo);//??
-
-        jCb_llavesEliminarRegistros.setModel(new DefaultComboBoxModel<>());
-        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
-                jCb_llavesEliminarRegistros.addItem(ic.toString());
-                break;
-            }
-        }//fin for i
-        jTf_LLaveEliminarRegistros.setText("");
-        jD_EliminarRegistros.pack();
-        jD_EliminarRegistros.setModal(true);
-        jD_EliminarRegistros.setLocationRelativeTo(null);
-        jD_EliminarRegistros.setVisible(true);
+        //  if (!(arbol_actual == null)){
+        //if (archivo_actual.getCant_regisros() > 0) {
+            DefaultTableModel modelo = new DefaultTableModel();
+            jTbl_eliminarRegistros.setModel(new DefaultTableModel());
+            DefaultTableModel model = (DefaultTableModel) jTbl_eliminarRegistros.getModel();
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+            }//fin for i
+            jTbl_tablaRegistros.setModel(modelo);//??
+            jCb_llavesEliminarRegistros.setModel(new DefaultComboBoxModel<>());
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                    itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
+                    jCb_llavesEliminarRegistros.addItem(ic.toString());
+                    break;
+                }
+            }//fin for i
+            boolean incrementa = false;
+            archivo_actual.setCant_regisros(incrementa);
+            jTf_LLaveEliminarRegistros.setText("");
+            jTbl_eliminarRegistros.setModel(new DefaultTableModel());
+            /*jD_EliminarRegistros.pack();
+            jD_EliminarRegistros.setModal(true);
+            jD_EliminarRegistros.setLocationRelativeTo(null);
+            jD_EliminarRegistros.setVisible(true);*/
+        /*} else {
+            JOptionPane.showMessageDialog(this, "No tienes registros guardados en estos momentos.");
+        }*/
     }//GEN-LAST:event_btn_PuenteBorrarRegistro1ActionPerformed
 
     private void btn_PuenteListarRegistros1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteListarRegistros1MouseClicked
         // TODO add your handling code here:
-        avanzar = 5;
-        retroceder = 0;
-        rrn_llaves_en_orden = new ArrayList();
-        arbol_actual.BTree_KeysInOrder(arbol_actual.getRaiz(), rrn_llaves_en_orden);
-        listar_registros();//*/
-        jD_ListarRegistros.pack();
-        jD_ListarRegistros.setModal(true);
-        jD_ListarRegistros.setLocationRelativeTo(null);
-        VentanaMenuRegistros.setVisible(false);
-        jD_ListarRegistros.setVisible(true);
+        //if (!(arbol_actual == null)) {
+        //if (archivo_actual.getCant_regisros() > 0){
+            avanzar = 5;
+            retroceder = 0;
+            rrn_llaves_en_orden = new ArrayList();
+            arbol_actual.BTree_KeysInOrder(arbol_actual.getRaiz(), rrn_llaves_en_orden);
+            listar_registros();//*/
+            jD_ListarRegistros.pack();
+            jD_ListarRegistros.setModal(true);
+            jD_ListarRegistros.setLocationRelativeTo(this);
+            VentanaMenuRegistros.setVisible(false);
+            jD_ListarRegistros.setVisible(true);
+        /*} else {
+            JOptionPane.showMessageDialog(this, "No tienes registros guardados en estos momentos.");
+        }*/
     }//GEN-LAST:event_btn_PuenteListarRegistros1MouseClicked
 
     private void btn_ExportarExcel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ExportarExcel1MouseClicked
@@ -3702,13 +3743,13 @@ public class Principal extends javax.swing.JFrame {
             if (aa.getLista_archivos().get(pos_archivo).getCant_regisros() == 0) {
                 aa.cargarArchivo();
                 int rrn = (250 - archivo_actual.getSizeMetadata());
-                aa.getLista_archivos().get(pos_archivo).setCant_regisros();
+                aa.getLista_archivos().get(pos_archivo).setCant_regisros(true);
                 aa.escribirArchivo();
                 return rrn;
             } else {
                 aa.cargarArchivo();
                 int rrn = (250 - archivo_actual.getSizeMetadata()) + (tam_registro() * aa.getLista_archivos().get(pos_archivo).getCant_regisros());
-                aa.getLista_archivos().get(pos_archivo).setCant_regisros();
+                aa.getLista_archivos().get(pos_archivo).setCant_regisros(true);
                 aa.escribirArchivo();
                 return rrn;
             }
@@ -3913,7 +3954,7 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<Campo> campos_nuevos = new ArrayList();
     ArrayList<Campo> campos_guardados = new ArrayList();
     Administrar_Archivos aa = new Administrar_Archivos("./Archivos.dmo");
-    BTree arbol_actual;
+    BTree arbol_actual = null;
     private boolean salvado = false;
     private boolean semodifico = false;
     private boolean secreo = false;

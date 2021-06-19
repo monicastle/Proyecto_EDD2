@@ -30,7 +30,7 @@ public class Archivo implements Serializable {
     public Archivo(File archivo, int ID) {
         this.archivo = archivo;
         this.ID = ID;
-        cant_regisros=0;
+        cant_regisros = 0;
     } // Fin Constructor Archivo
 
     public int getID() {
@@ -73,8 +73,12 @@ public class Archivo implements Serializable {
         return cant_regisros;
     }
 
-    public void setCant_regisros() {
-        this.cant_regisros++ ;
+    public void setCant_regisros(boolean incrementa) {
+        if (incrementa) {
+            this.cant_regisros++;
+        } else {
+            this.cant_regisros--;
+        }
     }
 
     public int getSizeMetadata() {
@@ -94,7 +98,7 @@ public class Archivo implements Serializable {
                 metadata += "No";
             }
         }
-        return metadata.length()+1;//mas uno por \n(confirmado por fuentes confiables)          
+        return metadata.length() + 1;//mas uno por \n(confirmado por fuentes confiables)          
     }
-    
+
 } // Fin Clase Archivo
