@@ -3082,29 +3082,25 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_PuenteListarRegistrosMouseClicked
 
     private void btn_ExportarExcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ExportarExcelMouseClicked
-        // TODO add your handling code here:
+        // TODO add your handling code here:    
         rrn_llaves_en_orden = new ArrayList();
         ExcelModelo modelo_excel = new ExcelModelo();
         JFileChooser directorio = new JFileChooser();
         directorio.setApproveButtonText("Exportar");
         int seleccion = directorio.showOpenDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
-            File archivo_excel = new File(directorio.getSelectedFile() + ".xlsx");
-            BufferedWriter salida;
             try {
-                salida = new BufferedWriter(new FileWriter(archivo_excel));
-                salida.close();
-                System.out.println("hi");
+                //File archivo_excel = new File(directorio.getSelectedFile() + ".xlsx");
+                File archivo_excel = new File(directorio.getSelectedFile() + ".xls");
+                modelo_excel.BTree_KeysInOrder(arbol_actual.getRaiz(), rrn_llaves_en_orden, arbol_actual);
+                JOptionPane.showMessageDialog(null, modelo_excel.llenar_excel(
+                        archivo_actual,
+                        archivo_excel,
+                        rrn_llaves_en_orden));//
             } catch (IOException ex) {
-                System.out.println("excpetion -> salida->utilidades -> excel exportar");
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println("excel exportado");
-            //DESCOMENTAR CUANDO HAYA ARREGLADO EL PROBLEMA QUE EXCEL SE CREA PERO CORRUPTO
-/*            JOptionPane.showMessageDialog(null, modelo_excel.Exportar(archivo_excel,
-                    rrn_llaves_en_orden,
-                    arbol_actual,
-                    archivo_actual));*/
-        }//fin if Jfile chooser
+        }//*/
     }//GEN-LAST:event_btn_ExportarExcelMouseClicked
 
     private void btn_utilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_utilidadesActionPerformed
