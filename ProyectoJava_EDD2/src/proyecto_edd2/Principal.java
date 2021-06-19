@@ -67,6 +67,15 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        VentanaMenuPrincipal = new javax.swing.JFrame();
+        jPanel_MenuRegistros1 = new javax.swing.JPanel();
+        btn_PuenteMenuCampos = new javax.swing.JButton();
+        btn_PuenteMenuRegistros = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        JL_45 = new javax.swing.JLabel();
+        JL_46 = new javax.swing.JLabel();
+        btn_PuenteMenuIndices = new javax.swing.JButton();
+        btn_PuenteMenuUtilidades = new javax.swing.JButton();
         VentanaMenuCampos = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -81,7 +90,7 @@ public class Principal extends javax.swing.JFrame {
         BTN_AbrirModificarCampo = new javax.swing.JButton();
         BTN_AbrirBorrarCampo = new javax.swing.JButton();
         BTN_AbrirListarCampos = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btn_irRegistros = new javax.swing.JButton();
         BTN_CerrarArchivo = new javax.swing.JButton();
         JD_CrearCampos = new javax.swing.JDialog();
         jP_CrearCampo = new javax.swing.JPanel();
@@ -130,17 +139,17 @@ public class Principal extends javax.swing.JFrame {
         BTN_CancelarListarCampos = new javax.swing.JButton();
         JL_23 = new javax.swing.JLabel();
         JL_24 = new javax.swing.JLabel();
-        jD_MenuRegistros = new javax.swing.JDialog();
-        jPanel2 = new javax.swing.JPanel();
-        btn_crearRegistros = new javax.swing.JButton();
-        btn_buscarRegistros = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        JL_32 = new javax.swing.JLabel();
-        JL_33 = new javax.swing.JLabel();
-        btn_PuenteModificarRegistros = new javax.swing.JButton();
-        btn_PuenteBorrarRegistro = new javax.swing.JButton();
-        btn_PuenteListarRegistros = new javax.swing.JButton();
-        btn_PuenteCruzarArchivos = new javax.swing.JButton();
+        VentanaMenuRegistros = new javax.swing.JFrame();
+        jPanel_MenuRegistros2 = new javax.swing.JPanel();
+        btn_crearRegistros1 = new javax.swing.JButton();
+        btn_buscarRegistros1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        JL_47 = new javax.swing.JLabel();
+        JL_48 = new javax.swing.JLabel();
+        btn_PuenteModificarRegistros1 = new javax.swing.JButton();
+        btn_PuenteBorrarRegistro1 = new javax.swing.JButton();
+        btn_PuenteListarRegistros1 = new javax.swing.JButton();
+        btn_PuenteCruzarArchivos1 = new javax.swing.JButton();
         jD_crearRegistros = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -197,13 +206,13 @@ public class Principal extends javax.swing.JFrame {
         JL_41 = new javax.swing.JLabel();
         JL_42 = new javax.swing.JLabel();
         btn_RetrocederListarRegistro = new javax.swing.JButton();
-        jD_Utilidades = new javax.swing.JDialog();
-        jPanel13 = new javax.swing.JPanel();
-        btn_ExportarExcel = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        JL_43 = new javax.swing.JLabel();
-        JL_44 = new javax.swing.JLabel();
-        BTN_ExportarXML = new javax.swing.JButton();
+        VentanaMenuUtilidades = new javax.swing.JFrame();
+        jPanel14 = new javax.swing.JPanel();
+        btn_ExportarExcel1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        JL_49 = new javax.swing.JLabel();
+        JL_50 = new javax.swing.JLabel();
+        BTN_ExportarXML1 = new javax.swing.JButton();
         PanelPrincipal = new javax.swing.JPanel();
         JL_1 = new javax.swing.JLabel();
         BTN_SalirPrograma = new javax.swing.JButton();
@@ -212,6 +221,111 @@ public class Principal extends javax.swing.JFrame {
         BTN_CrearNuevoArchivo = new javax.swing.JButton();
         JL_3 = new javax.swing.JLabel();
         JL_4 = new javax.swing.JLabel();
+
+        jPanel_MenuRegistros1.setBackground(new java.awt.Color(255, 255, 255));
+
+        btn_PuenteMenuCampos.setBackground(new java.awt.Color(255, 51, 0));
+        btn_PuenteMenuCampos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_PuenteMenuCampos.setForeground(new java.awt.Color(255, 255, 255));
+        btn_PuenteMenuCampos.setText("Campos");
+        btn_PuenteMenuCampos.setBorder(null);
+        btn_PuenteMenuCampos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_PuenteMenuCamposMouseClicked(evt);
+            }
+        });
+
+        btn_PuenteMenuRegistros.setBackground(new java.awt.Color(255, 51, 0));
+        btn_PuenteMenuRegistros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_PuenteMenuRegistros.setForeground(new java.awt.Color(255, 255, 255));
+        btn_PuenteMenuRegistros.setText("Registros");
+        btn_PuenteMenuRegistros.setBorder(null);
+        btn_PuenteMenuRegistros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_PuenteMenuRegistrosActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Qué desea hacer¿?");
+
+        JL_45.setForeground(new java.awt.Color(204, 204, 204));
+        JL_45.setText("____________________________________________________________________");
+
+        JL_46.setForeground(new java.awt.Color(204, 204, 204));
+        JL_46.setText("____________________________________________________________________");
+
+        btn_PuenteMenuIndices.setBackground(new java.awt.Color(255, 51, 0));
+        btn_PuenteMenuIndices.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_PuenteMenuIndices.setForeground(new java.awt.Color(255, 255, 255));
+        btn_PuenteMenuIndices.setText("Índices");
+        btn_PuenteMenuIndices.setBorder(null);
+        btn_PuenteMenuIndices.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_PuenteMenuIndicesMouseClicked(evt);
+            }
+        });
+
+        btn_PuenteMenuUtilidades.setBackground(new java.awt.Color(255, 51, 0));
+        btn_PuenteMenuUtilidades.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_PuenteMenuUtilidades.setForeground(new java.awt.Color(255, 255, 255));
+        btn_PuenteMenuUtilidades.setText("Utilidades");
+        btn_PuenteMenuUtilidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_PuenteMenuUtilidadesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_MenuRegistros1Layout = new javax.swing.GroupLayout(jPanel_MenuRegistros1);
+        jPanel_MenuRegistros1.setLayout(jPanel_MenuRegistros1Layout);
+        jPanel_MenuRegistros1Layout.setHorizontalGroup(
+            jPanel_MenuRegistros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel_MenuRegistros1Layout.createSequentialGroup()
+                .addGroup(jPanel_MenuRegistros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JL_45)
+                    .addComponent(JL_46))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel_MenuRegistros1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel_MenuRegistros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_PuenteMenuCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                    .addComponent(btn_PuenteMenuRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_PuenteMenuIndices, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_PuenteMenuUtilidades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel_MenuRegistros1Layout.setVerticalGroup(
+            jPanel_MenuRegistros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_MenuRegistros1Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(jLabel5)
+                .addGap(0, 0, 0)
+                .addComponent(JL_45)
+                .addGap(20, 20, 20)
+                .addComponent(btn_PuenteMenuCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btn_PuenteMenuRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btn_PuenteMenuIndices, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btn_PuenteMenuUtilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(JL_46)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout VentanaMenuPrincipalLayout = new javax.swing.GroupLayout(VentanaMenuPrincipal.getContentPane());
+        VentanaMenuPrincipal.getContentPane().setLayout(VentanaMenuPrincipalLayout);
+        VentanaMenuPrincipalLayout.setHorizontalGroup(
+            VentanaMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel_MenuRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        VentanaMenuPrincipalLayout.setVerticalGroup(
+            VentanaMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel_MenuRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         VentanaMenuCampos.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         VentanaMenuCampos.setTitle("Menú Campos");
@@ -304,10 +418,10 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("Registros");
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_irRegistros.setText("Registros");
+        btn_irRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton7MouseClicked(evt);
+                btn_irRegistrosMouseClicked(evt);
             }
         });
 
@@ -326,7 +440,7 @@ public class Principal extends javax.swing.JFrame {
                         .addContainerGap(50, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_irRegistros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BTN_AbrirListarCampos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BTN_AbrirBorrarCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(50, 50, 50))))
@@ -345,7 +459,7 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BTN_AbrirListarCampos)
                 .addGap(52, 52, 52)
-                .addComponent(jButton7)
+                .addComponent(btn_irRegistros)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -852,132 +966,130 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jD_MenuRegistros.setTitle("Menú Registros");
+        jPanel_MenuRegistros2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        btn_crearRegistros.setBackground(new java.awt.Color(255, 51, 0));
-        btn_crearRegistros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_crearRegistros.setForeground(new java.awt.Color(255, 255, 255));
-        btn_crearRegistros.setText("Crear Registro");
-        btn_crearRegistros.setBorder(null);
-        btn_crearRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_crearRegistros1.setBackground(new java.awt.Color(255, 51, 0));
+        btn_crearRegistros1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_crearRegistros1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_crearRegistros1.setText("Crear Registro");
+        btn_crearRegistros1.setBorder(null);
+        btn_crearRegistros1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_crearRegistrosMouseClicked(evt);
+                btn_crearRegistros1MouseClicked(evt);
             }
         });
 
-        btn_buscarRegistros.setBackground(new java.awt.Color(255, 51, 0));
-        btn_buscarRegistros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_buscarRegistros.setForeground(new java.awt.Color(255, 255, 255));
-        btn_buscarRegistros.setText("Buscar Registro");
-        btn_buscarRegistros.setBorder(null);
-        btn_buscarRegistros.addActionListener(new java.awt.event.ActionListener() {
+        btn_buscarRegistros1.setBackground(new java.awt.Color(255, 51, 0));
+        btn_buscarRegistros1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_buscarRegistros1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_buscarRegistros1.setText("Buscar Registro");
+        btn_buscarRegistros1.setBorder(null);
+        btn_buscarRegistros1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_buscarRegistrosActionPerformed(evt);
+                btn_buscarRegistros1ActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Menú Registros");
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Menú Registros");
 
-        JL_32.setForeground(new java.awt.Color(204, 204, 204));
-        JL_32.setText("____________________________________________________________________");
+        JL_47.setForeground(new java.awt.Color(204, 204, 204));
+        JL_47.setText("____________________________________________________________________");
 
-        JL_33.setForeground(new java.awt.Color(204, 204, 204));
-        JL_33.setText("____________________________________________________________________");
+        JL_48.setForeground(new java.awt.Color(204, 204, 204));
+        JL_48.setText("____________________________________________________________________");
 
-        btn_PuenteModificarRegistros.setBackground(new java.awt.Color(255, 51, 0));
-        btn_PuenteModificarRegistros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_PuenteModificarRegistros.setForeground(new java.awt.Color(255, 255, 255));
-        btn_PuenteModificarRegistros.setText("Modificar Registro");
-        btn_PuenteModificarRegistros.setBorder(null);
-        btn_PuenteModificarRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_PuenteModificarRegistros1.setBackground(new java.awt.Color(255, 51, 0));
+        btn_PuenteModificarRegistros1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_PuenteModificarRegistros1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_PuenteModificarRegistros1.setText("Modificar Registro");
+        btn_PuenteModificarRegistros1.setBorder(null);
+        btn_PuenteModificarRegistros1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_PuenteModificarRegistrosMouseClicked(evt);
+                btn_PuenteModificarRegistros1MouseClicked(evt);
             }
         });
 
-        btn_PuenteBorrarRegistro.setBackground(new java.awt.Color(255, 51, 0));
-        btn_PuenteBorrarRegistro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_PuenteBorrarRegistro.setForeground(new java.awt.Color(255, 255, 255));
-        btn_PuenteBorrarRegistro.setText("Borrar Registro");
-        btn_PuenteBorrarRegistro.addActionListener(new java.awt.event.ActionListener() {
+        btn_PuenteBorrarRegistro1.setBackground(new java.awt.Color(255, 51, 0));
+        btn_PuenteBorrarRegistro1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_PuenteBorrarRegistro1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_PuenteBorrarRegistro1.setText("Borrar Registro");
+        btn_PuenteBorrarRegistro1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_PuenteBorrarRegistroActionPerformed(evt);
+                btn_PuenteBorrarRegistro1ActionPerformed(evt);
             }
         });
 
-        btn_PuenteListarRegistros.setBackground(new java.awt.Color(255, 51, 0));
-        btn_PuenteListarRegistros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_PuenteListarRegistros.setForeground(new java.awt.Color(255, 255, 255));
-        btn_PuenteListarRegistros.setText("Listar Registros");
-        btn_PuenteListarRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_PuenteListarRegistros1.setBackground(new java.awt.Color(255, 51, 0));
+        btn_PuenteListarRegistros1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_PuenteListarRegistros1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_PuenteListarRegistros1.setText("Listar Registros");
+        btn_PuenteListarRegistros1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_PuenteListarRegistrosMouseClicked(evt);
+                btn_PuenteListarRegistros1MouseClicked(evt);
             }
         });
 
-        btn_PuenteCruzarArchivos.setBackground(new java.awt.Color(255, 51, 0));
-        btn_PuenteCruzarArchivos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_PuenteCruzarArchivos.setForeground(new java.awt.Color(255, 255, 255));
-        btn_PuenteCruzarArchivos.setText("Cruzar Archivos");
+        btn_PuenteCruzarArchivos1.setBackground(new java.awt.Color(255, 51, 0));
+        btn_PuenteCruzarArchivos1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_PuenteCruzarArchivos1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_PuenteCruzarArchivos1.setText("Cruzar Archivos");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JL_32)
-                    .addComponent(JL_33))
+        javax.swing.GroupLayout jPanel_MenuRegistros2Layout = new javax.swing.GroupLayout(jPanel_MenuRegistros2);
+        jPanel_MenuRegistros2.setLayout(jPanel_MenuRegistros2Layout);
+        jPanel_MenuRegistros2Layout.setHorizontalGroup(
+            jPanel_MenuRegistros2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel_MenuRegistros2Layout.createSequentialGroup()
+                .addGroup(jPanel_MenuRegistros2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JL_47)
+                    .addComponent(JL_48))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel_MenuRegistros2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_crearRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
-                    .addComponent(btn_buscarRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_PuenteModificarRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_PuenteBorrarRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_PuenteListarRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_PuenteCruzarArchivos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel_MenuRegistros2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_crearRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                    .addComponent(btn_buscarRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_PuenteModificarRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_PuenteBorrarRegistro1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_PuenteListarRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_PuenteCruzarArchivos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        jPanel_MenuRegistros2Layout.setVerticalGroup(
+            jPanel_MenuRegistros2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_MenuRegistros2Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addComponent(jLabel1)
+                .addComponent(jLabel6)
                 .addGap(0, 0, 0)
-                .addComponent(JL_32)
+                .addComponent(JL_47)
                 .addGap(20, 20, 20)
-                .addComponent(btn_crearRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_crearRegistros1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(btn_buscarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_buscarRegistros1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(btn_PuenteModificarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_PuenteModificarRegistros1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(btn_PuenteBorrarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_PuenteBorrarRegistro1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(btn_PuenteListarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_PuenteListarRegistros1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(btn_PuenteCruzarArchivos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_PuenteCruzarArchivos1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(JL_33)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addComponent(JL_48)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jD_MenuRegistrosLayout = new javax.swing.GroupLayout(jD_MenuRegistros.getContentPane());
-        jD_MenuRegistros.getContentPane().setLayout(jD_MenuRegistrosLayout);
-        jD_MenuRegistrosLayout.setHorizontalGroup(
-            jD_MenuRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout VentanaMenuRegistrosLayout = new javax.swing.GroupLayout(VentanaMenuRegistros.getContentPane());
+        VentanaMenuRegistros.getContentPane().setLayout(VentanaMenuRegistrosLayout);
+        VentanaMenuRegistrosLayout.setHorizontalGroup(
+            VentanaMenuRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel_MenuRegistros2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jD_MenuRegistrosLayout.setVerticalGroup(
-            jD_MenuRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        VentanaMenuRegistrosLayout.setVerticalGroup(
+            VentanaMenuRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel_MenuRegistros2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jD_crearRegistros.setTitle("Añadir Registro");
@@ -1570,84 +1682,82 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jD_Utilidades.setTitle("Menú Registros");
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
-
-        btn_ExportarExcel.setBackground(new java.awt.Color(255, 51, 0));
-        btn_ExportarExcel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_ExportarExcel.setForeground(new java.awt.Color(255, 255, 255));
-        btn_ExportarExcel.setText("Exportar a Excel");
-        btn_ExportarExcel.setBorder(null);
-        btn_ExportarExcel.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_ExportarExcel1.setBackground(new java.awt.Color(255, 51, 0));
+        btn_ExportarExcel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_ExportarExcel1.setForeground(new java.awt.Color(255, 255, 255));
+        btn_ExportarExcel1.setText("Exportar a Excel");
+        btn_ExportarExcel1.setBorder(null);
+        btn_ExportarExcel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_ExportarExcelMouseClicked(evt);
+                btn_ExportarExcel1MouseClicked(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Menú Utilidades");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Menú Utilidades");
 
-        JL_43.setForeground(new java.awt.Color(204, 204, 204));
-        JL_43.setText("____________________________________________________________________");
+        JL_49.setForeground(new java.awt.Color(204, 204, 204));
+        JL_49.setText("____________________________________________________________________");
 
-        JL_44.setForeground(new java.awt.Color(204, 204, 204));
-        JL_44.setText("____________________________________________________________________");
+        JL_50.setForeground(new java.awt.Color(204, 204, 204));
+        JL_50.setText("____________________________________________________________________");
 
-        BTN_ExportarXML.setBackground(new java.awt.Color(255, 51, 0));
-        BTN_ExportarXML.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        BTN_ExportarXML.setForeground(new java.awt.Color(255, 255, 255));
-        BTN_ExportarXML.setText("Exportar XML con Schema");
-        BTN_ExportarXML.setBorder(null);
-        BTN_ExportarXML.addMouseListener(new java.awt.event.MouseAdapter() {
+        BTN_ExportarXML1.setBackground(new java.awt.Color(255, 51, 0));
+        BTN_ExportarXML1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BTN_ExportarXML1.setForeground(new java.awt.Color(255, 255, 255));
+        BTN_ExportarXML1.setText("Exportar XML con Schema");
+        BTN_ExportarXML1.setBorder(null);
+        BTN_ExportarXML1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BTN_ExportarXMLMouseClicked(evt);
+                BTN_ExportarXML1MouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JL_43)
-                    .addComponent(JL_44))
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JL_49)
+                    .addComponent(JL_50))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel13Layout.createSequentialGroup()
+            .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BTN_ExportarXML, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_ExportarExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BTN_ExportarXML1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_ExportarExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addComponent(jLabel4)
+                .addComponent(jLabel7)
                 .addGap(0, 0, 0)
-                .addComponent(JL_43)
+                .addComponent(JL_49)
                 .addGap(20, 20, 20)
-                .addComponent(btn_ExportarExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_ExportarExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(BTN_ExportarXML, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135)
-                .addComponent(JL_44)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addComponent(BTN_ExportarXML1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(JL_50)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jD_UtilidadesLayout = new javax.swing.GroupLayout(jD_Utilidades.getContentPane());
-        jD_Utilidades.getContentPane().setLayout(jD_UtilidadesLayout);
-        jD_UtilidadesLayout.setHorizontalGroup(
-            jD_UtilidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout VentanaMenuUtilidadesLayout = new javax.swing.GroupLayout(VentanaMenuUtilidades.getContentPane());
+        VentanaMenuUtilidades.getContentPane().setLayout(VentanaMenuUtilidadesLayout);
+        VentanaMenuUtilidadesLayout.setHorizontalGroup(
+            VentanaMenuUtilidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jD_UtilidadesLayout.setVerticalGroup(
-            jD_UtilidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        VentanaMenuUtilidadesLayout.setVerticalGroup(
+            VentanaMenuUtilidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -1885,9 +1995,9 @@ public class Principal extends javax.swing.JFrame {
                 }
                 salvado = false;
                 this.setVisible(false);
-                VentanaMenuCampos.pack();
-                VentanaMenuCampos.setLocationRelativeTo(null);
-                VentanaMenuCampos.setVisible(true);
+                VentanaMenuPrincipal.pack();
+                VentanaMenuPrincipal.setLocationRelativeTo(null);
+                VentanaMenuPrincipal.setVisible(true);
             } // Fin If
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se puede abrir el archivo porque no existe");
@@ -2492,72 +2602,12 @@ public class Principal extends javax.swing.JFrame {
         } // Fin Try Catch
     }//GEN-LAST:event_CB_CampoABorrarItemStateChanged
 
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+    private void btn_irRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_irRegistrosMouseClicked
         // TODO add your handling code here:
-        jD_MenuRegistros.pack();
-        jD_MenuRegistros.setLocationRelativeTo(null);
-        jD_MenuRegistros.setVisible(true);
-    }//GEN-LAST:event_jButton7MouseClicked
-
-    private void btn_crearRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crearRegistrosMouseClicked
-        // TODO add your handling code here:
-        jTbl_tablaRegistros.setModel(new DefaultTableModel());
-        DefaultTableModel model = (DefaultTableModel) jTbl_tablaRegistros.getModel();
-        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
-        }
-        // System.out.println("esta vacio? " + archivo_actual.getAvailList().isEmpty());//HERRAMIENTA SECRETA
-        model.setNumRows(1);
-        jD_crearRegistros.pack();
-        jD_crearRegistros.setModal(true);
-        jD_crearRegistros.setLocationRelativeTo(null);
-        jD_MenuRegistros.setVisible(false);
-        jD_crearRegistros.setVisible(true);
-    }//GEN-LAST:event_btn_crearRegistrosMouseClicked
-
-    private void btn_buscarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarRegistrosActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel modelo = new DefaultTableModel();
-        jTbl_buscarRegistros.setModel(new DefaultTableModel());
-        DefaultTableModel model = (DefaultTableModel) jTbl_buscarRegistros.getModel();
-        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
-        }
-
-        jTbl_tablaRegistros.setModel(modelo);//??
-
-        jCb_llavesBuscarregistros.setModel(new DefaultComboBoxModel<>());
-        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
-                jCb_llavesBuscarregistros.addItem(ic.toString());
-                break;
-            }
-        }
-
-        jTf_buscarRegistros.setText("");
-        jD_buscarRegistros.pack();
-        jD_buscarRegistros.setModal(true);
-        jD_buscarRegistros.setLocationRelativeTo(null);
-        jD_buscarRegistros.setVisible(true);
-    }//GEN-LAST:event_btn_buscarRegistrosActionPerformed
-
-    private void btn_PuenteModificarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteModificarRegistrosMouseClicked
-        // TODO add your handling code here:
-        jD_MenuRegistros.setVisible(false);
-        //jLbl_instruccionModificar.setText(archivo_actual.getCampos().get(0).getNombre());
-        jTbl_ModificarRegistros.setModel(new DefaultTableModel());
-        DefaultTableModel model = (DefaultTableModel) jTbl_ModificarRegistros.getModel();
-        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
-        }
-        jD_ModificarRegistros.pack();
-        jD_ModificarRegistros.setModal(true);
-        jD_ModificarRegistros.setLocationRelativeTo(null);
-        jD_ModificarRegistros.setVisible(true);
-        jTbl_ModificarRegistros.setModel(new DefaultTableModel());
-
-    }//GEN-LAST:event_btn_PuenteModificarRegistrosMouseClicked
+        VentanaMenuRegistros.pack();
+        VentanaMenuRegistros.setLocationRelativeTo(null);
+        VentanaMenuRegistros.setVisible(true);
+    }//GEN-LAST:event_btn_irRegistrosMouseClicked
 
     private void btn_crearRegistrosDefinitivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearRegistrosDefinitivosActionPerformed
         // TODO add your handling code here:
@@ -2679,11 +2729,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_salirCrearRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirCrearRegistrosActionPerformed
         // TODO add your handling code here:
-        jD_MenuRegistros.setModal(true);
-        jD_MenuRegistros.pack();
-        jD_MenuRegistros.setLocationRelativeTo(this);
+        //VentanaMenuRegistros.setModal(true);
+        VentanaMenuRegistros.pack();
+        VentanaMenuRegistros.setLocationRelativeTo(this);
         jD_crearRegistros.setVisible(false);
-        jD_MenuRegistros.setVisible(true);
+        VentanaMenuRegistros.setVisible(true);
     }//GEN-LAST:event_btn_salirCrearRegistrosActionPerformed
 
     private void btn_buscarRegistroRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarRegistroRegistroActionPerformed
@@ -2783,11 +2833,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_regresarRegistrosPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresarRegistrosPrincipalMouseClicked
         // TODO add your handling code here:
-        jD_MenuRegistros.pack();
-        jD_MenuRegistros.setModal(true);
-        jD_MenuRegistros.setLocationRelativeTo(null);
+        VentanaMenuRegistros.pack();
+        //VentanaMenuRegistros.setModal(true);
+        VentanaMenuRegistros.setLocationRelativeTo(null);
         jD_buscarRegistros.setVisible(false);
-        jD_MenuRegistros.setVisible(true);
+        VentanaMenuRegistros.setVisible(true);
     }//GEN-LAST:event_btn_regresarRegistrosPrincipalMouseClicked
 
     private void btn_buscarModificarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarModificarRegistroActionPerformed
@@ -2833,11 +2883,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_regresarRegistrosPrincipal1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresarRegistrosPrincipal1MouseClicked
         // TODO add your handling code here:
-        jD_MenuRegistros.pack();
-        jD_MenuRegistros.setModal(true);
-        jD_MenuRegistros.setLocationRelativeTo(null);
+        VentanaMenuRegistros.pack();
+        //VentanaMenuRegistros.setModal(true);
+        VentanaMenuRegistros.setLocationRelativeTo(null);
         jD_ModificarRegistros.setVisible(false);
-        jD_MenuRegistros.setVisible(true);
+        VentanaMenuRegistros.setVisible(true);
     }//GEN-LAST:event_btn_regresarRegistrosPrincipal1MouseClicked
 
     private void btn_ConfirmarModificacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfirmarModificacionMouseClicked
@@ -2962,11 +3012,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_regresarRegistrosPrincipal2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresarRegistrosPrincipal2MouseClicked
         // TODO add your handling code here:
-        jD_MenuRegistros.pack();
-        jD_MenuRegistros.setModal(true);
-        jD_MenuRegistros.setLocationRelativeTo(null);
+        VentanaMenuRegistros.pack();
+        //VentanaMenuRegistros.setModal(true);
+        VentanaMenuRegistros.setLocationRelativeTo(null);
         jD_EliminarRegistros.setVisible(false);
-        jD_MenuRegistros.setVisible(true);
+        VentanaMenuRegistros.setVisible(true);
     }//GEN-LAST:event_btn_regresarRegistrosPrincipal2MouseClicked
 
     private void btn_ConfirmarBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfirmarBorrarMouseClicked
@@ -3033,7 +3083,134 @@ public class Principal extends javax.swing.JFrame {
         return rrnString;
     }//fin método
 
-    private void btn_PuenteBorrarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PuenteBorrarRegistroActionPerformed
+    private void btn_AvanzarListarRegistroRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AvanzarListarRegistroRegistroActionPerformed
+        // TODO add your handling code here:
+        if (avanzar < rrn_llaves_en_orden.size()) {
+            int y = (avanzar % rrn_llaves_en_orden.size());
+            if (y % 5 == 0) {
+                y = 5;
+            }
+            retroceder += y;
+            avanzar += y;
+            DefaultTableModel model = (DefaultTableModel) jTbl_ListarRegistros.getModel();
+            model.getDataVector().removeAllElements();
+            listar_registros();
+        }
+    }//GEN-LAST:event_btn_AvanzarListarRegistroRegistroActionPerformed
+
+    private void btn_regresarRegistrosPrincipal3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresarRegistrosPrincipal3MouseClicked
+        // TODO add your handling code here:
+        VentanaMenuRegistros.pack();
+        //VentanaMenuRegistros.setModal(true);
+        VentanaMenuRegistros.setLocationRelativeTo(this);
+        jD_ListarRegistros.setVisible(false);
+        VentanaMenuRegistros.setVisible(true);
+    }//GEN-LAST:event_btn_regresarRegistrosPrincipal3MouseClicked
+
+    private void btn_RetrocederListarRegistroRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RetrocederListarRegistroRegistroActionPerformed
+        // TODO add your handling code here:
+        if (retroceder - 5 >= 0) {
+            retroceder -= 5;
+            avanzar -= 5;
+            DefaultTableModel model = (DefaultTableModel) jTbl_ListarRegistros.getModel();
+            model.getDataVector().removeAllElements();
+            listar_registros();
+        }
+    }//GEN-LAST:event_btn_RetrocederListarRegistroRegistroActionPerformed
+
+    private void btn_utilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_utilidadesActionPerformed
+        // TODO add your handling code here:
+        VentanaMenuPrincipal.setVisible(false);
+        VentanaMenuUtilidades.pack();
+        VentanaMenuUtilidades.setLocationRelativeTo(this);
+        VentanaMenuUtilidades.setVisible(true);
+    }//GEN-LAST:event_btn_utilidadesActionPerformed
+
+    private void btn_PuenteMenuCamposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteMenuCamposMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        VentanaMenuCampos.pack();
+        VentanaMenuCampos.setLocationRelativeTo(this);
+        VentanaMenuCampos.setVisible(true);
+    }//GEN-LAST:event_btn_PuenteMenuCamposMouseClicked
+
+    private void btn_PuenteMenuRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PuenteMenuRegistrosActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        VentanaMenuRegistros.pack();
+        VentanaMenuRegistros.setLocationRelativeTo(null);
+        VentanaMenuRegistros.setVisible(true);
+    }//GEN-LAST:event_btn_PuenteMenuRegistrosActionPerformed
+
+    private void btn_PuenteMenuIndicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteMenuIndicesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_PuenteMenuIndicesMouseClicked
+
+    private void btn_PuenteMenuUtilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PuenteMenuUtilidadesActionPerformed
+        // TODO add your handling code here:
+        VentanaMenuPrincipal.setVisible(false);
+        VentanaMenuUtilidades.pack();
+        VentanaMenuUtilidades.setLocationRelativeTo(this);
+        VentanaMenuUtilidades.setVisible(true);
+    }//GEN-LAST:event_btn_PuenteMenuUtilidadesActionPerformed
+
+    private void btn_crearRegistros1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crearRegistros1MouseClicked
+        // TODO add your handling code here:
+        jTbl_tablaRegistros.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) jTbl_tablaRegistros.getModel();
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+        }
+        // System.out.println("esta vacio? " + archivo_actual.getAvailList().isEmpty());//HERRAMIENTA SECRETA
+        model.setNumRows(1);
+        jD_crearRegistros.pack();
+        jD_crearRegistros.setModal(true);
+        jD_crearRegistros.setLocationRelativeTo(null);
+        VentanaMenuRegistros.setVisible(false);
+        jD_crearRegistros.setVisible(true);
+    }//GEN-LAST:event_btn_crearRegistros1MouseClicked
+
+    private void btn_buscarRegistros1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarRegistros1ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel modelo = new DefaultTableModel();
+        jTbl_buscarRegistros.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) jTbl_buscarRegistros.getModel();
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+        }
+        jTbl_tablaRegistros.setModel(modelo);//??
+        jCb_llavesBuscarregistros.setModel(new DefaultComboBoxModel<>());
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
+                jCb_llavesBuscarregistros.addItem(ic.toString());
+                break;
+            }
+        }
+        jTf_buscarRegistros.setText("");
+        jD_buscarRegistros.pack();
+        jD_buscarRegistros.setModal(true);
+        jD_buscarRegistros.setLocationRelativeTo(null);
+        jD_buscarRegistros.setVisible(true);
+    }//GEN-LAST:event_btn_buscarRegistros1ActionPerformed
+
+    private void btn_PuenteModificarRegistros1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteModificarRegistros1MouseClicked
+        // TODO add your handling code here:
+        VentanaMenuRegistros.setVisible(false);
+        //jLbl_instruccionModificar.setText(archivo_actual.getCampos().get(0).getNombre());
+        jTbl_ModificarRegistros.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) jTbl_ModificarRegistros.getModel();
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+        }
+        jD_ModificarRegistros.pack();
+        jD_ModificarRegistros.setModal(true);
+        jD_ModificarRegistros.setLocationRelativeTo(null);
+        jD_ModificarRegistros.setVisible(true);
+        jTbl_ModificarRegistros.setModel(new DefaultTableModel());
+    }//GEN-LAST:event_btn_PuenteModificarRegistros1MouseClicked
+
+    private void btn_PuenteBorrarRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PuenteBorrarRegistro1ActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modelo = new DefaultTableModel();
         jTbl_eliminarRegistros.setModel(new DefaultTableModel());
@@ -3057,44 +3234,9 @@ public class Principal extends javax.swing.JFrame {
         jD_EliminarRegistros.setModal(true);
         jD_EliminarRegistros.setLocationRelativeTo(null);
         jD_EliminarRegistros.setVisible(true);
-    }//GEN-LAST:event_btn_PuenteBorrarRegistroActionPerformed
+    }//GEN-LAST:event_btn_PuenteBorrarRegistro1ActionPerformed
 
-    private void btn_AvanzarListarRegistroRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AvanzarListarRegistroRegistroActionPerformed
-        // TODO add your handling code here:
-        if (avanzar < rrn_llaves_en_orden.size()) {
-            int y = (avanzar % rrn_llaves_en_orden.size());
-            if (y % 5 == 0) {
-                y = 5;
-            }
-            retroceder += y;
-            avanzar += y;
-            DefaultTableModel model = (DefaultTableModel) jTbl_ListarRegistros.getModel();
-            model.getDataVector().removeAllElements();
-            listar_registros();
-        }
-    }//GEN-LAST:event_btn_AvanzarListarRegistroRegistroActionPerformed
-
-    private void btn_regresarRegistrosPrincipal3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresarRegistrosPrincipal3MouseClicked
-        // TODO add your handling code here:
-        jD_MenuRegistros.pack();
-        jD_MenuRegistros.setModal(true);
-        jD_MenuRegistros.setLocationRelativeTo(null);
-        jD_ListarRegistros.setVisible(false);
-        jD_MenuRegistros.setVisible(true);
-    }//GEN-LAST:event_btn_regresarRegistrosPrincipal3MouseClicked
-
-    private void btn_RetrocederListarRegistroRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RetrocederListarRegistroRegistroActionPerformed
-        // TODO add your handling code here:
-        if (retroceder - 5 >= 0) {
-            retroceder -= 5;
-            avanzar -= 5;
-            DefaultTableModel model = (DefaultTableModel) jTbl_ListarRegistros.getModel();
-            model.getDataVector().removeAllElements();
-            listar_registros();
-        }
-    }//GEN-LAST:event_btn_RetrocederListarRegistroRegistroActionPerformed
-
-    private void btn_PuenteListarRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteListarRegistrosMouseClicked
+    private void btn_PuenteListarRegistros1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteListarRegistros1MouseClicked
         // TODO add your handling code here:
         avanzar = 5;
         retroceder = 0;
@@ -3104,12 +3246,12 @@ public class Principal extends javax.swing.JFrame {
         jD_ListarRegistros.pack();
         jD_ListarRegistros.setModal(true);
         jD_ListarRegistros.setLocationRelativeTo(null);
-        jD_MenuRegistros.setVisible(false);
+        VentanaMenuRegistros.setVisible(false);
         jD_ListarRegistros.setVisible(true);
-    }//GEN-LAST:event_btn_PuenteListarRegistrosMouseClicked
+    }//GEN-LAST:event_btn_PuenteListarRegistros1MouseClicked
 
-    private void btn_ExportarExcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ExportarExcelMouseClicked
-        // TODO add your handling code here:    
+    private void btn_ExportarExcel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ExportarExcel1MouseClicked
+        // TODO add your handling code here:
         rrn_llaves_en_orden = new ArrayList();
         ExcelModelo modelo_excel = new ExcelModelo();
         JFileChooser directorio = new JFileChooser();
@@ -3128,18 +3270,9 @@ public class Principal extends javax.swing.JFrame {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }//*/
-    }//GEN-LAST:event_btn_ExportarExcelMouseClicked
+    }//GEN-LAST:event_btn_ExportarExcel1MouseClicked
 
-    private void btn_utilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_utilidadesActionPerformed
-        // TODO add your handling code here:
-        VentanaMenuCampos.setVisible(false);
-        jD_Utilidades.setModal(true);
-        jD_Utilidades.pack();
-        jD_Utilidades.setLocationRelativeTo(this);
-        jD_Utilidades.setVisible(true);
-    }//GEN-LAST:event_btn_utilidadesActionPerformed
-
-    private void BTN_ExportarXMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BTN_ExportarXMLMouseClicked
+    private void BTN_ExportarXML1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BTN_ExportarXML1MouseClicked
         // TODO add your handling code here:
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -3167,7 +3300,7 @@ public class Principal extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
-    }//GEN-LAST:event_BTN_ExportarXMLMouseClicked
+    }//GEN-LAST:event_BTN_ExportarXML1MouseClicked
 
     ArrayList<Long> rrn_llaves_en_orden = new ArrayList();
 
@@ -3633,7 +3766,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BTN_CerrarArchivo;
     private javax.swing.JButton BTN_CrearCampoDefinitivo;
     private javax.swing.JButton BTN_CrearNuevoArchivo;
-    private javax.swing.JButton BTN_ExportarXML;
+    private javax.swing.JButton BTN_ExportarXML1;
     private javax.swing.JButton BTN_ModificarCampoDefinitivo;
     private javax.swing.JButton BTN_SalirPrograma;
     private javax.swing.JButton BTN_SalvarArchivo;
@@ -3670,8 +3803,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel JL_3;
     private javax.swing.JLabel JL_30;
     private javax.swing.JLabel JL_31;
-    private javax.swing.JLabel JL_32;
-    private javax.swing.JLabel JL_33;
     private javax.swing.JLabel JL_34;
     private javax.swing.JLabel JL_35;
     private javax.swing.JLabel JL_36;
@@ -3682,9 +3813,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel JL_40;
     private javax.swing.JLabel JL_41;
     private javax.swing.JLabel JL_42;
-    private javax.swing.JLabel JL_43;
-    private javax.swing.JLabel JL_44;
+    private javax.swing.JLabel JL_45;
+    private javax.swing.JLabel JL_46;
+    private javax.swing.JLabel JL_47;
+    private javax.swing.JLabel JL_48;
+    private javax.swing.JLabel JL_49;
     private javax.swing.JLabel JL_5;
+    private javax.swing.JLabel JL_50;
     private javax.swing.JLabel JL_6;
     private javax.swing.JLabel JL_7;
     private javax.swing.JLabel JL_8;
@@ -3699,41 +3834,47 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField TF_NombreDelCampo;
     private javax.swing.JTextField TF_NombreDelCampoModificado;
     private javax.swing.JFrame VentanaMenuCampos;
+    private javax.swing.JFrame VentanaMenuPrincipal;
+    private javax.swing.JFrame VentanaMenuRegistros;
+    private javax.swing.JFrame VentanaMenuUtilidades;
     private javax.swing.JButton btn_AvanzarListarRegistro;
     private javax.swing.JButton btn_ConfirmarBorrar;
     private javax.swing.JButton btn_ConfirmarModificacion;
-    private javax.swing.JButton btn_ExportarExcel;
-    private javax.swing.JButton btn_PuenteBorrarRegistro;
-    private javax.swing.JButton btn_PuenteCruzarArchivos;
-    private javax.swing.JButton btn_PuenteListarRegistros;
-    private javax.swing.JButton btn_PuenteModificarRegistros;
+    private javax.swing.JButton btn_ExportarExcel1;
+    private javax.swing.JButton btn_PuenteBorrarRegistro1;
+    private javax.swing.JButton btn_PuenteCruzarArchivos1;
+    private javax.swing.JButton btn_PuenteListarRegistros1;
+    private javax.swing.JButton btn_PuenteMenuCampos;
+    private javax.swing.JButton btn_PuenteMenuIndices;
+    private javax.swing.JButton btn_PuenteMenuRegistros;
+    private javax.swing.JButton btn_PuenteMenuUtilidades;
+    private javax.swing.JButton btn_PuenteModificarRegistros1;
     private javax.swing.JButton btn_RetrocederListarRegistro;
     private javax.swing.JButton btn_buscarEliminarRegistros;
     private javax.swing.JButton btn_buscarModificarRegistro;
     private javax.swing.JButton btn_buscarRegistro;
-    private javax.swing.JButton btn_buscarRegistros;
-    private javax.swing.JButton btn_crearRegistros;
+    private javax.swing.JButton btn_buscarRegistros1;
+    private javax.swing.JButton btn_crearRegistros1;
     private javax.swing.JButton btn_crearRegistrosDefinitivos;
+    private javax.swing.JButton btn_irRegistros;
     private javax.swing.JButton btn_regresarRegistrosPrincipal;
     private javax.swing.JButton btn_regresarRegistrosPrincipal1;
     private javax.swing.JButton btn_regresarRegistrosPrincipal2;
     private javax.swing.JButton btn_regresarRegistrosPrincipal3;
     private javax.swing.JButton btn_salirCrearRegistros;
     private javax.swing.JButton btn_utilidades;
-    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jCb_llavesBuscarregistros;
     private javax.swing.JComboBox<String> jCb_llavesEliminarRegistros;
     private javax.swing.JDialog jD_EliminarRegistros;
     private javax.swing.JDialog jD_ListarRegistros;
-    private javax.swing.JDialog jD_MenuRegistros;
     private javax.swing.JDialog jD_ModificarRegistros;
-    private javax.swing.JDialog jD_Utilidades;
     private javax.swing.JDialog jD_buscarRegistros;
     private javax.swing.JDialog jD_crearRegistros;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLbl_instruccionModificar;
     private javax.swing.JLabel jLbl_instruccionModificar1;
     private javax.swing.JPanel jP_CrearCampo;
@@ -3741,8 +3882,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -3750,6 +3890,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JPanel jPanel_MenuRegistros1;
+    private javax.swing.JPanel jPanel_MenuRegistros2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
