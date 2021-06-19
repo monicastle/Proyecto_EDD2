@@ -30,6 +30,17 @@ import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  *
@@ -192,6 +203,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         JL_43 = new javax.swing.JLabel();
         JL_44 = new javax.swing.JLabel();
+        BTN_ExportarXML = new javax.swing.JButton();
         PanelPrincipal = new javax.swing.JPanel();
         JL_1 = new javax.swing.JLabel();
         BTN_SalirPrograma = new javax.swing.JButton();
@@ -1583,6 +1595,17 @@ public class Principal extends javax.swing.JFrame {
         JL_44.setForeground(new java.awt.Color(204, 204, 204));
         JL_44.setText("____________________________________________________________________");
 
+        BTN_ExportarXML.setBackground(new java.awt.Color(255, 51, 0));
+        BTN_ExportarXML.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BTN_ExportarXML.setForeground(new java.awt.Color(255, 255, 255));
+        BTN_ExportarXML.setText("Exportar XML con Schema");
+        BTN_ExportarXML.setBorder(null);
+        BTN_ExportarXML.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BTN_ExportarXMLMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -1595,7 +1618,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(btn_ExportarExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BTN_ExportarXML, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_ExportarExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
@@ -1607,7 +1632,9 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(JL_43)
                 .addGap(20, 20, 20)
                 .addComponent(btn_ExportarExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(195, 195, 195)
+                .addGap(26, 26, 26)
+                .addComponent(BTN_ExportarXML, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135)
                 .addComponent(JL_44)
                 .addContainerGap(49, Short.MAX_VALUE))
         );
@@ -3112,6 +3139,36 @@ public class Principal extends javax.swing.JFrame {
         jD_Utilidades.setVisible(true);
     }//GEN-LAST:event_btn_utilidadesActionPerformed
 
+    private void BTN_ExportarXMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BTN_ExportarXMLMouseClicked
+        // TODO add your handling code here:
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            DOMImplementation implementation = builder.getDOMImplementation();
+            String name_recortado;
+            name_recortado = GuardarArchivo.substring(0, GuardarArchivo.length() - 4);
+            name_recortado = name_recortado.replace(" ", "_");
+            Document documento = implementation.createDocument(null, name_recortado, null);
+            documento.setXmlVersion("1.0");
+            Element campos = documento.createElement("Campos");
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                Element campo = documento.createElement("Campo");
+                campo.setAttribute(archivo_actual.getCampos().get(i).getNombre(), "" + archivo_actual.getCampos().get(i).getTipo());
+                campos.appendChild(campo);
+            } // Fin For
+            documento.getDocumentElement().appendChild(campos);
+            Source source = new DOMSource(documento);
+            String nameArchivo;
+            nameArchivo = name_recortado + ".xml";
+            Result result = new StreamResult(new File(nameArchivo));
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.transform(source, result);
+            JOptionPane.showMessageDialog(this, "¡Exportación exitosa!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+    }//GEN-LAST:event_BTN_ExportarXMLMouseClicked
+
     ArrayList<Long> rrn_llaves_en_orden = new ArrayList();
 
     public void listar_registros() {
@@ -3576,6 +3633,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BTN_CerrarArchivo;
     private javax.swing.JButton BTN_CrearCampoDefinitivo;
     private javax.swing.JButton BTN_CrearNuevoArchivo;
+    private javax.swing.JButton BTN_ExportarXML;
     private javax.swing.JButton BTN_ModificarCampoDefinitivo;
     private javax.swing.JButton BTN_SalirPrograma;
     private javax.swing.JButton BTN_SalvarArchivo;
