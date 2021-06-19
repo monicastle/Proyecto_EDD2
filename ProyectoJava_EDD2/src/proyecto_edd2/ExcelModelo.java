@@ -56,7 +56,7 @@ public class ExcelModelo {
             wb = new XSSFWorkbook();
         }//*/
         String nombre_txt = archivo_actual.getArchivo().getName();
-        Sheet hoja = wb.createSheet("Registros de " + nombre_txt.substring(0, nombre_txt.length() - 4));
+        Sheet hoja = wb.createSheet(nombre_txt.substring(0, nombre_txt.length() - 4));
         for (int i = -1; i < lista.size(); i++) {
             Row fila = hoja.createRow(i + 1);
             if (i == -1) {
@@ -77,16 +77,17 @@ public class ExcelModelo {
                 for (int j = 0; j < archivo_actual.getCampos().size(); j++) {
                     //SE CREA UNA NUEVA CELDA EN LA POSICION J DE LA FILA I
                     Cell celda = fila.createCell(j);
-                    for (int k = 0; k < arr.length; k++) {
+                    String insertar = arr[j];
+                    celda.setCellValue(insertar);
+                    //NO TOCAR O SE MAMA
+                    /*for (int k = 0; k < arr.length; k++) {
                         //LE QUITO LOS ESPACIOS INNESESARIOS
                         String insertar = arr[k].replaceAll(" ", "");
-                        System.out.print(insertar + " ");
                         //SE LE AGREGA LA INFORMACION A LA CELDA
                         celda.setCellValue(insertar);
-                    }//fin for k
-                    System.out.println("");
+                    }//fin for k*/
                     wb.write(new FileOutputStream(archivo_excel));
-                }//fin for*/"Exportación Comple
+                }//fin for*/
                 respuesta = "Exportación Completa";
             }//fin else
         }//*/
