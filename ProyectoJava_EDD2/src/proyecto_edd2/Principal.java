@@ -2873,7 +2873,7 @@ public class Principal extends javax.swing.JFrame {
                 for (int i = 0; i < model.getColumnCount(); i++) {
                     arr2[i] = arr[i];
                 }
-                model.addRow(arr2);    
+                model.addRow(arr2);
             } catch (IOException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -3029,7 +3029,7 @@ public class Principal extends javax.swing.JFrame {
                     }
                     char[] data2 = data.toCharArray();
                     data2[0] = '*';
-                    //data2[|] = '|';
+                    data2[1] = '|';
                     String rrnString = "";
                     if (archivo_actual.getAvailList().isEmpty()) {
                         rrnString = rrnAsString(-1);
@@ -3037,9 +3037,9 @@ public class Principal extends javax.swing.JFrame {
                         rrnString = rrnAsString((int) archivo_actual.getAvailList().peekFirst());
                     }
                     //el for abajo no genera bien el caracter basura en los registros, parece que funciona para el avialist
-                    /*for (int i = 0; i < rrnString.length(); i++) {
+                    for (int i = 0; i < rrnString.length(); i++) {
                         data2[2 + i] = rrnString.charAt(i);
-                    }*/
+                    }//
                     try {
                         int pk = getPosKey();
                         String llave = jTbl_eliminarRegistros.getValueAt(c++, pk).toString();
@@ -3128,7 +3128,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!archivo_actual.getAvailList().isEmpty()) {
             JOptionPane.showMessageDialog(this, "No es posible modificar los campos de este archivo.");
-        /*} else if (arbol_actual == null) {//PUEDE QUE ESTO LO OCUPE AL ELIMINAR TODOS LOS REGISTROS.. PUEDE
+            /*} else if (arbol_actual == null) {//PUEDE QUE ESTO LO OCUPE AL ELIMINAR TODOS LOS REGISTROS.. PUEDE
             JOptionPane.showMessageDialog(this, "Ya tienes registros creados.");*/
         } else {
             this.setVisible(false);
@@ -3194,26 +3194,26 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         //if (!(arbol_actual == null)) {
         //if (archivo_actual.getCant_regisros() > 0) {
-            DefaultTableModel modelo = new DefaultTableModel();
-            jTbl_buscarRegistros.setModel(new DefaultTableModel());
-            DefaultTableModel model = (DefaultTableModel) jTbl_buscarRegistros.getModel();
-            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+        DefaultTableModel modelo = new DefaultTableModel();
+        jTbl_buscarRegistros.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) jTbl_buscarRegistros.getModel();
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+        }
+        jTbl_tablaRegistros.setModel(modelo);//??
+        jCb_llavesBuscarregistros.setModel(new DefaultComboBoxModel<>());
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
+                jCb_llavesBuscarregistros.addItem(ic.toString());
+                break;
             }
-            jTbl_tablaRegistros.setModel(modelo);//??
-            jCb_llavesBuscarregistros.setModel(new DefaultComboBoxModel<>());
-            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                    itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
-                    jCb_llavesBuscarregistros.addItem(ic.toString());
-                    break;
-                }
-            }
-            jTf_buscarRegistros.setText("");
-            jD_buscarRegistros.pack();
-            jD_buscarRegistros.setModal(true);
-            jD_buscarRegistros.setLocationRelativeTo(this);
-            jD_buscarRegistros.setVisible(true);
+        }
+        jTf_buscarRegistros.setText("");
+        jD_buscarRegistros.pack();
+        jD_buscarRegistros.setModal(true);
+        jD_buscarRegistros.setLocationRelativeTo(this);
+        jD_buscarRegistros.setVisible(true);
         /*} else {
             JOptionPane.showMessageDialog(this, "No tienes registros guardados en estos momentos.");
         }*/
@@ -3223,18 +3223,18 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         //if (!(arbol_actual == null)) {
         //if (archivo_actual.getCant_regisros() > 0) {
-            VentanaMenuRegistros.setVisible(false);
-            //jLbl_instruccionModificar.setText(archivo_actual.getCampos().get(0).getNombre());
-            jTbl_ModificarRegistros.setModel(new DefaultTableModel());
-            DefaultTableModel model = (DefaultTableModel) jTbl_ModificarRegistros.getModel();
-            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                model.addColumn(archivo_actual.getCampos().get(i).getNombre());
-            }
-            jD_ModificarRegistros.pack();
-            jD_ModificarRegistros.setModal(true);
-            jD_ModificarRegistros.setLocationRelativeTo(null);
-            jD_ModificarRegistros.setVisible(true);
-            jTbl_ModificarRegistros.setModel(new DefaultTableModel());
+        VentanaMenuRegistros.setVisible(false);
+        //jLbl_instruccionModificar.setText(archivo_actual.getCampos().get(0).getNombre());
+        jTbl_ModificarRegistros.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) jTbl_ModificarRegistros.getModel();
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+        }
+        jD_ModificarRegistros.pack();
+        jD_ModificarRegistros.setModal(true);
+        jD_ModificarRegistros.setLocationRelativeTo(null);
+        jD_ModificarRegistros.setVisible(true);
+        jTbl_ModificarRegistros.setModel(new DefaultTableModel());
         /*} else {
             JOptionPane.showMessageDialog(this, "No tienes registros guardados en estos momentos.");
         }*/
@@ -3244,29 +3244,29 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         //  if (!(arbol_actual == null)){
         //if (archivo_actual.getCant_regisros() > 0) {
-            DefaultTableModel modelo = new DefaultTableModel();
-            jTbl_eliminarRegistros.setModel(new DefaultTableModel());
-            DefaultTableModel model = (DefaultTableModel) jTbl_eliminarRegistros.getModel();
-            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                model.addColumn(archivo_actual.getCampos().get(i).getNombre());
-            }//fin for i
-            jTbl_tablaRegistros.setModel(modelo);//??
-            jCb_llavesEliminarRegistros.setModel(new DefaultComboBoxModel<>());
-            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                    itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
-                    jCb_llavesEliminarRegistros.addItem(ic.toString());
-                    break;
-                }
-            }//fin for i
-            boolean incrementa = false;
-            archivo_actual.setCant_regisros(incrementa);
-            jTf_LLaveEliminarRegistros.setText("");
-            jTbl_eliminarRegistros.setModel(new DefaultTableModel());
-            /*jD_EliminarRegistros.pack();
-            jD_EliminarRegistros.setModal(true);
-            jD_EliminarRegistros.setLocationRelativeTo(null);
-            jD_EliminarRegistros.setVisible(true);*/
+        DefaultTableModel modelo = new DefaultTableModel();
+        jTbl_eliminarRegistros.setModel(new DefaultTableModel());
+        DefaultTableModel model = (DefaultTableModel) jTbl_eliminarRegistros.getModel();
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+        }//fin for i
+        jTbl_tablaRegistros.setModel(modelo);//??
+        jCb_llavesEliminarRegistros.setModel(new DefaultComboBoxModel<>());
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
+                jCb_llavesEliminarRegistros.addItem(ic.toString());
+                break;
+            }
+        }//fin for i
+        boolean incrementa = false;
+        archivo_actual.setCant_regisros(incrementa);
+        jTf_LLaveEliminarRegistros.setText("");
+        //jTbl_eliminarRegistros.setModel(new DefaultTableModel());
+        jD_EliminarRegistros.pack();
+        jD_EliminarRegistros.setModal(true);
+        jD_EliminarRegistros.setLocationRelativeTo(null);
+        jD_EliminarRegistros.setVisible(true);
         /*} else {
             JOptionPane.showMessageDialog(this, "No tienes registros guardados en estos momentos.");
         }*/
@@ -3276,16 +3276,16 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         //if (!(arbol_actual == null)) {
         //if (archivo_actual.getCant_regisros() > 0){
-            avanzar = 5;
-            retroceder = 0;
-            rrn_llaves_en_orden = new ArrayList();
-            arbol_actual.BTree_KeysInOrder(arbol_actual.getRaiz(), rrn_llaves_en_orden);
-            listar_registros();//*/
-            jD_ListarRegistros.pack();
-            jD_ListarRegistros.setModal(true);
-            jD_ListarRegistros.setLocationRelativeTo(this);
-            VentanaMenuRegistros.setVisible(false);
-            jD_ListarRegistros.setVisible(true);
+        avanzar = 5;
+        retroceder = 0;
+        rrn_llaves_en_orden = new ArrayList();
+        arbol_actual.BTree_KeysInOrder(arbol_actual.getRaiz(), rrn_llaves_en_orden);
+        listar_registros();//*/
+        jD_ListarRegistros.pack();
+        jD_ListarRegistros.setModal(true);
+        jD_ListarRegistros.setLocationRelativeTo(this);
+        VentanaMenuRegistros.setVisible(false);
+        jD_ListarRegistros.setVisible(true);
         /*} else {
             JOptionPane.showMessageDialog(this, "No tienes registros guardados en estos momentos.");
         }*/
