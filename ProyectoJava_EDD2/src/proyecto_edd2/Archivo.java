@@ -81,6 +81,17 @@ public class Archivo implements Serializable {
         }
     }
 
+    public double getLongitudLLavePrimaria(){
+        int retornar = 0;
+        for (int i = 0; i < campos.size(); i++) {
+            if(campos.get(i).isLlavePrimaria()){
+                retornar = campos.get(i).getLongitud();
+                break;
+            }
+        }
+        return retornar;
+    }
+    
     public int getSizeMetadata() {
         String metadata = nombre;
         for (Campo campo : this.getCampos()) {
