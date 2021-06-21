@@ -22,6 +22,7 @@ public class Campo implements Serializable {
     private String tipo;
     private int longitud;
     private boolean llave_primaria;
+    private boolean llave_secundaria;
 
     public Campo() {
     } // Fin Constructor Campo
@@ -89,6 +90,14 @@ public class Campo implements Serializable {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public boolean isLlave_secundaria() {
+        return llave_secundaria;
+    }
+
+    public void setLlave_secundaria(boolean llave_secundaria) {
+        this.llave_secundaria = llave_secundaria;
     }
 
     @Override

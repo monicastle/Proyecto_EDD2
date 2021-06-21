@@ -106,6 +106,7 @@ public class Principal extends javax.swing.JFrame {
         JL_10 = new javax.swing.JLabel();
         BTN_CrearCampoDefinitivo = new javax.swing.JButton();
         BTN_CancelarCrearCampo = new javax.swing.JButton();
+        Rb_llavesecundaria = new javax.swing.JRadioButton();
         JD_ModificarCampos = new javax.swing.JDialog();
         jPanel9 = new javax.swing.JPanel();
         JL_12 = new javax.swing.JLabel();
@@ -122,6 +123,7 @@ public class Principal extends javax.swing.JFrame {
         JL_17 = new javax.swing.JLabel();
         BTN_ModificarCampoDefinitivo = new javax.swing.JButton();
         BTN_CancelarModificarCampo = new javax.swing.JButton();
+        RB_Llavesecundariamodificar = new javax.swing.JRadioButton();
         JD_BorrarCampos = new javax.swing.JDialog();
         jPanel8 = new javax.swing.JPanel();
         JL_19 = new javax.swing.JLabel();
@@ -211,6 +213,11 @@ public class Principal extends javax.swing.JFrame {
         JL_49 = new javax.swing.JLabel();
         JL_50 = new javax.swing.JLabel();
         BTN_ExportarXML1 = new javax.swing.JButton();
+        Ventana_MenuIndices = new javax.swing.JFrame();
+        jLabel1 = new javax.swing.JLabel();
+        jb_crearindices = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         PanelPrincipal = new javax.swing.JPanel();
         JL_1 = new javax.swing.JLabel();
         BTN_SalirPrograma = new javax.swing.JButton();
@@ -567,6 +574,8 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        Rb_llavesecundaria.setText("LLave secundaria");
+
         javax.swing.GroupLayout jP_CrearCampoLayout = new javax.swing.GroupLayout(jP_CrearCampo);
         jP_CrearCampo.setLayout(jP_CrearCampoLayout);
         jP_CrearCampoLayout.setHorizontalGroup(
@@ -582,9 +591,12 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(TF_NombreDelCampo)
                         .addComponent(JL_7)
                         .addComponent(CB_TipoDeDatoDelCampo, 0, 356, Short.MAX_VALUE))
-                    .addGroup(jP_CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(SP_LongitudDelCampo, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(RB_LlavePrimariaDelCampo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jP_CrearCampoLayout.createSequentialGroup()
+                        .addGroup(jP_CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(SP_LongitudDelCampo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(RB_LlavePrimariaDelCampo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Rb_llavesecundaria)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jP_CrearCampoLayout.createSequentialGroup()
                 .addComponent(JL_10)
@@ -616,7 +628,9 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SP_LongitudDelCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(RB_LlavePrimariaDelCampo)
+                .addGroup(jP_CrearCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RB_LlavePrimariaDelCampo)
+                    .addComponent(Rb_llavesecundaria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JL_10)
                 .addGap(16, 16, 16)
@@ -706,6 +720,8 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        RB_Llavesecundariamodificar.setText("Llave secundaria");
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -713,7 +729,10 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(RB_LlavePrimariaDelCampoModificado)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(RB_LlavePrimariaDelCampoModificado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(RB_Llavesecundariamodificar))
                     .addComponent(JL_15)
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(JL_14)
@@ -761,7 +780,9 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SP_LongitudDelCampoModificado, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(RB_LlavePrimariaDelCampoModificado)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(RB_LlavePrimariaDelCampoModificado)
+                    .addComponent(RB_Llavesecundariamodificar))
                 .addGap(0, 0, 0)
                 .addComponent(JL_17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1728,6 +1749,45 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jLabel1.setText("Menu indices");
+
+        jb_crearindices.setText("Crear Indices");
+        jb_crearindices.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_crearindicesMouseClicked(evt);
+            }
+        });
+
+        jButton2.setText("Reindexar");
+
+        javax.swing.GroupLayout Ventana_MenuIndicesLayout = new javax.swing.GroupLayout(Ventana_MenuIndices.getContentPane());
+        Ventana_MenuIndices.getContentPane().setLayout(Ventana_MenuIndicesLayout);
+        Ventana_MenuIndicesLayout.setHorizontalGroup(
+            Ventana_MenuIndicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Ventana_MenuIndicesLayout.createSequentialGroup()
+                .addGroup(Ventana_MenuIndicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Ventana_MenuIndicesLayout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(jLabel1))
+                    .addGroup(Ventana_MenuIndicesLayout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addGroup(Ventana_MenuIndicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jb_crearindices))))
+                .addContainerGap(152, Short.MAX_VALUE))
+        );
+        Ventana_MenuIndicesLayout.setVerticalGroup(
+            Ventana_MenuIndicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Ventana_MenuIndicesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jb_crearindices)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addContainerGap(185, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Menú Archivos");
 
@@ -1958,6 +2018,13 @@ public class Principal extends javax.swing.JFrame {
                         arbolcreado = true;
                         get_posarbol = i;//se agarra la posicion del arbol creado
                         arbol_actual = arboles.getListaarboles().get(i).getArbol();
+                        break;
+                    }
+                }
+                arbolessecundarios.cargarArchivo();
+                for (int i = 0; i < arbolessecundarios.getListaarboles().size(); i++) {
+                    if (arbolessecundarios.getListaarboles().get(i).getIDArchivoActual() == archivo_actual.getID()) {
+                        arbol_secundarioactual = arbolessecundarios.getListaarboles().get(i).getArbolSecundario();
                         break;
                     }
                 }
@@ -2261,6 +2328,7 @@ public class Principal extends javax.swing.JFrame {
             salvado = true;
             boolean existe = false;
             boolean llaveprimaria = false;
+            boolean llavesecundaria = false;
             String nombre = TF_NombreDelCampo.getText();
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
                 if (archivo_actual.getCampos().get(i).getNombre().equals(nombre)) {
@@ -2271,23 +2339,35 @@ public class Principal extends javax.swing.JFrame {
             tipo_de_dato = CB_TipoDeDatoDelCampo.getSelectedIndex();
             longitud = Integer.parseInt(SP_LongitudDelCampo.getValue().toString());
             boolean llave_primaria = false;
-            if (RB_LlavePrimariaDelCampo.isSelected()) {
+            boolean llave_secundaria = false;
+            if (RB_LlavePrimariaDelCampo.isSelected() == true && Rb_llavesecundaria.isSelected() == true) {
                 llave_primaria = true;
+                llave_secundaria = true;
+
             } // Fin If
+            else if (RB_LlavePrimariaDelCampo.isSelected() == false && Rb_llavesecundaria.isSelected() == true) {
+                llave_primaria = false;
+                llave_secundaria = true;
+            }//fin else if
+            else if (RB_LlavePrimariaDelCampo.isSelected() == true && Rb_llavesecundaria.isSelected() == false) {
+                llave_primaria = true;
+                llave_secundaria = false;
+            }//Fin else if
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
                 if (archivo_actual.getCampos().get(i).isLlavePrimaria() == true) {
                     llaveprimaria = true;
                 }
             }//fin for para validar llave primaria
             for (int i = 0; i < campos_nuevos.size(); i++) {
-                if (campos_nuevos.get(i).isLlavePrimaria() == true) {
-                    llaveprimaria = true;
+                if (campos_nuevos.get(i).isLlave_secundaria() == true) {
+                    llavesecundaria = true;
                 }
-            }//fin for para validar llave primaria
+            }//fin for para validar llave secundaria
             int ID_campo, ID_archivo;
             ID_campo = GenerarIDCampo();
             ID_archivo = archivo_actual.getID();
             Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria);
+
             if (tipo_de_dato == 0) {
                 campo_nuevo.setTipo("int");
             } else if (tipo_de_dato == 7) {
@@ -2296,43 +2376,160 @@ public class Principal extends javax.swing.JFrame {
             System.out.println(llave_primaria);
             System.out.println(llaveprimaria);
             if (existe == false) {
-                if (llave_primaria == false && llaveprimaria == false) {
-                    // EMPIEZA ONASIS
-                    campo_actual = campo_nuevo;
-                    campos_nuevos.add(campo_nuevo);
-                    añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
-                    TF_NombreDelCampo.setText("");
-                    CB_TipoDeDatoDelCampo.setSelectedIndex(0);
-                    SP_LongitudDelCampo.setValue(0);
-                    RB_LlavePrimariaDelCampo.setSelected(false);
-                    secreo = true;
-                    // TERMINA ONASIS
+                if ((llave_primaria == false && llaveprimaria == false)) {
+                    if (llavesecundaria == false && llave_secundaria == true) {
+                        // EMPIEZA ONASIS
+                        campo_nuevo.setLlave_secundaria(llave_secundaria);
+                        campo_actual = campo_nuevo;
+                        campos_nuevos.add(campo_nuevo);
+                        añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
+                        TF_NombreDelCampo.setText("");
+                        CB_TipoDeDatoDelCampo.setSelectedIndex(0);
+                        SP_LongitudDelCampo.setValue(0);
+                        RB_LlavePrimariaDelCampo.setSelected(false);
+                        Rb_llavesecundaria.setSelected(false);
+                        buttonGroup1.clearSelection();
+                        secreo = true;
+                        // TERMINA ONASIS
+                    } else if (llavesecundaria == true && llave_secundaria == false) {
+                        // EMPIEZA ONASIS
+                        campo_nuevo.setLlave_secundaria(llave_secundaria);
+                        campo_actual = campo_nuevo;
+                        campos_nuevos.add(campo_nuevo);
+                        añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
+                        TF_NombreDelCampo.setText("");
+                        CB_TipoDeDatoDelCampo.setSelectedIndex(0);
+                        SP_LongitudDelCampo.setValue(0);
+                        RB_LlavePrimariaDelCampo.setSelected(false);
+                        Rb_llavesecundaria.setSelected(false);
+                        buttonGroup1.clearSelection();
+                        secreo = true;
+                        // TERMINA ONASIS
+                    } else if (llavesecundaria == false && llave_secundaria == false) {
+                        // EMPIEZA ONASIS
+                        campo_nuevo.setLlave_secundaria(llave_secundaria);
+                        campo_actual = campo_nuevo;
+                        campos_nuevos.add(campo_nuevo);
+                        añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
+                        TF_NombreDelCampo.setText("");
+                        CB_TipoDeDatoDelCampo.setSelectedIndex(0);
+                        SP_LongitudDelCampo.setValue(0);
+                        RB_LlavePrimariaDelCampo.setSelected(false);
+                        Rb_llavesecundaria.setSelected(false);
+                        buttonGroup1.clearSelection();
+                        secreo = true;
+                        // TERMINA ONASIS
+                    } else if (llave_secundaria == true && llavesecundaria == true) {
+                        JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave secundaria");
+                        RB_LlavePrimariaDelCampo.setSelected(false);
+                        Rb_llavesecundaria.setSelected(false);
+                        buttonGroup1.clearSelection();
+                        buttonGroup1.clearSelection();
+                    }
                 } else if (llave_primaria == true && llaveprimaria == false) {
-                    campo_actual = campo_nuevo;
-                    campos_nuevos.add(campo_nuevo);
-                    añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
-                    TF_NombreDelCampo.setText("");
-                    CB_TipoDeDatoDelCampo.setSelectedIndex(0);
-                    SP_LongitudDelCampo.setValue(0);
-                    RB_LlavePrimariaDelCampo.setSelected(false);
-                    secreo = true;
+                    if (llavesecundaria == false && llave_secundaria == true) {
+                        JOptionPane.showMessageDialog(null, "No se puede crear el campo porque hay doble asignacion de llaves al mismo campo");
+                        RB_LlavePrimariaDelCampo.setSelected(false);
+                        Rb_llavesecundaria.setSelected(false);
+                        buttonGroup1.clearSelection();
+                    } else if (llavesecundaria == true && llave_secundaria == false) {
+                        // EMPIEZA ONASIS
+                        campo_nuevo.setLlave_secundaria(llave_secundaria);
+                        campo_actual = campo_nuevo;
+                        campos_nuevos.add(campo_nuevo);
+                        añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
+                        TF_NombreDelCampo.setText("");
+                        CB_TipoDeDatoDelCampo.setSelectedIndex(0);
+                        SP_LongitudDelCampo.setValue(0);
+                        RB_LlavePrimariaDelCampo.setSelected(false);
+                        Rb_llavesecundaria.setSelected(false);
+                        buttonGroup1.clearSelection();
+                        secreo = true;
+                        // TERMINA ONASIS
+                    } else if (llavesecundaria == false && llave_secundaria == false) {
+                        // EMPIEZA ONASIS
+                        campo_nuevo.setLlave_secundaria(llave_secundaria);
+                        campo_actual = campo_nuevo;
+                        campos_nuevos.add(campo_nuevo);
+                        añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
+                        TF_NombreDelCampo.setText("");
+                        CB_TipoDeDatoDelCampo.setSelectedIndex(0);
+                        SP_LongitudDelCampo.setValue(0);
+                        RB_LlavePrimariaDelCampo.setSelected(false);
+                        Rb_llavesecundaria.setSelected(false);
+                        buttonGroup1.clearSelection();
+                        secreo = true;
+                        // TERMINA ONASIS
+                    } else if (llave_secundaria == true && llavesecundaria == true) {
+                        JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave secundaria");
+                        RB_LlavePrimariaDelCampo.setSelected(false);
+                        Rb_llavesecundaria.setSelected(false);
+                    }
                 } else if (llave_primaria == false && llaveprimaria == true) {
-                    campo_actual = campo_nuevo;
-                    campos_nuevos.add(campo_nuevo);
-                    añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
-                    TF_NombreDelCampo.setText("");
-                    CB_TipoDeDatoDelCampo.setSelectedIndex(0);
-                    SP_LongitudDelCampo.setValue(0);
-                    RB_LlavePrimariaDelCampo.setSelected(false);
-                    secreo = true;
+                    if (llavesecundaria == false && llave_secundaria == true) {
+                        // EMPIEZA ONASIS
+                        campo_nuevo.setLlave_secundaria(llave_secundaria);
+                        campo_actual = campo_nuevo;
+                        campos_nuevos.add(campo_nuevo);
+                        añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
+                        TF_NombreDelCampo.setText("");
+                        CB_TipoDeDatoDelCampo.setSelectedIndex(0);
+                        SP_LongitudDelCampo.setValue(0);
+                        RB_LlavePrimariaDelCampo.setSelected(false);
+                        Rb_llavesecundaria.setSelected(false);
+                        buttonGroup1.clearSelection();
+                        secreo = true;
+                        // TERMINA ONASIS
+                    } else if (llavesecundaria == true && llave_secundaria == false) {
+                        // EMPIEZA ONASIS
+                        campo_nuevo.setLlave_secundaria(llave_secundaria);
+                        campo_actual = campo_nuevo;
+                        campos_nuevos.add(campo_nuevo);
+                        añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
+                        TF_NombreDelCampo.setText("");
+                        CB_TipoDeDatoDelCampo.setSelectedIndex(0);
+                        SP_LongitudDelCampo.setValue(0);
+                        RB_LlavePrimariaDelCampo.setSelected(false);
+                        Rb_llavesecundaria.setSelected(false);
+                        buttonGroup1.clearSelection();
+                        secreo = true;
+                        // TERMINA ONASIS
+                    } else if (llavesecundaria == false && llave_secundaria == false) {
+                        // EMPIEZA ONASIS
+                        campo_nuevo.setLlave_secundaria(llave_secundaria);
+                        campo_actual = campo_nuevo;
+                        campos_nuevos.add(campo_nuevo);
+                        añadir_campo_txt(campo_nuevo); // PROBAR: PUEDO USAR EL ARRAYLIST EN SALVAR PARA USAR ESTE METODO
+                        TF_NombreDelCampo.setText("");
+                        CB_TipoDeDatoDelCampo.setSelectedIndex(0);
+                        SP_LongitudDelCampo.setValue(0);
+                        RB_LlavePrimariaDelCampo.setSelected(false);
+                        Rb_llavesecundaria.setSelected(false);
+                        buttonGroup1.clearSelection();
+                        secreo = true;
+                        // TERMINA ONASIS
+                    } else if (llave_secundaria == true && llavesecundaria == true) {
+                        JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave secundaria");
+                        RB_LlavePrimariaDelCampo.setSelected(false);
+                        Rb_llavesecundaria.setSelected(false);
+                        buttonGroup1.clearSelection();
+                    }
                 } else if (llave_primaria == true && llaveprimaria == true) {
                     JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
+                    RB_LlavePrimariaDelCampo.setSelected(false);
+                    Rb_llavesecundaria.setSelected(false);
+                    buttonGroup1.clearSelection();
                 }// Fin If
             } else if (existe == true) {
                 JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
+                RB_LlavePrimariaDelCampo.setSelected(false);
+                Rb_llavesecundaria.setSelected(false);
+                buttonGroup1.clearSelection();
             } else if (llaveprimaria == true) {
                 JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
-                llaveprimaria = false;
+                RB_LlavePrimariaDelCampo.setSelected(false);
+                Rb_llavesecundaria.setSelected(false);
+                buttonGroup1.clearSelection();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -2349,47 +2546,62 @@ public class Principal extends javax.swing.JFrame {
                 boolean existe = false;
                 boolean llaveprimaria = false;
                 String nombre;
-                int tipo_de_dato, longitud;
+                int longitud;
+                String tipo_de_dato;
                 boolean llave_primaria = false;
+                boolean llave_secundaria = false;
                 nombre = TF_NombreDelCampoModificado.getText();
+                // VALIDACION QUE SE PUEDE BORRAR O CAMBIAR
                 for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
                     if (i != CB_CampoAModificar.getSelectedIndex() - 1) {
                         if (archivo_actual.getCampos().get(i).getNombre().equals(nombre)) {
                             existe = true;
-                        }
-                    }
-                }//fin for validacion del cmapo para ver si su nomre ya existe
-                tipo_de_dato = CB_TipoDeDatoDelCampoModificado.getSelectedIndex();
+                        } // Fin If
+                    } // Fin If
+                }//fin for validacion del cmapo para ver si su nombre ya existe
+                tipo_de_dato = (String) CB_TipoDeDatoDelCampoModificado.getSelectedItem();
                 longitud = Integer.parseInt(SP_LongitudDelCampoModificado.getValue().toString());
                 if (RB_LlavePrimariaDelCampoModificado.isSelected()) {
                     llave_primaria = true;
                 } // Fin If
+                if (RB_Llavesecundariamodificar.isSelected()) {
+                    llave_secundaria = true;
+                } // Fin If
+                // FALTARIA AQUI PARA LA LLAVE SECUNDARIA
+                // VALIDACION QUE SE PUEDE BORRAR O CAMBIAR
                 for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
                     if (archivo_actual.getCampos().get(i).isLlavePrimaria() == true) {
                         llaveprimaria = true;
-                    }
+                    } // Fin If
                 }//fin for para validar llave primaria
-                System.out.println(llave_primaria);
-                System.out.println(llaveprimaria);
+
+                // RECORDATORIO DE BORRAR LO SIGUIENTE -> -> ->
+                //System.out.println(llave_primaria);
+                //System.out.println(llaveprimaria);
+                // VALIDACIONES QUE SE DEBEN CAMBIAR O BORRAR -> -> ->
+                // NO SE QUE HACE LO SIGUIENTE :) ATT: Monik
                 if (nombre.equals("")) {
                     vacio_nombre = true;
                 } else {
                     vacio_nombre = false;
-                }
+                } // Fin If
                 System.out.println("Esta vacio: " + vacio_nombre);
                 if (existe == false) {
+                    // FALTARIA VALIDACION PARA LA LLAVE SECUNDARIA AQUI -> -> ->
                     if ((llave_primaria == false && llaveprimaria == false) && vacio_nombre == false) {
                         for (Campo campo : campos_nuevos) {
                             if (campo.getID() == campo_actual.getID()) {
-                                if ((campo.getNombre().equals(nombre) && (campo.getTipo_de_dato() == tipo_de_dato)) && ((campo.getLongitud() == longitud) && campo.isLlavePrimaria() == llave_primaria)) {
+                                if ((campo.getNombre().equals(nombre) && (campo.getTipo().equals(tipo_de_dato)))
+                                        && ((campo.getLongitud() == longitud) && campo.isLlavePrimaria() == llave_primaria && campo.isLlave_secundaria() == llave_secundaria)) {
                                     mostrar_mensaje = false;
                                 } else {
                                     mostrar_mensaje = true;
-                                }
+                                } // Fin If
                                 campo.setNombre(nombre);
-                                campo.setTipo_de_dato(tipo_de_dato);
+                                campo.setTipo(tipo_de_dato);
                                 campo.setLongitud(longitud);
                                 campo.setLlaveprimaria(llave_primaria);
+                                campo.setLlave_secundaria(llave_secundaria);
                             } // Fin If
                         } // Fin For
                         // Tener en cuenta el archivo actual
@@ -2398,25 +2610,30 @@ public class Principal extends javax.swing.JFrame {
                         CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
                         SP_LongitudDelCampoModificado.setValue(0);
                         RB_LlavePrimariaDelCampoModificado.setSelected(false);
+                        RB_Llavesecundariamodificar.setSelected(false);
                         if (mostrar_mensaje) {
                             JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
                             semodifico = true;
                         } else {
                             mostrar_mensaje = true;
-                        }
+                        } // Fin If
                         // ONASIS TERMINA
+
+                        // FALTA VALIDACION PARA LA LLAVE SECUNDARIA (CAMBIAR O BORRAR MAYBE)
                     } else if ((llave_primaria == true && llaveprimaria == false) && vacio_nombre == false) {
                         for (Campo campo : campos_nuevos) {
                             if (campo.getID() == campo_actual.getID()) {
-                                if ((campo.getNombre().equals(nombre) && (campo.getTipo_de_dato() == tipo_de_dato)) && ((campo.getLongitud() == longitud) && campo.isLlavePrimaria() == llave_primaria)) {
+                                if ((campo.getNombre().equals(nombre) && (campo.getTipo().equals(tipo_de_dato)))
+                                        && ((campo.getLongitud() == longitud) && campo.isLlavePrimaria() == llave_primaria && campo.isLlave_secundaria() == llave_secundaria)) {
                                     mostrar_mensaje = false;
                                 } else {
                                     mostrar_mensaje = true;
-                                }
+                                } // Fin If
                                 campo.setNombre(nombre);
-                                campo.setTipo_de_dato(tipo_de_dato);
+                                campo.setTipo(tipo_de_dato);
                                 campo.setLongitud(longitud);
                                 campo.setLlaveprimaria(llave_primaria);
+                                campo.setLlave_secundaria(llave_secundaria);
                             } // Fin If
                         } // Fin For
                         // Tener en cuenta el archivo actual
@@ -2426,25 +2643,28 @@ public class Principal extends javax.swing.JFrame {
                         CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
                         SP_LongitudDelCampoModificado.setValue(0);
                         RB_LlavePrimariaDelCampoModificado.setSelected(false);
+                        RB_Llavesecundariamodificar.setSelected(false);
                         if (mostrar_mensaje) {
                             JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
                             semodifico = true;
                         } else {
                             mostrar_mensaje = true;
-                        }
-
+                        } // Fin If
+                        // FALTA VALIDACION PARA LA LLAVE SECUNDARIA (CAMBIAR O BORRAR MAYBE)
                     } else if ((llave_primaria == false && llaveprimaria == true) && vacio_nombre == false) {
                         for (Campo campo : campos_nuevos) {
                             if (campo.getID() == campo_actual.getID()) {
-                                if ((campo.getNombre().equals(nombre) && (campo.getTipo_de_dato() == tipo_de_dato)) && ((campo.getLongitud() == longitud) && campo.isLlavePrimaria() == llave_primaria)) {
+                                if ((campo.getNombre().equals(nombre) && (campo.getTipo().equals(tipo_de_dato)))
+                                        && ((campo.getLongitud() == longitud) && campo.isLlavePrimaria() == llave_primaria && campo.isLlave_secundaria() == llave_secundaria)) {
                                     mostrar_mensaje = false;
                                 } else {
                                     mostrar_mensaje = true;
-                                }
+                                } // Fin If
                                 campo.setNombre(nombre);
-                                campo.setTipo_de_dato(tipo_de_dato);
+                                campo.setTipo(tipo_de_dato);
                                 campo.setLongitud(longitud);
                                 campo.setLlaveprimaria(llave_primaria);
+                                campo.setLlave_secundaria(llave_secundaria);
                             } // Fin If
                         } // Fin For
                         // Tener en cuenta el archivo actual
@@ -2454,31 +2674,33 @@ public class Principal extends javax.swing.JFrame {
                         CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
                         SP_LongitudDelCampoModificado.setValue(0);
                         RB_LlavePrimariaDelCampoModificado.setSelected(false);
+                        RB_Llavesecundariamodificar.setSelected(false);
                         if (mostrar_mensaje) {
                             JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
                             semodifico = true;
                         } else {
                             mostrar_mensaje = true;
-                        }
+                        } // Fin If
+                        // VALIDACIONES CAMBIAR O BORRAR
                     } else if (llave_primaria == true && llaveprimaria == true) {
                         JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
                     } else if ((llave_primaria == false && llaveprimaria == true) && vacio_nombre == true) {
                         JOptionPane.showMessageDialog(null, "No se puede crear el campo porque no existe un nombre para el campo");
                     } else if ((llave_primaria == true && llaveprimaria == false) && vacio_nombre == true) {
                         JOptionPane.showMessageDialog(null, "No se puede crear el campo porque no existe un nombre para el campo");
-                    }
+                    } // Fin If
                 } else if (existe == true) {
                     JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
                 } else if (llaveprimaria == true) {
                     JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
                     llaveprimaria = false;
-                }
+                } // Fin If
             } catch (Exception e) {
                 e.printStackTrace();
             } // Fin Try Catch
         } else {
             JOptionPane.showMessageDialog(this, "Debes seleccionar un campo.");
-        }
+        } // Fin If
     }//GEN-LAST:event_BTN_ModificarCampoDefinitivoActionPerformed
 
     // ArrayList<Campo> temp = new ArrayList();
@@ -2630,6 +2852,7 @@ public class Principal extends javax.swing.JFrame {
                     int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
                     llave = espacios.substring(0, num) + llave;
                 }
+                arbolessecundarios.cargarArchivo();
                 if (Archivodelarbol.getArbol().B_Tree_Search(Archivodelarbol.getArbol().getRaiz(), llave) != null) {
                     omitidos = true;
                 } else {
@@ -2637,6 +2860,40 @@ public class Principal extends javax.swing.JFrame {
                     int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
                     System.out.println("El rrn es:" + rrn);
                     Archivodelarbol.getArbol().insert(llave, rrn);
+                    Archivodelarbol.getArbol().insert(llave, rrn);
+                    if (arbol_secundarioactual != null) {
+                        int llavesecundaria = 0;
+                        arbolessecundarios.cargarArchivo();
+                        for (int r = 0; r < archivo_actual.getCampos().size(); r++) {
+                            if (archivo_actual.getCampos().get(r).isLlave_secundaria()) {
+                                llavesecundaria = r;
+                            }//fin if
+                        }//fin for
+                        int archivodelarbol = 0;
+                        for (int r = 0; r < arbolessecundarios.getListaarboles().size(); r++) {
+                            if (arbolessecundarios.getListaarboles().get(r).getIDArchivoActual() == archivo_actual.getID()) {
+                                archivodelarbol = r;
+                            }//fin if
+                        }//fin for
+                        for (int r = 0; r < model.getRowCount(); r++) {
+                            for (int s = 0; s < model.getColumnCount(); s++) {
+                            }//fin segundo for
+                            String llave_secundaria = model.getValueAt(r, llavesecundaria).toString();
+                            if (archivo_actual.getCampos().get(llavesecundaria).getTipo().equals("int")) {
+                                int num = archivo_actual.getCampos().get(llavesecundaria).getLongitud() - llave_secundaria.length();
+                                llave_secundaria = espacios.substring(0, num) + llave_secundaria;
+                            }//fin if
+                            if (arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().B_Tree_Search(arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().getRaiz(), llave_secundaria) != null) {
+                                omitidos = true;
+                            } else {
+                                arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().insert(llave_secundaria, rrn);
+                                arbol_secundarioactual = arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario();
+                                arbolessecundarios.escribirArchivo();
+                            }
+
+                        }//fin primer for
+                        arbol_secundarioactual.imprimir_arbol(0, 0);
+                    }//fin if validacion arbolsecundario
                 }
             }
             Archivodelarbol.getArbol().imprimir_arbol(0, 0);
@@ -2671,6 +2928,38 @@ public class Principal extends javax.swing.JFrame {
                     int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
                     System.out.println("El rrn es:" + rrn);
                     arboles.getListaarboles().get(getposarbol).getArbol().insert(llave, rrn);
+                    if (arbol_secundarioactual != null) {
+                        int llavesecundaria = 0;
+                        arbolessecundarios.cargarArchivo();
+                        for (int r = 0; r < archivo_actual.getCampos().size(); r++) {
+                            if (archivo_actual.getCampos().get(r).isLlave_secundaria()) {
+                                llavesecundaria = r;
+                            }//fin if
+                        }//fin for
+                        int archivodelarbol = 0;
+                        for (int r = 0; r < arbolessecundarios.getListaarboles().size(); r++) {
+                            if (arbolessecundarios.getListaarboles().get(r).getIDArchivoActual() == archivo_actual.getID()) {
+                                archivodelarbol = r;
+                            }//fin if
+                        }//fin for
+                        for (int r = 0; r < model.getRowCount(); r++) {
+                            for (int s = 0; s < model.getColumnCount(); s++) {
+                            }//fin segundo for
+                            String llave_secundaria = model.getValueAt(r, llavesecundaria).toString();
+                            if (archivo_actual.getCampos().get(llavesecundaria).getTipo().equals("int")) {
+                                int num = archivo_actual.getCampos().get(llavesecundaria).getLongitud() - llave_secundaria.length();
+                                llave_secundaria = espacios.substring(0, num) + llave_secundaria;
+                            }//fin if
+                            if (arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().B_Tree_Search(arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().getRaiz(), llave_secundaria) != null) {
+                                omitidos = true;
+                            } else {
+                                arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().insert(llave_secundaria, rrn);
+                                arbol_secundarioactual = arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario();
+                                arbolessecundarios.escribirArchivo();
+                            }
+                        }//fin primer for
+                        arbol_secundarioactual.imprimir_arbol(0, 0);
+                    }//fin if validacion arbolsecundario
                 }//fin else
             }//Fin for
             arbol_actual = arboles.getListaarboles().get(getposarbol).getArbol();
@@ -2680,7 +2969,8 @@ public class Principal extends javax.swing.JFrame {
         String message;
         //esto lo que hace es enviar un mensaje a ver si el registro ya existe en el arbol
         if (omitidos) {
-            message = "No es posible guardar el registro, la llave ingresada ya está siendo utilizada.";
+            message = "Algunos registros fueron omitidos porque ya habia un registro con la misma llave primaria o secundaria almacenado en el archvo.";
+
         } else {
             //boolean incrementa = true;
             //archivo_actual.setCant_regisros(incrementa);//incrementa la cantidad de registros
@@ -2710,11 +3000,15 @@ public class Principal extends javax.swing.JFrame {
         if (jTf_buscarRegistros.getText().equals("") || jCb_llavesBuscarregistros.getSelectedItem() == null) {
             return;
         }
-        if (archivo_actual.getLongitudLLavePrimaria() < jTf_buscarRegistros.getText().length()) {
-            JOptionPane.showMessageDialog(this, "La llave ingresada excede la longitud permitida.");
-            return;
+        int llaveprimaria = 0;
+        int llavesecundaria = 0;
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                llaveprimaria = i;
+            } else if (archivo_actual.getCampos().get(i).isLlave_secundaria()) {
+                llavesecundaria = i;
+            }
         }
-
         boolean arbolcreado = false;//verifica si el arbol esta creado
         int getposarbol = 0;//esto es para agrrar la posicion dle arbolcreado
         for (int i = 0; i < arboles.getListaarboles().size(); i++) {
@@ -2725,83 +3019,96 @@ public class Principal extends javax.swing.JFrame {
                 break;
             }
         }
-        if (arbol_actual != null) {
-            Object Item = jCb_llavesBuscarregistros.getSelectedItem();
-//        int pos = ((itemcombo)Item).getPos();
-            DefaultTableModel model = (DefaultTableModel) jTbl_buscarRegistros.getModel();
-            model.getDataVector().removeAllElements();
-            if (true || jCb_llavesBuscarregistros.getSelectedIndex() == 0) {
-                int posicion_llave = 0;
-                String llave = jTf_buscarRegistros.getText();
-                int llaveprimaria = 0;
-                for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                    if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                        llaveprimaria = i;
-                    }
-                }
+        int poscombobox = jCb_llavesBuscarregistros.getSelectedIndex();
+        System.out.println("esta es la pos del combobox" + poscombobox);
+        if (poscombobox == 0) {
+            if (arbol_actual != null) {
+                DefaultTableModel model = (DefaultTableModel) jTbl_buscarRegistros.getModel();
+                model.getDataVector().removeAllElements();
+                if (true || jCb_llavesBuscarregistros.getSelectedIndex() == 0) {
+                    int pk = 0;
+                    String llave = jTf_buscarRegistros.getText();
 
-                if (archivo_actual.getCampos().get(posicion_llave).getTipo().equals("int")) {
-                    int num = archivo_actual.getCampos().get(posicion_llave).getLongitud() - llave.length();
-                    llave = espacios.substring(0, num) + llave;
-                } else if (archivo_actual.getCampos().get(posicion_llave).getTipo().equals("String")) {
-                    int num = archivo_actual.getCampos().get(posicion_llave).getLongitud() - llave.length();
-                    llave = espacios.substring(0, num) + llave;
-                }
-                if (llaveprimaria != 0) {
-                    if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("String")) {
-                        int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
-                        System.out.println("estos son los espacios que elimina" + num);
-                        int cont = 0;
-                        if (num < 0) {
-                            while (num < 0) {
-                                num++;
-                                cont++;
-                            }
-                        }
-                        llave = llave.substring(cont, llave.length());
-                    } else if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("int")) {
-                        int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
-                        System.out.println("estos son los espacios que eliminaa" + num);
-                        int cont = 0;
-                        if (num < 0) {
-                            while (num < 0) {
-                                num++;
-                                cont++;
-                            }
-                        }
-                        llave = llave.substring(cont, llave.length());
-                        System.out.println("la nueva llave es: " + llave);
+                    if (archivo_actual.getCampos().get(pk).getTipo().equals("int")) {
+                        int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                        llave = espacios.substring(0, num) + llave;
+                    } else if (archivo_actual.getCampos().get(pk).getTipo().equals("String")) {
+                        int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                        llave = espacios.substring(0, num) + llave;
                     }
-                }
-                System.out.println("esta es la llave que se envia" + llave);
-                rrnsbuscar = new ArrayList<Long>();
-                arbol_actual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
+                    System.out.println("esta es la llave que se envia" + llave);
+                    rrnsbuscar = new ArrayList<Long>();
+                    arbol_actual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
 
-                if (rrnsbuscar.size() == 0) {
-                    JOptionPane.showMessageDialog(null, "No se encontro ningun registro con ese valor");
-                    jTf_buscarRegistros.setText("");
-                    return;
-                }
-                for (long l : rrnsbuscar) {
-                    rrnabuscar = Math.toIntExact(l);//al rrn se le asigan el valor que el rrn le ha enviado
-                    try {
-                        String data = leerregistro(Math.toIntExact(rrnabuscar));
-                        System.out.println(data);
-                        String arr[] = data.split("\\|");
-                        Object arr2[] = new Object[model.getColumnCount()];
-                        for (int i = 0; i < model.getColumnCount(); i++) {
-                            arr2[i] = arr[i];
+                    if (rrnsbuscar.size() == 0) {
+                        JOptionPane.showMessageDialog(null, "No se encontro ningun registro con ese valor");
+                        jTf_buscarRegistros.setText("");
+                        return;
+                    }
+                    for (long l : rrnsbuscar) {
+                        rrnabuscar = Math.toIntExact(l);//al rrn se le asigan el valor que el rrn le ha enviado
+                        try {
+                            String data = leerregistro(Math.toIntExact(rrnabuscar));
+                            System.out.println(data);
+                            String arr[] = data.split("\\|");
+                            Object arr2[] = new Object[model.getColumnCount()];
+                            for (int i = 0; i < model.getColumnCount(); i++) {
+                                arr2[i] = arr[i];
+                            }
+                            model.addRow(arr2);
+                            //jTf_buscarRegistros.setEditable(false);
+                            // jCb_llavesBuscarregistros.setEnabled(false);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        model.addRow(arr2);
-                        //jTf_buscarRegistros.setEditable(false);
-                        // jCb_llavesBuscarregistros.setEnabled(false);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puede buscar porque no existen registros creados");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "No se puede buscar porque no existen registros creados");
+        } else if (poscombobox == 1) {
+            if (arbol_secundarioactual != null) {
+                DefaultTableModel model = (DefaultTableModel) jTbl_buscarRegistros.getModel();
+                model.getDataVector().removeAllElements();
+                if (true || jCb_llavesBuscarregistros.getSelectedIndex() == 0) {
+                    String llave = jTf_buscarRegistros.getText();
+                    if (archivo_actual.getCampos().get(llavesecundaria).getTipo().equals("int")) {
+                        int num = archivo_actual.getCampos().get(llavesecundaria).getLongitud() - llave.length();
+                        llave = espacios.substring(0, num) + llave;
+                    } else if (archivo_actual.getCampos().get(llavesecundaria).getTipo().equals("String")) {
+                        int num = archivo_actual.getCampos().get(llavesecundaria).getLongitud() - llave.length();
+                        llave = espacios.substring(0, num) + llave;
+                    }
+                    System.out.println("esta es la llave que se envia" + llave);
+                    rrnsbuscar = new ArrayList<Long>();
+                    arbol_secundarioactual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
+
+                    if (rrnsbuscar.size() == 0) {
+                        JOptionPane.showMessageDialog(null, "No se encontro ningun registro con ese valor");
+                        jTf_buscarRegistros.setText("");
+                        return;
+                    }
+                    for (long l : rrnsbuscar) {
+                        rrnabuscar = Math.toIntExact(l);//al rrn se le asigan el valor que el rrn le ha enviado
+                        try {
+                            String data = leerregistro(Math.toIntExact(rrnabuscar));
+                            System.out.println(data);
+                            String arr[] = data.split("\\|");
+                            Object arr2[] = new Object[model.getColumnCount()];
+                            for (int i = 0; i < model.getColumnCount(); i++) {
+                                arr2[i] = arr[i];
+                            }
+                            model.addRow(arr2);
+                            //jTf_buscarRegistros.setEditable(false);
+                            // jCb_llavesBuscarregistros.setEnabled(false);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puede buscar porque no existen indices nuevos creados");
+            }
         }
     }//GEN-LAST:event_btn_buscarRegistroRegistroActionPerformed
 
@@ -3210,7 +3517,10 @@ public class Principal extends javax.swing.JFrame {
     private void btn_PuenteMenuIndicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteMenuIndicesMouseClicked
         // TODO add your handling code here:
         if (!archivo_actual.getCampos().isEmpty()) {
-
+            VentanaMenuPrincipal.setVisible(false);
+            Ventana_MenuIndices.pack();
+            Ventana_MenuIndices.setLocationRelativeTo(null);
+            Ventana_MenuIndices.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Todavía no has especificado los nombres de los campos.");
         }
@@ -3305,7 +3615,7 @@ public class Principal extends javax.swing.JFrame {
             System.out.println("");
             System.out.println("");
             System.out.println("xxx " + archivo_actual.getCampos().size());
-           // model.setColumnCount(archivo_actual.getCampos().size());
+            // model.setColumnCount(archivo_actual.getCampos().size());
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
                 model.addColumn(archivo_actual.getCampos().get(i).getNombre());
                 //model.addColumn(archivo_actual.getCampos().get(i).getNombre());
@@ -3410,6 +3720,72 @@ public class Principal extends javax.swing.JFrame {
             e.printStackTrace();
         } // Fin Try Catch
     }//GEN-LAST:event_BTN_ExportarXML1MouseClicked
+
+    private void jb_crearindicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearindicesMouseClicked
+        // TODO add your handling code here:
+        arbolessecundarios.cargarArchivo();
+        int getposarbolsec = 0;
+        boolean arbolseccreado = false;
+        int posllave_secundaria = 0;
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            if (archivo_actual.getCampos().get(i).isLlave_secundaria()) {
+                posllave_secundaria = i;
+            }
+        }
+        for (int i = 0; i < arbolessecundarios.getListaarboles().size(); i++) {
+            if (arbolessecundarios.getListaarboles().get(i).getIDArchivoActual() == archivo_actual.getID()) {
+                arbolseccreado = true;
+                getposarbolsec = i;
+                arbol_secundarioactual = arbolessecundarios.getListaarboles().get(i).getArbolSecundario();
+                break;
+            }
+        }
+        if (arbolseccreado == false) {
+            arbolessecundarios.cargarArchivo();
+            int id = arbolessecundarios.GenerarId();
+            Archivoarbolsecundario archivosecundario = new Archivoarbolsecundario(id, archivo_actual.getID(), new BTree(6));
+            for (int i = 0; i < archivo_actual.getCant_regisros(); i++) {
+                if (i == 0) {
+                    try {
+                        int rrn = (250 - archivo_actual.getSizeMetadata());
+                        String data = leerregistro(rrn);
+                        String arr[] = data.split("\\|");
+                        String llave = arr[posllave_secundaria];
+                        if (archivo_actual.getCampos().get(posllave_secundaria).getTipo().equals("int")) {
+                            int num = archivo_actual.getCampos().get(posllave_secundaria).getLongitud() - llave.length();
+                            llave = espacios.substring(0, num) + llave;
+                        }
+                        archivosecundario.getArbolSecundario().insert(llave, rrn);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+
+                    try {
+                        int rrn2 = (250 - archivo_actual.getSizeMetadata()) + (tam_registro() * i);
+                        String data;
+                        data = leerregistro(rrn2);
+                        String arr[] = data.split("\\|");
+                        String llave = arr[posllave_secundaria];
+                        if (archivo_actual.getCampos().get(posllave_secundaria).getTipo().equals("int")) {
+                            int num = archivo_actual.getCampos().get(posllave_secundaria).getLongitud() - llave.length();
+                            llave = espacios.substring(0, num) + llave;
+                        }
+                        archivosecundario.getArbolSecundario().insert(llave, rrn2);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            arbolessecundarios.getListaarboles().add(archivosecundario);
+            arbol_secundarioactual = archivosecundario.getArbolSecundario();
+            arbol_secundarioactual.imprimir_arbol(0, 0);
+            arbolessecundarios.escribirArchivo();
+            JOptionPane.showMessageDialog(this, "Se crearon los indices nuevos");
+        } else {
+            JOptionPane.showMessageDialog(null, "Indices actualizados");
+        }
+    }//GEN-LAST:event_jb_crearindicesMouseClicked
 
     ArrayList<Long> rrn_llaves_en_orden = new ArrayList();
 
@@ -3936,6 +4312,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JRadioButton RB_LlavePrimariaDelCampo;
     private javax.swing.JRadioButton RB_LlavePrimariaDelCampoModificado;
+    private javax.swing.JRadioButton RB_Llavesecundariamodificar;
+    private javax.swing.JRadioButton Rb_llavesecundaria;
     private javax.swing.JSpinner SP_LongitudDelCampo;
     private javax.swing.JSpinner SP_LongitudDelCampoModificado;
     private javax.swing.JTextArea TA_ArchivoAbierto;
@@ -3946,6 +4324,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JFrame VentanaMenuPrincipal;
     private javax.swing.JFrame VentanaMenuRegistros;
     private javax.swing.JFrame VentanaMenuUtilidades;
+    private javax.swing.JFrame Ventana_MenuIndices;
     private javax.swing.JButton btn_ConfirmarBorrar;
     private javax.swing.JButton btn_ConfirmarModificacion;
     private javax.swing.JButton btn_ExportarExcel1;
@@ -3970,6 +4349,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_regresarRegistrosPrincipal3;
     private javax.swing.JButton btn_salirCrearRegistros;
     private javax.swing.JButton btn_utilidades;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jCb_llavesBuscarregistros;
     private javax.swing.JComboBox<String> jCb_llavesEliminarRegistros;
     private javax.swing.JDialog jD_EliminarRegistros;
@@ -3977,6 +4358,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog jD_ModificarRegistros;
     private javax.swing.JDialog jD_buscarRegistros;
     private javax.swing.JDialog jD_crearRegistros;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -4014,6 +4396,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jTf_LLaveEliminarRegistros;
     private javax.swing.JTextField jTf_LLaveModificarRegistro;
     private javax.swing.JTextField jTf_buscarRegistros;
+    private javax.swing.JButton jb_crearindices;
     // End of variables declaration//GEN-END:variables
     private Archivo archivo_actual/*, archivo_anterior*/;
     private Campo campo_actual;
@@ -4033,4 +4416,6 @@ public class Principal extends javax.swing.JFrame {
     Adminarboles arboles = new Adminarboles("./Arboles.txt");//el archivo que guarda todos los arboles
     añadirregistros registros = new añadirregistros("./Registros.txt");//el archivo que guarda todos los registros
     private Registro registro_actual;//el registro que se maneja en ejecucion
+    Admin_arbolsecundario arbolessecundarios = new Admin_arbolsecundario("./Arboles_secundarios.txt");
+    private BTree arbol_secundarioactual;
 }
