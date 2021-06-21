@@ -2257,6 +2257,7 @@ public class Principal extends javax.swing.JFrame {
     private void BTN_AbrirModificarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirModificarCampoActionPerformed
         // DESPLIEGA EL JDIALOG DONDE SE MODIFICA UN CAMPO
         try {
+            CB_CampoAModificar.setSelectedIndex(0);
             TF_NombreDelCampoModificado.setText("");
             CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
             SP_LongitudDelCampoModificado.setValue(1);
