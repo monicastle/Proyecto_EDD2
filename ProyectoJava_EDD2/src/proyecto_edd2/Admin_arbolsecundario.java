@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -18,8 +19,9 @@ import java.util.Random;
  *
  * @author diego
  */
-public class Admin_arbolsecundario {
+public class Admin_arbolsecundario {// implements Serializable {
 
+   // private static final long SerialVersionUID = 777777L;
     private ArrayList<Archivoarbolsecundario> lista_arboles_secundarios = new ArrayList();
     private File archivo = null;
     Random random = new Random();

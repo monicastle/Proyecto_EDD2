@@ -15,6 +15,9 @@ import java.io.Serializable;
 public class Registro implements Serializable {
 //esta clase se crea con el proposito de poder guardar los archivo con registros creados
     //esta clase lo que hace es crear el archivo donde los registros de un determinado archivo se crean 
+    
+    private static final long SerialVersionUID = 777777L;
+    
     private File archivo;
     private int numeroderegistros;//esta variable adquiere el numero de registros que tiene el archivo
     private int ID;

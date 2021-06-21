@@ -27,13 +27,15 @@ public class Campo implements Serializable {
     public Campo() {
     } // Fin Constructor Campo
 
-    public Campo(int ID, int ID_archivo, String nombre, int tipo_de_dato, int longitud, boolean llave_primaria) {
+    public Campo
+        (int ID, int ID_archivo, String nombre, int tipo_de_dato, int longitud, boolean llave_primaria, boolean llave_secundaria) {
         this.ID = ID;
         this.ID_archivo = ID_archivo;
         this.nombre = nombre;
         this.tipo_de_dato = tipo_de_dato;
         this.longitud = longitud;
         this.llave_primaria = llave_primaria;
+        this.llave_secundaria = llave_secundaria;
     } // Fin Constructor Campo
 
     public int getID() {
@@ -132,14 +134,18 @@ public class Campo implements Serializable {
                 tipo_dato = "boolean";
                 break;
         } // Fin Switch
-        String llave = "Si";
+        String llave = "Si", llaveSecundaria = "Si";
         if (!isLlavePrimaria()) {
             llave = "No";
-        }// Fin If
+        }// 
+        if(!isLlave_secundaria()){
+            llaveSecundaria = "No";
+        }
         return "Nombre: " + nombre
                 + "\nTipo de Dato: " + tipo_dato
                 + "\nLongitud: " + longitud
                 + "\n¿Llave Primaria?: " + llave
+                + "\n¿Llave Secundaria?: " + llaveSecundaria
                 + '\n' + '\n';
     } // Fin ToString
 

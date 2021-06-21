@@ -5,11 +5,16 @@
  */
 package proyecto_edd2;
 
+import java.io.Serializable;
+
 /**
  *
  * @author diego
  */
-public class Archivoarbolsecundario {
+public class Archivoarbolsecundario implements Serializable {
+    
+    private static final long SerialVersionUID = 777777L;
+    
       private int ID;
     private int IDArchivoActual;
     private BTree arbolSecundario;

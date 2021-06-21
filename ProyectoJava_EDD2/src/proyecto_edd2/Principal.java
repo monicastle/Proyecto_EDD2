@@ -2366,7 +2366,7 @@ public class Principal extends javax.swing.JFrame {
             int ID_campo, ID_archivo;
             ID_campo = GenerarIDCampo();
             ID_archivo = archivo_actual.getID();
-            Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria);
+            Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria, llave_secundaria);
 
             if (tipo_de_dato == 0) {
                 campo_nuevo.setTipo("int");
