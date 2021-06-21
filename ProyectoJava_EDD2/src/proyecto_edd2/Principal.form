@@ -64,7 +64,7 @@
                       <Component id="btn_PuenteMenuUtilidades" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="JL_46" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -476,8 +476,8 @@
                                   <Component id="SP_LongitudDelCampo" alignment="0" max="32767" attributes="0"/>
                                   <Component id="RB_LlavePrimariaDelCampo" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="Rb_llavesecundaria" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="RB_LlaveSecundariaDelCampo" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -517,7 +517,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="RB_LlavePrimariaDelCampo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Rb_llavesecundaria" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RB_LlaveSecundariaDelCampo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="JL_10" min="-2" max="-2" attributes="0"/>
@@ -687,9 +687,15 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_CancelarCrearCampoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="Rb_llavesecundaria">
+            <Component class="javax.swing.JRadioButton" name="RB_LlaveSecundariaDelCampo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="LLave secundaria"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Llave Secundaria"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -730,8 +736,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="RB_LlavePrimariaDelCampoModificado" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="RB_Llavesecundariamodificar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="RB_LlaveSecundariaDelCampoModificado" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="JL_15" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -789,7 +795,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="RB_LlavePrimariaDelCampoModificado" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="RB_Llavesecundariamodificar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="RB_LlaveSecundariaDelCampoModificado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="JL_17" min="-2" max="-2" attributes="0"/>
@@ -989,9 +995,15 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_CancelarModificarCampoActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="RB_Llavesecundariamodificar">
+            <Component class="javax.swing.JRadioButton" name="RB_LlaveSecundariaDelCampoModificado">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Llave secundaria"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Llave Secundaria"/>
               </Properties>
             </Component>
           </SubComponents>

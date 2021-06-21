@@ -18,8 +18,7 @@ public class Campo implements Serializable {
     private int ID;
     private int ID_archivo;
     private String nombre;
-    private int tipo_de_dato;
-    private String tipo;
+    private String tipo_de_dato;
     private int longitud;
     private boolean llave_primaria;
     private boolean llave_secundaria;
@@ -27,8 +26,7 @@ public class Campo implements Serializable {
     public Campo() {
     } // Fin Constructor Campo
 
-    public Campo
-        (int ID, int ID_archivo, String nombre, int tipo_de_dato, int longitud, boolean llave_primaria, boolean llave_secundaria) {
+    public Campo(int ID, int ID_archivo, String nombre, String tipo_de_dato, int longitud, boolean llave_primaria, boolean llave_secundaria) {
         this.ID = ID;
         this.ID_archivo = ID_archivo;
         this.nombre = nombre;
@@ -62,11 +60,11 @@ public class Campo implements Serializable {
         this.nombre = nombre;
     } // Fin Set Nombre
 
-    public int getTipo_de_dato() {
+    public String getTipo_de_dato() {
         return tipo_de_dato;
     } // Fin Get Tipo de Dato
 
-    public void setTipo_de_dato(int tipo_de_dato) {
+    public void setTipo_de_dato(String tipo_de_dato) {
         this.tipo_de_dato = tipo_de_dato;
     } // Fin Set Tipo de Dato
 
@@ -86,75 +84,37 @@ public class Campo implements Serializable {
         this.llave_primaria = llave_primaria;
     } // Fin Set Llave Primaria
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public boolean isLlave_secundaria() {
         return llave_secundaria;
-    }
+    } // Fin Is Llave Secundaria
 
     public void setLlave_secundaria(boolean llave_secundaria) {
         this.llave_secundaria = llave_secundaria;
-    }
+    } // Fin Set Llave Secundaria
 
     @Override
     public String toString() {
-        String tipo_dato = "";
-        switch (getTipo_de_dato()) {
-            case 0:
-                tipo_dato = "int";
-                break;
-            case 1:
-                tipo_dato = "byte";
-                break;
-            case 2:
-                tipo_dato = "short";
-                break;
-            case 3:
-                tipo_dato = "double";
-                break;
-            case 4:
-                tipo_dato = "float";
-                break;
-            case 5:
-                tipo_dato = "long";
-                break;
-            case 6:
-                tipo_dato = "char";
-                break;
-            case 7:
-                tipo_dato = "string";
-                break;
-            case 8:
-                tipo_dato = "boolean";
-                break;
-        } // Fin Switch
-        String llave = "Si", llaveSecundaria = "Si";
+        String llave_primaria = "Si";
         if (!isLlavePrimaria()) {
-            llave = "No";
-        }// 
-        if(!isLlave_secundaria()){
-            llaveSecundaria = "No";
-        }
-        return "Nombre: " + nombre
-                + "\nTipo de Dato: " + tipo_dato
-                + "\nLongitud: " + longitud
-                + "\n¿Llave Primaria?: " + llave
-                + "\n¿Llave Secundaria?: " + llaveSecundaria
-                + '\n' + '\n';
+            llave_primaria = "No";
+        }// Fin If
+        String llave_secundaria = "Si";
+        if (!isLlave_secundaria()) {
+            llave_secundaria = "No";
+        }// Fin If
+        return "Nombre: " + nombre + "\nTipo de Dato: " + tipo_de_dato + "\nLongitud: " + longitud + "\n¿Llave Primaria?: " + llave_primaria + "\n¿Llave Secundaria?: " + llave_secundaria + '\n' + '\n';
     } // Fin ToString
 
     public String campo_para_archivo() {
-        String llave = "Si";
-        if (!llave_primaria) {
-            llave = "No";
-        } // Fin If
-        return nombre + "¡" + tipo_de_dato + "¡" + longitud + "¡" + llave + "&";
+        String llave_primaria = "Si";
+        if (!isLlavePrimaria()) {
+            llave_primaria = "No";
+        }// Fin If
+        String llave_secundaria = "Si";
+        if (!isLlave_secundaria()) {
+            llave_secundaria = "No";
+        }// Fin If
+        return nombre + "¡" + tipo_de_dato + "¡" + longitud + "¡" + llave_primaria + "¡" + llave_secundaria + "&";
     } // Fin Campo Para Archivo
 
 } // Fin Clase Campo
