@@ -2528,8 +2528,6 @@ public class Principal extends javax.swing.JFrame {
         if (CB_CampoAModificar.getSelectedIndex() >= 1) {
             try {
                 // POTENCIALES VARIABLES A SER ELIMINADAS -> ->
-                //boolean vacio_nombre = false;
-                //boolean mostrar_mensaje = true;
                 salvado = true;
                 boolean existe = false;
                 //boolean llaveprimaria = false;
@@ -2575,11 +2573,6 @@ public class Principal extends javax.swing.JFrame {
                     } else {
                         for (Campo campo : campos_nuevos) {
                             if (campo.getID() == campo_actual.getID()) {
-                                /*if ((campo.getNombre().equals(nombre) && (campo.getTipo_de_dato().equals(tipo_de_dato))) && ((campo.getLongitud() == longitud) && campo.isLlavePrimaria() == llave_primaria && campo.isLlave_secundaria() == llave_secundaria)) {
-                                    mostrar_mensaje = false;
-                                } else {
-                                    mostrar_mensaje = true;
-                                } // Fin If*/
                                 campo.setNombre(nombre);
                                 campo.setTipo_de_dato(tipo_de_dato);
                                 campo.setLongitud(longitud);
@@ -2596,12 +2589,6 @@ public class Principal extends javax.swing.JFrame {
                         RB_LlavePrimariaDelCampoModificado.setSelected(false);
                         RB_LlaveSecundariaDelCampoModificado.setSelected(false);
                         CB_CampoAModificar.setSelectedIndex(0);
-                        /*if (mostrar_mensaje) {
-                            JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamente!");
-                            semodifico = true;
-                        } else {
-                            mostrar_mensaje = true;
-                        } // Fin If*/
                         JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamente!");
                         semodifico = true;
                     } // Fin If
@@ -2614,131 +2601,6 @@ public class Principal extends javax.swing.JFrame {
                     RB_LlaveSecundariaDelCampoModificado.setSelected(false);
                     CB_CampoAModificar.setSelectedIndex(0);
                 } // Fin If
-
-                // FALTARIA AQUI PARA LA LLAVE SECUNDARIA
-                // VALIDACION QUE SE PUEDE BORRAR O CAMBIAR
-                /*for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                    if (archivo_actual.getCampos().get(i).isLlavePrimaria() == true) {
-                        llaveprimaria = true;
-                    } // Fin If
-                }//fin for para validar llave primaria*/
-                // VALIDACIONES QUE SE DEBEN CAMBIAR O BORRAR -> -> ->
-                // NO SE QUE HACE LO SIGUIENTE :) ATT: Monik
-                /* if (nombre.equals("")) {
-                    vacio_nombre = true;
-                } else {
-                    vacio_nombre = false;
-                } // Fin If
-                System.out.println("Esta vacio: " + vacio_nombre);*/
- /*if (existe == false) {
-                    // FALTARIA VALIDACION PARA LA LLAVE SECUNDARIA AQUI -> -> ->
-                    if ((llave_primaria == false && llaveprimaria == false) && vacio_nombre == false) {
-                        for (Campo campo : campos_nuevos) {
-                            if (campo.getID() == campo_actual.getID()) {
-                                if ((campo.getNombre().equals(nombre) && (campo.getTipo_de_dato().equals(tipo_de_dato)))
-                                        && ((campo.getLongitud() == longitud) && campo.isLlavePrimaria() == llave_primaria && campo.isLlave_secundaria() == llave_secundaria)) {
-                                    mostrar_mensaje = false;
-                                } else {
-                                    mostrar_mensaje = true;
-                                } // Fin If
-                                campo.setNombre(nombre);
-                                campo.setTipo_de_dato(tipo_de_dato);
-                                campo.setLongitud(longitud);
-                                campo.setLlaveprimaria(llave_primaria);
-                                campo.setLlave_secundaria(llave_secundaria);
-                            } // Fin If
-                        } // Fin For
-                        // Tener en cuenta el archivo actual
-                        cambios_txt();
-                        TF_NombreDelCampoModificado.setText("");
-                        CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
-                        SP_LongitudDelCampoModificado.setValue(0);
-                        RB_LlavePrimariaDelCampoModificado.setSelected(false);
-                        RB_LlaveSecundariaDelCampoModificado.setSelected(false);
-                        if (mostrar_mensaje) {
-                            JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
-                            semodifico = true;
-                        } else {
-                            mostrar_mensaje = true;
-                        } // Fin If
-                        // ONASIS TERMINA
-
-                        // FALTA VALIDACION PARA LA LLAVE SECUNDARIA (CAMBIAR O BORRAR MAYBE)
-                    } else if ((llave_primaria == true && llaveprimaria == false) && vacio_nombre == false) {
-                        for (Campo campo : campos_nuevos) {
-                            if (campo.getID() == campo_actual.getID()) {
-                                if ((campo.getNombre().equals(nombre) && (campo.getTipo_de_dato().equals(tipo_de_dato)))
-                                        && ((campo.getLongitud() == longitud) && campo.isLlavePrimaria() == llave_primaria && campo.isLlave_secundaria() == llave_secundaria)) {
-                                    mostrar_mensaje = false;
-                                } else {
-                                    mostrar_mensaje = true;
-                                } // Fin If
-                                campo.setNombre(nombre);
-                                campo.setTipo_de_dato(tipo_de_dato);
-                                campo.setLongitud(longitud);
-                                campo.setLlaveprimaria(llave_primaria);
-                                campo.setLlave_secundaria(llave_secundaria);
-                            } // Fin If
-                        } // Fin For
-                        // Tener en cuenta el archivo actual
-                        //modificar_txt();
-                        cambios_txt();
-                        TF_NombreDelCampoModificado.setText("");
-                        CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
-                        SP_LongitudDelCampoModificado.setValue(0);
-                        RB_LlavePrimariaDelCampoModificado.setSelected(false);
-                        RB_LlaveSecundariaDelCampoModificado.setSelected(false);
-                        if (mostrar_mensaje) {
-                            JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
-                            semodifico = true;
-                        } else {
-                            mostrar_mensaje = true;
-                        } // Fin If
-                        // FALTA VALIDACION PARA LA LLAVE SECUNDARIA (CAMBIAR O BORRAR MAYBE)
-                    } else if ((llave_primaria == false && llaveprimaria == true) && vacio_nombre == false) {
-                        for (Campo campo : campos_nuevos) {
-                            if (campo.getID() == campo_actual.getID()) {
-                                if ((campo.getNombre().equals(nombre) && (campo.getTipo_de_dato().equals(tipo_de_dato)))
-                                        && ((campo.getLongitud() == longitud) && campo.isLlavePrimaria() == llave_primaria && campo.isLlave_secundaria() == llave_secundaria)) {
-                                    mostrar_mensaje = false;
-                                } else {
-                                    mostrar_mensaje = true;
-                                } // Fin If
-                                campo.setNombre(nombre);
-                                campo.setTipo_de_dato(tipo_de_dato);
-                                campo.setLongitud(longitud);
-                                campo.setLlaveprimaria(llave_primaria);
-                                campo.setLlave_secundaria(llave_secundaria);
-                            } // Fin If
-                        } // Fin For
-                        // Tener en cuenta el archivo actual
-                        //modificar_txt();
-                        cambios_txt();
-                        TF_NombreDelCampoModificado.setText("");
-                        CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
-                        SP_LongitudDelCampoModificado.setValue(0);
-                        RB_LlavePrimariaDelCampoModificado.setSelected(false);
-                        RB_LlaveSecundariaDelCampoModificado.setSelected(false);
-                        if (mostrar_mensaje) {
-                            JOptionPane.showMessageDialog(this, "¡Se ha modificado el campo exitosamnte!");
-                            semodifico = true;
-                        } else {
-                            mostrar_mensaje = true;
-                        } // Fin If
-                        // VALIDACIONES CAMBIAR O BORRAR
-                    } else if (llave_primaria == true && llaveprimaria == true) {
-                        JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
-                    } else if ((llave_primaria == false && llaveprimaria == true) && vacio_nombre == true) {
-                        JOptionPane.showMessageDialog(null, "No se puede crear el campo porque no existe un nombre para el campo");
-                    } else if ((llave_primaria == true && llaveprimaria == false) && vacio_nombre == true) {
-                        JOptionPane.showMessageDialog(null, "No se puede crear el campo porque no existe un nombre para el campo");
-                    } // Fin If
-                } else if (existe == true) {
-                    JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe un campo con el mismo nombre");
-                } else if (llaveprimaria == true) {
-                    JOptionPane.showMessageDialog(null, "No se puede crear el campo porque ya existe una llave primaria");
-                    llaveprimaria = false;
-                } // Fin If*/
             } catch (Exception e) {
                 e.printStackTrace();
             } // Fin Try Catch
@@ -3558,7 +3420,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_PuenteMenuCamposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteMenuCamposMouseClicked
         // TODO add your handling code here:
-        if (!archivo_actual.getAvailList().isEmpty()) {
+        if (archivo_actual.getCant_regisros() >= 1) {
             JOptionPane.showMessageDialog(this, "No es posible modificar los campos de este archivo.");
             /*} else if (arbol_actual == null) {//PUEDE QUE ESTO LO OCUPE AL ELIMINAR TODOS LOS REGISTROS.. PUEDE
             JOptionPane.showMessageDialog(this, "Ya tienes registros creados.");*/
@@ -3573,15 +3435,33 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_PuenteMenuRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_PuenteMenuRegistrosActionPerformed
         // TODO add your handling code here:
-        if (!archivo_actual.getCampos().isEmpty()) {
+        int existe_llave_Secundaria = 0;
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            if (archivo_actual.getCampos().get(i).isLlave_secundaria()) {
+                existe_llave_Secundaria++;
+                break;
+            }
+        }
+        /*if (existe_llave_Secundaria == 0) {
+            JOptionPane.showMessageDialog(this, "Para poder ingresar a este menú debes crear un campo 'LLave Secundaria' para este archivo.");
+            return;
+        }*/
+
+        if (archivo_actual.getCampos().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todavía no se han creado campos. Dirigete al Menú Campos.");
+        } else if (existe_llave_Secundaria == 0) {
+            JOptionPane.showMessageDialog(this, "Todavía no has especificado una llave secundaria. Dirigete al Menú Campos.");
+            return;
+        }
+        else if (!archivo_actual.getCampos().isEmpty()) {
             this.setVisible(false);
             VentanaMenuPrincipal.setVisible(false);
             VentanaMenuRegistros.pack();
             VentanaMenuRegistros.setLocationRelativeTo(null);
             VentanaMenuRegistros.setVisible(true);
-        } else {
+        } /*else {
             JOptionPane.showMessageDialog(this, "Todavía no has especificado los nombres de los campos.");
-        }
+        }*/
     }//GEN-LAST:event_btn_PuenteMenuRegistrosActionPerformed
 
     private void btn_PuenteMenuIndicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteMenuIndicesMouseClicked
