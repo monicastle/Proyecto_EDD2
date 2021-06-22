@@ -4405,7 +4405,7 @@ public class Principal extends javax.swing.JFrame {
             arboles.cargarArchivo();
             arboles.getListaarboles().add(archivo_prueba);
             arboles.escribirArchivo();
-            //arbol_actual = BTreePersons;
+            arbol_actual = BTreePersons;
             //GenerarCityFile();
         } catch (Exception e) {
             e.printStackTrace();
