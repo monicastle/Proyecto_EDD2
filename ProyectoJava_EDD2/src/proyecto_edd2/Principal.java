@@ -2733,13 +2733,14 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_crearRegistrosDefinitivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearRegistrosDefinitivosActionPerformed
         // TODO add your handling code here:
-        arboles.cargarArchivo();
+        
         DefaultTableModel model = (DefaultTableModel) jTbl_tablaRegistros.getModel();
         if (!ValidaciondeingresoTabla(jTbl_tablaRegistros, true)) {
             return;
         }
         String guardar = "";//Aqui es donde se guarda el registro a ingresar
         // int length=0;
+        arboles.cargarArchivo();
         boolean omitidos = false;//esto es para los que ya estan creados en el arbol
         boolean arbolcreado = false;//verifica si el arbol esta creado
         int getposarbol = 0;//agarra la posicion del arbol
@@ -2792,7 +2793,6 @@ public class Principal extends javax.swing.JFrame {
                     int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
                     System.out.println("El rrn es:" + rrn);
                     Archivodelarbol.getArbol().insert(llave, rrn);
-                    Archivodelarbol.getArbol().insert(llave, rrn);
                     if (arbol_secundarioactual != null) {
                         int llavesecundaria = 0;
                         arbolessecundarios.cargarArchivo();
@@ -2829,6 +2829,7 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
             Archivodelarbol.getArbol().imprimir_arbol(0, 0);
+            arbol_actual= Archivodelarbol.getArbol();
             arboles.getListaarboles().add(Archivodelarbol);
             arboles.escribirArchivo();
         } else {
