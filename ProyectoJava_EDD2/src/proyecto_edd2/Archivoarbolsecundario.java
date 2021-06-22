@@ -15,7 +15,7 @@ public class Archivoarbolsecundario implements Serializable {
     
     private static final long SerialVersionUID = 777777L;
     
-      private int ID;
+    private int ID;
     private int IDArchivoActual;
     private BTree arbolSecundario;
 

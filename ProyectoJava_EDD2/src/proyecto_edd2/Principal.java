@@ -25,6 +25,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
@@ -47,7 +48,7 @@ import org.w3c.dom.Element;
  * @author Monica
  */
 public class Principal extends javax.swing.JFrame {
-    
+
     Random random = new Random();
 
     /**
@@ -1950,8 +1951,35 @@ public class Principal extends javax.swing.JFrame {
         try {
             // VALIDACIÓN: SI INGRESO EL NOMBRE DE UN ARCHIVO QUE NO EXISTE TIRA ERROR 
             if (JOptionPane.showConfirmDialog(null, "¿Desea utilizar un archivo de prueba?", "Confirmación", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                // AQUI VA EL SI
-                GenerarPersonFile();
+                boolean existePrueba = false;
+                aa.cargarArchivo();
+                for (Archivo archivo : aa.getLista_archivos()) {
+                    if (archivo.getArchivo().getName().equals("PersonFile.txt")) {
+                        existePrueba = true;
+                        break;
+                    } // Fin If
+                } // Fin For
+                aa.escribirArchivo();
+                if (existePrueba) {
+                    aa.cargarArchivo();
+                    for (int i = 0; i < aa.getLista_archivos().size(); i++) {
+                        if (aa.getLista_archivos().get(i).getArchivo().getName().equals("PersonFile.txt")) {
+                            archivo_actual = aa.getLista_archivos().get(i);
+                            GuardarArchivo = "PersonFile.txt";
+                            break;
+                        } // Fin If
+                    } // Fin For
+                    this.setVisible(false);
+                    VentanaMenuRegistros.pack();
+                    VentanaMenuRegistros.setLocationRelativeTo(null);
+                    VentanaMenuRegistros.setVisible(true);
+                } else {
+                    GenerarPersonFile();
+                    this.setVisible(false);
+                    VentanaMenuRegistros.pack();
+                    VentanaMenuRegistros.setLocationRelativeTo(null);
+                    VentanaMenuRegistros.setVisible(true);
+                } // Fin If
             } else {
                 File archivo_abrir = null;
                 FileReader fr = null;
@@ -2047,7 +2075,7 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No se puede abrir el archivo porque no existe");
         } // Fin Try Catch
     }//GEN-LAST:event_BTN_AbrirArchivoActionPerformed
-    
+
     private int get_posarbol = 0;//agarra la posicion del arbol
 
     private void BTN_SalvarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_SalvarArchivoActionPerformed
@@ -2082,7 +2110,7 @@ public class Principal extends javax.swing.JFrame {
             semodifico = false;
             seborro = false;
             salvado = false;
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -2677,7 +2705,7 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Porfavor seleccione un campo para que sea eliminado");
         } // Fin If
     }//GEN-LAST:event_BTN_BorrarCampoDefinitivoActionPerformed
-    
+
 
     private void CB_CampoAModificarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CB_CampoAModificarItemStateChanged
         // ACTUALIZA LA INFORMACIÓN EN EL JDIALOG CON CADA SELECCION
@@ -2779,7 +2807,7 @@ public class Principal extends javax.swing.JFrame {
                 guardar = "";
                 for (int j = 0; j < model.getColumnCount(); j++) {
                     guardar += model.getValueAt(i, j).toString() + "|";
-                    
+
                 }
                 guardar += llenar(guardar.length()) + "\n";
                 int posicion_llave = getPosKey();
@@ -2828,7 +2856,7 @@ public class Principal extends javax.swing.JFrame {
                                 arbol_secundarioactual = arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario();
                                 arbolessecundarios.escribirArchivo();
                             }
-                            
+
                         }//fin primer for
                         arbol_secundarioactual.imprimir_arbol(0, 0);
                     }//fin if validacion arbolsecundario
@@ -2909,7 +2937,7 @@ public class Principal extends javax.swing.JFrame {
         //esto lo que hace es enviar un mensaje a ver si el registro ya existe en el arbol
         if (omitidos) {
             message = "Algunos registros fueron omitidos porque ya habia un registro con la misma llave primaria o secundaria almacenado en el archvo.";
-            
+
         } else {
             //boolean incrementa = true;
             //archivo_actual.setCant_regisros(incrementa);//incrementa la cantidad de registros
@@ -2967,7 +2995,7 @@ public class Principal extends javax.swing.JFrame {
                 if (true || jCb_llavesBuscarregistros.getSelectedIndex() == 0) {
                     int pk = 0;
                     String llave = jTf_buscarRegistros.getText();
-                    
+
                     if (archivo_actual.getCampos().get(pk).getTipo_de_dato().equals("int")) {
                         int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
                         llave = espacios.substring(0, num) + llave;
@@ -3145,7 +3173,7 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "La llave ingresada excede la longitud permitida.");
             return;
         }
-        
+
         boolean arbolcreado = false;//verifica si el arbol esta creado
         int getposarbol = 0;//esto es para agrrar la posicion dle arbolcreado
         for (int i = 0; i < arboles.getListaarboles().size(); i++) {
@@ -3396,7 +3424,7 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No existen registros guardados.");
         }
     }//GEN-LAST:event_btn_ConfirmarBorrarMouseClicked
-    
+
     private String rrnAsString(int rrn) {
         String rrnString = "";
         rrnString += rrn;
@@ -3453,7 +3481,7 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Para poder ingresar a este menú debes crear un campo 'LLave Secundaria' para este archivo.");
             return;
         }*/
-        
+
         if (archivo_actual.getCampos().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Todavía no se han creado campos. Dirigete al Menú Campos.");
         } else if (existe_llave_Secundaria == 0) {
@@ -3717,7 +3745,7 @@ public class Principal extends javax.swing.JFrame {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    
+
                     try {
                         int rrn2 = (250 - archivo_actual.getSizeMetadata()) + (tam_registro() * i);
                         String data;
@@ -3743,9 +3771,9 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Indices actualizados");
         }
     }//GEN-LAST:event_jb_crearindicesMouseClicked
-    
+
     ArrayList<Long> rrn_llaves_en_orden = new ArrayList();
-    
+
     public void listar_registros() {
         jTbl_ListarRegistros.setModel(new DefaultTableModel());
         DefaultTableModel model = (DefaultTableModel) jTbl_ListarRegistros.getModel();
@@ -3769,7 +3797,7 @@ public class Principal extends javax.swing.JFrame {
             }
         }//*/
     }
-    
+
     private int avanzar = 0;
     private int retroceder = 0;
 
@@ -3787,21 +3815,21 @@ public class Principal extends javax.swing.JFrame {
                 if ("Windows Classic".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Principal.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(Principal.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(Principal.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Principal.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -3815,7 +3843,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-    
+
     public void borrar_txt() {
         // Forma de Escribir:
         FileWriter fw = null;
@@ -3935,7 +3963,7 @@ public class Principal extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
+
     void escribir_archivo_txt(String linea) {
         // Forma de Escribir:
         FileWriter fw = null;
@@ -4003,14 +4031,14 @@ public class Principal extends javax.swing.JFrame {
         for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
             lengthT += archivo_actual.getCampos().get(i).getLongitud();
         }
-        
+
         String spaces = "";
         for (int i = n; i < lengthT + archivo_actual.getCampos().size(); i++) {
             spaces += " ";
         }
         return spaces;
     }
-    
+
     public void escribirArbol(String nombre, BTree arbol) {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
@@ -4028,7 +4056,7 @@ public class Principal extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void writeAvailList() throws FileNotFoundException, IOException {
         File file = new File(archivo_actual.getArchivo().getName());
         RandomAccessFile ra = new RandomAccessFile(file, "rw");
@@ -4042,7 +4070,7 @@ public class Principal extends javax.swing.JFrame {
         ra.write(x.getBytes());
         ra.close();
     }
-    
+
     private String rrnString(int rrn) {
         String rrnString = "";
         rrnString += rrn;
@@ -4051,7 +4079,7 @@ public class Principal extends javax.swing.JFrame {
         }
         return rrnString;
     }
-    
+
     private boolean ValidaciondeingresoTabla(JTable tabla, boolean guardar) {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         //super funcion secreta que me actualize el dqu
@@ -4089,7 +4117,7 @@ public class Principal extends javax.swing.JFrame {
         }
         return true;
     }
-    
+
     private int getPosKey() {
         for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
             if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
@@ -4098,14 +4126,14 @@ public class Principal extends javax.swing.JFrame {
         }
         return -1;
     }
-    
+
     private void Modificar(String data, int rrn) throws FileNotFoundException, IOException {
         RandomAccessFile flujo = new RandomAccessFile(archivo_actual.getArchivo(), "rw");
         flujo.seek(rrn);
         flujo.write((data + llenar(data.length())).getBytes());
         flujo.close();
     }
-    
+
     private String leerregistro(int RRN) throws FileNotFoundException, IOException {
         System.out.println("aqui esta el RRN: " + RRN);
         //preferiblemente no tocar esta parte del cdigo a menos que les de fallos contactar al administrador
@@ -4130,7 +4158,7 @@ public class Principal extends javax.swing.JFrame {
         }
         return length + archivo_actual.getCampos().size();
     }
-    
+
     private int getRrn(String registro) {
         aa.cargarArchivo();
         if (archivo_actual.getAvailList().isEmpty()) {
@@ -4157,7 +4185,7 @@ public class Principal extends javax.swing.JFrame {
         }
         return (int) archivo_actual.getAvailList().peekFirst();
     }
-    
+
     private int guardarRegistro(String registro) {
         int rrn = getRrn(registro);
         if (archivo_actual.getAvailList().isEmpty()) {
@@ -4189,7 +4217,7 @@ public class Principal extends javax.swing.JFrame {
         }
         return rrn;
     }
-    
+
     private void GenerarPersonFile() {
         // FALTA CREAR EL ARBOL PRIMARIO Y SECUNDARIO
         // VALIDACION: VERIFICAR SI EL ARCHIVO YA ESTA CREADO O NO
@@ -4372,14 +4400,13 @@ public class Principal extends javax.swing.JFrame {
             long RRN;
             String nombre, apellido, registro, primaryKey, secondaryKey;
             int edad, cityID;
-            for (int i = 0; i <= 10; i++) {
+            for (int i = 1; i <= 100000; i++) {
                 // Se iran escribiendo de forma aleatoria los registros dentro del archivo
                 nombre = PersonFirstName.get((int) Math.floor(Math.random() * 60));
                 apellido = PersonLastName.get((int) Math.floor(Math.random() * 60));
                 edad = 1 + random.nextInt(99);
                 cityID = 1 + random.nextInt(99);
                 registro = personID + "|" + nombre + " " + apellido + "|" + edad + "|" + cityID + "|";
-                personID++;
                 // Llena de espacios si no se completaron los 35 caracteres
                 registro += LlenadoEspacios(registro.length(), 35);
                 RRN = getRrn(registro);
@@ -4387,9 +4414,9 @@ public class Principal extends javax.swing.JFrame {
                 flujo.write(registro.getBytes());
                 // Obtenemos la llave primaria para poder insertarla en el arbolB
                 primaryKey = String.valueOf(personID);
-                // Cambiar a lo de Diego->
                 primaryKey = espacios.substring(0, 6 - primaryKey.length()) + primaryKey;
-                BTreePersons.insert(primaryKey, RRN);                
+                BTreePersons.insert(primaryKey, RRN);
+                personID++;
                 //BTreePersons.imprimir_arbol(0, 0);
                 // Consejo sout del arbol para ver si inserta bien
                 // Obtenemos la llave secundaria para poder insertarla en el arbolB
@@ -4400,13 +4427,12 @@ public class Principal extends javax.swing.JFrame {
             flujo.close();
             // Escrbir en el archivoconArbolB
             archivo_prueba.setArbol(BTreePersons);
-            archivo_prueba.getArbol().imprimir_arbol(0, 0);
             // Escribir en el binario de arbol
             arboles.cargarArchivo();
             arboles.getListaarboles().add(archivo_prueba);
             arboles.escribirArchivo();
             arbol_actual = BTreePersons;
-            //GenerarCityFile();
+            GenerarCityFile();
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -4420,8 +4446,47 @@ public class Principal extends javax.swing.JFrame {
         return acum;
     } // Fin Llenado Espacios
 
-    /*private void GenerarCityFile() {
+    private void GenerarCityFile() {
         try {
+            String lineacampos;
+            // Obtenemos los campos en "duro"y los guardamos en un arreglo
+            lineacampos = "CityId¡int¡2¡Si¡No&CityName¡char¡30¡No¡No¡";
+            String[] campos = lineacampos.split("\\&");
+            // Guarda el archivo actual en el binario con los demas archivos
+            aa.cargarArchivo();
+            int ID;
+            ID = aa.GenerarId();
+            Archivo archivoC = new Archivo(new File("CityFile.txt"), ID);
+            aa.AddArchivo(archivoC);
+            aa.escribirArchivo();
+            for (int i = 0; i < campos.length; i++) {
+                // De la linea de un campo luego necesitamos darle split a los atributos del campo 
+                String[] campos2 = campos[i].split("\\¡");
+                String nombreCampo = campos2[0];
+                String tipoCampo = campos2[1];
+                int longitudCampo = (Integer.parseInt(campos2[2]));
+                boolean llavePrimaria, llaveSecundaria;
+                llavePrimaria = false;
+                llaveSecundaria = false;
+                if (campos2[3].equals("Si")) {
+                    llavePrimaria = true;
+                }// Fin If
+                if (campos2[4].equals("Si")) {
+                    llaveSecundaria = true;
+                }// Fin If                
+                // Seteamos dichos campos en el archivo actual
+                int IDCampo;
+                IDCampo = GenerarIDCampo();
+                Campo campo = new Campo(ID, IDCampo, nombreCampo, tipoCampo, longitudCampo, llavePrimaria, llaveSecundaria);
+                aa.cargarArchivo();
+                for (Archivo archivo : aa.getLista_archivos()) {
+                    if (archivo.getID() == archivoC.getID()) {
+                        archivo.addCampo(campo);
+                        break;
+                    } // Fin If
+                } // Fin For
+                aa.escribirArchivo();
+            } // Fin For
             ArrayList<String> CityName = new ArrayList();
             // Se generan 100 ciudades aleatorias
             CityName.add("Tokio");
@@ -4447,20 +4512,7 @@ public class Principal extends javax.swing.JFrame {
             CityName.add("Boston");
             CityName.add("Estambul");
             CityName.add("Filadelfia");
-            CityName.add("San F
-            ArrayList<String> CityName = new ArrayList();
-            // Se generan 100 ciudades aleatorias
-            CityName.add("Tokio");
-            CityName.add("Nueva York");
-            CityName.add("Los Angeles");
-            CityName.add("Paris");
-            CityName.add("Seul");
-            CityName.add("Londres");
-            CityName.add("Osaka");
-            CityName.add("Shanghai");
-            CityName.add("Chicago");
-            CityName.add("Moscu");
-            CityName.add("Pekin");rancisco");
+            CityName.add("San Francisco");
             CityName.add("Taipei");
             CityName.add("Amsterdam");
             CityName.add("Buenos Aires");
@@ -4539,10 +4591,15 @@ public class Principal extends javax.swing.JFrame {
             CityName.add("Minsk");
             CityName.add("Riga");
             Collections.shuffle(CityName);
+            BTree BTreeCities = new BTree(6);
+            arbolessecundarios.cargarArchivo();
+            int IDSec;
+            IDSec = arbolessecundarios.GenerarId();
+            aa.escribirArchivo();
+            Archivoarbolsecundario archivo_prueba = new Archivoarbolsecundario(ID, IDSec, BTreeCities);
             RandomAccessFile flujo = new RandomAccessFile(new File("CityFile.txt"), "rw");
-            BTree BTreeCities = new BTree(6); // Crea el arbol de Ciudades
             String registro, primaryKey;
-            flujo.write("CityId¡int¡2¡true¡false&CityName¡char¡30¡false¡false¡".getBytes());
+            flujo.write("CityId¡int¡2¡Si¡No&CityName¡char¡30¡No¡No¡".getBytes());
             for (int i = 0; i <= 99; i++) {
                 if (i <= 9) {
                     registro = "0" + i + "|" + CityName.get(i) + "|";
@@ -4553,27 +4610,21 @@ public class Principal extends javax.swing.JFrame {
                     registro += LlenadoEspacios(registro.length(), 34) + "\n";
                     primaryKey = i + "";
                 } // Fin If
-                BTreeCities.insert(primaryKey, i); // Inserta la llave y el RRN en el arbol
                 flujo.write(registro.getBytes());
-            } // Fin For
-            //escribirArbol("CiudadesPrueba.jjdp" + "CityId", arbolCiudades); // <- <- <- ESCRIBIR DENTRO DEL ARCHIVO DE BINARIOS FALTA
+                primaryKey = espacios.substring(0, 2 - primaryKey.length()) + primaryKey;
+                BTreeCities.insert(primaryKey, i); // Inserta la llave y el RRN en el arbol
+            } // Fin For            
             flujo.close();
+            // Escrbir en el archivoconArbolB
+            archivo_prueba.setArbolSecundario(BTreeCities);
+            // Escribir en el binario de arbol
+            arbolessecundarios.cargarArchivo();
+            arbolessecundarios.getListaarboles().add(archivo_prueba);
+            arbolessecundarios.escribirArchivo();
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
     } // Fin Generar City File*/
-
- /*private void GuardarArbolPrimario(ArbolB BTreeGuardar, int IDArchivo) {
-        ArchivoArbolPrimario archivoPrimaryTree = new ArchivoArbolPrimario(archivo_actual.getID(), IDArchivo, BTreeGuardar);
-        arboles.getListaarboles().add(archivoPrimaryTree);
-        arboles.escribirArchivo();
-    } // Guardar Arbol Primario*/
-
- /*private void GuardarArbolSecundario(ArbolB BTreeGuardar, int IDArchivo) {
-        ArchivoArbolSecundario archivoSecondaryTree = new ArchivoArbolSecundario(archivo_actual.getID(), IDArchivo, BTreeGuardar);
-        arboles.getListaarboles().add(archivoSecondaryTree);
-        arboles.escribirArchivo();
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTN_AbrirArchivo;
