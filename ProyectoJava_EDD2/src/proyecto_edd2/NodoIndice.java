@@ -10,8 +10,8 @@ package proyecto_edd2;
  * @author daba5
  */
 public class NodoIndice {
-    
-      private Node nodo;
+
+    private Node nodo;
     private int indice;
 
     public NodoIndice(Node nodo, int indice) {
@@ -34,6 +34,5 @@ public class NodoIndice {
     public void setIndice(int indice) {
         this.indice = indice;
     }
-    
-    
+
 }

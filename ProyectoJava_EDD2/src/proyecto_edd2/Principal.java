@@ -3144,6 +3144,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_ConfirmarModificacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfirmarModificacionMouseClicked
         // TODO add your handling code here:
+        if(jTbl_ModificarRegistros.getRowCount() < 1){
+            JOptionPane.showMessageDialog(this, "No has buscado ningún registro todavía.");
+            return;
+        }
         if (ValidaciondeingresoTabla(jTbl_ModificarRegistros, false)) {
             DefaultTableModel model = (DefaultTableModel) jTbl_ModificarRegistros.getModel();
             String guardar = "";
@@ -3186,7 +3190,6 @@ public class Principal extends javax.swing.JFrame {
         }
         if (arbol_actual != null) {
             Object Item = jCb_llavesEliminarRegistros.getSelectedItem();
-//        int pos = ((itemcombo)Item).getPos();
             DefaultTableModel model = (DefaultTableModel) jTbl_eliminarRegistros.getModel();
             model.getDataVector().removeAllElements();
             if (true || jCb_llavesEliminarRegistros.getSelectedIndex() == 0) {
@@ -3283,7 +3286,6 @@ public class Principal extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTbl_eliminarRegistros.getModel();
         if (arbol_actual != null) {
             //Object Item = jCb_llavesBuscarregistros.getSelectedItem();
-//        int pos = ((itemcombo)Item).getPos();
             if (true || jCb_llavesEliminarRegistros.getSelectedIndex() == 0) {
                 int posicion_llave = 0;
                 String llave = jTf_LLaveEliminarRegistros.getText();
@@ -3369,6 +3371,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_ConfirmarBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfirmarBorrarMouseClicked
         // TODO add your handling code here:
+        if(jTbl_eliminarRegistros.getRowCount() < 1){
+            JOptionPane.showMessageDialog(this, "No has buscado ningún registro todavía.");
+            return;
+        }
         rrn_llaves_en_orden = new ArrayList<Long>();
         arbol_actual.BTree_KeysInOrder(arbol_actual.getRaiz(), rrn_llaves_en_orden);
         if (!rrn_llaves_en_orden.isEmpty()) {
@@ -3553,8 +3559,7 @@ public class Principal extends javax.swing.JFrame {
             jCb_llavesBuscarregistros.setModel(new DefaultComboBoxModel<>());
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
                 if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                    itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
-                    jCb_llavesBuscarregistros.addItem(ic.toString());
+                    jCb_llavesBuscarregistros.addItem(archivo_actual.getCampos().get(i).getNombre());
                     break;
                 }
             }
@@ -3618,8 +3623,7 @@ public class Principal extends javax.swing.JFrame {
             jCb_llavesEliminarRegistros.setModel(new DefaultComboBoxModel<>());
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
                 if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                    itemcombo ic = new itemcombo(archivo_actual.getCampos().get(i).getNombre(), i);
-                    jCb_llavesEliminarRegistros.addItem(ic.toString());
+                    jCb_llavesEliminarRegistros.addItem(archivo_actual.getCampos().get(i).getNombre());
                     break;
                 }
             }
@@ -4604,11 +4608,13 @@ public class Principal extends javax.swing.JFrame {
             for (int i = 0; i <= 99; i++) {
                 if (i <= 9) {
                     registro = "0" + i + "|" + CityName.get(i) + "|";
-                    registro += LlenadoEspacios(registro.length(), 34) + "\n";
+                    //registro += LlenadoEspacios(registro.length(), 34) + "\n";
+                    registro += LlenadoEspacios(registro.length(), 34);
                     primaryKey = "0" + i;
                 } else {
                     registro = i + "|" + CityName.get(i) + "|";
-                    registro += LlenadoEspacios(registro.length(), 34) + "\n";
+                    //registro += LlenadoEspacios(registro.length(), 34) + "\n";
+                    registro += LlenadoEspacios(registro.length(), 34);
                     primaryKey = i + "";
                 } // Fin If
                 RRN = getRrn(registro);
