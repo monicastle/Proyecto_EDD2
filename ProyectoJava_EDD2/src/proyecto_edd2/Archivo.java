@@ -22,7 +22,7 @@ public class Archivo implements Serializable {
     private ArrayList<Campo> campos = new ArrayList();
     private static final long SerialVersionUID = 777L;
     private LinkedList AvailList = new LinkedList();
-    private String nombre;
+    //private String nombre;
 
     public Archivo() {
     } // Fin Constructor Archivo
@@ -81,35 +81,33 @@ public class Archivo implements Serializable {
         }
     }
 
-    public double getLongitudLLavePrimaria(){
+    public double getLongitudLLavePrimaria() {
         int retornar = 0;
         for (int i = 0; i < campos.size(); i++) {
-            if(campos.get(i).isLlavePrimaria()){
+            if (campos.get(i).isLlavePrimaria()) {
                 retornar = campos.get(i).getLongitud();
                 break;
             }
         }
         return retornar;
     }
-    
-    public int getSizeMetadata() {
-        String metadata = nombre;
-        for (Campo campo : this.getCampos()) {
-            metadata += "|"
-                    + campo.getNombre()
-                    + ":"
-                    + campo.getTipo_de_dato()
-                    + ":"
-                    + campo.getLongitud()
-                    + ":";
 
+    public int getSizeMetadata() {
+        String metadata = "";
+        for (Campo campo : this.getCampos()) {
+            metadata += campo.getNombre() + "¡" + campo.getTipo_de_dato() + "¡" + campo.getLongitud() + "¡";
             if (campo.isLlavePrimaria()) {
-                metadata += "Si";
+                metadata += "Si¡";
             } else {
-                metadata += "No";
-            }
-        }
-        return metadata.length() + 1;//mas uno por \n(confirmado por fuentes confiables)          
-    }
+                metadata += "No¡";
+            } // Fin If
+            if (campo.isLlave_secundaria()) {
+                metadata += "Si&";
+            } else {
+                metadata += "No&";
+            } // Fin If
+        } // Fin For
+        return metadata.length() + 1;
+    } // Gin Get Size Metadata
 
 } // Fin Clase Archivo

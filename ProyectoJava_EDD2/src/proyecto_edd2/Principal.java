@@ -1949,94 +1949,99 @@ public class Principal extends javax.swing.JFrame {
         // DESPLIEGA UN DIRECTORIO QUE ABRE UN ARCHIVO A ELECCIÓN DEL USUARIO
         try {
             // VALIDACIÓN: SI INGRESO EL NOMBRE DE UN ARCHIVO QUE NO EXISTE TIRA ERROR 
-            File archivo_abrir = null;
-            FileReader fr = null;
-            BufferedReader br = null;
-            TA_ArchivoAbierto.setText("");
-            JFileChooser filechooser = new JFileChooser("./");
-            FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Texto", "txt");
-            FileNameExtensionFilter filtro2 = new FileNameExtensionFilter("Imagenes", "jpg", "png", "bmp");
-            filechooser.setFileFilter(filtro);
-            filechooser.addChoosableFileFilter(filtro2);
-            int seleccion = filechooser.showOpenDialog(null);
-            if (seleccion == JFileChooser.APPROVE_OPTION) {
-                archivo_abrir = filechooser.getSelectedFile();
-                GuardarArchivo = archivo_abrir.getName();
-                boolean valid = false;
-                aa.cargarArchivo();
-                for (int i = 0; i < aa.getLista_archivos().size(); i++) {
-                    if (aa.getLista_archivos().get(i).getArchivo().equals(archivo_abrir)) {
-                        valid = true;
-                        archivo_actual = aa.getLista_archivos().get(i);
+            if (JOptionPane.showConfirmDialog(null, "¿Desea utilizar un archivo de prueba?", "Confirmación", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                // AQUI VA EL SI
+                GenerarPersonFile();
+            } else {
+                File archivo_abrir = null;
+                FileReader fr = null;
+                BufferedReader br = null;
+                TA_ArchivoAbierto.setText("");
+                JFileChooser filechooser = new JFileChooser("./");
+                FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Texto", "txt");
+                FileNameExtensionFilter filtro2 = new FileNameExtensionFilter("Imagenes", "jpg", "png", "bmp");
+                filechooser.setFileFilter(filtro);
+                filechooser.addChoosableFileFilter(filtro2);
+                int seleccion = filechooser.showOpenDialog(null);
+                if (seleccion == JFileChooser.APPROVE_OPTION) {
+                    archivo_abrir = filechooser.getSelectedFile();
+                    GuardarArchivo = archivo_abrir.getName();
+                    boolean valid = false;
+                    aa.cargarArchivo();
+                    for (int i = 0; i < aa.getLista_archivos().size(); i++) {
+                        if (aa.getLista_archivos().get(i).getArchivo().equals(archivo_abrir)) {
+                            valid = true;
+                            archivo_actual = aa.getLista_archivos().get(i);
+                            formatear_CBbox_Modificar();
+                            formatear_CBbox_borrar();
+                            listar_campos();
+                            System.out.println(GuardarArchivo);
+                            for (int j = 0; j < archivo_actual.getCampos().size(); j++) {
+                                campos_nuevos.add(archivo_actual.getCampos().get(j));
+                            } // Fin For
+                            // temp = archivo_actual.getCampos();
+                            //archivo_anterior = archivo_actual;
+                            //System.out.println("abriendo " + archivo_actual.getCampos().size());
+                            break;
+                        } // Fin If
+                    } // Fin For
+                    if (!valid) {
+                        // Esto indica que se abrio un archivo que no fue creado despues de las modificaciones, por lo que hay que registrarlo
+                        // CARGADO DE ARCHIVOS A EL ARCHIVO BINARIO
+                        // OJO: Aqui falta una validación la cual no permita que se pueda nombrar un archivo con el mismo nombre que uno ya existente
+                        int ID;
+                        aa.cargarArchivo();
+                        ID = aa.GenerarId();
+                        archivo_actual = new Archivo(archivo_abrir, ID);
+                        GuardarArchivo = null;
+                        // AQUI FALTA SETEARLE LOS CAMPOS
+                        aa.AddArchivo(archivo_actual);
+                        aa.escribirArchivo();
                         formatear_CBbox_Modificar();
                         formatear_CBbox_borrar();
                         listar_campos();
+                        GuardarArchivo = archivo_actual.getArchivo().getName();
                         System.out.println(GuardarArchivo);
-                        for (int j = 0; j < archivo_actual.getCampos().size(); j++) {
-                            campos_nuevos.add(archivo_actual.getCampos().get(j));
-                        } // Fin For
-                        // temp = archivo_actual.getCampos();
-                        //archivo_anterior = archivo_actual;
-                        //System.out.println("abriendo " + archivo_actual.getCampos().size());
-                        break;
                     } // Fin If
-                } // Fin For
-                if (!valid) {
-                    // Esto indica que se abrio un archivo que no fue creado despues de las modificaciones, por lo que hay que registrarlo
-                    // CARGADO DE ARCHIVOS A EL ARCHIVO BINARIO
-                    // OJO: Aqui falta una validación la cual no permita que se pueda nombrar un archivo con el mismo nombre que uno ya existente
-                    int ID;
-                    aa.cargarArchivo();
-                    ID = aa.GenerarId();
-                    archivo_actual = new Archivo(archivo_abrir, ID);
-                    GuardarArchivo = null;
-                    // AQUI FALTA SETEARLE LOS CAMPOS
-                    aa.AddArchivo(archivo_actual);
-                    aa.escribirArchivo();
-                    formatear_CBbox_Modificar();
-                    formatear_CBbox_borrar();
-                    listar_campos();
-                    GuardarArchivo = archivo_actual.getArchivo().getName();
-                    System.out.println(GuardarArchivo);
+                    fr = new FileReader(archivo_abrir);
+                    br = new BufferedReader(fr);
+                    String linea;
+                    TA_ArchivoAbierto.append("");
+                    while ((linea = br.readLine()) != null) {
+                        TA_ArchivoAbierto.append(linea);
+                        TA_ArchivoAbierto.append("\n");
+                    } // Fin While
+                    try {
+                        br.close();
+                        fr.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } // Fin Try Catch
+                    arboles.cargarArchivo();
+                    boolean omitidos = false;//esto es para los que ya estan creados en el arbol
+                    boolean arbolcreado = false;//verifica si el arbol esta creado
+                    //esto verifica que el arbol no exista
+                    for (int i = 0; i < arboles.getListaarboles().size(); i++) {
+                        if (arboles.getListaarboles().get(i).getArchivo().equals(archivo_actual.getArchivo())) {
+                            arbolcreado = true;
+                            get_posarbol = i;//se agarra la posicion del arbol creado
+                            arbol_actual = arboles.getListaarboles().get(i).getArbol();
+                            break;
+                        }
+                    }
+                    arbolessecundarios.cargarArchivo();
+                    for (int i = 0; i < arbolessecundarios.getListaarboles().size(); i++) {
+                        if (arbolessecundarios.getListaarboles().get(i).getIDArchivoActual() == archivo_actual.getID()) {
+                            arbol_secundarioactual = arbolessecundarios.getListaarboles().get(i).getArbolSecundario();
+                            break;
+                        }
+                    }
+                    salvado = false;
+                    this.setVisible(false);
+                    VentanaMenuPrincipal.pack();
+                    VentanaMenuPrincipal.setLocationRelativeTo(null);
+                    VentanaMenuPrincipal.setVisible(true);
                 } // Fin If
-                fr = new FileReader(archivo_abrir);
-                br = new BufferedReader(fr);
-                String linea;
-                TA_ArchivoAbierto.append("");
-                while ((linea = br.readLine()) != null) {
-                    TA_ArchivoAbierto.append(linea);
-                    TA_ArchivoAbierto.append("\n");
-                } // Fin While
-                try {
-                    br.close();
-                    fr.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } // Fin Try Catch
-                arboles.cargarArchivo();
-                boolean omitidos = false;//esto es para los que ya estan creados en el arbol
-                boolean arbolcreado = false;//verifica si el arbol esta creado
-                //esto verifica que el arbol no exista
-                for (int i = 0; i < arboles.getListaarboles().size(); i++) {
-                    if (arboles.getListaarboles().get(i).getArchivo().equals(archivo_actual.getArchivo())) {
-                        arbolcreado = true;
-                        get_posarbol = i;//se agarra la posicion del arbol creado
-                        arbol_actual = arboles.getListaarboles().get(i).getArbol();
-                        break;
-                    }
-                }
-                arbolessecundarios.cargarArchivo();
-                for (int i = 0; i < arbolessecundarios.getListaarboles().size(); i++) {
-                    if (arbolessecundarios.getListaarboles().get(i).getIDArchivoActual() == archivo_actual.getID()) {
-                        arbol_secundarioactual = arbolessecundarios.getListaarboles().get(i).getArbolSecundario();
-                        break;
-                    }
-                }
-                salvado = false;
-                this.setVisible(false);
-                VentanaMenuPrincipal.pack();
-                VentanaMenuPrincipal.setLocationRelativeTo(null);
-                VentanaMenuPrincipal.setVisible(true);
             } // Fin If
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se puede abrir el archivo porque no existe");
@@ -2077,6 +2082,7 @@ public class Principal extends javax.swing.JFrame {
             semodifico = false;
             seborro = false;
             salvado = false;
+
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -2733,7 +2739,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_crearRegistrosDefinitivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearRegistrosDefinitivosActionPerformed
         // TODO add your handling code here:
-        
+
         DefaultTableModel model = (DefaultTableModel) jTbl_tablaRegistros.getModel();
         if (!ValidaciondeingresoTabla(jTbl_tablaRegistros, true)) {
             return;
@@ -2829,7 +2835,7 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
             Archivodelarbol.getArbol().imprimir_arbol(0, 0);
-            arbol_actual= Archivodelarbol.getArbol();
+            arbol_actual = Archivodelarbol.getArbol();
             arboles.getListaarboles().add(Archivodelarbol);
             arboles.escribirArchivo();
         } else {
@@ -3453,14 +3459,14 @@ public class Principal extends javax.swing.JFrame {
         } else if (existe_llave_Secundaria == 0) {
             JOptionPane.showMessageDialog(this, "Todavía no has especificado una llave secundaria. Dirigete al Menú Campos.");
             return;
-        }
-        else if (!archivo_actual.getCampos().isEmpty()) {
+        } else if (!archivo_actual.getCampos().isEmpty()) {
             this.setVisible(false);
             VentanaMenuPrincipal.setVisible(false);
             VentanaMenuRegistros.pack();
             VentanaMenuRegistros.setLocationRelativeTo(null);
             VentanaMenuRegistros.setVisible(true);
-        } /*else {
+        }
+        /*else {
             JOptionPane.showMessageDialog(this, "Todavía no has especificado los nombres de los campos.");
         }*/
     }//GEN-LAST:event_btn_PuenteMenuRegistrosActionPerformed
@@ -4184,8 +4190,383 @@ public class Principal extends javax.swing.JFrame {
         return rrn;
     }
 
-    /*public BTree getArbol() {
-       // return arboles.get(getPosKey());
+    private void GenerarPersonFile() {
+        // FALTA CREAR EL ARBOL PRIMARIO Y SECUNDARIO
+        // VALIDACION: VERIFICAR SI EL ARCHIVO YA ESTA CREADO O NO
+        try {
+            String lineacampos;
+            // Obtenemos los campos en "duro"y los guardamos en un arreglo
+            lineacampos = "PersonId¡int¡6¡Si¡No&PersonName¡String¡20¡No¡No&PersonAge¡int¡3¡No¡No&CityId¡int¡2¡No¡Si¡";
+            String[] campos = lineacampos.split("\\&");
+            // Guarda el archivo actual en el binario con los demas archivos
+            aa.cargarArchivo();
+            int ID;
+            ID = aa.GenerarId();
+            archivo_actual = new Archivo(new File("PersonFile.txt"), ID);
+            GuardarArchivo = "PersonFile.txt";
+            aa.AddArchivo(archivo_actual);
+            aa.escribirArchivo();
+            for (int i = 0; i < campos.length; i++) {
+                // De la linea de un campo luego necesitamos darle split a los atributos del campo 
+                String[] campos2 = campos[i].split("\\¡");
+                String nombreCampo = campos2[0];
+                String tipoCampo = campos2[1];
+                int longitudCampo = (Integer.parseInt(campos2[2]));
+                boolean llavePrimaria, llaveSecundaria;
+                llavePrimaria = false;
+                llaveSecundaria = false;
+                if (campos2[3].equals("Si")) {
+                    llavePrimaria = true;
+                }// Fin If
+                if (campos2[4].equals("Si")) {
+                    llaveSecundaria = true;
+                }// Fin If                
+                // Seteamos dichos campos en el archivo actual
+                int IDCampo;
+                IDCampo = GenerarIDCampo();
+                Campo campo = new Campo(ID, IDCampo, nombreCampo, tipoCampo, longitudCampo, llavePrimaria, llaveSecundaria);
+                archivo_actual.addCampo(campo);
+                aa.cargarArchivo();
+                for (Archivo archivo : aa.getLista_archivos()) {
+                    if (archivo.getID() == archivo_actual.getID()) {
+                        archivo.addCampo(campo);
+                        break;
+                    } // Fin If
+                } // Fin For
+                aa.escribirArchivo();
+            } // Fin For
+            ArrayList<String> PersonFirstName = new ArrayList();
+            // Se generan 60 nombres aleatorios
+            PersonFirstName.add("Diego");
+            PersonFirstName.add("Bilgai");
+            PersonFirstName.add("Hector");
+            PersonFirstName.add("Onasis");
+            PersonFirstName.add("Monica");
+            PersonFirstName.add("Valeria");
+            PersonFirstName.add("Ana");
+            PersonFirstName.add("Cecilia");
+            PersonFirstName.add("Jesus");
+            PersonFirstName.add("Ariel");
+            PersonFirstName.add("Sahory");
+            PersonFirstName.add("Scarleth");
+            PersonFirstName.add("Alejandro");
+            PersonFirstName.add("Fernando");
+            PersonFirstName.add("Paola");
+            PersonFirstName.add("David");
+            PersonFirstName.add("Josue");
+            PersonFirstName.add("Daniel");
+            PersonFirstName.add("Andres");
+            PersonFirstName.add("Carlos");
+            PersonFirstName.add("Eduardo");
+            PersonFirstName.add("Aline");
+            PersonFirstName.add("Alejandra");
+            PersonFirstName.add("Elsi");
+            PersonFirstName.add("Xiomara");
+            PersonFirstName.add("Juan");
+            PersonFirstName.add("Jose");
+            PersonFirstName.add("Omar");
+            PersonFirstName.add("Maria");
+            PersonFirstName.add("Catalina");
+            PersonFirstName.add("Pamela");
+            PersonFirstName.add("Pablo");
+            PersonFirstName.add("Cristopher");
+            PersonFirstName.add("Roberto");
+            PersonFirstName.add("Rafael");
+            PersonFirstName.add("Carlo");
+            PersonFirstName.add("Leonardo");
+            PersonFirstName.add("Karen");
+            PersonFirstName.add("Geovanny");
+            PersonFirstName.add("Rodrigo");
+            PersonFirstName.add("Nicole");
+            PersonFirstName.add("Ariela");
+            PersonFirstName.add("Cristina");
+            PersonFirstName.add("Ashley");
+            PersonFirstName.add("Andrea");
+            PersonFirstName.add("Mario");
+            PersonFirstName.add("Gisselle");
+            PersonFirstName.add("Erica");
+            PersonFirstName.add("Diana");
+            PersonFirstName.add("Santiago");
+            PersonFirstName.add("Angel");
+            PersonFirstName.add("Matias");
+            PersonFirstName.add("Soad");
+            PersonFirstName.add("Gabriel");
+            PersonFirstName.add("Ruben");
+            PersonFirstName.add("Alvaro");
+            PersonFirstName.add("Luisa");
+            PersonFirstName.add("Adrian");
+            PersonFirstName.add("Allan");
+            PersonFirstName.add("Javier");
+            PersonFirstName.add("Luis");
+            ArrayList<String> PersonLastName = new ArrayList();
+            // Se generan 60 apellidos aleatorios
+            PersonLastName.add("Varela");
+            PersonLastName.add("Diaz");
+            PersonLastName.add("Reyes");
+            PersonLastName.add("Andino");
+            PersonLastName.add("Castillo");
+            PersonLastName.add("Mendoza");
+            PersonLastName.add("Meraz");
+            PersonLastName.add("Padilla");
+            PersonLastName.add("Romero");
+            PersonLastName.add("Fuentes");
+            PersonLastName.add("Cano");
+            PersonLastName.add("Rodriguez");
+            PersonLastName.add("Osorto");
+            PersonLastName.add("Coello");
+            PersonLastName.add("Dominguez");
+            PersonLastName.add("Fernandez");
+            PersonLastName.add("Valladares");
+            PersonLastName.add("Cortes");
+            PersonLastName.add("Marcia");
+            PersonLastName.add("Murcia");
+            PersonLastName.add("Pineda");
+            PersonLastName.add("Paz");
+            PersonLastName.add("Rojas");
+            PersonLastName.add("Morales");
+            PersonLastName.add("Chirinos");
+            PersonLastName.add("Gallo");
+            PersonLastName.add("Velasquez");
+            PersonLastName.add("Miranda");
+            PersonLastName.add("Muñoz");
+            PersonLastName.add("Garcia");
+            PersonLastName.add("Turcios");
+            PersonLastName.add("Aguilera");
+            PersonLastName.add("Flores");
+            PersonLastName.add("Barahona");
+            PersonLastName.add("Alvarado");
+            PersonLastName.add("Ortiz");
+            PersonLastName.add("Amaya");
+            PersonLastName.add("Iscoa");
+            PersonLastName.add("Gonzalez");
+            PersonLastName.add("Lopez");
+            PersonLastName.add("Cruz");
+            PersonLastName.add("Sanchez");
+            PersonLastName.add("Mejia");
+            PersonLastName.add("Martinez");
+            PersonLastName.add("Hernandez");
+            PersonLastName.add("Perez");
+            PersonLastName.add("Duarte");
+            PersonLastName.add("Figueroa");
+            PersonLastName.add("Nuñez");
+            PersonLastName.add("Gomez");
+            PersonLastName.add("Caceres");
+            PersonLastName.add("Ayala");
+            PersonLastName.add("Suazo");
+            PersonLastName.add("Cabrera");
+            PersonLastName.add("Sosa");
+            PersonLastName.add("Torres");
+            PersonLastName.add("Caballero");
+            PersonLastName.add("Acosta");
+            PersonLastName.add("Silva");
+            PersonLastName.add("Medina");
+            PersonLastName.add("Galeano");
+            RandomAccessFile flujo = new RandomAccessFile(new File("PersonFile.txt"), "rw");
+            BTree BTreePersons = new BTree(6);
+            flujo.write("PersonId¡int¡6¡Si¡No&PersonName¡String¡20¡No¡No&PersonAge¡int¡3¡No¡No&CityId¡int¡2¡No¡Si¡".getBytes());
+            // Escribimos los campos en "duro" dentro del archivo
+            random = new Random();
+            int personID;
+            personID = 100000;
+            long RRN;
+            String nombre, apellido, registro, primaryKey, secondaryKey;
+            int edad, cityID;
+            for (int i = 0; i <= 10000; i++) {
+                // Se iran escribiendo de forma aleatoria los registros dentro del archivo
+                nombre = PersonFirstName.get((int) Math.floor(Math.random() * 60));
+                apellido = PersonLastName.get((int) Math.floor(Math.random() * 60));
+                edad = 1 + random.nextInt(99);
+                cityID = 1 + random.nextInt(99);
+                registro = personID + "|" + nombre + " " + apellido + "|" + edad + "|" + cityID + "|";
+                personID++;
+                // Llena de espacios si no se completaron los 35 caracteres
+                registro += LlenadoEspacios(registro.length(), 35);
+                RRN = getRrn(registro);
+                flujo.seek(RRN);
+                flujo.write(registro.getBytes());
+                // Obtenemos la llave primaria para poder insertarla en el arbolB
+                primaryKey = String.valueOf(personID);
+                // Cambiar a lo de Diego->
+                primaryKey = espacios.substring(0, 6 - primaryKey.length()) + primaryKey;
+                BTreePersons.insert(primaryKey, RRN);
+                // Consejo sout del arbol para ver si inserta bien
+                // Obtenemos la llave secundaria para poder insertarla en el arbolB
+                /*secondaryKey = String.valueOf(cityID);
+                secondaryKey = espacios.substring(0, 2 - secondaryKey.length()) + secondaryKey;
+                //arbolCity.insert(secondaryKey, RRN);*/
+            } // Fin For
+            flujo.close();
+
+            // Escrbir en el archivoconArbolB
+            // Escribir en el binario de arbol
+            //arbol_actual = BTreePersons;
+            //GenerarCityFile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+    } // Fin Generar Person File
+
+    public String LlenadoEspacios(int tamRegistro, int tamRegistroMaximo) {
+        String acum = "";
+        for (int i = tamRegistro; i < tamRegistroMaximo; i++) {
+            acum += " ";
+        } // Fin For
+        return acum;
+    } // Fin Llenado Espacios
+
+    /*private void GenerarCityFile() {
+        try {
+            ArrayList<String> CityName = new ArrayList();
+            // Se generan 100 ciudades aleatorias
+            CityName.add("Tokio");
+            CityName.add("Nueva York");
+            CityName.add("Los Angeles");
+            CityName.add("Paris");
+            CityName.add("Seul");
+            CityName.add("Londres");
+            CityName.add("Osaka");
+            CityName.add("Shanghai");
+            CityName.add("Chicago");
+            CityName.add("Moscu");
+            CityName.add("Pekin");
+            CityName.add("Colonia");
+            CityName.add("Houston");
+            CityName.add("Washington D.C.");
+            CityName.add("Sao Paulo");
+            CityName.add("Hong Kong");
+            CityName.add("Dallas");
+            CityName.add("Ciudad de Mexico");
+            CityName.add("Canton");
+            CityName.add("Singapur");
+            CityName.add("Boston");
+            CityName.add("Estambul");
+            CityName.add("Filadelfia");
+            CityName.add("San F
+            ArrayList<String> CityName = new ArrayList();
+            // Se generan 100 ciudades aleatorias
+            CityName.add("Tokio");
+            CityName.add("Nueva York");
+            CityName.add("Los Angeles");
+            CityName.add("Paris");
+            CityName.add("Seul");
+            CityName.add("Londres");
+            CityName.add("Osaka");
+            CityName.add("Shanghai");
+            CityName.add("Chicago");
+            CityName.add("Moscu");
+            CityName.add("Pekin");rancisco");
+            CityName.add("Taipei");
+            CityName.add("Amsterdam");
+            CityName.add("Buenos Aires");
+            CityName.add("Milan");
+            CityName.add("Bangkok");
+            CityName.add("Atalanta");
+            CityName.add("Barcelona");
+            CityName.add("Liverpool");
+            CityName.add("Madrid");
+            CityName.add("Delhi");
+            CityName.add("Tegucigalpa");
+            CityName.add("Lisboa");
+            CityName.add("Las Vegas");
+            CityName.add("Manchester");
+            CityName.add("Lyon");
+            CityName.add("Venecia");
+            CityName.add("Praga");
+            CityName.add("Dubai");
+            CityName.add("Turin");
+            CityName.add("Guadalajara");
+            CityName.add("Oslo");
+            CityName.add("Bucarest");
+            CityName.add("Memphis");
+            CityName.add("Ottawa");
+            CityName.add("Valencia");
+            CityName.add("Florencia");
+            CityName.add("Alejandria");
+            CityName.add("Bremen");
+            CityName.add("Bristol");
+            CityName.add("Niza");
+            CityName.add("Ginebra");
+            CityName.add("Sofia");
+            CityName.add("Oporto");
+            CityName.add("Leipzig");
+            CityName.add("Sevilla");
+            CityName.add("Quebec");
+            CityName.add("Nantes");
+            CityName.add("Zagreb");
+            CityName.add("Kuala Lumpur");
+            CityName.add("Zaragoza");
+            CityName.add("Murcia");
+            CityName.add("San Pedro Sula");
+            CityName.add("La Esperanza");
+            CityName.add("Bilbao");
+            CityName.add("Kiev");
+            CityName.add("San Petersburgo");
+            CityName.add("Atenas");
+            CityName.add("Francfort");
+            CityName.add("Basilea");
+            CityName.add("Gotemburgo");
+            CityName.add("Auckland");
+            CityName.add("Wellington");
+            CityName.add("Stuttgart");
+            CityName.add("La Ceiba");
+            CityName.add("Comayagua");
+            CityName.add("El Progreso");
+            CityName.add("Choloma");
+            CityName.add("Danli");
+            CityName.add("La Lima");
+            CityName.add("Juticalpa");
+            CityName.add("Tela");
+            CityName.add("Trujillo");
+            CityName.add("Catacamas");
+            CityName.add("Omoa");
+            CityName.add("Tocoa");
+            CityName.add("Talanga");
+            CityName.add("Virginia");
+            CityName.add("Marcala");
+            CityName.add("Yuscaran");
+            CityName.add("Puerto Lempira");
+            CityName.add("Gracias");
+            CityName.add("Amapala");
+            CityName.add("San Diego");
+            CityName.add("Montevideo");
+            CityName.add("Marsella");
+            CityName.add("Minsk");
+            CityName.add("Riga");
+            Collections.shuffle(CityName);
+            RandomAccessFile flujo = new RandomAccessFile(new File("CityFile.txt"), "rw");
+            BTree BTreeCities = new BTree(6); // Crea el arbol de Ciudades
+            String registro, primaryKey;
+            flujo.write("CityId¡int¡2¡true¡false&CityName¡char¡30¡false¡false¡".getBytes());
+            for (int i = 0; i <= 99; i++) {
+                if (i <= 9) {
+                    registro = "0" + i + "|" + CityName.get(i) + "|";
+                    registro += LlenadoEspacios(registro.length(), 34) + "\n";
+                    primaryKey = "0" + i;
+                } else {
+                    registro = i + "|" + CityName.get(i) + "|";
+                    registro += LlenadoEspacios(registro.length(), 34) + "\n";
+                    primaryKey = i + "";
+                } // Fin If
+                BTreeCities.insert(primaryKey, i); // Inserta la llave y el RRN en el arbol
+                flujo.write(registro.getBytes());
+            } // Fin For
+            //escribirArbol("CiudadesPrueba.jjdp" + "CityId", arbolCiudades); // <- <- <- ESCRIBIR DENTRO DEL ARCHIVO DE BINARIOS FALTA
+            flujo.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+    } // Fin Generar City File*/
+
+ /*private void GuardarArbolPrimario(ArbolB BTreeGuardar, int IDArchivo) {
+        ArchivoArbolPrimario archivoPrimaryTree = new ArchivoArbolPrimario(archivo_actual.getID(), IDArchivo, BTreeGuardar);
+        arboles.getListaarboles().add(archivoPrimaryTree);
+        arboles.escribirArchivo();
+    } // Guardar Arbol Primario*/
+
+ /*private void GuardarArbolSecundario(ArbolB BTreeGuardar, int IDArchivo) {
+        ArchivoArbolSecundario archivoSecondaryTree = new ArchivoArbolSecundario(archivo_actual.getID(), IDArchivo, BTreeGuardar);
+        arboles.getListaarboles().add(archivoSecondaryTree);
+        arboles.escribirArchivo();
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
