@@ -2376,7 +2376,14 @@ public class Principal extends javax.swing.JFrame {
             ID_archivo = archivo_actual.getID();
             Campo campo_nuevo = new Campo(ID_campo, ID_archivo, nombre, tipo_de_dato, longitud, llave_primaria, llave_secundaria);
             if (campos_nuevos.isEmpty()) {
-                if (llave_primaria == false) {
+                if (nombre.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Debe ingresar un nombre para el campo");
+                    TF_NombreDelCampo.setText("");
+                    CB_TipoDeDatoDelCampo.setSelectedIndex(0);
+                    SP_LongitudDelCampo.setValue(1);
+                    RB_LlavePrimariaDelCampo.setSelected(false);
+                    RB_LlaveSecundariaDelCampo.setSelected(false);
+                } else if (llave_primaria == false) {
                     JOptionPane.showMessageDialog(null, "El primer campo ingresado debe ser una llave primaria");
                     TF_NombreDelCampo.setText("");
                     CB_TipoDeDatoDelCampo.setSelectedIndex(0);
@@ -2420,7 +2427,24 @@ public class Principal extends javax.swing.JFrame {
                 } // Fin If
             } else {
                 if (existe == false) {
-                    if (llave_primaria == true && llave_secundaria == true) {
+                    if (nombre.equals("")) {
+                        JOptionPane.showMessageDialog(null, "Debe ingresar un nombre para el campo");
+                        TF_NombreDelCampo.setText("");
+                        CB_TipoDeDatoDelCampo.setSelectedIndex(0);
+                        SP_LongitudDelCampo.setValue(1);
+                        for (int i = 0; i < campos_nuevos.size(); i++) {
+                            if (campos_nuevos.get(i).isLlavePrimaria()) {
+                                RB_LlavePrimariaDelCampo.setEnabled(false);
+                            } // Fin If
+                        } // Fin For
+                        for (int i = 0; i < campos_nuevos.size(); i++) {
+                            if (campos_nuevos.get(i).isLlave_secundaria()) {
+                                RB_LlaveSecundariaDelCampo.setEnabled(false);
+                            } // Fin If
+                        } // Fin For
+                        RB_LlavePrimariaDelCampo.setSelected(false);
+                        RB_LlaveSecundariaDelCampo.setSelected(false);
+                    } else if (llave_primaria == true && llave_secundaria == true) {
                         JOptionPane.showMessageDialog(null, "No se puede seleccionar que sea llave primaria y secundaria a la vez");
                         TF_NombreDelCampo.setText("");
                         CB_TipoDeDatoDelCampo.setSelectedIndex(0);
@@ -2509,7 +2533,6 @@ public class Principal extends javax.swing.JFrame {
                 salvado = true;
                 boolean existe = false;
                 //boolean llaveprimaria = false;
-
                 String nombre;
                 int longitud;
                 String tipo_de_dato;
@@ -2564,7 +2587,8 @@ public class Principal extends javax.swing.JFrame {
                                 campo.setLlave_secundaria(llave_secundaria);
                             } // Fin If
                         } // Fin For
-                        CB_CampoAModificar.setSelectedItem(nombre);
+                        formatear_CBbox_Modificar();
+                        formatear_CBbox_borrar();
                         cambios_txt();
                         TF_NombreDelCampoModificado.setText("");
                         CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
@@ -2774,6 +2798,8 @@ public class Principal extends javax.swing.JFrame {
                     } // Fin For
                     cambios_txt();
                     seborro = true;
+                    formatear_CBbox_Modificar();
+                    formatear_CBbox_borrar();
                     JOptionPane.showMessageDialog(this, "¡Se ha eliminado el campo exitosamente!");
                 } // Fin If
             } catch (Exception e) {
@@ -4068,8 +4094,8 @@ public class Principal extends javax.swing.JFrame {
     void formatear_CBbox_borrar() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         modelo.addElement("Seleccione");
-        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            Campo campo_temporal = archivo_actual.getCampos().get(i);
+        for (int i = 0; i < campos_nuevos.size(); i++) {
+            Campo campo_temporal = campos_nuevos.get(i);
             modelo.addElement(campo_temporal.getNombre());
         }// Fin If
         CB_CampoABorrar.setModel(modelo);
@@ -4078,8 +4104,8 @@ public class Principal extends javax.swing.JFrame {
     void formatear_CBbox_Modificar() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         modelo.addElement("Seleccione");
-        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-            Campo campo_temporal = archivo_actual.getCampos().get(i);
+        for (int i = 0; i < campos_nuevos.size(); i++) {
+            Campo campo_temporal = campos_nuevos.get(i);
             modelo.addElement(campo_temporal.getNombre());
         }// Fin If
         CB_CampoAModificar.setModel(modelo);
