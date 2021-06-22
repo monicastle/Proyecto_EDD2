@@ -2907,14 +2907,36 @@ public class Principal extends javax.swing.JFrame {
                     //System.out.println("este es el num :" + num);
                     llave = espacios.substring(0, num) + llave;
                 }
-                if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null) {
+                int llavesecundaria = 0;
+                for (int r = 0; r < archivo_actual.getCampos().size(); r++) {
+                    if (archivo_actual.getCampos().get(r).isLlave_secundaria()) {
+                        llavesecundaria = r;
+                    }//fin if
+                }//fin for
+                String llave_secun = "";
+                for (int r = 0; r < model.getRowCount(); r++) {
+                    for (int s = 0; s < model.getColumnCount(); s++) {
+                    }//fin segundo for
+                    llave_secun = model.getValueAt(r, llavesecundaria).toString();
+                    if (archivo_actual.getCampos().get(llavesecundaria).getTipo_de_dato().equals("int")) {
+                        int num = archivo_actual.getCampos().get(llavesecundaria).getLongitud() - llave_secun.length();
+                        llave_secun = espacios.substring(0, num) + llave_secun;
+                    }
+                }
+                int validacion = 0;
+                for (int r = 0; r < arbolessecundarios.getListaarboles().size(); r++) {
+                    if (arbolessecundarios.getListaarboles().get(r).getIDArchivoActual() == archivo_actual.getID()) {
+                        validacion = r;
+                    }//fin if
+                }//fin for
+                if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null || arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().B_Tree_Search(arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().getRaiz(), llave_secun) != null) {
                     omitidos = true;
                 } else {
                     int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
                     //System.out.println("El rrn es:" + rrn);
-
+                    arboles.getListaarboles().get(getposarbol).getArbol().insert(llave, rrn);
                     if (arbol_secundarioactual != null) {
-                        int llavesecundaria = 0;
+                        llavesecundaria = 0;
                         arbolessecundarios.cargarArchivo();
                         for (int r = 0; r < archivo_actual.getCampos().size(); r++) {
                             if (archivo_actual.getCampos().get(r).isLlave_secundaria()) {
@@ -2935,14 +2957,15 @@ public class Principal extends javax.swing.JFrame {
                                 int num = archivo_actual.getCampos().get(llavesecundaria).getLongitud() - llave_secundaria.length();
                                 llave_secundaria = espacios.substring(0, num) + llave_secundaria;
                             }//fin if
-                            if (arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().B_Tree_Search(arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().getRaiz(), llave_secundaria) != null) {
+                            /* if (arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().B_Tree_Search(arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().getRaiz(), llave_secundaria) != null) {
                                 omitidos = true;
                             } else {
-                                arboles.getListaarboles().get(getposarbol).getArbol().insert(llave, rrn);
+
                                 arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().insert(llave_secundaria, rrn);
                                 arbol_secundarioactual = arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario();
                                 arbolessecundarios.escribirArchivo();
                             }
+                             */
                         }//fin primer for
                         //arbol_secundarioactual.imprimir_arbol(0, 0);
                     }//fin if validacion arbolsecundario
@@ -3435,6 +3458,34 @@ public class Principal extends javax.swing.JFrame {
                         if (archivo_actual.getCampos().get(posicion_llave).getTipo_de_dato().equals("int")) {
                             int num = archivo_actual.getCampos().get(posicion_llave).getLongitud() - llave.length();
                             llave = espacios.substring(0, num) + llave;
+                        }
+                        int llavesecundaria = 0;
+                        for (int r = 0; r < archivo_actual.getCampos().size(); r++) {
+                            if (archivo_actual.getCampos().get(r).isLlave_secundaria()) {
+                                llavesecundaria = r;
+                            }//fin if
+                        }//fin for
+                        String llave_secun = "";
+                        for (int r = 0; r < jTbl_eliminarRegistros.getRowCount(); r++) {
+                            for (int s = 0; s < jTbl_eliminarRegistros.getColumnCount(); s++) {
+                            }//fin segundo for
+                            llave_secun = jTbl_eliminarRegistros.getValueAt(r, llavesecundaria).toString();
+                            if (archivo_actual.getCampos().get(llavesecundaria).getTipo_de_dato().equals("int")) {
+                                int num = archivo_actual.getCampos().get(llavesecundaria).getLongitud() - llave_secun.length();
+                                llave_secun = espacios.substring(0, num) + llave_secun;
+                            }
+                        }
+                        int validacion = 0;
+                        for (int r = 0; r < arbolessecundarios.getListaarboles().size(); r++) {
+                            if (arbolessecundarios.getListaarboles().get(r).getIDArchivoActual() == archivo_actual.getID()) {
+                                validacion = r;
+                            }//fin if
+                        }//fin for
+                        if (arbol_secundarioactual!=null) {
+                            arbolessecundarios.cargarArchivo();
+                            arbol_secundarioactual.B_Tree_Delete(arbol_secundarioactual.getRaiz(), llave_secun);
+                            arbolessecundarios.getListaarboles().get(validacion).setArbolSecundario(arbol_secundarioactual);
+                            arbolessecundarios.escribirArchivo();
                         }
                         //ESTO ELIMINA EL REGISTRO DE LA LISTA DE REGISTROS
                         arboles.cargarArchivo();
