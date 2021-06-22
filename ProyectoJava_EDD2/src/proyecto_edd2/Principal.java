@@ -1932,7 +1932,7 @@ public class Principal extends javax.swing.JFrame {
                     ID = aa.GenerarId();
                     archivo_actual = new Archivo(archivo, ID);
                     GuardarArchivo = archivo.getName();
-                    System.out.println(GuardarArchivo);
+                    //System.out.println(GuardarArchivo);
                     aa.AddArchivo(archivo_actual);
                     aa.escribirArchivo();
                     archivo_actual = null;
@@ -1960,11 +1960,13 @@ public class Principal extends javax.swing.JFrame {
                     } // Fin If
                 } // Fin For
                 aa.escribirArchivo();
+                arboles.cargarArchivo();
                 if (existePrueba) {
                     aa.cargarArchivo();
                     for (int i = 0; i < aa.getLista_archivos().size(); i++) {
                         if (aa.getLista_archivos().get(i).getArchivo().getName().equals("PersonFile.txt")) {
                             archivo_actual = aa.getLista_archivos().get(i);
+                            arbol_actual = arboles.getListaarboles().get(i).getArbol();
                             GuardarArchivo = "PersonFile.txt";
                             break;
                         } // Fin If
@@ -2003,7 +2005,7 @@ public class Principal extends javax.swing.JFrame {
                             formatear_CBbox_Modificar();
                             formatear_CBbox_borrar();
                             listar_campos();
-                            System.out.println(GuardarArchivo);
+                            //System.out.println(GuardarArchivo);
                             for (int j = 0; j < archivo_actual.getCampos().size(); j++) {
                                 campos_nuevos.add(archivo_actual.getCampos().get(j));
                             } // Fin For
@@ -2029,7 +2031,7 @@ public class Principal extends javax.swing.JFrame {
                         formatear_CBbox_borrar();
                         listar_campos();
                         GuardarArchivo = archivo_actual.getArchivo().getName();
-                        System.out.println(GuardarArchivo);
+                        //System.out.println(GuardarArchivo);
                     } // Fin If
                     fr = new FileReader(archivo_abrir);
                     br = new BufferedReader(fr);
@@ -2102,7 +2104,7 @@ public class Principal extends javax.swing.JFrame {
             formatear_CBbox_Modificar();
             formatear_CBbox_borrar();
             listar_campos();
-            System.out.println("secreo:" + secreo + "seborro: " + seborro + "semodifico: " + semodifico);
+            //System.out.println("secreo:" + secreo + "seborro: " + seborro + "semodifico: " + semodifico);
             if (secreo == true || semodifico == true || seborro == true) {
                 JOptionPane.showMessageDialog(null, "Archivo Salvado Exitosamente");
             }
@@ -2797,7 +2799,7 @@ public class Principal extends javax.swing.JFrame {
         //Aqui se empieza a trabajar en la creacion
         if (arbolcreado == false) {
             //Aqui es sie el arbol no esta creado pues se crea dentro de la lista de arboles y se hace el registro
-            System.out.println("no habia rchivo creado");
+            //System.out.println("no habia rchivo creado");
             arboles.cargarArchivo();
             String llave_primaria = "";
             int id = arboles.GenerarId();
@@ -2825,7 +2827,7 @@ public class Principal extends javax.swing.JFrame {
                 } else {
                     /*       registross.add(guardar);*/
                     int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
-                    System.out.println("El rrn es:" + rrn);
+                    //System.out.println("El rrn es:" + rrn);
                     Archivodelarbol.getArbol().insert(llave, rrn);
                     if (arbol_secundarioactual != null) {
                         int llavesecundaria = 0;
@@ -2868,9 +2870,9 @@ public class Principal extends javax.swing.JFrame {
             arboles.escribirArchivo();
         } else {
             //Aqui se hace cuando el arbol ya esta creado
-            System.out.println("entro al archivo creado");
+            ////System.out.println("entro al archivo creado");
             arboles.cargarArchivo();
-            System.out.println("entro aca");
+            //System.out.println("entro aca");
             for (int i = 0; i < model.getRowCount(); i++) {
                 guardar = "";
                 for (int j = 0; j < model.getColumnCount(); j++) {
@@ -2882,18 +2884,18 @@ public class Principal extends javax.swing.JFrame {
                 String llave = model.getValueAt(i, posicion_llave).toString();
                 if (archivo_actual.getCampos().get(llaveprimaria).getTipo_de_dato().equals("String")) {
                     int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
-                    System.out.println("este es el num :" + num);
+                    //System.out.println("este es el num :" + num);
                     llave = espacios.substring(0, num) + llave;
                 } else if (archivo_actual.getCampos().get(llaveprimaria).getTipo_de_dato().equals("int")) {
                     int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
-                    System.out.println("este es el num :" + num);
+                    //System.out.println("este es el num :" + num);
                     llave = espacios.substring(0, num) + llave;
                 }
                 if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null) {
                     omitidos = true;
                 } else {
                     int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
-                    System.out.println("El rrn es:" + rrn);
+                    //System.out.println("El rrn es:" + rrn);
                     arboles.getListaarboles().get(getposarbol).getArbol().insert(llave, rrn);
                     if (arbol_secundarioactual != null) {
                         int llavesecundaria = 0;
@@ -2987,7 +2989,7 @@ public class Principal extends javax.swing.JFrame {
             }
         }
         int poscombobox = jCb_llavesBuscarregistros.getSelectedIndex();
-        System.out.println("esta es la pos del combobox" + poscombobox);
+        //System.out.println("esta es la pos del combobox" + poscombobox);
         if (poscombobox == 0) {
             if (arbol_actual != null) {
                 DefaultTableModel model = (DefaultTableModel) jTbl_buscarRegistros.getModel();
@@ -3003,7 +3005,7 @@ public class Principal extends javax.swing.JFrame {
                         int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
                         llave = espacios.substring(0, num) + llave;
                     }
-                    System.out.println("esta es la llave que se envia" + llave);
+                    //System.out.println("esta es la llave que se envia" + llave);
                     rrnsbuscar = new ArrayList<Long>();
                     arbol_actual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
 
@@ -3016,7 +3018,7 @@ public class Principal extends javax.swing.JFrame {
                         rrnabuscar = Math.toIntExact(l);//al rrn se le asigan el valor que el rrn le ha enviado
                         try {
                             String data = leerregistro(Math.toIntExact(rrnabuscar));
-                            System.out.println(data);
+                            //System.out.println(data);
                             String arr[] = data.split("\\|");
                             Object arr2[] = new Object[model.getColumnCount()];
                             for (int i = 0; i < model.getColumnCount(); i++) {
@@ -3046,7 +3048,7 @@ public class Principal extends javax.swing.JFrame {
                         int num = archivo_actual.getCampos().get(llavesecundaria).getLongitud() - llave.length();
                         llave = espacios.substring(0, num) + llave;
                     }
-                    System.out.println("esta es la llave que se envia" + llave);
+                    //System.out.println("esta es la llave que se envia" + llave);
                     rrnsbuscar = new ArrayList<Long>();
                     arbol_secundarioactual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
 
@@ -3059,7 +3061,7 @@ public class Principal extends javax.swing.JFrame {
                         rrnabuscar = Math.toIntExact(l);//al rrn se le asigan el valor que el rrn le ha enviado
                         try {
                             String data = leerregistro(Math.toIntExact(rrnabuscar));
-                            System.out.println(data);
+                            //System.out.println(data);
                             String arr[] = data.split("\\|");
                             Object arr2[] = new Object[model.getColumnCount()];
                             for (int i = 0; i < model.getColumnCount(); i++) {
@@ -3111,15 +3113,15 @@ public class Principal extends javax.swing.JFrame {
                 return;
             }
             rrnModificar = Math.toIntExact(nodo.getNodo().getLlaves().get(nodo.getIndice()).getPos());
-            System.out.println(rrnModificar);
+            //System.out.println(rrnModificar);
             try {
                 String data = leerregistro(Math.toIntExact(rrnModificar));
-                System.out.println(data);
-                System.out.println(rrnModificar);
+                //System.out.println(data);
+                //System.out.println(rrnModificar);
                 String arr[] = data.split("\\|");
-                System.out.println(arr[0]);
-                System.out.println(nodo.getNodo().getLlaves().get(nodo.getIndice()).getPos());
-                //System.out.println(archivo_actual.getAvailList().peekFirst());
+                //System.out.println(arr[0]);
+                //System.out.println(nodo.getNodo().getLlaves().get(nodo.getIndice()).getPos());
+                ////System.out.println(archivo_actual.getAvailList().peekFirst());
                 Object arr2[] = new Object[model.getColumnCount()];
                 for (int i = 0; i < model.getColumnCount(); i++) {
                     arr2[i] = arr[i];
@@ -3211,7 +3213,7 @@ public class Principal extends javax.swing.JFrame {
                 if (llaveprimaria != 0) {
                     if (archivo_actual.getCampos().get(llaveprimaria).getTipo_de_dato().equals("String")) {
                         int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
-                        System.out.println("estos son los espacios que elimina" + num);
+                        //System.out.println("estos son los espacios que elimina" + num);
                         int cont = 0;
                         if (num < 0) {
                             while (num < 0) {
@@ -3222,7 +3224,7 @@ public class Principal extends javax.swing.JFrame {
                         llave = llave.substring(cont, llave.length());
                     } else if (archivo_actual.getCampos().get(llaveprimaria).getTipo_de_dato().equals("int")) {
                         int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
-                        System.out.println("estos son los espacios que eliminaa" + num);
+                        //System.out.println("estos son los espacios que eliminaa" + num);
                         int cont = 0;
                         if (num < 0) {
                             while (num < 0) {
@@ -3231,10 +3233,10 @@ public class Principal extends javax.swing.JFrame {
                             }
                         }
                         llave = llave.substring(cont, llave.length());
-                        System.out.println("la nueva llave es: " + llave);
+                        //System.out.println("la nueva llave es: " + llave);
                     }
                 }
-                System.out.println("esta es la llave que se envia" + llave);
+                //System.out.println("esta es la llave que se envia" + llave);
                 rrnsbuscar = new ArrayList<Long>();
                 arbol_actual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
 
@@ -3247,7 +3249,7 @@ public class Principal extends javax.swing.JFrame {
                     rrnabuscar = Math.toIntExact(l);//al rrn se le asigan el valor que el rrn le ha enviado
                     try {
                         String data = leerregistro(Math.toIntExact(rrnabuscar));
-                        System.out.println(data);
+                        //System.out.println(data);
                         String arr[] = data.split("\\|");
                         Object arr2[] = new Object[model.getColumnCount()];
                         for (int i = 0; i < model.getColumnCount(); i++) {
@@ -3305,7 +3307,7 @@ public class Principal extends javax.swing.JFrame {
                 if (llaveprimaria != 0) {
                     if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("String")) {
                         int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
-                        System.out.println("estos son los espacios que elimina" + num);
+                        //System.out.println("estos son los espacios que elimina" + num);
                         int cont = 0;
                         if (num < 0) {
                             while (num < 0) {
@@ -3316,7 +3318,7 @@ public class Principal extends javax.swing.JFrame {
                         llave = llave.substring(cont, llave.length());
                     } else if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("int")) {
                         int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
-                        System.out.println("estos son los espacios que eliminaa" + num);
+                        //System.out.println("estos son los espacios que eliminaa" + num);
                         int cont = 0;
                         if (num < 0) {
                             while (num < 0) {
@@ -3325,10 +3327,10 @@ public class Principal extends javax.swing.JFrame {
                             }
                         }
                         llave = llave.substring(cont, llave.length());
-                        System.out.println("la nueva llave es: " + llave);
+                        //System.out.println("la nueva llave es: " + llave);
                     }
                 }
-                System.out.println("esta es la llave que se envia" + llave);
+                //System.out.println("esta es la llave que se envia" + llave);
                 rrnsbuscar = new ArrayList<Long>();
                 arbol_actual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
 
@@ -3342,7 +3344,7 @@ public class Principal extends javax.swing.JFrame {
                     rrnabuscar = Math.toIntExact(l);//al rrn se le asigan el valor que el rrn le ha enviado
                     try {
                         String data = leerregistro(Math.toIntExact(rrnabuscar));
-                        System.out.println(data);
+                        //System.out.println(data);
                         String arr[] = data.split("\\|");
                         Object arr2[] = new Object[model.getColumnCount()];
                         for (int i = 0; i < model.getColumnCount(); i++) {
@@ -3410,10 +3412,10 @@ public class Principal extends javax.swing.JFrame {
                         //ESTO ELIMINA EL REGISTRO DE LA LISTA DE REGISTROS
                         arboles.cargarArchivo();
                         arbol_actual.B_Tree_Delete(arbol_actual.getRaiz(), llave);
-                        System.out.println("");
-                        System.out.println("");
-                        System.out.println("");
-                        System.out.println("");
+                        //System.out.println("");
+                        //System.out.println("");
+                        //System.out.println("");
+                        //System.out.println("");
                         arbol_actual.imprimir_arbol(arbol_actual.getRaiz(), 0);
                         arboles.getListaarboles().get(get_posarbol).setArbol(arbol_actual);
                         arboles.escribirArchivo();
@@ -3537,7 +3539,7 @@ public class Principal extends javax.swing.JFrame {
         for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
             model.addColumn(archivo_actual.getCampos().get(i).getNombre());
         }
-        // System.out.println("esta vacio? " + archivo_actual.getAvailList().isEmpty());//HERRAMIENTA SECRETA
+        // //System.out.println("esta vacio? " + archivo_actual.getAvailList().isEmpty());//HERRAMIENTA SECRETA
         model.setNumRows(1);
         jD_crearRegistros.pack();
         jD_crearRegistros.setModal(true);
@@ -3557,10 +3559,11 @@ public class Principal extends javax.swing.JFrame {
             }
             jTbl_tablaRegistros.setModel(modelo);//??
             jCb_llavesBuscarregistros.setModel(new DefaultComboBoxModel<>());
+            jCb_llavesBuscarregistros.addItem(archivo_actual.getCampos().get(0).getNombre());
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                if (archivo_actual.getCampos().get(i).isLlave_secundaria()) {
                     jCb_llavesBuscarregistros.addItem(archivo_actual.getCampos().get(i).getNombre());
-                    break;
+                   break;
                 }
             }
             jTf_buscarRegistros.setText("");
@@ -3601,28 +3604,13 @@ public class Principal extends javax.swing.JFrame {
                     new Object[][]{},
                     new String[]{}
             ));
-            System.out.println("");
-            System.out.println("");
-            System.out.println("");
-            System.out.println("xxx " + archivo_actual.getCampos().size());
-            // model.setColumnCount(archivo_actual.getCampos().size());
-            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                model.addColumn(archivo_actual.getCampos().get(i).getNombre());
-                //model.addColumn(archivo_actual.getCampos().get(i).getNombre());
-                //System.out.println();
-            }
-            System.out.println("ttt " + model.getColumnCount());
-            //jTbl_eliminarRegistros.setModel(jTbl_buscarRegistros.getModel());
-            /*DefaultTableModel modelo = new DefaultTableModel();
-            jTbl_eliminarRegistros.setModel(new DefaultTableModel());
-            DefaultTableModel model = (DefaultTableModel) jTbl_eliminarRegistros.getModel();
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
                 model.addColumn(archivo_actual.getCampos().get(i).getNombre());
             }
-            jTbl_tablaRegistros.setModel(modelo);//??*/
             jCb_llavesEliminarRegistros.setModel(new DefaultComboBoxModel<>());
+            jCb_llavesEliminarRegistros.addItem(archivo_actual.getCampos().get(0).getNombre());
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                if (archivo_actual.getCampos().get(i).isLlave_secundaria()) {
                     jCb_llavesEliminarRegistros.addItem(archivo_actual.getCampos().get(i).getNombre());
                     break;
                 }
@@ -3789,7 +3777,7 @@ public class Principal extends javax.swing.JFrame {
             long RRN = rrn_llaves_en_orden.get(i);
             try {
                 String data = leerregistro(Math.toIntExact(RRN));
-                System.out.println(data);
+                //System.out.println(data);
                 String arr[] = data.split("\\|");
                 Object arr2[] = new Object[model.getColumnCount()];
                 for (int j = 0; j < model.getColumnCount(); j++) {
@@ -4002,10 +3990,10 @@ public class Principal extends javax.swing.JFrame {
             TA_ListarCampos.setText("");
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
                 TA_ListarCampos.append(archivo_actual.getCampos().get(i).toString());
-                System.out.println(archivo_actual.getCampos().get(i).toString());
+                //System.out.println(archivo_actual.getCampos().get(i).toString());
             } // Fin For
         } catch (Exception e) {
-            System.out.println("error");
+            //System.out.println("error");
             e.printStackTrace();
         } // Fin Try Catch
     }// Fin Metodo
@@ -4091,7 +4079,7 @@ public class Principal extends javax.swing.JFrame {
             tabla.getCellEditor().stopCellEditing();
         }
         if (model.getRowCount() != 0) {
-            for (int i = 0; i < model.getColumnCount(); i++) {//se puede poner otro for para rows pero es feo pero asi soy feliz
+            for (int i = 0; i < model.getColumnCount(); i++) {
                 if (model.getValueAt(model.getRowCount() - 1, i) == null) {
                     if (guardar) {
                         model.removeRow(model.getRowCount() - 1);
@@ -4139,7 +4127,6 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private String leerregistro(int RRN) throws FileNotFoundException, IOException {
-        System.out.println("aqui esta el RRN: " + RRN);
         //preferiblemente no tocar esta parte del cdigo a menos que les de fallos contactar al administrador
         File archivo = new File(archivo_actual.getArchivo().getAbsolutePath());//esto lo que hace es asegurarse de leer el archivo correcto
         //lo de arrriba
@@ -4148,7 +4135,6 @@ public class Principal extends javax.swing.JFrame {
         RandomAccessFile af = new RandomAccessFile(archivo, "r");
         af.seek(RRN);//aqui es donde se se mueve de bytes para buscar la llave
         int rrn = RRN;
-        System.out.println("y este es el rrrn donde lee " + rrn);
         x = af.readLine();//esto lee la linea donde se quedo el puntero
         af.close();
         fr.close();
@@ -4207,9 +4193,9 @@ public class Principal extends javax.swing.JFrame {
                 rrn = (int) archivo_actual.getAvailList().peekFirst();
                 RandomAccessFile raf = new RandomAccessFile(new File(GuardarArchivo), "rw");
                 raf.seek(((int) archivo_actual.getAvailList().removeFirst() - 1) * tam_registro() + archivo_actual.getSizeMetadata());
-                /*System.out.println("En este RRN lo guarda:" + (((int) archivo_actual.getAvailList().removeFirst() - 1) * tam_registro()) + archivo_actual.getSizeMetadata());
+                /*//System.out.println("En este RRN lo guarda:" + (((int) archivo_actual.getAvailList().removeFirst() - 1) * tam_registro()) + archivo_actual.getSizeMetadata());
                 for (int i = 0; i < archivo_actual.getAvailList().size(); i++) {
-                    System.out.println((int) archivo_actual.getAvailList().get(i));
+                    //System.out.println((int) archivo_actual.getAvailList().get(i));
                 }*/
                 raf.write(registro.getBytes());
                 raf.close();
