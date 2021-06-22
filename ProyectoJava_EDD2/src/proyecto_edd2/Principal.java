@@ -2912,7 +2912,7 @@ public class Principal extends javax.swing.JFrame {
                 } else {
                     int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
                     //System.out.println("El rrn es:" + rrn);
-                    arboles.getListaarboles().get(getposarbol).getArbol().insert(llave, rrn);
+
                     if (arbol_secundarioactual != null) {
                         int llavesecundaria = 0;
                         arbolessecundarios.cargarArchivo();
@@ -2938,6 +2938,7 @@ public class Principal extends javax.swing.JFrame {
                             if (arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().B_Tree_Search(arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().getRaiz(), llave_secundaria) != null) {
                                 omitidos = true;
                             } else {
+                                arboles.getListaarboles().get(getposarbol).getArbol().insert(llave, rrn);
                                 arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().insert(llave_secundaria, rrn);
                                 arbol_secundarioactual = arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario();
                                 arbolessecundarios.escribirArchivo();
