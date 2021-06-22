@@ -4400,7 +4400,7 @@ public class Principal extends javax.swing.JFrame {
             long RRN;
             String nombre, apellido, registro, primaryKey, secondaryKey;
             int edad, cityID;
-            for (int i = 1; i <= 100000; i++) {
+            for (int i = 1; i <= 10000; i++) {
                 // Se iran escribiendo de forma aleatoria los registros dentro del archivo
                 nombre = PersonFirstName.get((int) Math.floor(Math.random() * 60));
                 apellido = PersonLastName.get((int) Math.floor(Math.random() * 60));
@@ -4594,6 +4594,7 @@ public class Principal extends javax.swing.JFrame {
             BTree BTreeCities = new BTree(6);
             arbolessecundarios.cargarArchivo();
             int IDSec;
+            long RRN;
             IDSec = arbolessecundarios.GenerarId();
             aa.escribirArchivo();
             Archivoarbolsecundario archivo_prueba = new Archivoarbolsecundario(ID, IDSec, BTreeCities);
@@ -4610,6 +4611,8 @@ public class Principal extends javax.swing.JFrame {
                     registro += LlenadoEspacios(registro.length(), 34) + "\n";
                     primaryKey = i + "";
                 } // Fin If
+                RRN = getRrn(registro);
+                flujo.seek(RRN);
                 flujo.write(registro.getBytes());
                 primaryKey = espacios.substring(0, 2 - primaryKey.length()) + primaryKey;
                 BTreeCities.insert(primaryKey, i); // Inserta la llave y el RRN en el arbol
