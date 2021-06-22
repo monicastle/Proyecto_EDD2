@@ -1365,15 +1365,23 @@
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btn_crearRegistros1" alignment="0" pref="365" max="32767" attributes="0"/>
-                          <Component id="btn_buscarRegistros1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btn_PuenteModificarRegistros1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btn_PuenteBorrarRegistro1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btn_PuenteListarRegistros1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btn_PuenteCruzarArchivos1" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btn_crearRegistros1" alignment="0" pref="365" max="32767" attributes="0"/>
+                                  <Component id="btn_buscarRegistros1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btn_PuenteModificarRegistros1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btn_PuenteBorrarRegistro1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btn_PuenteListarRegistros1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btn_PuenteCruzarArchivos1" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                              <Component id="IrUtilidadesTemp" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -1400,7 +1408,9 @@
                       <Component id="btn_PuenteCruzarArchivos1" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="JL_48" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="IrUtilidadesTemp" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1538,6 +1548,14 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cruzar Archivos"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="IrUtilidadesTemp">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ir a utilidades temp"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IrUtilidadesTempActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -2565,7 +2583,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="BTN_ExportarXML1" alignment="0" min="-2" pref="365" max="-2" attributes="0"/>
+                          <Component id="BTN_ExportarXML" alignment="0" min="-2" pref="365" max="-2" attributes="0"/>
                           <Component id="btn_ExportarExcel1" alignment="0" min="-2" pref="365" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -2582,7 +2600,7 @@
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="btn_ExportarExcel1" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="BTN_ExportarXML1" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="BTN_ExportarXML" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="JL_50" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -2636,7 +2654,7 @@
                 <Property name="text" type="java.lang.String" value="____________________________________________________________________"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="BTN_ExportarXML1">
+            <Component class="javax.swing.JButton" name="BTN_ExportarXML">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="33" red="ff" type="rgb"/>
@@ -2653,7 +2671,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BTN_ExportarXML1MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BTN_ExportarXMLMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>

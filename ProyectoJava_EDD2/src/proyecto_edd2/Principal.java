@@ -42,6 +42,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Text;
 
 /**
  *
@@ -153,6 +154,7 @@ public class Principal extends javax.swing.JFrame {
         btn_PuenteBorrarRegistro1 = new javax.swing.JButton();
         btn_PuenteListarRegistros1 = new javax.swing.JButton();
         btn_PuenteCruzarArchivos1 = new javax.swing.JButton();
+        IrUtilidadesTemp = new javax.swing.JButton();
         jD_crearRegistros = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -213,7 +215,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         JL_49 = new javax.swing.JLabel();
         JL_50 = new javax.swing.JLabel();
-        BTN_ExportarXML1 = new javax.swing.JButton();
+        BTN_ExportarXML = new javax.swing.JButton();
         Ventana_MenuIndices = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
         jb_crearindices = new javax.swing.JButton();
@@ -1060,6 +1062,13 @@ public class Principal extends javax.swing.JFrame {
         btn_PuenteCruzarArchivos1.setForeground(new java.awt.Color(255, 255, 255));
         btn_PuenteCruzarArchivos1.setText("Cruzar Archivos");
 
+        IrUtilidadesTemp.setText("Ir a utilidades temp");
+        IrUtilidadesTemp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IrUtilidadesTempActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel_MenuRegistros2Layout = new javax.swing.GroupLayout(jPanel_MenuRegistros2);
         jPanel_MenuRegistros2.setLayout(jPanel_MenuRegistros2Layout);
         jPanel_MenuRegistros2Layout.setHorizontalGroup(
@@ -1071,14 +1080,19 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(JL_48))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel_MenuRegistros2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel_MenuRegistros2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btn_crearRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
-                    .addComponent(btn_buscarRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_PuenteModificarRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_PuenteBorrarRegistro1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_PuenteListarRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_PuenteCruzarArchivos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel_MenuRegistros2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_MenuRegistros2Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel_MenuRegistros2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btn_crearRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                            .addComponent(btn_buscarRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_PuenteModificarRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_PuenteBorrarRegistro1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_PuenteListarRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_PuenteCruzarArchivos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel_MenuRegistros2Layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(IrUtilidadesTemp)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_MenuRegistros2Layout.setVerticalGroup(
@@ -1102,7 +1116,9 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(btn_PuenteCruzarArchivos1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(JL_48)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(IrUtilidadesTemp)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout VentanaMenuRegistrosLayout = new javax.swing.GroupLayout(VentanaMenuRegistros.getContentPane());
@@ -1699,14 +1715,14 @@ public class Principal extends javax.swing.JFrame {
         JL_50.setForeground(new java.awt.Color(204, 204, 204));
         JL_50.setText("____________________________________________________________________");
 
-        BTN_ExportarXML1.setBackground(new java.awt.Color(255, 51, 0));
-        BTN_ExportarXML1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        BTN_ExportarXML1.setForeground(new java.awt.Color(255, 255, 255));
-        BTN_ExportarXML1.setText("Exportar XML con Schema");
-        BTN_ExportarXML1.setBorder(null);
-        BTN_ExportarXML1.addMouseListener(new java.awt.event.MouseAdapter() {
+        BTN_ExportarXML.setBackground(new java.awt.Color(255, 51, 0));
+        BTN_ExportarXML.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        BTN_ExportarXML.setForeground(new java.awt.Color(255, 255, 255));
+        BTN_ExportarXML.setText("Exportar XML con Schema");
+        BTN_ExportarXML.setBorder(null);
+        BTN_ExportarXML.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BTN_ExportarXML1MouseClicked(evt);
+                BTN_ExportarXMLMouseClicked(evt);
             }
         });
 
@@ -1723,7 +1739,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BTN_ExportarXML1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BTN_ExportarXML, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_ExportarExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1737,7 +1753,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(btn_ExportarExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(BTN_ExportarXML1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BTN_ExportarXML, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(JL_50)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -3721,24 +3737,36 @@ public class Principal extends javax.swing.JFrame {
         }//*/
     }//GEN-LAST:event_btn_ExportarExcel1MouseClicked
 
-    private void BTN_ExportarXML1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BTN_ExportarXML1MouseClicked
+    private void BTN_ExportarXMLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BTN_ExportarXMLMouseClicked
         // TODO add your handling code here:
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            DOMImplementation implementation = builder.getDOMImplementation();
+            //DOMImplementation implementation = builder.getDOMImplementation();
+            Document documento = builder.newDocument();
             String name_recortado;
             name_recortado = GuardarArchivo.substring(0, GuardarArchivo.length() - 4);
             name_recortado = name_recortado.replace(" ", "_");
-            Document documento = implementation.createDocument(null, name_recortado, null);
-            documento.setXmlVersion("1.0");
-            Element campos = documento.createElement("Campos");
-            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                Element campo = documento.createElement("Campo");
-                campo.setAttribute(archivo_actual.getCampos().get(i).getNombre(), "" + archivo_actual.getCampos().get(i).getTipo_de_dato());
-                campos.appendChild(campo);
+            Element root = documento.createElement(name_recortado);
+            documento.appendChild(root);
+            rrn_llaves_en_orden = new ArrayList();
+            BTree_KeysInOrder(arbol_actual.getRaiz(), rrn_llaves_en_orden, arbol_actual);
+            System.out.println("TAM LISTA: " + rrn_llaves_en_orden.size());
+            for (int i = 0; i < rrn_llaves_en_orden.size(); i++) {
+                long RRN = rrn_llaves_en_orden.get(i);
+                String data = leerregistro(Math.toIntExact(RRN));
+                String arr[] = data.split("\\|");
+                Element row = documento.createElement("Registro");
+                for (int j = 0; j < archivo_actual.getCampos().size(); j++) {
+                    Element campo = documento.createElement(archivo_actual.getCampos().get(j).getNombre());
+                    String insertar = arr[j];
+                    Text dato = documento.createTextNode(insertar);
+                    campo.appendChild(dato);
+                    row.appendChild(campo);
+                } // Fin For
+                root.appendChild(row);
+                System.out.println(i);
             } // Fin For
-            documento.getDocumentElement().appendChild(campos);
             Source source = new DOMSource(documento);
             String nameArchivo;
             nameArchivo = name_recortado + ".xml";
@@ -3746,10 +3774,22 @@ public class Principal extends javax.swing.JFrame {
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.transform(source, result);
             JOptionPane.showMessageDialog(this, "¡Exportación exitosa!");
+            rrn_llaves_en_orden = new ArrayList();
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
-    }//GEN-LAST:event_BTN_ExportarXML1MouseClicked
+    }//GEN-LAST:event_BTN_ExportarXMLMouseClicked
+
+    public void BTree_KeysInOrder(int IndiceNodoActual, ArrayList<Long> lista, BTree arbol_actual) {
+        if (IndiceNodoActual >= 0) {
+            Node node = arbol_actual.getNodos().get(IndiceNodoActual);
+            for (int i = 0; i < node.getN(); i++) {
+                BTree_KeysInOrder(node.getHijos().get(i), lista, arbol_actual);
+                lista.add(node.getLlaves().get(i).getPos());
+            }
+            BTree_KeysInOrder(node.getHijos().get(node.getN()), lista, arbol_actual);
+        }//fin if
+    }//fin método
 
     private void jb_crearindicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearindicesMouseClicked
         // TODO add your handling code here:
@@ -3816,6 +3856,14 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Indices actualizados");
         }
     }//GEN-LAST:event_jb_crearindicesMouseClicked
+
+    private void IrUtilidadesTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IrUtilidadesTempActionPerformed
+        // TODO add your handling code here:
+        VentanaMenuRegistros.setVisible(false);
+        VentanaMenuUtilidades.pack();
+        VentanaMenuUtilidades.setLocationRelativeTo(this);
+        VentanaMenuUtilidades.setVisible(true);
+    }//GEN-LAST:event_IrUtilidadesTempActionPerformed
 
     ArrayList<Long> rrn_llaves_en_orden = new ArrayList();
 
@@ -4187,7 +4235,6 @@ public class Principal extends javax.swing.JFrame {
         String x = "";
         RandomAccessFile af = new RandomAccessFile(archivo, "r");
         af.seek(RRN);//aqui es donde se se mueve de bytes para buscar la llave
-        int rrn = RRN;
         x = af.readLine();//esto lee la linea donde se quedo el puntero
         af.close();
         fr.close();
@@ -4688,7 +4735,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BTN_CerrarArchivo;
     private javax.swing.JButton BTN_CrearCampoDefinitivo;
     private javax.swing.JButton BTN_CrearNuevoArchivo;
-    private javax.swing.JButton BTN_ExportarXML1;
+    private javax.swing.JButton BTN_ExportarXML;
     private javax.swing.JButton BTN_ModificarCampoDefinitivo;
     private javax.swing.JButton BTN_SalirPrograma;
     private javax.swing.JButton BTN_SalvarArchivo;
@@ -4696,6 +4743,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CB_CampoAModificar;
     private javax.swing.JComboBox<String> CB_TipoDeDatoDelCampo;
     private javax.swing.JComboBox<String> CB_TipoDeDatoDelCampoModificado;
+    private javax.swing.JButton IrUtilidadesTemp;
     private javax.swing.JDialog JD_BorrarCampos;
     private javax.swing.JDialog JD_CrearCampos;
     private javax.swing.JDialog JD_ListarCampos;
