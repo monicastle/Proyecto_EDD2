@@ -2860,11 +2860,11 @@ public class Principal extends javax.swing.JFrame {
                             }
 
                         }//fin primer for
-                        arbol_secundarioactual.imprimir_arbol(0, 0);
+                        //arbol_secundarioactual.imprimir_arbol(0, 0);
                     }//fin if validacion arbolsecundario
                 }
             }
-            Archivodelarbol.getArbol().imprimir_arbol(0, 0);
+            //Archivodelarbol.getArbol().imprimir_arbol(0, 0);
             arbol_actual = Archivodelarbol.getArbol();
             arboles.getListaarboles().add(Archivodelarbol);
             arboles.escribirArchivo();
@@ -2927,12 +2927,12 @@ public class Principal extends javax.swing.JFrame {
                                 arbolessecundarios.escribirArchivo();
                             }
                         }//fin primer for
-                        arbol_secundarioactual.imprimir_arbol(0, 0);
+                        //arbol_secundarioactual.imprimir_arbol(0, 0);
                     }//fin if validacion arbolsecundario
                 }//fin else
             }//Fin for
             arbol_actual = arboles.getListaarboles().get(getposarbol).getArbol();
-            arboles.getListaarboles().get(getposarbol).getArbol().imprimir_arbol(0, 0);
+            //arboles.getListaarboles().get(getposarbol).getArbol().imprimir_arbol(0, 0);
             arboles.escribirArchivo();
         }//fin else
         String message;
@@ -3146,7 +3146,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_ConfirmarModificacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfirmarModificacionMouseClicked
         // TODO add your handling code here:
-        if(jTbl_ModificarRegistros.getRowCount() < 1){
+        if (jTbl_ModificarRegistros.getRowCount() < 1) {
             JOptionPane.showMessageDialog(this, "No has buscado ningún registro todavía.");
             return;
         }
@@ -3373,7 +3373,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_ConfirmarBorrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfirmarBorrarMouseClicked
         // TODO add your handling code here:
-        if(jTbl_eliminarRegistros.getRowCount() < 1){
+        if (jTbl_eliminarRegistros.getRowCount() < 1) {
             JOptionPane.showMessageDialog(this, "No has buscado ningún registro todavía.");
             return;
         }
@@ -3391,14 +3391,24 @@ public class Principal extends javax.swing.JFrame {
                     }
                     char[] data2 = data.toCharArray();
                     data2[0] = '*';
-                    // data2[1] = '|';
-                    /* String rrnString = "";
+                    data2[1] = '|';
+                    String rrnString = "";
+                    boolean es_primer_registro_eliminado = true;
                     if (archivo_actual.getAvailList().isEmpty()) {
                         rrnString = rrnAsString(-1);
+                        //System.out.println("if " + (int) archivo_actual.getAvailList().peekFirst());
+                        System.out.println("-1");
                     } else {
                         rrnString = rrnAsString((int) archivo_actual.getAvailList().peekFirst());
-                    }*/
+                        System.out.println("else " + (int) archivo_actual.getAvailList().peekFirst());
+                        es_primer_registro_eliminado = false;
+                    }//*/
                     //el for abajo no genera bien el caracter basura en los registros, parece que funciona para el avialist
+                    int aux_cont = 0;
+                    for (int i = 2; i < rrnString.length(); i++) {
+                        data2[i] = rrnString.charAt(aux_cont);
+                        aux_cont++;
+                    }
                     /*for (int i = 0; i < rrnString.length(); i++) {
                         data2[2 + i] = rrnString.charAt(i);
                     }//*/
@@ -3412,30 +3422,73 @@ public class Principal extends javax.swing.JFrame {
                         //ESTO ELIMINA EL REGISTRO DE LA LISTA DE REGISTROS
                         arboles.cargarArchivo();
                         arbol_actual.B_Tree_Delete(arbol_actual.getRaiz(), llave);
-                        //System.out.println("");
-                        //System.out.println("");
-                        //System.out.println("");
-                        //System.out.println("");
-                        arbol_actual.imprimir_arbol(arbol_actual.getRaiz(), 0);
+                        //arbol_actual.imprimir_arbol(arbol_actual.getRaiz(), 0);
                         arboles.getListaarboles().get(get_posarbol).setArbol(arbol_actual);
                         arboles.escribirArchivo();
-                        //
                         Modificar(new String(data2), Math.toIntExact(rrn));
+                        /*EN CASO QUE NO GUSTE COMO APARECE MARCADO EL CAMBIO EN EL TXT, TRABAJAR CON ESTA PARTE 
+                        COMENTADA... FALTA RETOCAR*/
+ /*if (es_primer_registro_eliminado) {
+                            Modificar(new String(data2), Math.toIntExact(rrn));
+                        } else {
+                            char[] separar = new char[data2.length+1];
+                            for (int i = 0; i < separar.length-1; i++) {
+                                separar[i] = data2[i];
+                            }
+                            separar[separar.length-1] = '.';
+                            Modificar(new String(separar), Math.toIntExact(rrn));
+                        }*/
                         archivo_actual.getAvailList().add(0, Math.toIntExact(rrn));
+                        /*AQUÍ DEBE GUARDAR EL AVAILIST EN LA ROM 
+                        (ARREGLA QUE NO GUARDABA EL AVAILIST EN LA ROM AL CERRAR EL ARCHIVO)*/
+                        aa.cargarArchivo();
+                        for (Archivo archivo : aa.getLista_archivos()) {
+                            if (archivo.getID() == archivo_actual.getID()) {
+                                archivo.getAvailList().add(0, Math.toIntExact(rrn));
+                                break;
+                            } // Fin If
+                        } // Fin For
+                        aa.escribirArchivo();
                     } catch (Exception ex) {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }//fin try cacth
                 }//fin if
             }//fin for long rrn
+            jTf_LLaveEliminarRegistros.setText("");
+            DefaultTableModel model = new DefaultTableModel();
+            jTbl_eliminarRegistros.setModel(new javax.swing.table.DefaultTableModel(
+                    new Object[][]{},
+                    new String[]{}
+            ));
+            for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+                model.addColumn(archivo_actual.getCampos().get(i).getNombre());
+            }
+            jTbl_eliminarRegistros.setModel(model);
+            //LO DE ABAJO NO AYUDO A ACTUALIZAR EL AVAILIST DEL ARCHIVO
+            /*aa.cargarArchivo();
+            for (Archivo archivo : aa.getLista_archivos()) {
+                if (archivo.getID() == archivo_actual.getID()) {
+                    archivo.setArchivo(archivo_actual.getArchivo());
+                    break;
+                } // Fin If
+            } // Fin For
+            aa.escribirArchivo();*/
             JOptionPane.showMessageDialog(this, "El registro a sido eliminado exitosamente");
         } else {
             JOptionPane.showMessageDialog(this, "No existen registros guardados.");
         }
     }//GEN-LAST:event_btn_ConfirmarBorrarMouseClicked
 
+    private String rrn_para_Availist(int rrn) {
+        String rrn_guardar = "" + rrn;
+        return rrn_guardar;
+    }
+
     private String rrnAsString(int rrn) {
         String rrnString = "";
         rrnString += rrn;
+        //EN CASO QUE EL AVAILIST NO FUNCIONE SIMPLEMENTE DESCOMENTAR ESTA LINEA (NADA MAS)
+        //archivo_actual.getAvailList().add(rrn);
         for (int i = rrnString.length(); i < 5; i++) {
             rrnString += '.';
         }
@@ -3563,7 +3616,7 @@ public class Principal extends javax.swing.JFrame {
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
                 if (archivo_actual.getCampos().get(i).isLlave_secundaria()) {
                     jCb_llavesBuscarregistros.addItem(archivo_actual.getCampos().get(i).getNombre());
-                   break;
+                    break;
                 }
             }
             jTf_buscarRegistros.setText("");
@@ -3756,7 +3809,7 @@ public class Principal extends javax.swing.JFrame {
             }
             arbolessecundarios.getListaarboles().add(archivosecundario);
             arbol_secundarioactual = archivosecundario.getArbolSecundario();
-            arbol_secundarioactual.imprimir_arbol(0, 0);
+            //arbol_secundarioactual.imprimir_arbol(0, 0);
             arbolessecundarios.escribirArchivo();
             JOptionPane.showMessageDialog(this, "Se crearon los indices nuevos");
         } else {
@@ -4346,7 +4399,7 @@ public class Principal extends javax.swing.JFrame {
             PersonLastName.add("Gallo");
             PersonLastName.add("Velasquez");
             PersonLastName.add("Miranda");
-            PersonLastName.add("Muñoz");
+            PersonLastName.add("Melendez");
             PersonLastName.add("Garcia");
             PersonLastName.add("Turcios");
             PersonLastName.add("Aguilera");
@@ -4366,7 +4419,7 @@ public class Principal extends javax.swing.JFrame {
             PersonLastName.add("Perez");
             PersonLastName.add("Duarte");
             PersonLastName.add("Figueroa");
-            PersonLastName.add("Nuñez");
+            PersonLastName.add("Licona");
             PersonLastName.add("Gomez");
             PersonLastName.add("Caceres");
             PersonLastName.add("Ayala");
