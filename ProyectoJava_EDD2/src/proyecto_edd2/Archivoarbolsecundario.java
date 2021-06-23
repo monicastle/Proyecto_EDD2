@@ -5,6 +5,7 @@
  */
 package proyecto_edd2;
 
+import java.io.File;
 import java.io.Serializable;
 
 /**
@@ -12,10 +13,10 @@ import java.io.Serializable;
  * @author diego
  */
 public class Archivoarbolsecundario implements Serializable {
-    
+
     private static final long SerialVersionUID = 777777L;
-    
-    private int ID;
+
+    private File archivo;
     private int IDArchivoActual;
     private BTree arbolSecundario;
 
@@ -23,19 +24,19 @@ public class Archivoarbolsecundario implements Serializable {
 
     } // Fin Constructor Archivo Arbol Secundario
 
-    public Archivoarbolsecundario(int ID, int IDArchivoActual, BTree arbolSecundario) {
-        this.ID = ID;
+    public Archivoarbolsecundario(File archivo, int IDArchivoActual, BTree arbolSecundario) {
+        this.archivo = archivo;
         this.IDArchivoActual = IDArchivoActual;
         this.arbolSecundario = arbolSecundario;
     } // Fin Constructor Archivo Arbol Secundario
 
-    public int getID() {
-        return ID;
-    } // Fin Get ID
+    public File getArchivo() {
+        return archivo;
+    }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    } // Fin Set ID
+    public void setArchivo(File archivo) {
+        this.archivo = archivo;
+    }
 
     public int getIDArchivoActual() {
         return IDArchivoActual;

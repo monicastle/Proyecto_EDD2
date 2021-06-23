@@ -229,6 +229,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jb_crearindices = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jb_regresardeindices = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
         PanelPrincipal = new javax.swing.JPanel();
         JL_1 = new javax.swing.JLabel();
@@ -1860,6 +1861,13 @@ public class Principal extends javax.swing.JFrame {
 
         jButton2.setText("Reindexar");
 
+        jb_regresardeindices.setText("Regresar");
+        jb_regresardeindices.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_regresardeindicesMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout Ventana_MenuIndicesLayout = new javax.swing.GroupLayout(Ventana_MenuIndices.getContentPane());
         Ventana_MenuIndices.getContentPane().setLayout(Ventana_MenuIndicesLayout);
         Ventana_MenuIndicesLayout.setHorizontalGroup(
@@ -1873,7 +1881,10 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(139, 139, 139)
                         .addGroup(Ventana_MenuIndicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2)
-                            .addComponent(jb_crearindices))))
+                            .addComponent(jb_crearindices)))
+                    .addGroup(Ventana_MenuIndicesLayout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(jb_regresardeindices)))
                 .addContainerGap(152, Short.MAX_VALUE))
         );
         Ventana_MenuIndicesLayout.setVerticalGroup(
@@ -1885,7 +1896,9 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jb_crearindices)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addComponent(jb_regresardeindices)
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -2056,6 +2069,7 @@ public class Principal extends javax.swing.JFrame {
                 aa.escribirArchivo();
                 arboles.cargarArchivo();
                 if (existePrueba) {
+                    System.out.println("entra aqui ya creado");
                     aa.cargarArchivo();
                     for (int i = 0; i < aa.getLista_archivos().size(); i++) {
                         if (aa.getLista_archivos().get(i).getArchivo().getName().equals("PersonFile.txt")) {
@@ -2070,6 +2084,7 @@ public class Principal extends javax.swing.JFrame {
                     VentanaMenuPrincipal.setLocationRelativeTo(null);
                     VentanaMenuPrincipal.setVisible(true);
                 } else {
+                    System.out.println("entra aqui no creado");
                     GenerarPersonFile();
                     this.setVisible(false);
                     VentanaMenuRegistros.pack();
@@ -2869,6 +2884,7 @@ public class Principal extends javax.swing.JFrame {
             return;
         }
         if (archivo_actual.getCant_regisros() == 0) {
+            System.out.println("entro aqui");
             RandomAccessFile flujo;
             try {
                 File archivo = archivo_actual.getArchivo();
@@ -2884,8 +2900,8 @@ public class Principal extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
+        System.out.println("se la skipeo");
         String guardar = "";//Aqui es donde se guarda el registro a ingresar
         // int length=0;
         arboles.cargarArchivo();
@@ -3196,7 +3212,7 @@ public class Principal extends javax.swing.JFrame {
                     }
                     //System.out.println("esta es la llave que se envia" + llave);
                     rrnsbuscar = new ArrayList<Long>();
-                    arbol_secundarioactual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
+                    arbol_secundarioactual.searchByAffinity(arbol_secundarioactual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
 
                     if (rrnsbuscar.size() == 0) {
                         JOptionPane.showMessageDialog(null, "No se encontro ningun registro con ese valor");
@@ -3320,109 +3336,22 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_buscarEliminarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarEliminarRegistrosActionPerformed
         // TODO add your handling code here:
-        if (jTf_LLaveEliminarRegistros.getText().equals("") || jCb_llavesEliminarRegistros.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(this, "Por favor ingrese el la llave del registro que desea buscar.");
-            return;
-        }
         if (archivo_actual.getLongitudLLavePrimaria() < jTf_LLaveEliminarRegistros.getText().length()) {
             JOptionPane.showMessageDialog(this, "La llave ingresada excede la longitud permitida.");
             return;
         }
-
-        boolean arbolcreado = false;//verifica si el arbol esta creado
-        int getposarbol = 0;//esto es para agrrar la posicion dle arbolcreado
-        for (int i = 0; i < arboles.getListaarboles().size(); i++) {
-            if (arboles.getListaarboles().get(i).getArchivo().equals(archivo_actual.getArchivo())) {
-                arbolcreado = true;
-                getposarbol = i;
-                arbol_actual = arboles.getListaarboles().get(i).getArbol();
-                break;
-            }
-        }
-        if (arbol_actual != null) {
-            Object Item = jCb_llavesEliminarRegistros.getSelectedItem();
-            DefaultTableModel model = (DefaultTableModel) jTbl_eliminarRegistros.getModel();
-            model.getDataVector().removeAllElements();
-            if (true || jCb_llavesEliminarRegistros.getSelectedIndex() == 0) {
-                int posicion_llave = 0;
-                String llave = jTf_LLaveEliminarRegistros.getText();
-                int llaveprimaria = 0;
-                for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                    if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                        llaveprimaria = i;
-                    }
-                }
-                if (archivo_actual.getCampos().get(posicion_llave).getTipo_de_dato().equals("int")) {
-                    int num = archivo_actual.getCampos().get(posicion_llave).getLongitud() - llave.length();
-                    llave = espacios.substring(0, num) + llave;
-                } else if (archivo_actual.getCampos().get(posicion_llave).getTipo_de_dato().equals("String")) {
-                    int num = archivo_actual.getCampos().get(posicion_llave).getLongitud() - llave.length();
-                    llave = espacios.substring(0, num) + llave;
-                }
-                if (llaveprimaria != 0) {
-                    if (archivo_actual.getCampos().get(llaveprimaria).getTipo_de_dato().equals("String")) {
-                        int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
-                        //System.out.println("estos son los espacios que elimina" + num);
-                        int cont = 0;
-                        if (num < 0) {
-                            while (num < 0) {
-                                num++;
-                                cont++;
-                            }
-                        }
-                        llave = llave.substring(cont, llave.length());
-                    } else if (archivo_actual.getCampos().get(llaveprimaria).getTipo_de_dato().equals("int")) {
-                        int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
-                        //System.out.println("estos son los espacios que eliminaa" + num);
-                        int cont = 0;
-                        if (num < 0) {
-                            while (num < 0) {
-                                num++;
-                                cont++;
-                            }
-                        }
-                        llave = llave.substring(cont, llave.length());
-                        //System.out.println("la nueva llave es: " + llave);
-                    }
-                }
-                //System.out.println("esta es la llave que se envia" + llave);
-                rrnsbuscar = new ArrayList<Long>();
-                arbol_actual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
-
-                if (rrnsbuscar.size() == 0) {
-                    JOptionPane.showMessageDialog(null, "No se encontro ningun registro con ese valor");
-                    jTf_LLaveEliminarRegistros.setText("");
-                    return;
-                }
-                for (long l : rrnsbuscar) {
-                    rrnabuscar = Math.toIntExact(l);//al rrn se le asigan el valor que el rrn le ha enviado
-                    try {
-                        String data = leerregistro(Math.toIntExact(rrnabuscar));
-                        //System.out.println(data);
-                        String arr[] = data.split("\\|");
-                        Object arr2[] = new Object[model.getColumnCount()];
-                        for (int i = 0; i < model.getColumnCount(); i++) {
-                            arr2[i] = arr[i];
-                        }
-                        model.addRow(arr2);
-                        //jTf_buscarRegistros.setEditable(false);
-                        // jCb_llavesBuscarregistros.setEnabled(false);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "No se puede buscar porque no existen registros creados");
-        }
-        /*if (jTf_LLaveEliminarRegistros.getText().equals("")
-                || jCb_llavesEliminarRegistros.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(this, "No has introducido una llave todavia.");
+        if (jTf_LLaveEliminarRegistros.getText().equals("") || jCb_llavesEliminarRegistros.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Por favor ingrese el la llave del registro que desea buscar.");
             return;
         }
-        if (archivo_actual.getLongitudLLavePrimaria() < jTf_buscarRegistros.getText().length()) {
-            JOptionPane.showMessageDialog(this, "La llave ingresada excede la longitud permitida.");
-            return;
+        int llaveprimaria = 0;
+        int llavesecundaria = 0;
+        for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
+            if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
+                llaveprimaria = i;
+            } else if (archivo_actual.getCampos().get(i).isLlave_secundaria()) {
+                llavesecundaria = i;
+            }
         }
         boolean arbolcreado = false;//verifica si el arbol esta creado
         int getposarbol = 0;//esto es para agrrar la posicion dle arbolcreado
@@ -3434,81 +3363,96 @@ public class Principal extends javax.swing.JFrame {
                 break;
             }
         }
-        DefaultTableModel model = (DefaultTableModel) jTbl_eliminarRegistros.getModel();
-        if (arbol_actual != null) {
-            //Object Item = jCb_llavesBuscarregistros.getSelectedItem();
-            if (true || jCb_llavesEliminarRegistros.getSelectedIndex() == 0) {
-                int posicion_llave = 0;
-                String llave = jTf_LLaveEliminarRegistros.getText();
-                int llaveprimaria = 0;
-                for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
-                    if (archivo_actual.getCampos().get(i).isLlavePrimaria()) {
-                        llaveprimaria = i;
-                    }
-                }//fin for i
-                if (archivo_actual.getCampos().get(posicion_llave).getTipo().equals("int")) {
-                    int num = archivo_actual.getCampos().get(posicion_llave).getLongitud() - llave.length();
-                    llave = espacios.substring(0, num) + llave;
-                } else if (archivo_actual.getCampos().get(posicion_llave).getTipo().equals("String")) {
-                    int num = archivo_actual.getCampos().get(posicion_llave).getLongitud() - llave.length();
-                    llave = espacios.substring(0, num) + llave;
-                }
-                if (llaveprimaria != 0) {
-                    if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("String")) {
-                        int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
-                        //System.out.println("estos son los espacios que elimina" + num);
-                        int cont = 0;
-                        if (num < 0) {
-                            while (num < 0) {
-                                num++;
-                                cont++;
-                            }
-                        }
-                        llave = llave.substring(cont, llave.length());
-                    } else if (archivo_actual.getCampos().get(llaveprimaria).getTipo().equals("int")) {
-                        int num = archivo_actual.getCampos().get(llaveprimaria).getLongitud() - llave.length();
-                        //System.out.println("estos son los espacios que eliminaa" + num);
-                        int cont = 0;
-                        if (num < 0) {
-                            while (num < 0) {
-                                num++;
-                                cont++;
-                            }
-                        }
-                        llave = llave.substring(cont, llave.length());
-                        //System.out.println("la nueva llave es: " + llave);
-                    }
-                }
-                //System.out.println("esta es la llave que se envia" + llave);
-                rrnsbuscar = new ArrayList<Long>();
-                arbol_actual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
-
-                if (rrnsbuscar.size() == 0) {
-                    JOptionPane.showMessageDialog(null, "No se encontro ningun registro con ese valor");
-                    jTf_LLaveEliminarRegistros.setText("");
-                    return;
-                }
+        int poscombobox = jCb_llavesEliminarRegistros.getSelectedIndex();
+        //System.out.println("esta es la pos del combobox" + poscombobox);
+        if (poscombobox == 0) {
+            if (arbol_actual != null) {
+                DefaultTableModel model = (DefaultTableModel) jTbl_eliminarRegistros.getModel();
                 model.getDataVector().removeAllElements();
-                for (long l : rrnsbuscar) {
-                    rrnabuscar = Math.toIntExact(l);//al rrn se le asigan el valor que el rrn le ha enviado
-                    try {
-                        String data = leerregistro(Math.toIntExact(rrnabuscar));
-                        //System.out.println(data);
-                        String arr[] = data.split("\\|");
-                        Object arr2[] = new Object[model.getColumnCount()];
-                        for (int i = 0; i < model.getColumnCount(); i++) {
-                            arr2[i] = arr[i];
+                if (true || jCb_llavesEliminarRegistros.getSelectedIndex() == 0) {
+                    int pk = 0;
+                    String llave = jTf_LLaveEliminarRegistros.getText();
+                    if (archivo_actual.getCampos().get(pk).getTipo_de_dato().equals("int")) {
+                        int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                        llave = espacios.substring(0, num) + llave;
+                    } else if (archivo_actual.getCampos().get(pk).getTipo_de_dato().equals("String")) {
+                        int num = archivo_actual.getCampos().get(pk).getLongitud() - llave.length();
+                        llave = espacios.substring(0, num) + llave;
+                    }
+                    //System.out.println("esta es la llave que se envia" + llave);
+                    rrnsbuscar = new ArrayList<Long>();
+                    arbol_actual.searchByAffinity(arbol_actual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
+
+                    if (rrnsbuscar.size() == 0) {
+                        JOptionPane.showMessageDialog(null, "No se encontro ningun registro con ese valor");
+                        jTf_LLaveEliminarRegistros.setText("");
+                        return;
+                    }
+                    for (long l : rrnsbuscar) {
+                        rrnabuscar = Math.toIntExact(l);//al rrn se le asigan el valor que el rrn le ha enviado
+                        try {
+                            String data = leerregistro(Math.toIntExact(rrnabuscar));
+                            //System.out.println(data);
+                            String arr[] = data.split("\\|");
+                            Object arr2[] = new Object[model.getColumnCount()];
+                            for (int i = 0; i < model.getColumnCount(); i++) {
+                                arr2[i] = arr[i];
+                            }
+                            model.addRow(arr2);
+                            //jTf_buscarRegistros.setEditable(false);
+                            // jCb_llavesBuscarregistros.setEnabled(false);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        model.addRow(arr2);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puede buscar porque no existen registros creados");
             }
-            jTbl_eliminarRegistros.setModel(model);
-        } else {
-            JOptionPane.showMessageDialog(null, "No se puede buscar porque no existen registros creados");
-        }*/
+        } else if (poscombobox == 1) {
+            if (arbol_secundarioactual != null) {
+                DefaultTableModel model = (DefaultTableModel) jTbl_eliminarRegistros.getModel();
+                model.getDataVector().removeAllElements();
+                if (true || jCb_llavesEliminarRegistros.getSelectedIndex() == 0) {
+                    String llave = jTf_LLaveEliminarRegistros.getText();
+                    if (archivo_actual.getCampos().get(llavesecundaria).getTipo_de_dato().equals("int")) {
+                        int num = archivo_actual.getCampos().get(llavesecundaria).getLongitud() - llave.length();
+                        llave = espacios.substring(0, num) + llave;
+                    } else if (archivo_actual.getCampos().get(llavesecundaria).getTipo_de_dato().equals("String")) {
+                        int num = archivo_actual.getCampos().get(llavesecundaria).getLongitud() - llave.length();
+                        llave = espacios.substring(0, num) + llave;
+                    }
+                    //System.out.println("esta es la llave que se envia" + llave);
+                    rrnsbuscar = new ArrayList<Long>();
+                    arbol_secundarioactual.searchByAffinity(arbol_secundarioactual.getRaiz(), llave, rrnsbuscar);//searchbyaffinity lo que hace es devolver el rrn de la llave que buscamos
+
+                    if (rrnsbuscar.size() == 0) {
+                        JOptionPane.showMessageDialog(null, "No se encontro ningun registro con ese valor");
+                        jTf_LLaveEliminarRegistros.setText("");
+                        return;
+                    }
+                    for (long l : rrnsbuscar) {
+                        rrnabuscar = Math.toIntExact(l);//al rrn se le asigan el valor que el rrn le ha enviado
+                        try {
+                            String data = leerregistro(Math.toIntExact(rrnabuscar));
+                            //System.out.println(data);
+                            String arr[] = data.split("\\|");
+                            Object arr2[] = new Object[model.getColumnCount()];
+                            for (int i = 0; i < model.getColumnCount(); i++) {
+                                arr2[i] = arr[i];
+                            }
+                            model.addRow(arr2);
+                            //jTf_buscarRegistros.setEditable(false);
+                            // jCb_llavesBuscarregistros.setEnabled(false);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puede buscar porque no existen indices nuevos creados");
+            }
+        }
     }//GEN-LAST:event_btn_buscarEliminarRegistrosActionPerformed
 
     private void btn_regresarRegistrosPrincipal2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_regresarRegistrosPrincipal2MouseClicked
@@ -3982,8 +3926,8 @@ public class Principal extends javax.swing.JFrame {
         }
         if (arbolseccreado == false) {
             arbolessecundarios.cargarArchivo();
-            int id = arbolessecundarios.GenerarId();
-            Archivoarbolsecundario archivosecundario = new Archivoarbolsecundario(id, archivo_actual.getID(), new BTree(6));
+            //  int id = arbolessecundarios.GenerarId();
+            Archivoarbolsecundario archivosecundario = new Archivoarbolsecundario(archivo_actual.getArchivo(), archivo_actual.getID(), new BTree(6));
             for (int i = 0; i < archivo_actual.getCant_regisros(); i++) {
                 if (i == 0) {
                     try {
@@ -4019,7 +3963,7 @@ public class Principal extends javax.swing.JFrame {
             }
             arbolessecundarios.getListaarboles().add(archivosecundario);
             arbol_secundarioactual = archivosecundario.getArbolSecundario();
-            //arbol_secundarioactual.imprimir_arbol(0, 0);
+            arbol_secundarioactual.imprimir_arbol(0, 0);
             arbolessecundarios.escribirArchivo();
             JOptionPane.showMessageDialog(this, "Se crearon los indices nuevos");
         } else {
@@ -4073,6 +4017,14 @@ public class Principal extends javax.swing.JFrame {
         VentanaMenuPrincipal.setLocationRelativeTo(this);
         VentanaMenuPrincipal.setVisible(true);
     }//GEN-LAST:event_btn_RegresarMenuPrincipal_MenuUtilidadesActionPerformed
+
+    private void jb_regresardeindicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_regresardeindicesMouseClicked
+        // TODO add your handling code here:
+        Ventana_MenuIndices.setVisible(false);
+        VentanaMenuPrincipal.pack();
+        VentanaMenuPrincipal.setLocationRelativeTo(null);
+        VentanaMenuPrincipal.setVisible(true);
+    }//GEN-LAST:event_jb_regresardeindicesMouseClicked
 
     ArrayList<Long> rrn_llaves_en_orden = new ArrayList();
 
@@ -4446,12 +4398,13 @@ public class Principal extends javax.swing.JFrame {
         //lo de arrriba
         //File archivo = new File(GuardarArchivo);
         //FileReader fr = new FileReader(archivo);
-        RandomAccessFile af = new RandomAccessFile(archivo, "rw");
+        RandomAccessFile af = new RandomAccessFile(archivo, "rw");  
         String linea = "";
         af.seek(RRN);//aqui es donde se se mueve de bytes para buscar la llave
         for (int i = 0; i < tam_registro(); i++) {
             linea += af.readChar();
         } // Fin For
+         System.out.println("esta es la linea donde lee:"+linea);
         return linea;
     } // Fin Leer Registro 
 
@@ -4463,7 +4416,7 @@ public class Principal extends javax.swing.JFrame {
         return length + archivo_actual.getCampos().size();
     }
 
-    private int getRrn() {
+    private int setRrn() {
         aa.cargarArchivo();
         if (archivo_actual.getAvailList().isEmpty()) {
             int pos_archivo = 0;
@@ -4477,12 +4430,14 @@ public class Principal extends javax.swing.JFrame {
                 aa.cargarArchivo();
                 int rrn = 500;
                 aa.getLista_archivos().get(pos_archivo).setCant_regisros(true);
+                archivo_actual = aa.getLista_archivos().get(pos_archivo);
                 aa.escribirArchivo();
                 return rrn;
             } else {
                 aa.cargarArchivo();
                 int rrn = (250 + (tam_registro() * aa.getLista_archivos().get(pos_archivo).getCant_regisros())) * 2;
                 aa.getLista_archivos().get(pos_archivo).setCant_regisros(true);
+                archivo_actual = aa.getLista_archivos().get(pos_archivo);
                 aa.escribirArchivo();
                 return rrn;
             } // Fin If
@@ -4491,7 +4446,7 @@ public class Principal extends javax.swing.JFrame {
     } // Fin If
 
     private int guardarRegistro(String registro) {
-        int rrn = getRrn();
+        int rrn = setRrn();
         if (archivo_actual.getAvailList().isEmpty()) {
             try {
                 RandomAccessFile flujo = new RandomAccessFile(new File(archivo_actual.getArchivo().getAbsolutePath()), "rw");
@@ -4698,7 +4653,9 @@ public class Principal extends javax.swing.JFrame {
             PersonLastName.add("Silva");
             PersonLastName.add("Medina");
             PersonLastName.add("Galeano");
+            BTree Btreepersons_secundario = new BTree(6);
             Archivoconarbolb archivo_prueba = new Archivoconarbolb(archivo_actual.getArchivo(), archivo_actual.getID());
+            Archivoarbolsecundario archivo_prueba_secundario = new Archivoarbolsecundario(archivo_actual.getArchivo(), archivo_actual.getID(), Btreepersons_secundario);
             RandomAccessFile flujo = new RandomAccessFile(new File("PersonFile.txt"), "rw");
             BTree BTreePersons = new BTree(6);
             String metadata2;
@@ -4726,7 +4683,7 @@ public class Principal extends javax.swing.JFrame {
                 StringBuffer sb = new StringBuffer(registro);
                 sb.setLength(35);
                 flujo.writeChars(sb.toString());
-                RRN = getRrn();
+                RRN = setRrn();
                 // Obtenemos la llave primaria para poder insertarla en el arbolB
                 primaryKey = String.valueOf(personID);
                 primaryKey = espacios.substring(0, 6 - primaryKey.length()) + primaryKey;
@@ -4735,8 +4692,11 @@ public class Principal extends javax.swing.JFrame {
                 //BTreePersons.imprimir_arbol(0, 0);
                 // Consejo sout del arbol para ver si inserta bien
                 // Obtenemos la llave secundaria para poder insertarla en el arbolB
-                /*secondaryKey = String.valueOf(cityID);
+                secondaryKey = String.valueOf(cityID);
                 secondaryKey = espacios.substring(0, 2 - secondaryKey.length()) + secondaryKey;
+                if (Btreepersons_secundario.B_Tree_Search(Btreepersons_secundario.getRaiz(), secondaryKey) == null) {
+                    Btreepersons_secundario.insert(secondaryKey, RRN);
+                }
                 //arbolCity.insert(secondaryKey, RRN);*/
             } // Fin For
             //flujo.close();
@@ -4747,7 +4707,15 @@ public class Principal extends javax.swing.JFrame {
             arboles.getListaarboles().add(archivo_prueba);
             arboles.escribirArchivo();
             arbol_actual = BTreePersons;
+            //
+            archivo_prueba_secundario.setArbolSecundario(Btreepersons_secundario);
+            // Escribir en el binario de arbol
+           /* arbolessecundarios.cargarArchivo();
+            arbolessecundarios.getListaarboles().add(archivo_prueba_secundario);
+            arbol_secundarioactual = Btreepersons_secundario;
+            arbolessecundarios.escribirArchivo();*/
             GenerarCityFile();
+            JOptionPane.showMessageDialog(null, "Debido a que las llaves secundarias se repiten solo hemos guardado ciert cantidad de registros en indices  ");
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -4906,13 +4874,13 @@ public class Principal extends javax.swing.JFrame {
             CityName.add("Minsk");
             CityName.add("Riga");
             Collections.shuffle(CityName);
-            BTree BTreeCities = new BTree(6);
-            arbolessecundarios.cargarArchivo();
+            //BTree BTreeCities = new BTree(6);
+            //arbolessecundarios.cargarArchivo();
             int IDSec;
             long RRN;
-            IDSec = arbolessecundarios.GenerarId();
+            // IDSec = arbolessecundarios.GenerarId();
             aa.escribirArchivo();
-            Archivoarbolsecundario archivo_prueba = new Archivoarbolsecundario(ID, IDSec, BTreeCities);
+            //Archivoarbolsecundario archivo_prueba = new Archivoarbolsecundario(archivo_actual.getArchivo(), archivo_actual.getID(), BTreeCities);
             RandomAccessFile flujo = new RandomAccessFile(new File("CityFile.txt"), "rw");
             String metadata2;
             metadata2 = "CityId¡int¡2¡Si¡No&CityName¡char¡30¡No¡No¡";
@@ -4936,17 +4904,17 @@ public class Principal extends javax.swing.JFrame {
                 StringBuffer sb = new StringBuffer(registro);
                 sb.setLength(34);
                 flujo.writeChars(sb.toString());
-                RRN = getRrn();
+                RRN = setRrn();
                 primaryKey = espacios.substring(0, 2 - primaryKey.length()) + primaryKey;
-                BTreeCities.insert(primaryKey, i); // Inserta la llave y el RRN en el arbol
+                // BTreeCities.insert(primaryKey, i); // Inserta la llave y el RRN en el arbol
             } // Fin For            
             flujo.close();
             // Escrbir en el archivoconArbolB
-            archivo_prueba.setArbolSecundario(BTreeCities);
+            /*archivo_prueba.setArbolSecundario(BTreeCities);
             // Escribir en el binario de arbol
             arbolessecundarios.cargarArchivo();
             arbolessecundarios.getListaarboles().add(archivo_prueba);
-            arbolessecundarios.escribirArchivo();
+            arbolessecundarios.escribirArchivo();*/
         } catch (Exception e) {
             e.printStackTrace();
         } // Fin Try Catch
@@ -5118,6 +5086,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jTf_LLaveModificarRegistro;
     private javax.swing.JTextField jTf_buscarRegistros;
     private javax.swing.JButton jb_crearindices;
+    private javax.swing.JButton jb_regresardeindices;
     // End of variables declaration//GEN-END:variables
     private Archivo archivo_actual/*, archivo_anterior*/;
     private Campo campo_actual;

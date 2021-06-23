@@ -97,7 +97,7 @@ public class Admin_arbolsecundario {// implements Serializable {
         } // Fin Try Catch
     } // Fin Escribir Archivo
 
-    public int GenerarId() {
+   /* public int GenerarId() {
         // CAMBIAR
         cargarArchivo();
         boolean valid;
@@ -115,5 +115,5 @@ public class Admin_arbolsecundario {// implements Serializable {
                 return ran;
             } // Fin If
         } // Fin While
-    } // Fin Generar ID   
+    } // Fin Generar ID   */
 }
