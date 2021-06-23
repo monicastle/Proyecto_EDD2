@@ -58,7 +58,7 @@ public class ExcelModelo {
         String nombre_txt = archivo_actual.getArchivo().getName();
         Sheet hoja = wb.createSheet(nombre_txt.substring(0, nombre_txt.length() - 4));
         System.out.println("size lista " + lista.size());
-        for (int i = -1; i < 5000; i++) {
+        for (int i = -1; i < lista.size(); i++) {
             Row fila = hoja.createRow(i + 1);
             if (i == -1) {
                 //AGREGA EL NOMBRE DE LOS CAMPOS
@@ -80,9 +80,10 @@ public class ExcelModelo {
                     Cell celda = fila.createCell(j);
                     String insertar = arr[j];
                     celda.setCellValue(insertar);
-                    wb.write(new FileOutputStream(archivo_excel));
+                    //wb.write(new FileOutputStream(archivo_excel));
                 }//fin for*/
             }
+            wb.write(new FileOutputStream(archivo_excel));
             respuesta = "Exportación Completa";
         }//fin else
         return respuesta;
@@ -131,5 +132,5 @@ public class ExcelModelo {
         } // Fin If
         return (int) archivo_actual.getAvailList().peekFirst();
     } // Fin If
-    
+
 }//fin clase
