@@ -57,37 +57,42 @@ public class ExcelModelo {
         }//*/
         String nombre_txt = archivo_actual.getArchivo().getName();
         Sheet hoja = wb.createSheet(nombre_txt.substring(0, nombre_txt.length() - 4));
-        for (int i = -1; i < lista.size(); i++) {
-            Row fila = hoja.createRow(i + 1);
-            if (i == -1) {
-                //AGREGA EL NOMBRE DE LOS CAMPOS
-                for (int j = 0; j < archivo_actual.getCampos().size(); j++) {
-                    //SE CREA UNA NUEVA CELDA EN LA POSICION J DE LA FILA I
-                    Cell celda = fila.createCell(j);
-                    //SE LE AGREGA LA INFORMACION A LA CELDA
-                    celda.setCellValue(archivo_actual.getCampos().get(j).getNombre());
-                }//fin for
-            } else {
-                //AGREGA LOS REGISTROS AL EXCEL
-                long RRN = lista.get(i);
-                String data = leer_registro(Math.toIntExact(RRN), archivo_actual);
-                //LE HAGO UN .SPLIT A LOS REGISTROS
-                String arr[] = data.split("\\|");
-                //EL FOR DE J ES PARA PODER RECORRER LA CANTIDAD DE COLUMNAS
-                for (int j = 0; j < archivo_actual.getCampos().size(); j++) {
-                    //SE CREA UNA NUEVA CELDA EN LA POSICION J DE LA FILA I
-                    Cell celda = fila.createCell(j);
-                    String insertar = arr[j];
-                    celda.setCellValue(insertar);
-                    //NO TOCAR O SE MAMA
-                    /*for (int k = 0; k < arr.length; k++) {
+        int cont;
+        cont = 1;
+        while (cont <= 500) {
+            for (int i = -1; i < lista.size(); i++) {
+                Row fila = hoja.createRow(i + 1);
+                if (i == -1) {
+                    //AGREGA EL NOMBRE DE LOS CAMPOS
+                    for (int j = 0; j < archivo_actual.getCampos().size(); j++) {
+                        //SE CREA UNA NUEVA CELDA EN LA POSICION J DE LA FILA I
+                        Cell celda = fila.createCell(j);
+                        //SE LE AGREGA LA INFORMACION A LA CELDA
+                        celda.setCellValue(archivo_actual.getCampos().get(j).getNombre());
+                    }//fin for
+                } else {
+                    //AGREGA LOS REGISTROS AL EXCEL
+                    long RRN = lista.get(i);
+                    String data = leer_registro(Math.toIntExact(RRN), archivo_actual);
+                    //LE HAGO UN .SPLIT A LOS REGISTROS
+                    String arr[] = data.split("\\|");
+                    //EL FOR DE J ES PARA PODER RECORRER LA CANTIDAD DE COLUMNAS
+                    for (int j = 0; j < archivo_actual.getCampos().size(); j++) {
+                        //SE CREA UNA NUEVA CELDA EN LA POSICION J DE LA FILA I
+                        Cell celda = fila.createCell(j);
+                        String insertar = arr[j];
+                        celda.setCellValue(insertar);
+                        //NO TOCAR O SE MAMA
+                        /*for (int k = 0; k < arr.length; k++) {
                         //LE QUITO LOS ESPACIOS INNESESARIOS
                         String insertar = arr[k].replaceAll(" ", "");
                         //SE LE AGREGA LA INFORMACION A LA CELDA
                         celda.setCellValue(insertar);
                     }//fin for k*/
-                    wb.write(new FileOutputStream(archivo_excel));
-                }//fin for*/
+                        wb.write(new FileOutputStream(archivo_excel));
+                    }//fin for*/
+                    cont++;
+                }
                 respuesta = "Exportación Completa";
             }//fin else
         }//*/

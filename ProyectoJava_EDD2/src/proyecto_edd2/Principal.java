@@ -44,6 +44,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
 
+import javax.xml.transform.*;
+import javax.xml.transform.stream.*;
+import java.io.*;
+
 /**
  *
  * @author Monica
@@ -3481,7 +3485,7 @@ public class Principal extends javax.swing.JFrame {
                                 validacion = r;
                             }//fin if
                         }//fin for
-                        if (arbol_secundarioactual!=null) {
+                        if (arbol_secundarioactual != null) {
                             arbolessecundarios.cargarArchivo();
                             arbol_secundarioactual.B_Tree_Delete(arbol_secundarioactual.getRaiz(), llave_secun);
                             arbolessecundarios.getListaarboles().get(validacion).setArbolSecundario(arbol_secundarioactual);
@@ -3803,7 +3807,6 @@ public class Principal extends javax.swing.JFrame {
             documento.appendChild(root);
             rrn_llaves_en_orden = new ArrayList();
             BTree_KeysInOrder(arbol_actual.getRaiz(), rrn_llaves_en_orden, arbol_actual);
-            System.out.println("TAM LISTA: " + rrn_llaves_en_orden.size());
             for (int i = 0; i < rrn_llaves_en_orden.size(); i++) {
                 long RRN = rrn_llaves_en_orden.get(i);
                 String data = leerregistro(Math.toIntExact(RRN));
@@ -3825,7 +3828,19 @@ public class Principal extends javax.swing.JFrame {
             Result result = new StreamResult(new File(nameArchivo));
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.transform(source, result);
-            JOptionPane.showMessageDialog(this, "¡Exportación exitosa!");
+
+            /*String XSLFile = name_recortado + ".xsl";
+            String INFile = name_recortado + ".xml";
+            String OUTFile = name_recortado + "Final.xml";
+            StreamSource xslcode = new StreamSource(new File(XSLFile));
+            StreamSource input = new StreamSource(new File(INFile));
+            StreamResult output = new StreamResult(new File(OUTFile));
+            TransformerFactory tf = TransformerFactory.newInstance();
+            Transformer trans;
+            trans = tf.newTransformer(xslcode);
+            trans.transform(input, output);*/
+            
+            JOptionPane.showMessageDialog(this, "¡Exportación Exitosa!");
             rrn_llaves_en_orden = new ArrayList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -4283,15 +4298,16 @@ public class Principal extends javax.swing.JFrame {
         //preferiblemente no tocar esta parte del cdigo a menos que les de fallos contactar al administrador
         File archivo = new File(archivo_actual.getArchivo().getAbsolutePath());//esto lo que hace es asegurarse de leer el archivo correcto
         //lo de arrriba
-        FileReader fr = new FileReader(archivo);
-        String x = "";
-        RandomAccessFile af = new RandomAccessFile(archivo, "r");
+        //File archivo = new File(GuardarArchivo);
+        //FileReader fr = new FileReader(archivo);
+        RandomAccessFile af = new RandomAccessFile(archivo, "rw");
+        String linea = "";
         af.seek(RRN);//aqui es donde se se mueve de bytes para buscar la llave
-        x = af.readLine();//esto lee la linea donde se quedo el puntero
-        af.close();
-        fr.close();
-        return x;
-    }// 
+        for (int i = 0; i < tam_registro(); i++) {
+            linea += af.readChar();
+        } // Fin For
+        return linea;
+    } // Fin Leer Registro 
 
     private int tam_registro() {
         int length = 0;
@@ -4301,7 +4317,7 @@ public class Principal extends javax.swing.JFrame {
         return length + archivo_actual.getCampos().size();
     }
 
-    private int getRrn(String registro) {
+    private int getRrn() {
         aa.cargarArchivo();
         if (archivo_actual.getAvailList().isEmpty()) {
             int pos_archivo = 0;
@@ -4309,27 +4325,27 @@ public class Principal extends javax.swing.JFrame {
                 if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
                     pos_archivo = i;
                     break;
-                }
-            }
+                } // Fin If
+            } // Fin For
             if (aa.getLista_archivos().get(pos_archivo).getCant_regisros() == 0) {
                 aa.cargarArchivo();
-                int rrn = (250 - archivo_actual.getSizeMetadata());
+                int rrn = 500;
                 aa.getLista_archivos().get(pos_archivo).setCant_regisros(true);
                 aa.escribirArchivo();
                 return rrn;
             } else {
                 aa.cargarArchivo();
-                int rrn = (250 - archivo_actual.getSizeMetadata()) + (tam_registro() * aa.getLista_archivos().get(pos_archivo).getCant_regisros());
+                int rrn = (250 + (tam_registro() * aa.getLista_archivos().get(pos_archivo).getCant_regisros())) * 2;
                 aa.getLista_archivos().get(pos_archivo).setCant_regisros(true);
                 aa.escribirArchivo();
                 return rrn;
-            }
-        }
+            } // Fin If
+        } // Fin If
         return (int) archivo_actual.getAvailList().peekFirst();
-    }
+    } // Fin If
 
     private int guardarRegistro(String registro) {
-        int rrn = getRrn(registro);
+        int rrn = getRrn();
         if (archivo_actual.getAvailList().isEmpty()) {
             try {
                 RandomAccessFile flujo = new RandomAccessFile(archivo_actual.getArchivo(), "rw");
@@ -4534,7 +4550,12 @@ public class Principal extends javax.swing.JFrame {
             Archivoconarbolb archivo_prueba = new Archivoconarbolb(archivo_actual.getArchivo(), archivo_actual.getID());
             RandomAccessFile flujo = new RandomAccessFile(new File("PersonFile.txt"), "rw");
             BTree BTreePersons = new BTree(6);
-            flujo.write("PersonId¡int¡6¡Si¡No&PersonName¡String¡20¡No¡No&PersonAge¡int¡3¡No¡No&CityId¡int¡2¡No¡Si¡".getBytes());
+            String metadata2;
+            metadata2 = "PersonId¡int¡6¡Si¡No&PersonName¡String¡20¡No¡No&PersonAge¡int¡3¡No¡No&CityId¡int¡2¡No¡Si¡";
+            metadata2 += LlenadoEspacios(metadata2.length(), 250);
+            StringBuffer sbmetadata = new StringBuffer(metadata2);
+            sbmetadata.setLength(250);
+            flujo.writeChars(sbmetadata.toString());
             // Escribimos los campos en "duro" dentro del archivo
             random = new Random();
             int personID;
@@ -4551,9 +4572,10 @@ public class Principal extends javax.swing.JFrame {
                 registro = personID + "|" + nombre + " " + apellido + "|" + edad + "|" + cityID + "|";
                 // Llena de espacios si no se completaron los 35 caracteres
                 registro += LlenadoEspacios(registro.length(), 35);
-                RRN = getRrn(registro);
-                flujo.seek(RRN);
-                flujo.write(registro.getBytes());
+                StringBuffer sb = new StringBuffer(registro);
+                sb.setLength(35);
+                flujo.writeChars(sb.toString());
+                RRN = getRrn();
                 // Obtenemos la llave primaria para poder insertarla en el arbolB
                 primaryKey = String.valueOf(personID);
                 primaryKey = espacios.substring(0, 6 - primaryKey.length()) + primaryKey;
@@ -4566,7 +4588,7 @@ public class Principal extends javax.swing.JFrame {
                 secondaryKey = espacios.substring(0, 2 - secondaryKey.length()) + secondaryKey;
                 //arbolCity.insert(secondaryKey, RRN);*/
             } // Fin For
-            flujo.close();
+            //flujo.close();
             // Escrbir en el archivoconArbolB
             archivo_prueba.setArbol(BTreePersons);
             // Escribir en el binario de arbol
@@ -4755,7 +4777,7 @@ public class Principal extends javax.swing.JFrame {
                     registro += LlenadoEspacios(registro.length(), 34);
                     primaryKey = i + "";
                 } // Fin If
-                RRN = getRrn(registro);
+                RRN = getRrn();
                 flujo.seek(RRN);
                 flujo.write(registro.getBytes());
                 primaryKey = espacios.substring(0, 2 - primaryKey.length()) + primaryKey;
