@@ -2945,13 +2945,20 @@ public class Principal extends javax.swing.JFrame {
                         llave_secun = espacios.substring(0, num) + llave_secun;
                     }
                 }
+                System.out.println("esta es la llave secundaria:" + llave_secun);
                 int validacion = 0;
                 for (int r = 0; r < arbolessecundarios.getListaarboles().size(); r++) {
                     if (arbolessecundarios.getListaarboles().get(r).getIDArchivoActual() == archivo_actual.getID()) {
                         validacion = r;
                     }//fin if
                 }//fin for
-                if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null || arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().B_Tree_Search(arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().getRaiz(), llave_secun) != null) {
+                if (arbol_secundarioactual != null) {
+                    if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null || arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().B_Tree_Search(arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().getRaiz(), llave_secun) != null) {
+                        omitidos = true;
+                    }
+                }
+//                arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().imprimir_arbol(0, 0);
+                if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null ) {
                     omitidos = true;
                 } else {
                     int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
@@ -2979,15 +2986,13 @@ public class Principal extends javax.swing.JFrame {
                                 int num = archivo_actual.getCampos().get(llavesecundaria).getLongitud() - llave_secundaria.length();
                                 llave_secundaria = espacios.substring(0, num) + llave_secundaria;
                             }//fin if
-                            /* if (arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().B_Tree_Search(arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().getRaiz(), llave_secundaria) != null) {
+                            if (arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().B_Tree_Search(arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().getRaiz(), llave_secundaria) != null) {
                                 omitidos = true;
                             } else {
-
                                 arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().insert(llave_secundaria, rrn);
                                 arbol_secundarioactual = arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario();
                                 arbolessecundarios.escribirArchivo();
                             }
-                             */
                         }//fin primer for
                         //arbol_secundarioactual.imprimir_arbol(0, 0);
                     }//fin if validacion arbolsecundario
@@ -3168,6 +3173,8 @@ public class Principal extends javax.swing.JFrame {
                 int num = archivo_actual.getCampos().get(posicion_llave).getLongitud() - llave.length();
                 llave = espacios.substring(0, num) + llave;
             }
+            System.out.println("esta es la llave a mod"+llave);
+            arbol_actual.imprimir_arbol(0, 0);
             NodoIndice nodo = arbol_actual.B_Tree_Search(arbol_actual.getRaiz(), llave);
             if (nodo == null) {
                 JOptionPane.showMessageDialog(null, "No se encontro ningun registro con ese valor");
@@ -3439,6 +3446,16 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No has buscado ningún registro todavía.");
             return;
         }
+        boolean arbolcreado = false;//verifica si el arbol esta creado
+        int getposarbol1 = 0;//esto es para agrrar la posicion dle arbolcreado
+        for (int i = 0; i < arboles.getListaarboles().size(); i++) {
+            if (arboles.getListaarboles().get(i).getArchivo().equals(archivo_actual.getArchivo())) {
+                arbolcreado = true;
+                getposarbol1 = i;
+                arbol_actual = arboles.getListaarboles().get(i).getArbol();
+                break;
+            }
+        }
         rrn_llaves_en_orden = new ArrayList<Long>();
         arbol_actual.BTree_KeysInOrder(arbol_actual.getRaiz(), rrn_llaves_en_orden);
         if (!rrn_llaves_en_orden.isEmpty()) {
@@ -3505,15 +3522,15 @@ public class Principal extends javax.swing.JFrame {
                         }//fin for
                         if (arbol_secundarioactual != null) {
                             arbolessecundarios.cargarArchivo();
-                            arbol_secundarioactual.B_Tree_Delete(arbol_secundarioactual.getRaiz(), llave_secun);
-                            arbolessecundarios.getListaarboles().get(validacion).setArbolSecundario(arbol_secundarioactual);
+                            arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().B_Tree_Delete(arbol_secundarioactual.getRaiz(), llave_secun);
+                            arbol_secundarioactual = arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario();
                             arbolessecundarios.escribirArchivo();
                         }
                         //ESTO ELIMINA EL REGISTRO DE LA LISTA DE REGISTROS
                         arboles.cargarArchivo();
-                        arbol_actual.B_Tree_Delete(arbol_actual.getRaiz(), llave);
+                        arboles.getListaarboles().get(getposarbol1).getArbol().B_Tree_Delete(arboles.getListaarboles().get(getposarbol1).getArbol().getRaiz(), llave);
+                        arbol_actual = arboles.getListaarboles().get(getposarbol1).getArbol();
                         //arbol_actual.imprimir_arbol(arbol_actual.getRaiz(), 0);
-                        arboles.getListaarboles().get(get_posarbol).setArbol(arbol_actual);
                         arboles.escribirArchivo();
                         Modificar(new String(data2), Math.toIntExact(rrn));
                         /*EN CASO QUE NO GUSTE COMO APARECE MARCADO EL CAMBIO EN EL TXT, TRABAJAR CON ESTA PARTE 
@@ -3528,7 +3545,7 @@ public class Principal extends javax.swing.JFrame {
                             separar[separar.length-1] = '.';
                             Modificar(new String(separar), Math.toIntExact(rrn));
                         }*/
-                        archivo_actual.getAvailList().add(0, Math.toIntExact(rrn));
+                        // archivo_actual.getAvailList().add(0, Math.toIntExact(rrn));
                         /*AQUÍ DEBE GUARDAR EL AVAILIST EN LA ROM 
                         (ARREGLA QUE NO GUARDABA EL AVAILIST EN LA ROM AL CERRAR EL ARCHIVO)*/
                         aa.cargarArchivo();
@@ -3901,7 +3918,7 @@ public class Principal extends javax.swing.JFrame {
             for (int i = 0; i < archivo_actual.getCant_regisros(); i++) {
                 if (i == 0) {
                     try {
-                        int rrn = (250 - archivo_actual.getSizeMetadata());
+                        int rrn = 500;
                         String data = leerregistro(rrn);
                         String arr[] = data.split("\\|");
                         String llave = arr[posllave_secundaria];
@@ -3916,7 +3933,7 @@ public class Principal extends javax.swing.JFrame {
                 } else {
 
                     try {
-                        int rrn2 = (250 - archivo_actual.getSizeMetadata()) + (tam_registro() * i);
+                        int rrn2 = (250 + (tam_registro() * i)) * 2;
                         String data;
                         data = leerregistro(rrn2);
                         String arr[] = data.split("\\|");
@@ -3962,6 +3979,7 @@ public class Principal extends javax.swing.JFrame {
             long RRN = rrn_llaves_en_orden.get(i);
             try {
                 String data = leerregistro(Math.toIntExact(RRN));
+                System.out.println(data);
                 //System.out.println(data);
                 String arr[] = data.split("\\|");
                 Object arr2[] = new Object[model.getColumnCount()];
@@ -4305,10 +4323,13 @@ public class Principal extends javax.swing.JFrame {
     }
 
     private void Modificar(String data, int rrn) throws FileNotFoundException, IOException {
-        RandomAccessFile flujo = new RandomAccessFile(archivo_actual.getArchivo(), "rw");
+        File archivo = archivo_actual.getArchivo();
+        RandomAccessFile flujo = new RandomAccessFile(new File(archivo_actual.getArchivo().getAbsolutePath()), "rw");
+        data += LlenadoEspacios(data.length(), tam_registro());
+        StringBuffer sbregistro = new StringBuffer(data);
+        sbregistro.setLength(tam_registro());
         flujo.seek(rrn);
-        flujo.write((data + llenar(data.length())).getBytes());
-        flujo.close();
+        flujo.writeChars(sbregistro.toString());
     }
 
     private String leerregistro(int RRN) throws FileNotFoundException, IOException {
@@ -4365,10 +4386,12 @@ public class Principal extends javax.swing.JFrame {
         int rrn = getRrn();
         if (archivo_actual.getAvailList().isEmpty()) {
             try {
-                RandomAccessFile flujo = new RandomAccessFile(archivo_actual.getArchivo(), "rw");
+                RandomAccessFile flujo = new RandomAccessFile(new File(archivo_actual.getArchivo().getAbsolutePath()), "rw");
+                registro += LlenadoEspacios(registro.length(), tam_registro());
+                StringBuffer sbregistro = new StringBuffer(registro);
+                sbregistro.setLength(tam_registro());
                 flujo.seek(rrn);
-                flujo.write(registro.getBytes());
-                flujo.close();
+                flujo.writeChars(sbregistro.toString());
                 return rrn;
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -4376,14 +4399,17 @@ public class Principal extends javax.swing.JFrame {
         } else {
             try {
                 rrn = (int) archivo_actual.getAvailList().peekFirst();
-                RandomAccessFile raf = new RandomAccessFile(new File(GuardarArchivo), "rw");
-                raf.seek(((int) archivo_actual.getAvailList().removeFirst() - 1) * tam_registro() + archivo_actual.getSizeMetadata());
+                RandomAccessFile flujo = new RandomAccessFile(new File(archivo_actual.getArchivo().getAbsolutePath()), "rw");
+                registro += LlenadoEspacios(registro.length(), tam_registro());
+                StringBuffer sbregistro = new StringBuffer(registro);
+                sbregistro.setLength(tam_registro());
+                flujo.seek(rrn);
+                flujo.writeChars(sbregistro.toString());
+                return rrn;
                 /*//System.out.println("En este RRN lo guarda:" + (((int) archivo_actual.getAvailList().removeFirst() - 1) * tam_registro()) + archivo_actual.getSizeMetadata());
                 for (int i = 0; i < archivo_actual.getAvailList().size(); i++) {
                     //System.out.println((int) archivo_actual.getAvailList().get(i));
                 }*/
-                raf.write(registro.getBytes());
-                raf.close();
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
