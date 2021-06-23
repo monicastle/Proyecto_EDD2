@@ -109,5 +109,14 @@ public class Archivo implements Serializable {
         } // Fin For
         return metadata.length() + 1;
     } // Gin Get Size Metadata
+    
+    
+    public int longitud_fija_campos() {
+        int length = 0;
+        for (Campo campo : campos) {
+            length += campo.getLongitud();
+        }
+        return length + campos.size();
+    }
 
 } // Fin Clase Archivo
