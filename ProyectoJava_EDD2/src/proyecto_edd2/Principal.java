@@ -75,6 +75,7 @@ public class Principal extends javax.swing.JFrame {
 
         VentanaMenuPrincipal = new javax.swing.JFrame();
         jPanel_MenuRegistros1 = new javax.swing.JPanel();
+        btn_CerrarPrograma_MenuPrincipal = new javax.swing.JButton();
         btn_PuenteMenuCampos = new javax.swing.JButton();
         btn_PuenteMenuRegistros = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -82,6 +83,7 @@ public class Principal extends javax.swing.JFrame {
         JL_46 = new javax.swing.JLabel();
         btn_PuenteMenuIndices = new javax.swing.JButton();
         btn_PuenteMenuUtilidades = new javax.swing.JButton();
+        btn_RegresarInicio_MenuPrincipal = new javax.swing.JButton();
         VentanaMenuCampos = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -158,7 +160,8 @@ public class Principal extends javax.swing.JFrame {
         btn_PuenteBorrarRegistro1 = new javax.swing.JButton();
         btn_PuenteListarRegistros1 = new javax.swing.JButton();
         btn_PuenteCruzarArchivos1 = new javax.swing.JButton();
-        IrUtilidadesTemp = new javax.swing.JButton();
+        btn_CerrarPrograma_MenuRegistros = new javax.swing.JButton();
+        btn_RegresarMenuPrincipal_MenuRegistros = new javax.swing.JButton();
         jD_crearRegistros = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -220,6 +223,8 @@ public class Principal extends javax.swing.JFrame {
         JL_49 = new javax.swing.JLabel();
         JL_50 = new javax.swing.JLabel();
         BTN_ExportarXML = new javax.swing.JButton();
+        btn_CerrarPrograma_MenuUtilidades = new javax.swing.JButton();
+        btn_RegresarMenuPrincipal_MenuUtilidades = new javax.swing.JButton();
         Ventana_MenuIndices = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
         jb_crearindices = new javax.swing.JButton();
@@ -235,6 +240,16 @@ public class Principal extends javax.swing.JFrame {
         JL_4 = new javax.swing.JLabel();
 
         jPanel_MenuRegistros1.setBackground(new java.awt.Color(255, 255, 255));
+
+        btn_CerrarPrograma_MenuPrincipal.setBackground(new java.awt.Color(204, 204, 204));
+        btn_CerrarPrograma_MenuPrincipal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_CerrarPrograma_MenuPrincipal.setText("Salir");
+        btn_CerrarPrograma_MenuPrincipal.setBorder(null);
+        btn_CerrarPrograma_MenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CerrarPrograma_MenuPrincipalActionPerformed(evt);
+            }
+        });
 
         btn_PuenteMenuCampos.setBackground(new java.awt.Color(255, 51, 0));
         btn_PuenteMenuCampos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -289,6 +304,16 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btn_RegresarInicio_MenuPrincipal.setBackground(new java.awt.Color(204, 204, 204));
+        btn_RegresarInicio_MenuPrincipal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_RegresarInicio_MenuPrincipal.setText("Regresar");
+        btn_RegresarInicio_MenuPrincipal.setBorder(null);
+        btn_RegresarInicio_MenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegresarInicio_MenuPrincipalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel_MenuRegistros1Layout = new javax.swing.GroupLayout(jPanel_MenuRegistros1);
         jPanel_MenuRegistros1.setLayout(jPanel_MenuRegistros1Layout);
         jPanel_MenuRegistros1Layout.setHorizontalGroup(
@@ -305,7 +330,11 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(btn_PuenteMenuCampos, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                     .addComponent(btn_PuenteMenuRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_PuenteMenuIndices, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_PuenteMenuUtilidades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_PuenteMenuUtilidades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_MenuRegistros1Layout.createSequentialGroup()
+                        .addComponent(btn_RegresarInicio_MenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_CerrarPrograma_MenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_MenuRegistros1Layout.setVerticalGroup(
@@ -324,8 +353,12 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(btn_PuenteMenuUtilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(jPanel_MenuRegistros1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_CerrarPrograma_MenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_RegresarInicio_MenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JL_46)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout VentanaMenuPrincipalLayout = new javax.swing.GroupLayout(VentanaMenuPrincipal.getContentPane());
@@ -336,7 +369,7 @@ public class Principal extends javax.swing.JFrame {
         );
         VentanaMenuPrincipalLayout.setVerticalGroup(
             VentanaMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel_MenuRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel_MenuRegistros1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         VentanaMenuCampos.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -1066,10 +1099,23 @@ public class Principal extends javax.swing.JFrame {
         btn_PuenteCruzarArchivos1.setForeground(new java.awt.Color(255, 255, 255));
         btn_PuenteCruzarArchivos1.setText("Cruzar Archivos");
 
-        IrUtilidadesTemp.setText("Ir a utilidades temp");
-        IrUtilidadesTemp.addActionListener(new java.awt.event.ActionListener() {
+        btn_CerrarPrograma_MenuRegistros.setBackground(new java.awt.Color(204, 204, 204));
+        btn_CerrarPrograma_MenuRegistros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_CerrarPrograma_MenuRegistros.setText("Salir");
+        btn_CerrarPrograma_MenuRegistros.setBorder(null);
+        btn_CerrarPrograma_MenuRegistros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IrUtilidadesTempActionPerformed(evt);
+                btn_CerrarPrograma_MenuRegistrosActionPerformed(evt);
+            }
+        });
+
+        btn_RegresarMenuPrincipal_MenuRegistros.setBackground(new java.awt.Color(204, 204, 204));
+        btn_RegresarMenuPrincipal_MenuRegistros.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_RegresarMenuPrincipal_MenuRegistros.setText("Regresar");
+        btn_RegresarMenuPrincipal_MenuRegistros.setBorder(null);
+        btn_RegresarMenuPrincipal_MenuRegistros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegresarMenuPrincipal_MenuRegistrosActionPerformed(evt);
             }
         });
 
@@ -1084,19 +1130,18 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(JL_48))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel_MenuRegistros2Layout.createSequentialGroup()
-                .addGroup(jPanel_MenuRegistros2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(21, 21, 21)
+                .addGroup(jPanel_MenuRegistros2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel_MenuRegistros2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel_MenuRegistros2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn_crearRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
-                            .addComponent(btn_buscarRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_PuenteModificarRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_PuenteBorrarRegistro1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_PuenteListarRegistros1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_PuenteCruzarArchivos1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel_MenuRegistros2Layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(IrUtilidadesTemp)))
+                        .addComponent(btn_RegresarMenuPrincipal_MenuRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_CerrarPrograma_MenuRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_crearRegistros1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                    .addComponent(btn_buscarRegistros1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_PuenteModificarRegistros1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_PuenteBorrarRegistro1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_PuenteListarRegistros1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_PuenteCruzarArchivos1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_MenuRegistros2Layout.setVerticalGroup(
@@ -1118,11 +1163,13 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(btn_PuenteListarRegistros1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(btn_PuenteCruzarArchivos1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(jPanel_MenuRegistros2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_CerrarPrograma_MenuRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_RegresarMenuPrincipal_MenuRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JL_48)
-                .addGap(18, 18, 18)
-                .addComponent(IrUtilidadesTemp)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout VentanaMenuRegistrosLayout = new javax.swing.GroupLayout(VentanaMenuRegistros.getContentPane());
@@ -1730,6 +1777,26 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        btn_CerrarPrograma_MenuUtilidades.setBackground(new java.awt.Color(204, 204, 204));
+        btn_CerrarPrograma_MenuUtilidades.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_CerrarPrograma_MenuUtilidades.setText("Salir");
+        btn_CerrarPrograma_MenuUtilidades.setBorder(null);
+        btn_CerrarPrograma_MenuUtilidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CerrarPrograma_MenuUtilidadesActionPerformed(evt);
+            }
+        });
+
+        btn_RegresarMenuPrincipal_MenuUtilidades.setBackground(new java.awt.Color(204, 204, 204));
+        btn_RegresarMenuPrincipal_MenuUtilidades.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_RegresarMenuPrincipal_MenuUtilidades.setText("Regresar");
+        btn_RegresarMenuPrincipal_MenuUtilidades.setBorder(null);
+        btn_RegresarMenuPrincipal_MenuUtilidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegresarMenuPrincipal_MenuUtilidadesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
         jPanel14Layout.setHorizontalGroup(
@@ -1742,7 +1809,11 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(btn_RegresarMenuPrincipal_MenuUtilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_CerrarPrograma_MenuUtilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(BTN_ExportarXML, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_ExportarExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1758,9 +1829,13 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(btn_ExportarExcel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(BTN_ExportarXML, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_RegresarMenuPrincipal_MenuUtilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_CerrarPrograma_MenuUtilidades, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JL_50)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout VentanaMenuUtilidadesLayout = new javax.swing.GroupLayout(VentanaMenuUtilidades.getContentPane());
@@ -1924,7 +1999,6 @@ public class Principal extends javax.swing.JFrame {
 
     private void BTN_SalirProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_SalirProgramaActionPerformed
         // SALIR DEL PROGRAMA DEFINITIVAMENTE
-
         System.exit(0);
     }//GEN-LAST:event_BTN_SalirProgramaActionPerformed
 
@@ -2958,7 +3032,7 @@ public class Principal extends javax.swing.JFrame {
                     }
                 }
 //                arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().imprimir_arbol(0, 0);
-                if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null ) {
+                if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null) {
                     omitidos = true;
                 } else {
                     int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
@@ -3033,7 +3107,12 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_buscarRegistroRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarRegistroRegistroActionPerformed
         // TODO add your handling code here:
+        if (archivo_actual.getLongitudLLavePrimaria() < jTf_buscarRegistros.getText().length()) {
+            JOptionPane.showMessageDialog(this, "La llave ingresada excede la longitud permitida.");
+            return;
+        }
         if (jTf_buscarRegistros.getText().equals("") || jCb_llavesBuscarregistros.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Por favor ingrese el la llave del registro que desea buscar.");
             return;
         }
         int llaveprimaria = 0;
@@ -3159,13 +3238,13 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_buscarModificarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarModificarRegistroActionPerformed
         // TODO add your handling code here:
-        if (archivo_actual.getLongitudLLavePrimaria() < jTf_buscarRegistros.getText().length()) {
+        if (archivo_actual.getLongitudLLavePrimaria() < jTf_LLaveModificarRegistro.getText().length()) {
             JOptionPane.showMessageDialog(this, "La llave ingresada excede la longitud permitida.");
             return;
         }
         DefaultTableModel model = (DefaultTableModel) jTbl_ModificarRegistros.getModel();
         if ("".equals(jTf_LLaveModificarRegistro.getText())) {
-            JOptionPane.showMessageDialog(null, "Favor ingrese el valor que desea buscar");
+            JOptionPane.showMessageDialog(null, "Por favor ingrese el la llave del registro que desea buscar.");
         } else if (model.getRowCount() != 1) {
             int posicion_llave = 0;
             String llave = jTf_LLaveModificarRegistro.getText();
@@ -3173,7 +3252,7 @@ public class Principal extends javax.swing.JFrame {
                 int num = archivo_actual.getCampos().get(posicion_llave).getLongitud() - llave.length();
                 llave = espacios.substring(0, num) + llave;
             }
-            System.out.println("esta es la llave a mod"+llave);
+            System.out.println("esta es la llave a mod" + llave);
             arbol_actual.imprimir_arbol(0, 0);
             NodoIndice nodo = arbol_actual.B_Tree_Search(arbol_actual.getRaiz(), llave);
             if (nodo == null) {
@@ -3242,6 +3321,7 @@ public class Principal extends javax.swing.JFrame {
     private void btn_buscarEliminarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarEliminarRegistrosActionPerformed
         // TODO add your handling code here:
         if (jTf_LLaveEliminarRegistros.getText().equals("") || jCb_llavesEliminarRegistros.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Por favor ingrese el la llave del registro que desea buscar.");
             return;
         }
         if (archivo_actual.getLongitudLLavePrimaria() < jTf_LLaveEliminarRegistros.getText().length()) {
@@ -3611,16 +3691,6 @@ public class Principal extends javax.swing.JFrame {
         VentanaMenuRegistros.setVisible(true);
     }//GEN-LAST:event_btn_regresarRegistrosPrincipal3MouseClicked
 
-    private void btn_utilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_utilidadesActionPerformed
-        // TODO add your handling code here:
-        //ESTE BOTON ES DE MENU CAMPOS (SE BORRARÁ EVENTUALMENTE)
-        this.setVisible(false);
-        VentanaMenuPrincipal.setVisible(false);
-        VentanaMenuUtilidades.pack();
-        VentanaMenuUtilidades.setLocationRelativeTo(this);
-        VentanaMenuUtilidades.setVisible(true);
-    }//GEN-LAST:event_btn_utilidadesActionPerformed
-
     private void btn_PuenteMenuCamposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteMenuCamposMouseClicked
         // TODO add your handling code here:
         if (archivo_actual.getCant_regisros() >= 1) {
@@ -3740,13 +3810,13 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!(arbol_actual == null)) {
             //if (archivo_actual.getCant_regisros() > 0) {
-            VentanaMenuRegistros.setVisible(false);
             //jLbl_instruccionModificar.setText(archivo_actual.getCampos().get(0).getNombre());
             jTbl_ModificarRegistros.setModel(new DefaultTableModel());
             DefaultTableModel model = (DefaultTableModel) jTbl_ModificarRegistros.getModel();
             for (int i = 0; i < archivo_actual.getCampos().size(); i++) {
                 model.addColumn(archivo_actual.getCampos().get(i).getNombre());
             }
+            jTf_LLaveModificarRegistro.setText("");
             jD_ModificarRegistros.pack();
             jD_ModificarRegistros.setModal(true);
             jD_ModificarRegistros.setLocationRelativeTo(null);
@@ -3799,7 +3869,6 @@ public class Principal extends javax.swing.JFrame {
             jD_ListarRegistros.pack();
             jD_ListarRegistros.setModal(true);
             jD_ListarRegistros.setLocationRelativeTo(this);
-            VentanaMenuRegistros.setVisible(false);
             jD_ListarRegistros.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "No tienes registros guardados en estos momentos.");
@@ -3958,13 +4027,52 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jb_crearindicesMouseClicked
 
-    private void IrUtilidadesTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IrUtilidadesTempActionPerformed
+    private void btn_utilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_utilidadesActionPerformed
         // TODO add your handling code here:
-        VentanaMenuRegistros.setVisible(false);
+        //ESTE BOTON ES DE MENU CAMPOS (SE BORRARÁ EVENTUALMENTE)
+        this.setVisible(false);
+        VentanaMenuPrincipal.setVisible(false);
         VentanaMenuUtilidades.pack();
         VentanaMenuUtilidades.setLocationRelativeTo(this);
         VentanaMenuUtilidades.setVisible(true);
-    }//GEN-LAST:event_IrUtilidadesTempActionPerformed
+    }//GEN-LAST:event_btn_utilidadesActionPerformed
+
+    private void btn_CerrarPrograma_MenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarPrograma_MenuPrincipalActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btn_CerrarPrograma_MenuPrincipalActionPerformed
+
+    private void btn_RegresarInicio_MenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarInicio_MenuPrincipalActionPerformed
+        // TODO add your handling code here:
+        VentanaMenuPrincipal.dispose();
+        this.setVisible(true);
+    }//GEN-LAST:event_btn_RegresarInicio_MenuPrincipalActionPerformed
+
+    private void btn_CerrarPrograma_MenuRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarPrograma_MenuRegistrosActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btn_CerrarPrograma_MenuRegistrosActionPerformed
+
+    private void btn_RegresarMenuPrincipal_MenuRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarMenuPrincipal_MenuRegistrosActionPerformed
+        // TODO add your handling code here:
+        VentanaMenuRegistros.dispose();
+        VentanaMenuPrincipal.pack();
+        VentanaMenuPrincipal.setLocationRelativeTo(this);
+        VentanaMenuPrincipal.setVisible(true);
+    }//GEN-LAST:event_btn_RegresarMenuPrincipal_MenuRegistrosActionPerformed
+
+    private void btn_CerrarPrograma_MenuUtilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarPrograma_MenuUtilidadesActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btn_CerrarPrograma_MenuUtilidadesActionPerformed
+
+    private void btn_RegresarMenuPrincipal_MenuUtilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegresarMenuPrincipal_MenuUtilidadesActionPerformed
+        // TODO add your handling code here:
+        VentanaMenuUtilidades.dispose();
+        VentanaMenuPrincipal.pack();
+        VentanaMenuPrincipal.setLocationRelativeTo(this);
+        VentanaMenuPrincipal.setVisible(true);
+    }//GEN-LAST:event_btn_RegresarMenuPrincipal_MenuUtilidadesActionPerformed
 
     ArrayList<Long> rrn_llaves_en_orden = new ArrayList();
 
@@ -4806,8 +4914,13 @@ public class Principal extends javax.swing.JFrame {
             aa.escribirArchivo();
             Archivoarbolsecundario archivo_prueba = new Archivoarbolsecundario(ID, IDSec, BTreeCities);
             RandomAccessFile flujo = new RandomAccessFile(new File("CityFile.txt"), "rw");
+            String metadata2;
+            metadata2 = "CityId¡int¡2¡Si¡No&CityName¡char¡30¡No¡No¡";
+            metadata2 += LlenadoEspacios(metadata2.length(), 250);
+            StringBuffer sbmetadata = new StringBuffer(metadata2);
+            sbmetadata.setLength(250);
+            flujo.writeChars(sbmetadata.toString());
             String registro, primaryKey;
-            flujo.write("CityId¡int¡2¡Si¡No&CityName¡char¡30¡No¡No¡".getBytes());
             for (int i = 0; i <= 99; i++) {
                 if (i <= 9) {
                     registro = "0" + i + "|" + CityName.get(i) + "|";
@@ -4820,9 +4933,10 @@ public class Principal extends javax.swing.JFrame {
                     registro += LlenadoEspacios(registro.length(), 34);
                     primaryKey = i + "";
                 } // Fin If
+                StringBuffer sb = new StringBuffer(registro);
+                sb.setLength(34);
+                flujo.writeChars(sb.toString());
                 RRN = getRrn();
-                flujo.seek(RRN);
-                flujo.write(registro.getBytes());
                 primaryKey = espacios.substring(0, 2 - primaryKey.length()) + primaryKey;
                 BTreeCities.insert(primaryKey, i); // Inserta la llave y el RRN en el arbol
             } // Fin For            
@@ -4860,7 +4974,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CB_CampoAModificar;
     private javax.swing.JComboBox<String> CB_TipoDeDatoDelCampo;
     private javax.swing.JComboBox<String> CB_TipoDeDatoDelCampoModificado;
-    private javax.swing.JButton IrUtilidadesTemp;
     private javax.swing.JDialog JD_BorrarCampos;
     private javax.swing.JDialog JD_CrearCampos;
     private javax.swing.JDialog JD_ListarCampos;
@@ -4927,6 +5040,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JFrame VentanaMenuRegistros;
     private javax.swing.JFrame VentanaMenuUtilidades;
     private javax.swing.JFrame Ventana_MenuIndices;
+    private javax.swing.JButton btn_CerrarPrograma_MenuPrincipal;
+    private javax.swing.JButton btn_CerrarPrograma_MenuRegistros;
+    private javax.swing.JButton btn_CerrarPrograma_MenuUtilidades;
     private javax.swing.JButton btn_ConfirmarBorrar;
     private javax.swing.JButton btn_ConfirmarModificacion;
     private javax.swing.JButton btn_ExportarExcel1;
@@ -4938,6 +5054,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_PuenteMenuRegistros;
     private javax.swing.JButton btn_PuenteMenuUtilidades;
     private javax.swing.JButton btn_PuenteModificarRegistros1;
+    private javax.swing.JButton btn_RegresarInicio_MenuPrincipal;
+    private javax.swing.JButton btn_RegresarMenuPrincipal_MenuRegistros;
+    private javax.swing.JButton btn_RegresarMenuPrincipal_MenuUtilidades;
     private javax.swing.JButton btn_buscarEliminarRegistros;
     private javax.swing.JButton btn_buscarModificarRegistro;
     private javax.swing.JButton btn_buscarRegistro;
