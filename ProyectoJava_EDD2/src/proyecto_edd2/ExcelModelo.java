@@ -57,62 +57,79 @@ public class ExcelModelo {
         }//*/
         String nombre_txt = archivo_actual.getArchivo().getName();
         Sheet hoja = wb.createSheet(nombre_txt.substring(0, nombre_txt.length() - 4));
-        int cont;
-        cont = 1;
-        while (cont <= 500) {
-            for (int i = -1; i < lista.size(); i++) {
-                Row fila = hoja.createRow(i + 1);
-                if (i == -1) {
-                    //AGREGA EL NOMBRE DE LOS CAMPOS
-                    for (int j = 0; j < archivo_actual.getCampos().size(); j++) {
-                        //SE CREA UNA NUEVA CELDA EN LA POSICION J DE LA FILA I
-                        Cell celda = fila.createCell(j);
-                        //SE LE AGREGA LA INFORMACION A LA CELDA
-                        celda.setCellValue(archivo_actual.getCampos().get(j).getNombre());
-                    }//fin for
-                } else {
-                    //AGREGA LOS REGISTROS AL EXCEL
-                    long RRN = lista.get(i);
-                    String data = leer_registro(Math.toIntExact(RRN), archivo_actual);
-                    //LE HAGO UN .SPLIT A LOS REGISTROS
-                    String arr[] = data.split("\\|");
-                    //EL FOR DE J ES PARA PODER RECORRER LA CANTIDAD DE COLUMNAS
-                    for (int j = 0; j < archivo_actual.getCampos().size(); j++) {
-                        //SE CREA UNA NUEVA CELDA EN LA POSICION J DE LA FILA I
-                        Cell celda = fila.createCell(j);
-                        String insertar = arr[j];
-                        celda.setCellValue(insertar);
-                        //NO TOCAR O SE MAMA
-                        /*for (int k = 0; k < arr.length; k++) {
-                        //LE QUITO LOS ESPACIOS INNESESARIOS
-                        String insertar = arr[k].replaceAll(" ", "");
-                        //SE LE AGREGA LA INFORMACION A LA CELDA
-                        celda.setCellValue(insertar);
-                    }//fin for k*/
-                        wb.write(new FileOutputStream(archivo_excel));
-                    }//fin for*/
-                    cont++;
-                }
-                respuesta = "Exportación Completa";
-            }//fin else
-        }//*/
+        System.out.println("size lista " + lista.size());
+        for (int i = -1; i < 5000; i++) {
+            Row fila = hoja.createRow(i + 1);
+            if (i == -1) {
+                //AGREGA EL NOMBRE DE LOS CAMPOS
+                for (int j = 0; j < archivo_actual.getCampos().size(); j++) {
+                    //SE CREA UNA NUEVA CELDA EN LA POSICION J DE LA FILA I
+                    Cell celda = fila.createCell(j);
+                    //SE LE AGREGA LA INFORMACION A LA CELDA
+                    celda.setCellValue(archivo_actual.getCampos().get(j).getNombre());
+                }//fin for
+            } else {
+                //AGREGA LOS REGISTROS AL EXCEL
+                long RRN = lista.get(i);
+                String data = leer_registro(Math.toIntExact(RRN), archivo_actual);
+                //LE HAGO UN .SPLIT A LOS REGISTROS
+                String arr[] = data.split("\\|");
+                //EL FOR DE J ES PARA PODER RECORRER LA CANTIDAD DE COLUMNAS
+                for (int j = 0; j < archivo_actual.getCampos().size(); j++) {
+                    //SE CREA UNA NUEVA CELDA EN LA POSICION J DE LA FILA I
+                    Cell celda = fila.createCell(j);
+                    String insertar = arr[j];
+                    celda.setCellValue(insertar);
+                    wb.write(new FileOutputStream(archivo_excel));
+                }//fin for*/
+            }
+            respuesta = "Exportación Completa";
+        }//fin else
         return respuesta;
     }
 
     private String leer_registro(int RRN, Archivo archivo_actual) {
-        String x = "";
+        String linea = "";
+        File archivo = new File(archivo_actual.getArchivo().getAbsolutePath());//esto lo que hace es asegurarse de leer el archivo correcto
         try {
-            File archivo = new File(archivo_actual.getArchivo().getAbsolutePath());//esto lo que hace es asegurarse de leer el archivo correcto
-            FileReader fr = new FileReader(archivo);
-            RandomAccessFile af = new RandomAccessFile(archivo, "r");
-            af.seek(RRN);//aqui es donde se se mueve de bytes para buscar la llave
-            x = af.readLine();//esto lee la linea donde se quedo el puntero
-            af.close();
-            fr.close();
-        } catch (Exception e) {
+            RandomAccessFile af = new RandomAccessFile(archivo, "rw");
+            af.seek(RRN);
+            for (int i = 0; i < archivo_actual.longitud_fija_campos(); i++) {
+                linea += af.readChar();
+            }
+            System.out.println("line " + linea);
+        } catch (IOException e) {
             System.out.println("exception -> exportacion excel -> leer registros");
         }
-        return x;
-    }//fin metodo 
+        return linea;
+    }//fin metodo
 
+    public int getRrn(Archivo archivo_actual) {
+        Administrar_Archivos aa = new Administrar_Archivos("./Archivos.dmo");
+        aa.cargarArchivo();
+        if (archivo_actual.getAvailList().isEmpty()) {
+            int pos_archivo = 0;
+            for (int i = 0; i < aa.getLista_archivos().size(); i++) {
+                if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
+                    pos_archivo = i;
+                    break;
+                } // Fin If
+            } // Fin For
+            if (aa.getLista_archivos().get(pos_archivo).getCant_regisros() == 0) {
+                aa.cargarArchivo();
+                int rrn = 500;
+                aa.getLista_archivos().get(pos_archivo).setCant_regisros(true);
+                aa.escribirArchivo();
+                return rrn;
+            } else {
+                aa.cargarArchivo();
+                int rrn = (250 + (archivo_actual.longitud_fija_campos() * aa.getLista_archivos().get(pos_archivo).getCant_regisros())) * 2;
+                aa.getLista_archivos().get(pos_archivo).setCant_regisros(true);
+                aa.escribirArchivo();
+                return rrn;
+            } // Fin If
+        } // Fin If
+        return (int) archivo_actual.getAvailList().peekFirst();
+    } // Fin If
+    
 }//fin clase
