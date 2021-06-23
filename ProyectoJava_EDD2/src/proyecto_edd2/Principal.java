@@ -2794,6 +2794,24 @@ public class Principal extends javax.swing.JFrame {
         if (!ValidaciondeingresoTabla(jTbl_tablaRegistros, true)) {
             return;
         }
+        if (archivo_actual.getCant_regisros() == 0) {
+            RandomAccessFile flujo;
+            try {
+                File archivo = archivo_actual.getArchivo();
+                flujo = new RandomAccessFile(new File(archivo_actual.getArchivo().getAbsolutePath()), "rw");
+                String metadata2;
+                metadata2 = TA_ArchivoAbierto.getText();
+                metadata2 += LlenadoEspacios(metadata2.length(), 250);
+                StringBuffer sbmetadata = new StringBuffer(metadata2);
+                sbmetadata.setLength(250);
+                flujo.writeChars(sbmetadata.toString());
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
         String guardar = "";//Aqui es donde se guarda el registro a ingresar
         // int length=0;
         arboles.cargarArchivo();
@@ -3839,7 +3857,6 @@ public class Principal extends javax.swing.JFrame {
             Transformer trans;
             trans = tf.newTransformer(xslcode);
             trans.transform(input, output);*/
-            
             JOptionPane.showMessageDialog(this, "¡Exportación Exitosa!");
             rrn_llaves_en_orden = new ArrayList();
         } catch (Exception e) {
