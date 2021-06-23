@@ -1992,9 +1992,9 @@ public class Principal extends javax.swing.JFrame {
                         } // Fin If
                     } // Fin For
                     this.setVisible(false);
-                    VentanaMenuRegistros.pack();
-                    VentanaMenuRegistros.setLocationRelativeTo(null);
-                    VentanaMenuRegistros.setVisible(true);
+                    VentanaMenuPrincipal.pack();
+                    VentanaMenuPrincipal.setLocationRelativeTo(null);
+                    VentanaMenuPrincipal.setVisible(true);
                 } else {
                     GenerarPersonFile();
                     this.setVisible(false);
