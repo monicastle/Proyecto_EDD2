@@ -87,8 +87,6 @@ public class Principal extends javax.swing.JFrame {
         VentanaMenuCampos = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TA_ArchivoAbierto = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         BTN_SalvarArchivo = new javax.swing.JButton();
         btn_utilidades = new javax.swing.JButton();
@@ -235,6 +233,8 @@ public class Principal extends javax.swing.JFrame {
         JL_51 = new javax.swing.JLabel();
         JL_52 = new javax.swing.JLabel();
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TA_ArchivoAbierto = new javax.swing.JTextArea();
         PanelPrincipal = new javax.swing.JPanel();
         JL_1 = new javax.swing.JLabel();
         BTN_SalirPrograma = new javax.swing.JButton();
@@ -382,11 +382,6 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        TA_ArchivoAbierto.setColumns(20);
-        TA_ArchivoAbierto.setRows(5);
-        TA_ArchivoAbierto.setEnabled(false);
-        jScrollPane1.setViewportView(TA_ArchivoAbierto);
-
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Archivo Abierto");
 
@@ -415,24 +410,18 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BTN_SalvarArchivo)
                 .addGap(182, 182, 182))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(360, 360, 360)
                         .addComponent(BTN_SalvarArchivo))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(373, 373, 373)
                         .addComponent(btn_utilidades)))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
@@ -1906,6 +1895,11 @@ public class Principal extends javax.swing.JFrame {
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Reindexar");
         jButton2.setBorder(null);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jb_crearindices.setBackground(new java.awt.Color(255, 51, 0));
         jb_crearindices.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -1975,6 +1969,11 @@ public class Principal extends javax.swing.JFrame {
             Ventana_MenuIndicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        TA_ArchivoAbierto.setColumns(20);
+        TA_ArchivoAbierto.setRows(5);
+        TA_ArchivoAbierto.setEnabled(false);
+        jScrollPane1.setViewportView(TA_ArchivoAbierto);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Menú Archivos");
@@ -3962,7 +3961,7 @@ public class Principal extends javax.swing.JFrame {
             arbolessecundarios.escribirArchivo();
             JOptionPane.showMessageDialog(this, "Se crearon los indices nuevos");
         } else {
-            JOptionPane.showMessageDialog(null, "Indices actualizados");
+            JOptionPane.showMessageDialog(null, "Presione el boton reindexar par actualizar sus indices");
         } // Fin If
     }//GEN-LAST:event_jb_crearindicesMouseClicked
 
@@ -4058,6 +4057,14 @@ public class Principal extends javax.swing.JFrame {
             e.printStackTrace();
         } // Fin Try Catch
     }//GEN-LAST:event_jCb_llavesEliminarRegistrosItemStateChanged
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        if(arbol_secundarioactual==null){
+        }else{
+        JOptionPane.showMessageDialog(null, "Sus indices han sido actualizados");
+        }
+    }//GEN-LAST:event_jButton2MouseClicked
 
     ArrayList<Long> rrn_llaves_en_orden = new ArrayList();
 
