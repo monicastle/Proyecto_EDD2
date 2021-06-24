@@ -2106,6 +2106,7 @@ public class Principal extends javax.swing.JFrame {
                         if (aa.getLista_archivos().get(i).getArchivo().getName().equals("PersonFile.txt")) {
                             archivo_actual = aa.getLista_archivos().get(i);
                             arbol_actual = arboles.getListaarboles().get(i).getArbol();
+                            arbol_secundarioactual=arbolessecundarios.getListaarboles().get(i).getArbolSecundario();
                             GuardarArchivo = "PersonFile.txt";
                             break;
                         } // Fin If
