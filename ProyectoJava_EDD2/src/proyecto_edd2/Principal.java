@@ -2954,7 +2954,12 @@ public class Principal extends javax.swing.JFrame {
                     omitidos = true;
                 } else {
                     /*       registross.add(guardar);*/
-                    int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
+                    int rrn = 0;
+                    try {
+                        rrn = guardarRegistro(guardar); //aqui manda a llamar al rrn para designarlo al arbol
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     //System.out.println("El rrn es:" + rrn);
                     Archivodelarbol.getArbol().insert(llave, rrn);
                     if (arbol_secundarioactual != null) {
@@ -3051,7 +3056,12 @@ public class Principal extends javax.swing.JFrame {
                 if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null) {
                     omitidos = true;
                 } else {
-                    int rrn = guardarRegistro(guardar);//aqui manda a llamar al rrn para designarlo al arbol
+                    int rrn = 0;
+                    try {
+                        rrn = guardarRegistro(guardar); //aqui manda a llamar al rrn para designarlo al arbol
+                    } catch (IOException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     //System.out.println("El rrn es:" + rrn);
                     arboles.getListaarboles().get(getposarbol).getArbol().insert(llave, rrn);
                     if (arbol_secundarioactual != null) {
@@ -3500,9 +3510,34 @@ public class Principal extends javax.swing.JFrame {
                     if (archivo_actual.getAvailList().isEmpty()) {
                         rrnString = rrnAsString(-1);
                         //System.out.println("if " + (int) archivo_actual.getAvailList().peekFirst());
-                        System.out.println("-1");
+                        /* RandomAccessFile flujo;
+                        try {
+                            flujo = new RandomAccessFile(new File(archivo_actual.getArchivo().getAbsolutePath()), "rw");
+                            StringBuffer sbregistro = new StringBuffer(rrnString);
+                            sbregistro.setLength(10);
+                            flujo.seek((archivo_actual.getSizeMetadata() + 1) * 2);
+                            flujo.writeChars(sbregistro.toString());
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        System.out.println("-1");*/
                     } else {
                         rrnString = rrnAsString((int) archivo_actual.getAvailList().peekFirst());
+                        RandomAccessFile flujo;
+                        try {
+                            flujo = new RandomAccessFile(new File(archivo_actual.getArchivo().getAbsolutePath()), "rw");
+                            StringBuffer sbregistro = new StringBuffer(rrnString);
+                            sbregistro.setLength(10);
+                            flujo.seek((archivo_actual.getSizeMetadata() + 1) * 2);
+                            flujo.writeChars(sbregistro.toString());
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
                         System.out.println("else " + (int) archivo_actual.getAvailList().peekFirst());
                         es_primer_registro_eliminado = false;
                     }//*/
@@ -3559,32 +3594,38 @@ public class Principal extends javax.swing.JFrame {
                         Modificar(new String(data2), Math.toIntExact(rrn));
                         /*EN CASO QUE NO GUSTE COMO APARECE MARCADO EL CAMBIO EN EL TXT, TRABAJAR CON ESTA PARTE 
                         COMENTADA... FALTA RETOCAR*/
- /*if (es_primer_registro_eliminado) {
+ /* if (es_primer_registro_eliminado) {
                             Modificar(new String(data2), Math.toIntExact(rrn));
                         } else {
-                            char[] separar = new char[data2.length+1];
-                            for (int i = 0; i < separar.length-1; i++) {
+                            char[] separar = new char[data2.length + 1];
+                            for (int i = 0; i < separar.length - 1; i++) {
                                 separar[i] = data2[i];
                             }
-                            separar[separar.length-1] = '.';
+                            separar[separar.length - 1] = '.';
                             Modificar(new String(separar), Math.toIntExact(rrn));
                         }*/
-                        // archivo_actual.getAvailList().add(0, Math.toIntExact(rrn));
+                        //archivo_actual.getAvailList().add( Math.toIntExact(rrn));
                         /*AQUÍ DEBE GUARDAR EL AVAILIST EN LA ROM 
                         (ARREGLA QUE NO GUARDABA EL AVAILIST EN LA ROM AL CERRAR EL ARCHIVO)*/
                         aa.cargarArchivo();
-                        for (Archivo archivo : aa.getLista_archivos()) {
-                            if (archivo.getID() == archivo_actual.getID()) {
-                                archivo.getAvailList().add(0, Math.toIntExact(rrn));
+                        for (int i = 0; i < aa.getLista_archivos().size(); i++) {
+                            if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
+                                aa.getLista_archivos().get(i).getAvailList().add(Math.toIntExact(rrn));
+                                archivo_actual = aa.getLista_archivos().get(i);
                                 break;
                             } // Fin If
                         } // Fin For
                         aa.escribirArchivo();
+                        System.out.println("rrn que se mete en el availist: " + rrn);
                     } catch (Exception ex) {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }//fin try cacth
                 }//fin if
             }//fin for long rrn
+
+            for (int i = 0; i < archivo_actual.getAvailList().size(); i++) {
+                System.out.println("Este es el availist:" + archivo_actual.getAvailList().get(i));
+            }
             jTf_LLaveEliminarRegistros.setText("");
             DefaultTableModel model = new DefaultTableModel();
             jTbl_eliminarRegistros.setModel(new javax.swing.table.DefaultTableModel(
@@ -3596,10 +3637,11 @@ public class Principal extends javax.swing.JFrame {
             }
             jTbl_eliminarRegistros.setModel(model);
             //LO DE ABAJO NO AYUDO A ACTUALIZAR EL AVAILIST DEL ARCHIVO
-            /*aa.cargarArchivo();
-            for (Archivo archivo : aa.getLista_archivos()) {
-                if (archivo.getID() == archivo_actual.getID()) {
-                    archivo.setArchivo(archivo_actual.getArchivo());
+            /* aa.cargarArchivo();
+            for (int i = 0; i < aa.getLista_archivos().size(); i++) {
+                if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
+                    aa.getLista_archivos().get(i).setAvailList(archivo_actual.getAvailList());
+                    archivo_actual = aa.getLista_archivos().get(i);
                     break;
                 } // Fin If
             } // Fin For
@@ -4398,13 +4440,13 @@ public class Principal extends javax.swing.JFrame {
         //lo de arrriba
         //File archivo = new File(GuardarArchivo);
         //FileReader fr = new FileReader(archivo);
-        RandomAccessFile af = new RandomAccessFile(archivo, "rw");  
+        RandomAccessFile af = new RandomAccessFile(archivo, "rw");
         String linea = "";
         af.seek(RRN);//aqui es donde se se mueve de bytes para buscar la llave
         for (int i = 0; i < tam_registro(); i++) {
             linea += af.readChar();
         } // Fin For
-         System.out.println("esta es la linea donde lee:"+linea);
+        System.out.println("esta es la linea donde lee:" + linea);
         return linea;
     } // Fin Leer Registro 
 
@@ -4445,7 +4487,7 @@ public class Principal extends javax.swing.JFrame {
         return (int) archivo_actual.getAvailList().peekFirst();
     } // Fin If
 
-    private int guardarRegistro(String registro) {
+    private int guardarRegistro(String registro) throws FileNotFoundException, IOException {
         int rrn = setRrn();
         if (archivo_actual.getAvailList().isEmpty()) {
             try {
@@ -4462,20 +4504,44 @@ public class Principal extends javax.swing.JFrame {
         } else {
             try {
                 rrn = (int) archivo_actual.getAvailList().peekFirst();
+                aa.cargarArchivo();
+                for (int i = 0; i < aa.getLista_archivos().size(); i++) {
+                    if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
+                        aa.getLista_archivos().get(i).getAvailList().removeFirst();
+                        archivo_actual = aa.getLista_archivos().get(i);
+                        break;
+                    } // Fin If
+                } // Fin For
+                aa.escribirArchivo();
+                System.out.println("rrn que se mete en el availist: " + rrn);
                 RandomAccessFile flujo = new RandomAccessFile(new File(archivo_actual.getArchivo().getAbsolutePath()), "rw");
                 registro += LlenadoEspacios(registro.length(), tam_registro());
                 StringBuffer sbregistro = new StringBuffer(registro);
                 sbregistro.setLength(tam_registro());
                 flujo.seek(rrn);
                 flujo.writeChars(sbregistro.toString());
+                if (!archivo_actual.getAvailList().isEmpty()) {
+                    int rrn2 = (int) archivo_actual.getAvailList().peekFirst();
+                    RandomAccessFile raf = new RandomAccessFile(new File(archivo_actual.getArchivo().getAbsolutePath()), "rw");
+                    String cabeza_availist = Integer.toString(rrn2);
+                    StringBuffer sbcabeza = new StringBuffer(cabeza_availist);
+                    sbcabeza.setLength(50);
+                    raf.seek((archivo_actual.getSizeMetadata() + 1) * 2);
+                    raf.writeChars(sbcabeza.toString());
+                } else {
+                    RandomAccessFile raf = new RandomAccessFile(new File(archivo_actual.getArchivo().getAbsolutePath()), "rw");
+                    String cabeza_availist = "-1";
+                    StringBuffer sbcabeza = new StringBuffer(cabeza_availist);
+                    sbcabeza.setLength(50);
+                    raf.seek((archivo_actual.getSizeMetadata() + 1) * 2);
+                    raf.writeChars(sbcabeza.toString());
+                }
                 return rrn;
                 /*//System.out.println("En este RRN lo guarda:" + (((int) archivo_actual.getAvailList().removeFirst() - 1) * tam_registro()) + archivo_actual.getSizeMetadata());
                 for (int i = 0; i < archivo_actual.getAvailList().size(); i++) {
                     //System.out.println((int) archivo_actual.getAvailList().get(i));
                 }*/
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -4710,7 +4776,7 @@ public class Principal extends javax.swing.JFrame {
             //
             archivo_prueba_secundario.setArbolSecundario(Btreepersons_secundario);
             // Escribir en el binario de arbol
-           /* arbolessecundarios.cargarArchivo();
+            /* arbolessecundarios.cargarArchivo();
             arbolessecundarios.getListaarboles().add(archivo_prueba_secundario);
             arbol_secundarioactual = Btreepersons_secundario;
             arbolessecundarios.escribirArchivo();*/

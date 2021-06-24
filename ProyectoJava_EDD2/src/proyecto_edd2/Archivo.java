@@ -65,6 +65,10 @@ public class Archivo implements Serializable {
         this.campos.remove(ca);
     } // Fin Remove Campo
 
+    public void setAvailList(LinkedList AvailList) {
+        this.AvailList = AvailList;
+    }
+
     public LinkedList getAvailList() {
         return AvailList;
     }
