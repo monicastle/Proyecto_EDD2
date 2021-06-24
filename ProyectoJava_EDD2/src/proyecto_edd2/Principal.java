@@ -86,17 +86,13 @@ public class Principal extends javax.swing.JFrame {
         btn_RegresarInicio_MenuPrincipal = new javax.swing.JButton();
         VentanaMenuCampos = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        BTN_SalvarArchivo = new javax.swing.JButton();
-        btn_utilidades = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         BTN_AbrirCrearCampo = new javax.swing.JButton();
         BTN_AbrirModificarCampo = new javax.swing.JButton();
         BTN_AbrirBorrarCampo = new javax.swing.JButton();
         BTN_AbrirListarCampos = new javax.swing.JButton();
-        btn_irRegistros = new javax.swing.JButton();
+        BTN_SalvarArchivo = new javax.swing.JButton();
         BTN_CerrarArchivo = new javax.swing.JButton();
         JD_CrearCampos = new javax.swing.JDialog();
         jP_CrearCampo = new javax.swing.JPanel();
@@ -382,49 +378,7 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Archivo Abierto");
-
-        BTN_SalvarArchivo.setText("Salvar Archivo");
-        BTN_SalvarArchivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTN_SalvarArchivoActionPerformed(evt);
-            }
-        });
-
-        btn_utilidades.setText("Utilidades");
-        btn_utilidades.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_utilidadesActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(btn_utilidades)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BTN_SalvarArchivo)
-                .addGap(182, 182, 182))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(360, 360, 360)
-                        .addComponent(BTN_SalvarArchivo))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(373, 373, 373)
-                        .addComponent(btn_utilidades)))
-                .addContainerGap(51, Short.MAX_VALUE))
-        );
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("¿Que desea hacer?");
@@ -457,10 +411,17 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        btn_irRegistros.setText("Registros");
-        btn_irRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_irRegistrosMouseClicked(evt);
+        BTN_SalvarArchivo.setText("Salvar Archivo");
+        BTN_SalvarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_SalvarArchivoActionPerformed(evt);
+            }
+        });
+
+        BTN_CerrarArchivo.setText("Cerrar Archivo");
+        BTN_CerrarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_CerrarArchivoActionPerformed(evt);
             }
         });
 
@@ -471,82 +432,57 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BTN_AbrirModificarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BTN_AbrirCrearCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(50, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_irRegistros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BTN_AbrirListarCampos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BTN_AbrirBorrarCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(50, 50, 50))))
+                        .addComponent(BTN_SalvarArchivo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                        .addComponent(BTN_CerrarArchivo))
+                    .addComponent(BTN_AbrirCrearCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BTN_AbrirModificarCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BTN_AbrirBorrarCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BTN_AbrirListarCampos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(71, 71, 71)
-                .addComponent(BTN_AbrirCrearCampo)
+                .addGap(60, 60, 60)
+                .addComponent(BTN_AbrirCrearCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BTN_AbrirModificarCampo)
+                .addComponent(BTN_AbrirModificarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
-                .addComponent(BTN_AbrirBorrarCampo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BTN_AbrirListarCampos)
-                .addGap(52, 52, 52)
-                .addComponent(btn_irRegistros)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(BTN_AbrirBorrarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BTN_AbrirListarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BTN_SalvarArchivo)
+                    .addComponent(BTN_CerrarArchivo))
+                .addGap(60, 60, 60))
         );
-
-        BTN_CerrarArchivo.setText("Cerrar Archivo");
-        BTN_CerrarArchivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BTN_CerrarArchivoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(29, 29, 29))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(433, 433, 433)
-                .addComponent(BTN_CerrarArchivo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(31, 31, 31)
-                .addComponent(BTN_CerrarArchivo)
-                .addContainerGap())
+            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout VentanaMenuCamposLayout = new javax.swing.GroupLayout(VentanaMenuCampos.getContentPane());
         VentanaMenuCampos.getContentPane().setLayout(VentanaMenuCamposLayout);
         VentanaMenuCamposLayout.setHorizontalGroup(
             VentanaMenuCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(VentanaMenuCamposLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         VentanaMenuCamposLayout.setVerticalGroup(
             VentanaMenuCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         JD_CrearCampos.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -2245,197 +2181,6 @@ public class Principal extends javax.swing.JFrame {
         } // Fin Try Catch
     }//GEN-LAST:event_BTN_AbrirArchivoActionPerformed
 
-    private void BTN_SalvarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_SalvarArchivoActionPerformed
-        // ACTUALIZA EL TEXT AREA QUE MUESTRA EL ARCHIVO
-        try {
-            // Actualiza el Text Area
-            FileReader fr = null;
-            BufferedReader br = null;
-            fr = new FileReader(archivo_actual.getArchivo());
-            br = new BufferedReader(fr);
-            TA_ArchivoAbierto.setText("");
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                TA_ArchivoAbierto.append(linea);
-            } // Fin While
-            try {
-                br.close();
-                fr.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            } // Fin Try Catch
-            // Actualiza el file dentro del archivo binario
-            EscribirCamposBinario();
-            formatear_CBbox_Modificar();
-            formatear_CBbox_borrar();
-            listar_campos();
-            if (secreo == true || semodifico == true || seborro == true) {
-                JOptionPane.showMessageDialog(null, "Archivo Salvado Exitosamente");
-            } // Fin If
-            secreo = false;
-            semodifico = false;
-            seborro = false;
-            salvado = false;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } // Fin Try Catch
-    }//GEN-LAST:event_BTN_SalvarArchivoActionPerformed
-
-    private void BTN_CerrarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_CerrarArchivoActionPerformed
-        // CIERRA EL ARCHIVO Y PREGUNTA SI SE DESEA GUARDAR O NO
-        try {
-            // ME FALTA PROBAR SI FUNCIONA CON LOS CRUDS
-            if (salvado == true) {
-                if (JOptionPane.showConfirmDialog(null, "¿Desea salvar los cambios en el archivo?", "Confirmación", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    // Actualiza el text area
-                    FileReader fr = null;
-                    BufferedReader br = null;
-                    fr = new FileReader(archivo_actual.getArchivo());
-                    br = new BufferedReader(fr);
-                    TA_ArchivoAbierto.setText("");
-                    String linea;
-                    while ((linea = br.readLine()) != null) {
-                        TA_ArchivoAbierto.append(linea);
-                    } // Fin While
-                    try {
-                        br.close();
-                        fr.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } // Fin Try Catch
-                    // Actualiza el file dentro del archivo binario
-                    EscribirCamposBinario();
-                    JOptionPane.showMessageDialog(this, "¡Se ha guardado el archivo exitosamente!");
-                } else {
-                    FileWriter fw = null;
-                    BufferedWriter bw = null;
-                    fw = new FileWriter(archivo_actual.getArchivo());
-                    bw = new BufferedWriter(fw);
-                    bw.write(TA_ArchivoAbierto.getText());
-                    TA_ArchivoAbierto.setText("");
-                    bw.flush();
-                    aa.cargarArchivo();
-                    for (Archivo archivo : aa.getLista_archivos()) {
-                        if (archivo.getID() == archivo_actual.getID()) {
-                            archivo.setArchivo(archivo_actual.getArchivo());
-                            break;
-                        } // Fin If
-                    } // Fin For
-                    aa.escribirArchivo();
-                    try {
-                        bw.close();
-                        fw.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } // Fin Try Catch
-                } // Fin If
-            } else {
-                FileWriter fw = null;
-                BufferedWriter bw = null;
-                fw = new FileWriter(archivo_actual.getArchivo());
-                bw = new BufferedWriter(fw);
-                bw.write(TA_ArchivoAbierto.getText());
-                TA_ArchivoAbierto.setText("");
-                bw.flush();
-                aa.cargarArchivo();
-                for (Archivo archivo : aa.getLista_archivos()) {
-                    if (archivo.getID() == archivo_actual.getID()) {
-                        archivo.setArchivo(archivo_actual.getArchivo());
-                        break;
-                    } // Fin If
-                } // Fin For
-                aa.escribirArchivo();
-                try {
-                    bw.close();
-                    fw.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } // Fin Try Catch
-            } // Fin If
-            GuardarArchivo = null;
-            archivo_actual = null;
-            campos_nuevos.clear();
-            VentanaMenuCampos.setVisible(false);
-            this.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } // Fin Try Catch
-    }//GEN-LAST:event_BTN_CerrarArchivoActionPerformed
-
-    private void BTN_AbrirCrearCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirCrearCampoActionPerformed
-        // DESPLIEGA EL JDIALOG DONDE SE CREA UN CAMPO
-        try {
-            TF_NombreDelCampo.setText("");
-            CB_TipoDeDatoDelCampo.setSelectedIndex(0);
-            SP_LongitudDelCampo.setValue(1);
-            RB_LlavePrimariaDelCampo.setSelected(false);
-            RB_LlaveSecundariaDelCampo.setSelected(false);
-            for (int i = 0; i < campos_nuevos.size(); i++) {
-                if (campos_nuevos.get(i).isLlavePrimaria()) {
-                    RB_LlavePrimariaDelCampo.setEnabled(false);
-                } // Fin If
-            } // Fin For
-            for (int i = 0; i < campos_nuevos.size(); i++) {
-                if (campos_nuevos.get(i).isLlave_secundaria()) {
-                    RB_LlaveSecundariaDelCampo.setEnabled(false);
-                } // Fin If
-            } // Fin For
-            VentanaMenuCampos.setVisible(false);
-            JD_CrearCampos.setModal(true);
-            JD_CrearCampos.pack();
-            JD_CrearCampos.setLocationRelativeTo(this);
-            JD_CrearCampos.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } // Fin Try Catch
-    }//GEN-LAST:event_BTN_AbrirCrearCampoActionPerformed
-
-    private void BTN_AbrirModificarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirModificarCampoActionPerformed
-        // DESPLIEGA EL JDIALOG DONDE SE MODIFICA UN CAMPO
-        try {
-            CB_CampoAModificar.setSelectedIndex(0);
-            TF_NombreDelCampoModificado.setText("");
-            CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
-            SP_LongitudDelCampoModificado.setValue(1);
-            RB_LlavePrimariaDelCampoModificado.setSelected(false);
-            RB_LlaveSecundariaDelCampoModificado.setSelected(false);
-            RB_LlavePrimariaDelCampoModificado.setEnabled(false);
-            VentanaMenuCampos.setVisible(false);
-            JD_ModificarCampos.setModal(true);
-            JD_ModificarCampos.pack();
-            JD_ModificarCampos.setLocationRelativeTo(this);
-            JD_ModificarCampos.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } // Fin Try Catch
-    }//GEN-LAST:event_BTN_AbrirModificarCampoActionPerformed
-
-    private void BTN_AbrirBorrarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirBorrarCampoActionPerformed
-        // DESPLIEGA EL JDIALOG DONDE SE BORRA UN CAMPO
-        try {
-            VentanaMenuCampos.setVisible(false);
-            JD_BorrarCampos.setModal(true);
-            JD_BorrarCampos.pack();
-            JD_BorrarCampos.setLocationRelativeTo(this);
-            JD_BorrarCampos.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } // Fin Try Catch
-    }//GEN-LAST:event_BTN_AbrirBorrarCampoActionPerformed
-
-    private void BTN_AbrirListarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirListarCamposActionPerformed
-        // DESPLIEGA EL JDIALOG DONDE SE LISTAN TODOS LOS CAMPOS DE MANERA FORMATEADA
-        try {
-            VentanaMenuCampos.setVisible(false);
-            JD_ListarCampos.setModal(true);
-            JD_ListarCampos.pack();
-            JD_ListarCampos.setLocationRelativeTo(this);
-            JD_ListarCampos.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } // Fin Try Catch
-    }//GEN-LAST:event_BTN_AbrirListarCamposActionPerformed
-
     private void BTN_CancelarCrearCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_CancelarCrearCampoActionPerformed
         // REGRESAMOS DEL JDIALOG CREAR CAMPO AL MENU DE CAMPOS
         try {
@@ -2852,13 +2597,6 @@ public class Principal extends javax.swing.JFrame {
             e.printStackTrace();
         } // Fin Try Catch
     }//GEN-LAST:event_CB_CampoABorrarItemStateChanged
-
-    private void btn_irRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_irRegistrosMouseClicked
-        // TODO add your handling code here:
-        VentanaMenuRegistros.pack();
-        VentanaMenuRegistros.setLocationRelativeTo(null);
-        VentanaMenuRegistros.setVisible(true);
-    }//GEN-LAST:event_btn_irRegistrosMouseClicked
 
     private void btn_crearRegistrosDefinitivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearRegistrosDefinitivosActionPerformed
         // TODO add your handling code here:
@@ -3965,15 +3703,6 @@ public class Principal extends javax.swing.JFrame {
         } // Fin If
     }//GEN-LAST:event_jb_crearindicesMouseClicked
 
-    private void btn_utilidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_utilidadesActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        VentanaMenuPrincipal.setVisible(false);
-        VentanaMenuUtilidades.pack();
-        VentanaMenuUtilidades.setLocationRelativeTo(this);
-        VentanaMenuUtilidades.setVisible(true);
-    }//GEN-LAST:event_btn_utilidadesActionPerformed
-
     private void btn_CerrarPrograma_MenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CerrarPrograma_MenuPrincipalActionPerformed
         // TODO add your handling code here:
         System.exit(0);
@@ -4065,6 +3794,197 @@ public class Principal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Sus indices han sido actualizados");
         }
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void BTN_CerrarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_CerrarArchivoActionPerformed
+        // CIERRA EL ARCHIVO Y PREGUNTA SI SE DESEA GUARDAR O NO
+        try {
+            // ME FALTA PROBAR SI FUNCIONA CON LOS CRUDS
+            if (salvado == true) {
+                if (JOptionPane.showConfirmDialog(null, "¿Desea salvar los cambios en el archivo?", "Confirmación", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    // Actualiza el text area
+                    FileReader fr = null;
+                    BufferedReader br = null;
+                    fr = new FileReader(archivo_actual.getArchivo());
+                    br = new BufferedReader(fr);
+                    TA_ArchivoAbierto.setText("");
+                    String linea;
+                    while ((linea = br.readLine()) != null) {
+                        TA_ArchivoAbierto.append(linea);
+                    } // Fin While
+                    try {
+                        br.close();
+                        fr.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } // Fin Try Catch
+                    // Actualiza el file dentro del archivo binario
+                    EscribirCamposBinario();
+                    JOptionPane.showMessageDialog(this, "¡Se ha guardado el archivo exitosamente!");
+                } else {
+                    FileWriter fw = null;
+                    BufferedWriter bw = null;
+                    fw = new FileWriter(archivo_actual.getArchivo());
+                    bw = new BufferedWriter(fw);
+                    bw.write(TA_ArchivoAbierto.getText());
+                    TA_ArchivoAbierto.setText("");
+                    bw.flush();
+                    aa.cargarArchivo();
+                    for (Archivo archivo : aa.getLista_archivos()) {
+                        if (archivo.getID() == archivo_actual.getID()) {
+                            archivo.setArchivo(archivo_actual.getArchivo());
+                            break;
+                        } // Fin If
+                    } // Fin For
+                    aa.escribirArchivo();
+                    try {
+                        bw.close();
+                        fw.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } // Fin Try Catch
+                } // Fin If
+            } else {
+                FileWriter fw = null;
+                BufferedWriter bw = null;
+                fw = new FileWriter(archivo_actual.getArchivo());
+                bw = new BufferedWriter(fw);
+                bw.write(TA_ArchivoAbierto.getText());
+                TA_ArchivoAbierto.setText("");
+                bw.flush();
+                aa.cargarArchivo();
+                for (Archivo archivo : aa.getLista_archivos()) {
+                    if (archivo.getID() == archivo_actual.getID()) {
+                        archivo.setArchivo(archivo_actual.getArchivo());
+                        break;
+                    } // Fin If
+                } // Fin For
+                aa.escribirArchivo();
+                try {
+                    bw.close();
+                    fw.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } // Fin Try Catch
+            } // Fin If
+            GuardarArchivo = null;
+            archivo_actual = null;
+            campos_nuevos.clear();
+            VentanaMenuCampos.setVisible(false);
+            this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+    }//GEN-LAST:event_BTN_CerrarArchivoActionPerformed
+
+    private void BTN_SalvarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_SalvarArchivoActionPerformed
+        // ACTUALIZA EL TEXT AREA QUE MUESTRA EL ARCHIVO
+        try {
+            // Actualiza el Text Area
+            FileReader fr = null;
+            BufferedReader br = null;
+            fr = new FileReader(archivo_actual.getArchivo());
+            br = new BufferedReader(fr);
+            TA_ArchivoAbierto.setText("");
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                TA_ArchivoAbierto.append(linea);
+            } // Fin While
+            try {
+                br.close();
+                fr.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } // Fin Try Catch
+            // Actualiza el file dentro del archivo binario
+            EscribirCamposBinario();
+            formatear_CBbox_Modificar();
+            formatear_CBbox_borrar();
+            listar_campos();
+            if (secreo == true || semodifico == true || seborro == true) {
+                JOptionPane.showMessageDialog(null, "Archivo Salvado Exitosamente");
+            } // Fin If
+            secreo = false;
+            semodifico = false;
+            seborro = false;
+            salvado = false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+    }//GEN-LAST:event_BTN_SalvarArchivoActionPerformed
+
+    private void BTN_AbrirListarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirListarCamposActionPerformed
+        // DESPLIEGA EL JDIALOG DONDE SE LISTAN TODOS LOS CAMPOS DE MANERA FORMATEADA
+        try {
+            VentanaMenuCampos.setVisible(false);
+            JD_ListarCampos.setModal(true);
+            JD_ListarCampos.pack();
+            JD_ListarCampos.setLocationRelativeTo(this);
+            JD_ListarCampos.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+    }//GEN-LAST:event_BTN_AbrirListarCamposActionPerformed
+
+    private void BTN_AbrirBorrarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirBorrarCampoActionPerformed
+        // DESPLIEGA EL JDIALOG DONDE SE BORRA UN CAMPO
+        try {
+            VentanaMenuCampos.setVisible(false);
+            JD_BorrarCampos.setModal(true);
+            JD_BorrarCampos.pack();
+            JD_BorrarCampos.setLocationRelativeTo(this);
+            JD_BorrarCampos.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+    }//GEN-LAST:event_BTN_AbrirBorrarCampoActionPerformed
+
+    private void BTN_AbrirModificarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirModificarCampoActionPerformed
+        // DESPLIEGA EL JDIALOG DONDE SE MODIFICA UN CAMPO
+        try {
+            CB_CampoAModificar.setSelectedIndex(0);
+            TF_NombreDelCampoModificado.setText("");
+            CB_TipoDeDatoDelCampoModificado.setSelectedIndex(0);
+            SP_LongitudDelCampoModificado.setValue(1);
+            RB_LlavePrimariaDelCampoModificado.setSelected(false);
+            RB_LlaveSecundariaDelCampoModificado.setSelected(false);
+            RB_LlavePrimariaDelCampoModificado.setEnabled(false);
+            VentanaMenuCampos.setVisible(false);
+            JD_ModificarCampos.setModal(true);
+            JD_ModificarCampos.pack();
+            JD_ModificarCampos.setLocationRelativeTo(this);
+            JD_ModificarCampos.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+    }//GEN-LAST:event_BTN_AbrirModificarCampoActionPerformed
+
+    private void BTN_AbrirCrearCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AbrirCrearCampoActionPerformed
+        // DESPLIEGA EL JDIALOG DONDE SE CREA UN CAMPO
+        try {
+            TF_NombreDelCampo.setText("");
+            CB_TipoDeDatoDelCampo.setSelectedIndex(0);
+            SP_LongitudDelCampo.setValue(1);
+            RB_LlavePrimariaDelCampo.setSelected(false);
+            RB_LlaveSecundariaDelCampo.setSelected(false);
+            for (int i = 0; i < campos_nuevos.size(); i++) {
+                if (campos_nuevos.get(i).isLlavePrimaria()) {
+                    RB_LlavePrimariaDelCampo.setEnabled(false);
+                } // Fin If
+            } // Fin For
+            for (int i = 0; i < campos_nuevos.size(); i++) {
+                if (campos_nuevos.get(i).isLlave_secundaria()) {
+                    RB_LlaveSecundariaDelCampo.setEnabled(false);
+                } // Fin If
+            } // Fin For
+            VentanaMenuCampos.setVisible(false);
+            JD_CrearCampos.setModal(true);
+            JD_CrearCampos.pack();
+            JD_CrearCampos.setLocationRelativeTo(this);
+            JD_CrearCampos.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } // Fin Try Catch
+    }//GEN-LAST:event_BTN_AbrirCrearCampoActionPerformed
 
     ArrayList<Long> rrn_llaves_en_orden = new ArrayList();
 
@@ -5021,12 +4941,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_buscarRegistros1;
     private javax.swing.JButton btn_crearRegistros1;
     private javax.swing.JButton btn_crearRegistrosDefinitivos;
-    private javax.swing.JButton btn_irRegistros;
     private javax.swing.JButton btn_regresarRegistrosPrincipal;
     private javax.swing.JButton btn_regresarRegistrosPrincipal2;
     private javax.swing.JButton btn_regresarRegistrosPrincipal3;
     private javax.swing.JButton btn_salirCrearRegistros;
-    private javax.swing.JButton btn_utilidades;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jCb_llavesEliminarRegistros;
@@ -5036,7 +4954,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog jD_buscarRegistros;
     private javax.swing.JDialog jD_crearRegistros;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -5050,7 +4967,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;

@@ -92,6 +92,10 @@ public class Campo implements Serializable {
         this.llave_secundaria = llave_secundaria;
     } // Fin Set Llave Secundaria
 
+    public String campos_para_cruce() {
+        return nombre + tipo_de_dato + longitud;
+    }
+
     @Override
     public String toString() {
         String llave_primaria = "Si";
