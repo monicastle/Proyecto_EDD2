@@ -1377,6 +1377,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="VentanaMenuRegistros">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="Menu Registros"/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -1633,6 +1636,7 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jD_crearRegistros">
       <Properties>
+        <Property name="defaultCloseOperation" type="int" value="0"/>
         <Property name="title" type="java.lang.String" value="A&#xf1;adir Registro"/>
       </Properties>
 
@@ -1809,6 +1813,7 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jD_buscarRegistros">
       <Properties>
+        <Property name="defaultCloseOperation" type="int" value="0"/>
         <Property name="title" type="java.lang.String" value="Buscar Registro"/>
         <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[0, 0]"/>
@@ -1847,11 +1852,11 @@
                                   <Component id="JL_29" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="CB_LlavesBuscarRegistros" min="-2" pref="128" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane7" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="CB_LlavesBuscarRegistros" max="32767" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jTf_buscarRegistros" max="32767" attributes="0"/>
+                                              <Component id="jTf_buscarRegistros" min="-2" pref="377" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="btn_buscarRegistro" min="-2" pref="90" max="-2" attributes="0"/>
                                           </Group>
@@ -2017,7 +2022,8 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jD_ModificarRegistros">
       <Properties>
-        <Property name="title" type="java.lang.String" value="Buscar Registro"/>
+        <Property name="defaultCloseOperation" type="int" value="0"/>
+        <Property name="title" type="java.lang.String" value="Modificar Registro"/>
         <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[0, 0]"/>
         </Property>
@@ -2266,7 +2272,8 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jD_EliminarRegistros">
       <Properties>
-        <Property name="title" type="java.lang.String" value="Buscar Registro"/>
+        <Property name="defaultCloseOperation" type="int" value="0"/>
+        <Property name="title" type="java.lang.String" value="Eliminar Registro"/>
         <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[0, 0]"/>
         </Property>
@@ -2516,7 +2523,8 @@
     </Container>
     <Container class="javax.swing.JDialog" name="jD_ListarRegistros">
       <Properties>
-        <Property name="title" type="java.lang.String" value="Buscar Registro"/>
+        <Property name="defaultCloseOperation" type="int" value="0"/>
+        <Property name="title" type="java.lang.String" value="Listar Registro"/>
         <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[0, 0]"/>
         </Property>
@@ -2652,6 +2660,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="VentanaMenuUtilidades">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="Menu Utilidades"/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -2827,6 +2838,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="Ventana_MenuIndices">
+      <Properties>
+        <Property name="title" type="java.lang.String" value="Menu Indices"/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">

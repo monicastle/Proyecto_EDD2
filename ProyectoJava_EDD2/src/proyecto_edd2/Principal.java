@@ -1031,6 +1031,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        VentanaMenuRegistros.setTitle("Menu Registros");
+
         jPanel_MenuRegistros2.setBackground(new java.awt.Color(255, 255, 255));
 
         btn_crearRegistros1.setBackground(new java.awt.Color(255, 51, 0));
@@ -1185,6 +1187,7 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel_MenuRegistros2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jD_crearRegistros.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         jD_crearRegistros.setTitle("Añadir Registro");
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -1289,6 +1292,7 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jD_buscarRegistros.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         jD_buscarRegistros.setTitle("Buscar Registro");
         jD_buscarRegistros.setSize(new java.awt.Dimension(0, 0));
 
@@ -1358,11 +1362,11 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(JL_29)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
-                                        .addComponent(CB_LlavesBuscarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane7)
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
+                                        .addComponent(CB_LlavesBuscarRegistros, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTf_buscarRegistros)
+                                        .addComponent(jTf_buscarRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(btn_buscarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(20, 20, 20))))
@@ -1405,7 +1409,8 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jD_ModificarRegistros.setTitle("Buscar Registro");
+        jD_ModificarRegistros.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        jD_ModificarRegistros.setTitle("Modificar Registro");
         jD_ModificarRegistros.setSize(new java.awt.Dimension(0, 0));
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
@@ -1545,7 +1550,8 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jD_EliminarRegistros.setTitle("Buscar Registro");
+        jD_EliminarRegistros.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        jD_EliminarRegistros.setTitle("Eliminar Registro");
         jD_EliminarRegistros.setSize(new java.awt.Dimension(0, 0));
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
@@ -1686,7 +1692,8 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jD_ListarRegistros.setTitle("Buscar Registro");
+        jD_ListarRegistros.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        jD_ListarRegistros.setTitle("Listar Registro");
         jD_ListarRegistros.setSize(new java.awt.Dimension(0, 0));
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
@@ -1767,6 +1774,8 @@ public class Principal extends javax.swing.JFrame {
             jD_ListarRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        VentanaMenuUtilidades.setTitle("Menu Utilidades");
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1873,6 +1882,8 @@ public class Principal extends javax.swing.JFrame {
             VentanaMenuUtilidadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        Ventana_MenuIndices.setTitle("Menu Indices");
 
         jLabel1.setText("Menu indices");
 
@@ -2907,7 +2918,7 @@ public class Principal extends javax.swing.JFrame {
         if (!ValidaciondeingresoTabla(jTbl_tablaRegistros, true)) {
             return;
         }
-        if (archivo_actual.getCant_regisros() == 0) {
+        if (archivo_actual.getCant_Registros() == 0) {
             System.out.println("entro aqui");
             RandomAccessFile flujo;
             try {
@@ -2985,7 +2996,7 @@ public class Principal extends javax.swing.JFrame {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     //System.out.println("El rrn es:" + rrn);
-                    Archivodelarbol.getArbol().insert(llave, rrn);
+                    Archivodelarbol.getArbol().B_Tree_Insert(llave, rrn);
                     if (arbol_secundarioactual != null) {
                         int llavesecundaria = 0;
                         arbolessecundarios.cargarArchivo();
@@ -3011,7 +3022,7 @@ public class Principal extends javax.swing.JFrame {
                             if (arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().B_Tree_Search(arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().getRaiz(), llave_secundaria) != null) {
                                 omitidos = true;
                             } else {
-                                arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().insert(llave_secundaria, rrn);
+                                arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().B_Tree_Insert(llave_secundaria, rrn);
                                 arbol_secundarioactual = arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario();
                                 arbolessecundarios.escribirArchivo();
                             }
@@ -3090,7 +3101,7 @@ public class Principal extends javax.swing.JFrame {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     //System.out.println("El rrn es:" + rrn);
-                    arboles.getListaarboles().get(getposarbol).getArbol().insert(llave, rrn);
+                    arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Insert(llave, rrn);
                     if (arbol_secundarioactual != null) {
                         llavesecundaria = 0;
                         arbolessecundarios.cargarArchivo();
@@ -3116,7 +3127,7 @@ public class Principal extends javax.swing.JFrame {
                             if (arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().B_Tree_Search(arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().getRaiz(), llave_secundaria) != null) {
                                 omitidos = true;
                             } else {
-                                arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().insert(llave_secundaria, rrn);
+                                arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario().B_Tree_Insert(llave_secundaria, rrn);
                                 arbol_secundarioactual = arbolessecundarios.getListaarboles().get(archivodelarbol).getArbolSecundario();
                                 arbolessecundarios.escribirArchivo();
                             }
@@ -3136,7 +3147,7 @@ public class Principal extends javax.swing.JFrame {
 
         } else {
             //boolean incrementa = true;
-            //archivo_actual.setCant_regisros(incrementa);//incrementa la cantidad de registros
+            //archivo_actual.setCant_Registros(incrementa);//incrementa la cantidad de registros
             message = "Guardado Exitoso";
         }
         arboles.escribirArchivo();
@@ -3160,7 +3171,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_buscarRegistroRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarRegistroRegistroActionPerformed
         // TODO add your handling code here:
-        if (archivo_actual.getLongitudLLavePrimaria() < jTf_buscarRegistros.getText().length()) {
+        if (archivo_actual.getLongitudLlavePrimaria() < jTf_buscarRegistros.getText().length()) {
             JOptionPane.showMessageDialog(this, "La llave ingresada excede la longitud permitida.");
             return;
         }
@@ -3313,7 +3324,7 @@ public class Principal extends javax.swing.JFrame {
         } // Fin For
         int posComboBox = CB_LlavesModificarRegistro.getSelectedIndex();
         if (posComboBox == 0) {
-            if (archivo_actual.getLongitudLLavePrimaria() < TF_LlaveModificarRegistro.getText().length()) {
+            if (archivo_actual.getLongitudLlavePrimaria() < TF_LlaveModificarRegistro.getText().length()) {
                 JOptionPane.showMessageDialog(this, "La llave ingresada excede la longitud permitida");
                 TF_LlaveModificarRegistro.setText("");
                 return;
@@ -3499,7 +3510,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_buscarEliminarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarEliminarRegistrosActionPerformed
         // TODO add your handling code here:
-        if (archivo_actual.getLongitudLLavePrimaria() < jTf_LLaveEliminarRegistros.getText().length()) {
+        if (archivo_actual.getLongitudLlavePrimaria() < jTf_LLaveEliminarRegistros.getText().length()) {
             JOptionPane.showMessageDialog(this, "La llave ingresada excede la longitud permitida.");
             return;
         }
@@ -3734,13 +3745,13 @@ public class Principal extends javax.swing.JFrame {
                         }//fin for
                         if (arbol_secundarioactual != null) {
                             arbolessecundarios.cargarArchivo();
-                            arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().B_Tree_Delete(arbol_secundarioactual.getRaiz(), llave_secun);
+                            arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().B_Tree_Delete_Key(arbol_secundarioactual.getRaiz(), llave_secun);
                             arbol_secundarioactual = arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario();
                             arbolessecundarios.escribirArchivo();
                         }
                         //ESTO ELIMINA EL REGISTRO DE LA LISTA DE REGISTROS
                         arboles.cargarArchivo();
-                        arboles.getListaarboles().get(getposarbol1).getArbol().B_Tree_Delete(arboles.getListaarboles().get(getposarbol1).getArbol().getRaiz(), llave);
+                        arboles.getListaarboles().get(getposarbol1).getArbol().B_Tree_Delete_Key(arboles.getListaarboles().get(getposarbol1).getArbol().getRaiz(), llave);
                         arbol_actual = arboles.getListaarboles().get(getposarbol1).getArbol();
                         //arbol_actual.imprimir_arbol(arbol_actual.getRaiz(), 0);
                         arboles.escribirArchivo();
@@ -3832,7 +3843,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_PuenteMenuCamposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PuenteMenuCamposMouseClicked
         // TODO add your handling code here:
-        if (archivo_actual.getCant_regisros() >= 1) {
+        if (archivo_actual.getCant_Registros() >= 1) {
             JOptionPane.showMessageDialog(this, "No es posible modificar los campos de este archivo.");
             /*} else if (arbol_actual == null) {//PUEDE QUE ESTO LO OCUPE AL ELIMINAR TODOS LOS REGISTROS.. PUEDE
             JOptionPane.showMessageDialog(this, "Ya tienes registros creados.");*/
@@ -4129,7 +4140,7 @@ public class Principal extends javax.swing.JFrame {
             arbolessecundarios.cargarArchivo();
             //  int id = arbolessecundarios.GenerarId();
             Archivoarbolsecundario archivosecundario = new Archivoarbolsecundario(archivo_actual.getArchivo(), archivo_actual.getID(), new BTree(6));
-            for (int i = 0; i < archivo_actual.getCant_regisros(); i++) {
+            for (int i = 0; i < archivo_actual.getCant_Registros(); i++) {
                 if (i == 0) {
                     try {
                         int rrn = 500;
@@ -4140,7 +4151,7 @@ public class Principal extends javax.swing.JFrame {
                             int num = archivo_actual.getCampos().get(posllave_secundaria).getLongitud() - llave.length();
                             llave = espacios.substring(0, num) + llave;
                         }
-                        archivosecundario.getArbolSecundario().insert(llave, rrn);
+                        archivosecundario.getArbolSecundario().B_Tree_Insert(llave, rrn);
                     } catch (IOException ex) {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -4156,7 +4167,7 @@ public class Principal extends javax.swing.JFrame {
                             int num = archivo_actual.getCampos().get(posllave_secundaria).getLongitud() - llave.length();
                             llave = espacios.substring(0, num) + llave;
                         }
-                        archivosecundario.getArbolSecundario().insert(llave, rrn2);
+                        archivosecundario.getArbolSecundario().B_Tree_Insert(llave, rrn2);
                     } catch (IOException ex) {
                         Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -4164,7 +4175,6 @@ public class Principal extends javax.swing.JFrame {
             }
             arbolessecundarios.getListaarboles().add(archivosecundario);
             arbol_secundarioactual = archivosecundario.getArbolSecundario();
-            arbol_secundarioactual.imprimir_arbol(0, 0);
             arbolessecundarios.escribirArchivo();
             JOptionPane.showMessageDialog(this, "Se crearon los indices nuevos");
         } else {
@@ -4666,17 +4676,17 @@ public class Principal extends javax.swing.JFrame {
                     break;
                 } // Fin If
             } // Fin For
-            if (aa.getLista_archivos().get(pos_archivo).getCant_regisros() == 0) {
+            if (aa.getLista_archivos().get(pos_archivo).getCant_Registros() == 0) {
                 aa.cargarArchivo();
                 int rrn = 500;
-                aa.getLista_archivos().get(pos_archivo).setCant_regisros(true);
+                aa.getLista_archivos().get(pos_archivo).setCant_Registros(true);
                 archivo_actual = aa.getLista_archivos().get(pos_archivo);
                 aa.escribirArchivo();
                 return rrn;
             } else {
                 aa.cargarArchivo();
-                int rrn = (250 + (tam_registro() * aa.getLista_archivos().get(pos_archivo).getCant_regisros())) * 2;
-                aa.getLista_archivos().get(pos_archivo).setCant_regisros(true);
+                int rrn = (250 + (tam_registro() * aa.getLista_archivos().get(pos_archivo).getCant_Registros())) * 2;
+                aa.getLista_archivos().get(pos_archivo).setCant_Registros(true);
                 archivo_actual = aa.getLista_archivos().get(pos_archivo);
                 aa.escribirArchivo();
                 return rrn;
@@ -4951,7 +4961,7 @@ public class Principal extends javax.swing.JFrame {
                 // Obtenemos la llave primaria para poder insertarla en el arbolB
                 primaryKey = String.valueOf(personID);
                 primaryKey = espacios.substring(0, 6 - primaryKey.length()) + primaryKey;
-                BTreePersons.insert(primaryKey, RRN);
+                BTreePersons.B_Tree_Insert(primaryKey, RRN);
                 personID++;
                 //BTreePersons.imprimir_arbol(0, 0);
                 // Consejo sout del arbol para ver si inserta bien
@@ -4959,7 +4969,7 @@ public class Principal extends javax.swing.JFrame {
                 secondaryKey = String.valueOf(cityID);
                 secondaryKey = espacios.substring(0, 2 - secondaryKey.length()) + secondaryKey;
                 if (Btreepersons_secundario.B_Tree_Search(Btreepersons_secundario.getRaiz(), secondaryKey) == null) {
-                    Btreepersons_secundario.insert(secondaryKey, RRN);
+                    Btreepersons_secundario.B_Tree_Insert(secondaryKey, RRN);
                 }
                 //arbolCity.insert(secondaryKey, RRN);*/
             } // Fin For
@@ -5369,8 +5379,6 @@ public class Principal extends javax.swing.JFrame {
     private int rrnabuscar = 0;
     private String espacios = new String(new char[1024]).replace('\0', ' ');
     Adminarboles arboles = new Adminarboles("./Arboles.txt");//el archivo que guarda todos los arboles
-    añadirregistros registros = new añadirregistros("./Registros.txt");//el archivo que guarda todos los registros
-    private Registro registro_actual;//el registro que se maneja en ejecucion
     Admin_arbolsecundario arbolessecundarios = new Admin_arbolsecundario("./Arboles_secundarios.txt");
     private BTree arbol_secundarioactual;
     String llaveprimariaTemp, llavesecundariaTemp;

@@ -7,7 +7,7 @@ package proyecto_edd2;
 
 /**
  *
- * @author daba5
+ * @author diego
  */
 public class NodoIndice {
 
@@ -17,22 +17,22 @@ public class NodoIndice {
     public NodoIndice(Node nodo, int indice) {
         this.nodo = nodo;
         this.indice = indice;
-    }
+    } // Fin Nodo Indice
 
     public Node getNodo() {
         return nodo;
-    }
+    } // Fin Get Nodo
 
     public void setNodo(Node nodo) {
         this.nodo = nodo;
-    }
+    } // Fin Set Nodo
 
     public int getIndice() {
         return indice;
-    }
+    } // Fin Get Indice
 
     public void setIndice(int indice) {
         this.indice = indice;
-    }
+    } // Fin Set Indice
 
-}
+} // Fin Clase Nodo Indice

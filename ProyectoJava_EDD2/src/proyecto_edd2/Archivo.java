@@ -67,34 +67,34 @@ public class Archivo implements Serializable {
 
     public void setAvailList(LinkedList AvailList) {
         this.AvailList = AvailList;
-    }
+    } // Fin Set AvailList
 
     public LinkedList getAvailList() {
         return AvailList;
-    }
+    } // Fin Get AvailList
 
-    public int getCant_regisros() {
+    public int getCant_Registros() {
         return cant_regisros;
-    }
+    } // Fin Get Cant Registros
 
-    public void setCant_regisros(boolean incrementa) {
+    public void setCant_Registros(boolean incrementa) {
         if (incrementa) {
             this.cant_regisros++;
         } else {
             this.cant_regisros--;
-        }
-    }
+        } // Fin If
+    } // Fin Set Cant Registros
 
-    public double getLongitudLLavePrimaria() {
+    public double getLongitudLlavePrimaria() {
         int retornar = 0;
         for (int i = 0; i < campos.size(); i++) {
             if (campos.get(i).isLlavePrimaria()) {
                 retornar = campos.get(i).getLongitud();
                 break;
-            }
-        }
+            } // Fin If 
+        } // Fin For
         return retornar;
-    }
+    } // Fin Get Longitud Llave Primaria
 
     public double getLongitudLlaveSecundaria() {
         int retornar = 0;
@@ -125,12 +125,12 @@ public class Archivo implements Serializable {
         return metadata.length() + 1;
     } // Gin Get Size Metadata
 
-    public int longitud_fija_campos() {
+    public int LongitudFijaCampos() {
         int length = 0;
         for (Campo campo : campos) {
             length += campo.getLongitud();
         }
         return length + campos.size();
-    }
+    } // Fin Longitud Fija Campos
 
 } // Fin Clase Archivo
