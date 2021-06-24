@@ -3048,9 +3048,12 @@ public class Principal extends javax.swing.JFrame {
                     }//fin if
                 }//fin for
                 if (arbol_secundarioactual != null) {
-                    if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null || arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().B_Tree_Search(arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().getRaiz(), llave_secun) != null) {
-                        omitidos = true;
+                    if (!archivo_actual.getArchivo().getName().equals("PersonFile")) {
+                        if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null || arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().B_Tree_Search(arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().getRaiz(), llave_secun) != null) {
+                            omitidos = true;
+                        }
                     }
+
                 }
 //                arbolessecundarios.getListaarboles().get(validacion).getArbolSecundario().imprimir_arbol(0, 0);
                 if (arboles.getListaarboles().get(getposarbol).getArbol().B_Tree_Search(arboles.getListaarboles().get(getposarbol).getArbol().getRaiz(), llave) != null) {
@@ -4776,10 +4779,10 @@ public class Principal extends javax.swing.JFrame {
             //
             archivo_prueba_secundario.setArbolSecundario(Btreepersons_secundario);
             // Escribir en el binario de arbol
-            /* arbolessecundarios.cargarArchivo();
+             arbolessecundarios.cargarArchivo();
             arbolessecundarios.getListaarboles().add(archivo_prueba_secundario);
             arbol_secundarioactual = Btreepersons_secundario;
-            arbolessecundarios.escribirArchivo();*/
+            arbolessecundarios.escribirArchivo();
             GenerarCityFile();
             JOptionPane.showMessageDialog(null, "Debido a que las llaves secundarias se repiten solo hemos guardado ciert cantidad de registros en indices  ");
         } catch (Exception e) {
