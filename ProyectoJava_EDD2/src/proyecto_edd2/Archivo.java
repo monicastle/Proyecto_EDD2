@@ -96,6 +96,17 @@ public class Archivo implements Serializable {
         return retornar;
     }
 
+    public double getLongitudLlaveSecundaria() {
+        int retornar = 0;
+        for (int i = 0; i < campos.size(); i++) {
+            if (campos.get(i).isLlave_secundaria()) {
+                retornar = campos.get(i).getLongitud();
+                break;
+            } // Fin If
+        } // Fin For
+        return retornar;
+    } // Fin Get Longitud Llave Secundaria
+
     public int getSizeMetadata() {
         String metadata = "";
         for (Campo campo : this.getCampos()) {
@@ -113,8 +124,7 @@ public class Archivo implements Serializable {
         } // Fin For
         return metadata.length() + 1;
     } // Gin Get Size Metadata
-    
-    
+
     public int longitud_fija_campos() {
         int length = 0;
         for (Campo campo : campos) {

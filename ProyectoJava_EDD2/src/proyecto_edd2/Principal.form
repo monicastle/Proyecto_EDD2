@@ -1849,7 +1849,7 @@
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jCb_llavesBuscarregistros" min="-2" pref="128" max="-2" attributes="0"/>
+                                              <Component id="CB_LlavesBuscarRegistros" min="-2" pref="128" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="jTf_buscarRegistros" max="32767" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1880,7 +1880,7 @@
                       <Component id="JL_30" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jCb_llavesBuscarregistros" alignment="0" pref="34" max="32767" attributes="0"/>
+                          <Component id="CB_LlavesBuscarRegistros" alignment="0" pref="34" max="32767" attributes="0"/>
                           <Component id="jTf_buscarRegistros" alignment="1" max="32767" attributes="0"/>
                           <Component id="btn_buscarRegistro" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -1934,11 +1934,12 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTbl_buscarRegistros">
+                <Component class="javax.swing.JTable" name="TablaBuscarRegistro">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="0" rowCount="0"/>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
@@ -1963,7 +1964,7 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_regresarRegistrosPrincipalMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jCb_llavesBuscarregistros">
+            <Component class="javax.swing.JComboBox" name="CB_LlavesBuscarRegistros">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -1979,6 +1980,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CB_LlavesBuscarRegistrosItemStateChanged"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -2052,9 +2056,11 @@
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="jScrollPane8" alignment="0" max="32767" attributes="0"/>
                                           <Group type="102" alignment="1" attributes="0">
-                                              <Component id="jTf_LLaveModificarRegistro" max="32767" attributes="0"/>
+                                              <Component id="CB_LlavesModificarRegistro" max="32767" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="TF_LlaveModificarRegistro" min="-2" pref="375" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="btn_buscarModificarRegistro" min="-2" pref="90" max="-2" attributes="0"/>
+                                              <Component id="BTN_BuscarModificarRegistro" min="-2" pref="90" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLbl_instruccionModificar" min="-2" pref="443" max="-2" attributes="0"/>
@@ -2075,9 +2081,9 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btn_regresarRegistrosPrincipal1" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="BTN_RegresarRegistrosPrincipal1" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btn_ConfirmarModificacion" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="BTN_ConfirmarModificacion" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -2091,10 +2097,11 @@
                       <Component id="JL_35" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLbl_instruccionModificar" min="-2" pref="21" max="-2" attributes="0"/>
-                      <EmptySpace pref="11" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTf_LLaveModificarRegistro" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="btn_buscarModificarRegistro" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="TF_LlaveModificarRegistro" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="BTN_BuscarModificarRegistro" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="CB_LlavesModificarRegistro" alignment="1" pref="36" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane8" min="-2" pref="120" max="-2" attributes="0"/>
@@ -2102,8 +2109,8 @@
                       <Component id="JL_36" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btn_regresarRegistrosPrincipal1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="btn_ConfirmarModificacion" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="BTN_RegresarRegistrosPrincipal1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="BTN_ConfirmarModificacion" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -2111,7 +2118,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="btn_buscarModificarRegistro">
+            <Component class="javax.swing.JButton" name="BTN_BuscarModificarRegistro">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="33" red="ff" type="rgb"/>
@@ -2128,10 +2135,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_buscarModificarRegistroActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_BuscarModificarRegistroActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTf_LLaveModificarRegistro">
+            <Component class="javax.swing.JTextField" name="TF_LlaveModificarRegistro">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -2149,7 +2156,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTbl_ModificarRegistros">
+                <Component class="javax.swing.JTable" name="TablaModificarRegistro">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="0" rowCount="0"/>
@@ -2161,7 +2168,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="btn_regresarRegistrosPrincipal1">
+            <Component class="javax.swing.JButton" name="BTN_RegresarRegistrosPrincipal1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -2175,7 +2182,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_regresarRegistrosPrincipal1MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BTN_RegresarRegistrosPrincipal1MouseClicked"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="JL_34">
@@ -2213,7 +2220,7 @@
                 <Property name="text" type="java.lang.String" value="Ingrese la llave del registro a modificar"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btn_ConfirmarModificacion">
+            <Component class="javax.swing.JButton" name="BTN_ConfirmarModificacion">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -2227,8 +2234,31 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_ConfirmarModificacionMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BTN_ConfirmarModificacionMouseClicked"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="CB_LlavesModificarRegistro">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                    <LineBorder>
+                      <Color PropertyName="color" blue="66" green="66" red="66" type="rgb"/>
+                    </LineBorder>
+                  </Border>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CB_LlavesModificarRegistroItemStateChanged"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -2416,11 +2446,12 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTbl_eliminarRegistros">
+                <Component class="javax.swing.JTable" name="TablaEliminarRegistro">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="0" rowCount="0"/>
                     </Property>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
@@ -2472,6 +2503,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jCb_llavesEliminarRegistrosItemStateChanged"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
