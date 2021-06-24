@@ -4506,11 +4506,11 @@ public class Principal extends javax.swing.JFrame {
             }
         } else {
             try {
-                rrn = (int) archivo_actual.getAvailList().peekFirst();
+                rrn = (int) archivo_actual.getAvailList().peekLast();
                 aa.cargarArchivo();
                 for (int i = 0; i < aa.getLista_archivos().size(); i++) {
                     if (aa.getLista_archivos().get(i).getID() == archivo_actual.getID()) {
-                        aa.getLista_archivos().get(i).getAvailList().removeFirst();
+                        aa.getLista_archivos().get(i).getAvailList().removeLast();
                         archivo_actual = aa.getLista_archivos().get(i);
                         break;
                     } // Fin If
@@ -4524,7 +4524,7 @@ public class Principal extends javax.swing.JFrame {
                 flujo.seek(rrn);
                 flujo.writeChars(sbregistro.toString());
                 if (!archivo_actual.getAvailList().isEmpty()) {
-                    int rrn2 = (int) archivo_actual.getAvailList().peekFirst();
+                    int rrn2 = (int) archivo_actual.getAvailList().peekLast();
                     RandomAccessFile raf = new RandomAccessFile(new File(archivo_actual.getArchivo().getAbsolutePath()), "rw");
                     String cabeza_availist = Integer.toString(rrn2);
                     StringBuffer sbcabeza = new StringBuffer(cabeza_availist);
