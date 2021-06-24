@@ -227,10 +227,13 @@ public class Principal extends javax.swing.JFrame {
         btn_CerrarPrograma_MenuUtilidades = new javax.swing.JButton();
         btn_RegresarMenuPrincipal_MenuUtilidades = new javax.swing.JButton();
         Ventana_MenuIndices = new javax.swing.JFrame();
-        jLabel1 = new javax.swing.JLabel();
-        jb_crearindices = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jb_regresardeindices = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jb_crearindices = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        JL_51 = new javax.swing.JLabel();
+        JL_52 = new javax.swing.JLabel();
         buttonGroup1 = new javax.swing.ButtonGroup();
         PanelPrincipal = new javax.swing.JPanel();
         JL_1 = new javax.swing.JLabel();
@@ -1886,55 +1889,91 @@ public class Principal extends javax.swing.JFrame {
 
         Ventana_MenuIndices.setTitle("Menu Indices");
 
-        jLabel1.setText("Menu indices");
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jb_crearindices.setText("Crear Indices");
-        jb_crearindices.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jb_crearindicesMouseClicked(evt);
-            }
-        });
-
-        jButton2.setText("Reindexar");
-
+        jb_regresardeindices.setBackground(new java.awt.Color(204, 204, 204));
+        jb_regresardeindices.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jb_regresardeindices.setText("Regresar");
+        jb_regresardeindices.setBorder(null);
         jb_regresardeindices.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jb_regresardeindicesMouseClicked(evt);
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(255, 51, 0));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Reindexar");
+        jButton2.setBorder(null);
+
+        jb_crearindices.setBackground(new java.awt.Color(255, 51, 0));
+        jb_crearindices.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jb_crearindices.setForeground(new java.awt.Color(255, 255, 255));
+        jb_crearindices.setText("Crear Indices");
+        jb_crearindices.setBorder(null);
+        jb_crearindices.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_crearindicesMouseClicked(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Menú Indices");
+
+        JL_51.setForeground(new java.awt.Color(204, 204, 204));
+        JL_51.setText("____________________________________________________________________");
+
+        JL_52.setForeground(new java.awt.Color(204, 204, 204));
+        JL_52.setText("____________________________________________________________________");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(JL_51, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JL_52, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jb_crearindices, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(jb_regresardeindices, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JL_52)
+                .addGap(28, 28, 28)
+                .addComponent(jb_crearindices, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(JL_51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jb_regresardeindices, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout Ventana_MenuIndicesLayout = new javax.swing.GroupLayout(Ventana_MenuIndices.getContentPane());
         Ventana_MenuIndices.getContentPane().setLayout(Ventana_MenuIndicesLayout);
         Ventana_MenuIndicesLayout.setHorizontalGroup(
             Ventana_MenuIndicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Ventana_MenuIndicesLayout.createSequentialGroup()
-                .addGroup(Ventana_MenuIndicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Ventana_MenuIndicesLayout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(jLabel1))
-                    .addGroup(Ventana_MenuIndicesLayout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addGroup(Ventana_MenuIndicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jb_crearindices)))
-                    .addGroup(Ventana_MenuIndicesLayout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(jb_regresardeindices)))
-                .addContainerGap(152, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         Ventana_MenuIndicesLayout.setVerticalGroup(
             Ventana_MenuIndicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Ventana_MenuIndicesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jb_crearindices)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(43, 43, 43)
-                .addComponent(jb_regresardeindices)
-                .addContainerGap(117, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -4928,6 +4967,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel JL_49;
     private javax.swing.JLabel JL_5;
     private javax.swing.JLabel JL_50;
+    private javax.swing.JLabel JL_51;
+    private javax.swing.JLabel JL_52;
     private javax.swing.JLabel JL_6;
     private javax.swing.JLabel JL_7;
     private javax.swing.JLabel JL_8;
@@ -5001,6 +5042,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
